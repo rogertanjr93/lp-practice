@@ -1514,3 +1514,14 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   }
 }
 
+
+
+/* BASE BUILD V3 — full-screen contact modal with randomized home image */
+.custom-contact-modal{--custom-contact-modal-image:url("images/losangeles-1.jpg");position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;padding:24px;border:0;overflow:auto;background:#111;color:#000;box-sizing:border-box}
+.custom-contact-modal[open]{display:grid;place-items:center}
+.custom-contact-modal::before{content:'';position:fixed;inset:0;z-index:0;background-image:var(--custom-contact-modal-image);background-size:cover;background-position:center;opacity:.4;pointer-events:none}
+.custom-contact-modal::after{content:'';position:fixed;inset:0;z-index:0;background:rgba(0,0,0,.18);pointer-events:none}
+.custom-contact-modal::backdrop{background:#111}
+.custom-contact-modal__body{position:relative;z-index:2;width:min(720px,calc(100vw - 48px));max-height:calc(100dvh - 48px);overflow:auto;padding:clamp(34px,4vw,58px);background:rgba(255,255,255,.94);box-shadow:0 24px 80px rgba(0,0,0,.24);backdrop-filter:blur(4px)}
+.custom-contact-modal__close{position:fixed;z-index:4;top:24px;right:24px;float:none;margin:0;background:#fff;color:#000}
+@media(max-width:600px){.custom-contact-modal{width:100vw;height:100dvh;max-height:none;padding:14px}.custom-contact-modal__body{width:min(100%,720px);max-height:calc(100dvh - 28px);padding:48px 22px 28px}.custom-contact-modal__close{top:18px;right:18px;margin:0}}

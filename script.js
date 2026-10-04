@@ -8,7 +8,48 @@ const menu = $('#navigation-menu');
 const detail = $('#detail-dialog');
 const contactModal = $('#contact-modal');
 const menuButton = $('.custom-menu-toggle');
+const propertyCarousel = $('[data-property-carousel]');
+const contactModalImages = ['images/losangeles-1.jpg','images/beverlyhills-1.jpg','images/santamonica-1.jpg','images/westhollywood-1.jpg','images/losangeles-2.jpg','images/beverlyhills-2.jpg','images/santamonica-2.jpg','images/westhollywood-2.jpg'];
 let statusFilter = 'all';
+let propertyCarouselIndex = 1;
+let lastContactModalImage = -1;
+
+function centerPropertySlide(behavior = 'smooth') {
+  if (!propertyCarousel) return;
+  const viewport = $('.custom-featured-properties__viewport', propertyCarousel);
+  const slides = $$('.custom-featured-property', propertyCarousel);
+  const slide = slides[propertyCarouselIndex];
+  if (!viewport || !slide) return;
+  const slideRect = slide.getBoundingClientRect();
+  const viewportRect = viewport.getBoundingClientRect();
+  const left = viewport.scrollLeft + (slideRect.left - viewportRect.left) - ((viewport.clientWidth - slide.clientWidth) / 2);
+  viewport.scrollTo({ left, behavior });
+  slides.forEach((item,index) => item.setAttribute('aria-current', String(index === propertyCarouselIndex)));
+}
+function movePropertyCarousel(direction) {
+  if (!propertyCarousel) return;
+  const slides = $$('.custom-featured-property', propertyCarousel);
+  if (!slides.length) return;
+  propertyCarouselIndex = (propertyCarouselIndex + direction + slides.length) % slides.length;
+  centerPropertySlide('smooth');
+}
+function startTeamHero() {
+  const images = $$('[data-team-hero-image]');
+  if (images.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let activeIndex = images.findIndex(image => image.classList.contains('is-active'));
+  if (activeIndex < 0) activeIndex = 0;
+  window.setInterval(() => {
+    images[activeIndex].classList.remove('is-active');
+    activeIndex = (activeIndex + 1) % images.length;
+    images[activeIndex].classList.add('is-active');
+  }, 4000);
+}
+function chooseContactModalImage() {
+  let next = Math.floor(Math.random() * contactModalImages.length);
+  if (contactModalImages.length > 1 && next === lastContactModalImage) next = (next + 1) % contactModalImages.length;
+  lastContactModalImage = next;
+  contactModal.style.setProperty('--custom-contact-modal-image', `url("${contactModalImages[next]}")`);
+}
 
 function syncDialogState() {
   document.body.classList.toggle('custom-locked', menu.open || detail.open || contactModal.open);
@@ -54,23 +95,29 @@ function route(focus = true) {
   }
   window.scrollTo({ top: 0, behavior: 'instant' });
   if (focus) $('#main').focus({ preventScroll: true });
+  if ((slug || 'home') === 'home') requestAnimationFrame(() => centerPropertySlide('auto'));
   if (slug === 'neighborhoods') {
     const target = document.getElementById('area-' + params.get('area'));
     if (target) target.scrollIntoView({ behavior: 'instant' });
   }
 }
 function openProperty(card) {
+  if (!card) return;
   const content = $('#detail-content');
   content.replaceChildren();
-  const image = $('img', card).cloneNode();
+  const imageSource = $('img', card);
+  if (!imageSource) return;
+  const image = imageSource.cloneNode();
   image.className = 'custom-detail__image';
   const body = document.createElement('div');
   body.className = 'custom-detail__body';
   const title = document.createElement('h2');
-  title.textContent = $('h3', card).textContent;
+  title.textContent = card.dataset.title || $('h3', card)?.textContent?.trim() || 'Property';
   const location = document.createElement('p');
   location.className = 'custom-eyebrow';
-  location.textContent = $('.custom-eyebrow', card).textContent;
+  location.textContent = card.dataset.location || $('.custom-eyebrow', card)?.textContent?.trim() || '';
+  const details = document.createElement('p');
+  details.textContent = card.dataset.details || $('.custom-property-card__info > p:last-child', card)?.textContent?.trim() || '';
   const note = document.createElement('p');
   note.textContent = 'Illustrative listing only. Images are generated; property names, status, and dimensions are sample content.';
   const link = document.createElement('a');
@@ -78,12 +125,13 @@ function openProperty(card) {
   link.href = '#contact-modal';
   link.dataset.openContactModal = '';
   link.textContent = 'Discuss Your Search ↗';
-  body.append(location, title, $('.custom-property-card__info > p:last-child', card).cloneNode(true), note, link);
-  content.append(image, body);
+  body.append(location,title,details,note,link);
+  content.append(image,body);
   detail.showModal();
   syncDialogState();
 }
 function openContactModal() {
+  chooseContactModalImage();
   if (menu.open) menu.close();
   if (detail.open) detail.close();
   if (!contactModal.open) contactModal.showModal();
@@ -117,7 +165,9 @@ document.addEventListener('click', event => {
   if (target.hasAttribute('data-close-contact-modal')) { contactModal.close(); syncDialogState(); }
   if (target.hasAttribute('data-close-menu')) { menu.close(); syncDialogState(); }
   if (target.hasAttribute('data-close-detail')) { detail.close(); syncDialogState(); }
-  if (target.hasAttribute('data-property')) openProperty(target.closest('.custom-property-card'));
+  if (target.hasAttribute('data-property-carousel-prev')) movePropertyCarousel(-1);
+  if (target.hasAttribute('data-property-carousel-next')) movePropertyCarousel(1);
+  if (target.hasAttribute('data-property')) openProperty(target.closest('.custom-property-card, .custom-featured-property'));
   if (target.hasAttribute('data-filter')) { statusFilter = target.dataset.filter; filterPortfolio(); }
   if (target.id === 'valuation-next') valuationStep(true);
   if (target.id === 'valuation-back') valuationStep(false);
@@ -153,6 +203,9 @@ document.addEventListener('submit', event => {
 });
 window.addEventListener('hashchange', () => route());
 window.addEventListener('scroll', syncHeader, { passive: true });
+window.addEventListener('resize', () => centerPropertySlide('auto'), { passive: true });
 $('#copyright-year').textContent = new Date().getFullYear();
 route(false);
 syncHeader();
+requestAnimationFrame(() => centerPropertySlide('auto'));
+startTeamHero();
