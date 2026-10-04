@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Marci Metzger and The Ridge Realty Group — Pahrump, Nevada real estate.">
+    <title>Marci Metzger | The Ridge Realty Group</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-listings-endpoint="">
+    <!-- Fixed page backdrop -->
+    <div class="site-backdrop" id="siteBackdrop" aria-hidden="true">
+        <div class="site-backdrop-slide active" data-backdrop-slide="0"></div>
+        <div class="site-backdrop-slide" data-backdrop-slide="1"></div>
+        <div class="site-backdrop-slide" data-backdrop-slide="2"></div>
+        <div class="site-backdrop-shade"></div>
+    </div>
+
+    <header class="site-header">
+        <a href="#home" class="logo" aria-label="Marci Metzger Home">
+            <img src="images/logo.png" alt="Marci Metzger Homes">
+        </a>
+
+        <div class="header-menu">
+            <button class="menu-dropdown-toggle" type="button" aria-expanded="false" aria-controls="headerDropdown">
+                <span class="menu-label">Menu</span>
+                <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
+            </button>
+
+            <nav class="header-dropdown" id="headerDropdown" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="https://theridgerealty.com/">About Us</a>
+                <a href="#listings">Listings</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Professional affiliation logos -->
+    <aside class="affiliation-dock" id="affiliationDock" aria-label="Professional affiliations">
+        <div class="affiliation-items">
+            <a
+                class="affiliation-logo-card"
+                href="https://www.hud.gov/stat/fheo/rights-obligations"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Equal Housing Opportunity website"
+            >
+                <img src="images/logo-equal-housing.png" alt="Equal Housing Opportunity">
+            </a>
+            
+            <a
+                class="affiliation-logo-card"
+                href="https://www.nar.realtor"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Realtor website"
+            >
+                <img src="images/logo-realtor.png" alt="Realtor">
+            </a>
+            
+            <a
+                class="affiliation-logo-card"
+                href="https://pahrumpchamber.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Pahrump Valley Chamber of Commerce website"
+            >
+                <img src="images/logo-pahrump-chamber.png" alt="Pahrump Valley Chamber of Commerce">
+            </a>
+        </div>
+
+        <button class="affiliation-handle" id="affiliationHandle" type="button" aria-label="Press and hold to show professional affiliations" aria-expanded="false">
+            <span aria-hidden="true"></span>
+        </button>
+    </aside>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-slideshow" aria-hidden="true">
+                <div class="hero-slide hero-slide-1 pan-in active"></div>
+                <div class="hero-slide hero-slide-2 pan-out"></div>
+                <div class="hero-slide hero-slide-3 pan-left"></div>
+                <div class="hero-slide hero-slide-4 pan-right"></div>
+            </div>
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <h1>Marci<br>Metzger</h1>
+                <p class="hero-company">Pahrump Realtor, The Ridge Realty Group</p>
+                <a class="button button-light" href="tel:+12069196886">Call Now</a>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="about-flip-section" id="about" data-backdrop="0">
+            <div class="about-stage reveal" id="aboutStage" data-about-active="marci">
+
+                <button
+                    class="about-visual about-visual-marci is-active"
+                    type="button"
+                    data-about-page="marci"
+                    aria-label="Show Marci Metzger story"
+                    aria-pressed="true"
+                >
+                    <img src="images/marci.jpg" alt="Marci Metzger">
+                </button>
+
+                <div class="about-story-panel">
+                    <article
+                        class="about-story about-story-marci is-active"
+                        id="aboutMarciStory"
+                        aria-hidden="false"
+                        >
+                        <p class="eyebrow dark">30+ YEARS IN REAL ESTATE</p>
+                        <h2>Marci Metzger</h2>
+                    
+                        <p class="large-copy">Top Residential Sales in the Last 5 Years</p>
+                    
+                        <p>Marci and her team closed <strong>$28.5 million in sales in 2021</strong>.</p>
+                    
+                        <p>With <strong>over 700 total sales</strong>, she has helped buyers and sellers in many markets since 1995.</p>
+   
+                        <p><strong>In her words: </strong>“I love that small-town feeling that our community offers. Spectacular golf courses, parks, pool, and easy access to Las Vegas make Pahrump a great place to call home.</p>
+                    
+                        <p>Working or retired, fast-paced or looking to relax... there's a place for you here! I enjoy living in the Mountain Falls community and will strive to find you a home that will suit you just as this community does me.”</p>
+                    
+                        <a href="#contact" class="text-link">
+                            Work With Marci <span aria-hidden="true">→</span>
+                        </a>
+                    </article>
+
+                    <article
+                        class="about-story about-story-ridge"
+                        id="aboutRidgeStory"
+                        aria-hidden="true"
+                    >
+                        <p class="eyebrow">About the Brokerage</p>
+                        <h2>Only the Best<br>for Our Clients</h2>
+                        <p><strong>THE RIDGE REALTY GROUP</strong> is a premier real estate brokerage in Southern Nevada. Comprised of some of the best agents the valley has to offer, we take great pride in providing top-notch service to our community.</p>
+                        <p>Whether you're looking for your primary residence, a vacation home, or an investment property, The Ridge Realty Group is here to help you every step of the way!</p>
+                        <a href="https://theridgerealty.com/" class="text-link">Learn More <span aria-hidden="true">→</span></a>
+                    </article>
+                </div>
+
+                <button
+                    class="about-visual about-visual-ridge"
+                    type="button"
+                    data-about-page="ridge"
+                    aria-label="Show The Ridge Realty Group story"
+                    aria-pressed="false"
+                >
+                    <img src="images/ridgeabout.png" alt="The Ridge Realty Group">
+                </button>
+
+            </div>
+            <!-- Mobile About -->
+            <div class="about-mobile-static">
+                <article class="about-mobile-profile about-mobile-marci">
+                    <div class="about-mobile-visual">
+                        <img src="images/marci.jpg" alt="Marci Metzger">
+                    </div>
+
+                    <div class="about-mobile-copy">
+                        <p class="eyebrow dark">30+ YEARS IN REAL ESTATE</p>
+                        <h2>Marci Metzger</h2>
+                    
+                        <p class="large-copy">Top Residential Sales in the Last 5 Years</p>
+                    
+                        <p>Marci and her team closed <strong>$28.5 million in sales in 2021</strong>.</p>
+                    
+                        <p>With <strong>over 700 total sales</strong>, she has helped buyers and sellers in many markets since 1995.</p>
+                    
+                        <p><strong>In her words:</strong></p>
+                    
+                        <p>“I love that small-town feeling that our community offers. Spectacular golf courses, parks, pool, and easy access to Las Vegas make Pahrump a great place to call home.</p>
+                    
+                        <p>Working or retired, fast-paced or looking to relax... there's a place for you here! I enjoy living in the Mountain Falls community and will strive to find you a home that will suit you just as this community does me.”</p>
+                    
+                        <a href="#contact" class="text-link">
+                            Work With Marci <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="about-mobile-profile about-mobile-ridge">
+                    <div class="about-mobile-visual about-mobile-ridge-logo">
+                        <img src="images/logo-ridge-realty-group.png" alt="The Ridge Realty Group">
+                    </div>
+
+                    <div class="about-mobile-copy about-mobile-ridge-copy">
+                        <p class="eyebrow">About the Brokerage</p>
+                        <h2>Only the Best<br>for Our Clients</h2>
+                        <p><strong>THE RIDGE REALTY GROUP</strong> is a premier real estate brokerage in Southern Nevada. Comprised of some of the best agents the valley has to offer, we take great pride in providing top-notch service to our community.</p>
+                        <p>Whether you're looking for your primary residence, a vacation home, or an investment property, The Ridge Realty Group is here to help you every step of the way!</p>
+                        <a href="https://theridgerealty.com/" class="text-link">Learn More <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="feature feature-sell" data-backdrop="1">
+            <div class="feature-image feature-image-sell" role="img" aria-label="Home for sale in Pahrump"></div>
+
+            <div class="feature-content reveal">
+                <p class="eyebrow dark">Selling Your Home</p>
+                <h2>Don't Just List It...</h2>
+                <h3>Get It SOLD!</h3>
+                <p>Selling a home is more than putting a sign in the yard. The right preparation, presentation, marketing, and local expertise can make all the difference.</p>
+                <p>Marci and The Ridge Realty Group help position your property to attract serious buyers while guiding you through every step of the sale.</p>
+            </div>
+        </section>
+
+        <section class="feature feature-buy" data-backdrop="1">
+            <div class="feature-content reveal">
+                <p class="eyebrow dark">Guide to Buyers</p>
+                <h2>Find Your<br>Dream Home</h2>
+                <p>Whether you're searching for your first home, your next investment, land, or the place where you plan to settle down, having experienced local guidance makes the process easier.</p>
+                <p>From discovering properties to negotiating the details, The Ridge Realty Group is ready to help you find the right property in Pahrump.</p>
+            </div>
+
+            <div class="feature-image feature-image-buy" role="img" aria-label="Pahrump residential property"></div>
+        </section>
+
+        <!-- Search Listings -->
+        <section class="property-search" id="listings" data-backdrop="1">
+            <div class="search-glass-panel reveal">
+                <div class="search-heading">
+                    <p class="eyebrow dark">Find Your Dream Home</p>
+                    <h2>Search Listings</h2>
+                </div>
+
+                <form class="search-form" id="searchForm">
+                    <div class="form-field">
+                        <label for="location">Location</label>
+                        <select id="location" name="location">
+                            <option value="">Any</option>
+                            <option>Alamo</option>
+                            <option>Alton</option>
+                            <option>Amargosa Valley</option>
+                            <option>Beatty</option>
+                            <option>Beryl</option>
+                            <option>Blue Diamond</option>
+                            <option>Boulder City</option>
+                            <option>Brian Head</option>
+                            <option>Cal Nev Ari</option>
+                            <option>Caliente</option>
+                            <option>Cold Creek</option>
+                            <option>Crystal</option>
+                            <option>Duck Creek Village</option>
+                            <option>Dyer</option>
+                            <option>Elko</option>
+                            <option>Ely</option>
+                            <option>Goldfield</option>
+                            <option>Goodsprings</option>
+                            <option>Hatch</option>
+                            <option>Henderson</option>
+                            <option>Indian Springs</option>
+                            <option>Jean</option>
+                            <option>Las Vegas</option>
+                            <option>Laughlin</option>
+                            <option>Logandale</option>
+                            <option>Manhattan</option>
+                            <option>Mc Gill</option>
+                            <option>Mesquite</option>
+                            <option>Moapa</option>
+                            <option>Mount Charleston</option>
+                            <option>Mountain Springs</option>
+                            <option>North Las Vegas</option>
+                            <option>Overton</option>
+                            <option>Pahrump</option>
+                            <option>Palm Gardens</option>
+                            <option>Panaca</option>
+                            <option>Parowan</option>
+                            <option>Pioche</option>
+                            <option>Round Mountain</option>
+                            <option>Sandy Valley</option>
+                            <option>Searchlight</option>
+                            <option>Tonopah</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="propertyType">Property Type</label>
+                        <select id="propertyType" name="propertyType">
+                            <option value="">Any</option>
+                            <option>Residential</option>
+                            <option>High Rise</option>
+                            <option>Commercial</option>
+                            <option>Land</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="sortBy">Sort By</label>
+                        <select id="sortBy" name="sortBy">
+                            <option value=""></option>
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="bedrooms-asce">Bedrooms: Low to High</option>
+                            <option value="bedrooms-desc">Bedrooms: High to Low</option>
+                            <option value="bathrooms-asce">Bathrooms: Low to High</option>
+                            <option value="bathrooms-desc">Bathrooms: High to Low</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="bedrooms">Bedrooms</label>
+                        <select id="bedrooms" name="bedrooms">
+                            <option value="">Any</option>
+                            <option>1+</option>
+                            <option>2+</option>
+                            <option>3+</option>
+                            <option>4+</option>
+                            <option>5+</option>
+                            <option>6+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="bathrooms">Bathrooms</label>
+                        <select id="bathrooms" name="bathrooms">
+                            <option value="">Any</option>
+                            <option>1+</option>
+                            <option>2+</option>
+                            <option>3+</option>
+                            <option>4+</option>
+                            <option>5+</option>
+                            <option>6+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="minPrice">Min Price</label>
+                        <input id="minPrice" name="minPrice" type="number" min="0" step="1000" placeholder="No Minimum" inputmode="numeric">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="maxPrice">Max Price</label>
+                        <input id="maxPrice" name="maxPrice" type="number" min="0" step="1000" placeholder="No Maximum" inputmode="numeric">
+                    </div>
+
+                    <button class="button button-dark search-button" type="submit">Search Properties</button>
+                </form>
+
+                <p class="search-message" id="searchMessage" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <!-- Listings gallery -->
+        <section class="listings-gallery-section" id="gallery" data-backdrop="1">
+            <p class="eyebrow dark listings-gallery-title reveal">Photo Gallery</p>
+
+            <div class="listings-gallery-viewport reveal" id="listingsGalleryViewport" aria-label="Marci Metzger property listings gallery" tabindex="0">
+                <div class="listings-gallery-track" id="listingsGalleryTrack"></div>
+            </div>
+
+            <div class="listings-gallery-controls reveal" aria-label="Gallery navigation">
+                <button class="listings-gallery-arrow listings-gallery-prev" id="listingsGalleryPrev" type="button" aria-label="Previous listing">←</button>
+                <a class="listings-gallery-see-all" href="unavailable.html">See All</a>
+                <button class="listings-gallery-arrow listings-gallery-next" id="listingsGalleryNext" type="button" aria-label="Next listing">→</button>
+            </div>
+        </section>
+
+        <section class="services" id="services" data-backdrop="2">
+            <div class="services-heading reveal">
+                <p class="eyebrow dark">Our Services</p>
+            </div>
+
+            <div class="services-grid">
+                <article class="service-card reveal">
+                    <div class="service-image-frame service-image-1" role="img" aria-label="Real estate service image"></div>
+                    <div class="service-copy">
+                        <span class="service-number">01</span>
+                        <h4>Real Estate<br>Done Right</h4>
+                        <p>Nervous about your property adventure? Don't be. Whether you're getting ready to buy or sell, or simply looking for answers, we're here to make the process clear and straightforward.</p>
+                    </div>
+                </article>
+
+                <article class="service-card reveal">
+                    <div class="service-image-frame service-image-2" role="img" aria-label="Commercial and residential real estate service image"></div>
+                    <div class="service-copy">
+                        <span class="service-number">02</span>
+                        <h4>Commercial &<br>Residential</h4>
+                        <p>Large or small, residential, commercial, or land, The Ridge Realty Group can help you navigate available opportunities and find a property that fits your goals.</p>
+                    </div>
+                </article>
+
+                <article class="service-card reveal">
+                    <div class="service-image-frame service-image-3" role="img" aria-label="Real estate expertise service image"></div>
+                    <div class="service-copy">
+                        <span class="service-number">03</span>
+                        <h4>Rely on<br>Expertise</h4>
+                        <p>When questions arise about the market, financing, negotiations, or the details of a transaction, experienced guidance helps you move forward with confidence.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact" data-backdrop="2">
+            <div class="contact-overlay" aria-hidden="true"></div>
+
+            <div class="contact-inner">
+                <div class="contact-content reveal">
+                    <p class="eyebrow">Let's Connect</p>
+                    <h2>Let's Talk<br>Real Estate</h2>
+                    <p class="contact-address">3190 HW-160, Suite F<br>Pahrump, NV 89048</p>
+                    <a class="contact-phone" href="tel:+12069196886">(206) 919-6886</a>
+                    <p class="contact-hours">Open daily from 8:00 AM to 7:00 PM. Appointments outside regular hours are available upon request.</p>
+                </div>
+
+                <form class="contact-form reveal" id="contactForm">
+                    <h3>Send a Message</h3>
+
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" autocomplete="name" required>
+
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required>
+
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone" type="tel" autocomplete="tel">
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+
+                    <button class="button button-dark" type="submit">Send Message</button>
+                    <p class="form-message" id="formMessage" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" data-backdrop="2">
+        <div class="footer-map">
+            <iframe
+                src="https://www.google.com/maps?q=Marci+Metzger+-+THE+RIDGE+REALTY+GROUP+-+B1002787,+3190+NV-160+Suite+F,+Pahrump,+NV+89048&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Marci Metzger - The Ridge Realty Group">
+            </iframe>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-info">
+                <img class="footer-logo" src="images/logo.png" alt="Marci Metzger Homes">
+                <p class="footer-company">The Ridge Realty Group</p>
+            </div>
+
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/MarciHomes/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/marcimetzger_theridge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/marci-metzger-30642496" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.yelp.com/biz/marci-metzger-the-ridge-realty-pahrump" target="_blank" rel="noopener noreferrer" aria-label="Yelp">
+                    <i class="fa-brands fa-yelp"></i>
+                </a>
+            </div>
+
+            <p class="footer-copyright">Copyright © 2026 Marci Metzger - All Rights Reserved</p>
+            <div class="footer-line"></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
