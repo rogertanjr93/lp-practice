@@ -1,25 +1,25 @@
 /*
 ===========================================================
-PRODUCER PRACTICE JAVASCRIPT
+ROCHELLE PRODUCER PRACTICE — JAVASCRIPT
 ===========================================================
 
-Deliberately small.
+Intentionally tiny.
 
 CSS handles:
-- hero slideshow
-- image animation
+- hero slideshow / Ken Burns motion
+- transitions
 - hover effects
-- layout
-- responsive styling
-- modal animation
-- scroll snapping
+- responsive layout
+- image zoom
+- modal appearance
+- scroll-snap carousel layout
 
-JavaScript only handles interactions that actually need state.
+JavaScript only handles interactions that genuinely need state.
 ===========================================================
 */
 
 
-/* Navbar scroll state */
+/* 1. Navbar state after scrolling */
 
 const globalNavbar = document.querySelector("#global-navbar");
 
@@ -31,7 +31,7 @@ updateNavbarState();
 window.addEventListener("scroll", updateNavbarState, { passive: true });
 
 
-/* Mobile navigation */
+/* 2. Mobile menu */
 
 const hamburger = document.querySelector(".hamburger");
 const navigation = document.querySelector(".navigation");
@@ -49,7 +49,7 @@ navigation?.querySelectorAll("a, button").forEach(item => {
 });
 
 
-/* Previous / Next controls for scroll-snap sliders */
+/* 3. Previous / Next buttons for scroll-snap property track */
 
 document.querySelectorAll("[data-slider]").forEach(slider => {
     const track = slider.querySelector("[data-track]");
@@ -58,19 +58,19 @@ document.querySelectorAll("[data-slider]").forEach(slider => {
 
     if (!track) return;
 
-    const move = direction => {
+    function move(direction) {
         track.scrollBy({
             left: track.clientWidth * 0.82 * direction,
             behavior: "smooth"
         });
-    };
+    }
 
     previous?.addEventListener("click", () => move(-1));
     next?.addEventListener("click", () => move(1));
 });
 
 
-/* Contact overlay */
+/* 4. Contact modal */
 
 const contactModal = document.querySelector("#modal-global-contact-us");
 const contactTriggers = document.querySelectorAll(".contact-trigger");
@@ -99,7 +99,7 @@ document.addEventListener("keydown", event => {
 });
 
 
-/* Practice forms: prevent reload and show a demo message */
+/* 5. Practice forms: prevent page reload */
 
 document.querySelectorAll("[data-demo-form]").forEach(form => {
     form.addEventListener("submit", event => {
@@ -108,7 +108,8 @@ document.querySelectorAll("[data-demo-form]").forEach(form => {
         const status = form.querySelector(".form-status");
 
         if (status) {
-            status.textContent = "Practice form submitted — no live backend is connected.";
+            status.textContent =
+                "Practice submission received — no live CRM or backend is connected.";
         }
     });
 });
