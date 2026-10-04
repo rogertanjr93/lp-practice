@@ -1,255 +1,138 @@
-/*
-===========================================================
-ROCHELLE PRODUCER PRACTICE — JAVASCRIPT
-===========================================================
+/* Essential behavior only. All page markup is in index.html.
+   Hero animation, hover states, responsive layouts, and transitions live in CSS. */
+'use strict';
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const pages = $$('.custom-page');
+const menu = $('#navigation-menu');
+const detail = $('#detail-dialog');
+const menuButton = $('.custom-menu-toggle');
+let statusFilter = 'all';
 
-Intentionally tiny.
-
-CSS handles:
-- hero slideshow / Ken Burns motion
-- transitions
-- hover effects
-- responsive layout
-- image zoom
-- modal appearance
-- scroll-snap carousel layout
-
-JavaScript only handles interactions that genuinely need state.
-===========================================================
-*/
-
-
-/* 1. Navbar state after scrolling */
-
-const globalNavbar = document.querySelector("#global-navbar");
-
-function updateNavbarState() {
-    globalNavbar?.classList.toggle("scroll", window.scrollY > 40);
+function syncDialogState() {
+  document.body.classList.toggle('custom-locked', menu.open || detail.open);
+  menuButton.setAttribute('aria-expanded', String(menu.open));
+}
+function closeDialogs() {
+  menu.close();
+  detail.close();
+  syncDialogState();
+}
+function filterPortfolio() {
+  const area = $('#area-filter').value;
+  let count = 0;
+  $$('#portfolio-grid .custom-property-card').forEach(card => {
+    card.hidden = !((area === 'all' || card.dataset.area === area) &&
+      (statusFilter === 'all' || card.dataset.status === statusFilter));
+    if (!card.hidden) count++;
+  });
+  $('#portfolio-count').textContent = count ? `${count} ${count === 1 ? 'home' : 'homes'} · Illustrative collection` : 'No sample homes match these filters. Try another neighborhood or status.';
+  $$('[data-filter]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === statusFilter)));
+}
+function route(focus = true) {
+  const [slug, query = ''] = location.hash.replace(/^#\/?/, '').split('?');
+  const page = pages.find(item => item.dataset.page === (slug || 'home'));
+  if (!page) return; // Section anchors should not replace the current page.
+  closeDialogs();
+  pages.forEach(item => { item.hidden = item !== page; });
+  document.body.dataset.page = page.dataset.page;
+  const title = page.dataset.page === 'home' ? 'Los Angeles Real Estate' : page.dataset.page.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
+  document.title = `${title} | Roger + Rochelle`;
+  const href = page.dataset.page === 'home' ? '#/' : '#/' + page.dataset.page;
+  $$('.custom-header a, .custom-menu a').forEach(link => {
+    if (link.getAttribute('href') === href) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+  const params = new URLSearchParams(query);
+  if (slug === 'portfolio') {
+    statusFilter = 'all';
+    const area = params.get('area');
+    $('#area-filter').value = [...$('#area-filter').options].some(option => option.value === area) ? area : 'all';
+    filterPortfolio();
+  }
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  if (focus) $('#main').focus({ preventScroll: true });
+  if (slug === 'neighborhoods') {
+    const target = document.getElementById('area-' + params.get('area'));
+    if (target) target.scrollIntoView({ behavior: 'instant' });
+  }
+}
+function openProperty(card) {
+  const content = $('#detail-content');
+  content.replaceChildren();
+  const image = $('img', card).cloneNode();
+  image.className = 'custom-detail__image';
+  const body = document.createElement('div');
+  body.className = 'custom-detail__body';
+  const title = document.createElement('h2');
+  title.textContent = $('h3', card).textContent;
+  const location = document.createElement('p');
+  location.className = 'custom-eyebrow';
+  location.textContent = $('.custom-eyebrow', card).textContent;
+  const note = document.createElement('p');
+  note.textContent = 'Illustrative listing only. Images are generated; property names, status, and dimensions are sample content.';
+  const link = document.createElement('a');
+  link.className = 'custom-button';
+  link.href = '#/contact-us';
+  link.textContent = 'Discuss Your Search ↗';
+  body.append(location, title, $('.custom-property-card__info > p:last-child', card).cloneNode(true), note, link);
+  content.append(image, body);
+  detail.showModal();
+  syncDialogState();
+}
+function valuationStep(next) {
+  const first = $('#valuation-step-1');
+  const second = $('#valuation-step-2');
+  if (next && !$$('input, select', first).every(input => input.reportValidity())) return;
+  first.hidden = next;
+  second.hidden = !next;
+  second.disabled = !next;
+  $(next ? '#valuation-name' : '#address').focus();
 }
 
-updateNavbarState();
-window.addEventListener("scroll", updateNavbarState, { passive: true });
-
-
-/* 2. Mobile menu */
-
-const hamburger = document.querySelector(".hamburger");
-const navigation = document.querySelector(".navigation");
-
-hamburger?.addEventListener("click", () => {
-    const isOpen = navigation?.classList.toggle("is-open") ?? false;
-    hamburger.setAttribute("aria-expanded", String(isOpen));
+document.addEventListener('click', event => {
+  const target = event.target.closest('button, a');
+  if (!target) return;
+  if (target.matches('.custom-skip-link')) {
+    event.preventDefault();
+    $('#main').focus();
+  }
+  if (target.matches('.custom-menu-toggle')) { menu.showModal(); syncDialogState(); }
+  if (target.hasAttribute('data-close-menu')) { menu.close(); syncDialogState(); }
+  if (target.hasAttribute('data-close-detail')) { detail.close(); syncDialogState(); }
+  if (target.hasAttribute('data-property')) openProperty(target.closest('.custom-property-card'));
+  if (target.hasAttribute('data-filter')) { statusFilter = target.dataset.filter; filterPortfolio(); }
+  if (target.id === 'valuation-next') valuationStep(true);
+  if (target.id === 'valuation-back') valuationStep(false);
+  if (target.dataset.scroll) {
+    event.preventDefault();
+    document.getElementById(target.dataset.scroll)?.scrollIntoView();
+  }
+  if (target.matches('a[href^="#/"]')) {
+    closeDialogs();
+    if (target.getAttribute('href') === location.hash) window.scrollTo({ top: 0 });
+  }
 });
-
-navigation?.querySelectorAll("a, button").forEach(item => {
-    item.addEventListener("click", () => {
-        navigation.classList.remove("is-open");
-        hamburger?.setAttribute("aria-expanded", "false");
-    });
+document.addEventListener('change', event => {
+  if (event.target.id === 'area-filter') filterPortfolio();
 });
-
-
-/* 3. Previous / Next buttons for ordinary scroll-snap sliders */
-
-document.querySelectorAll("[data-slider]:not(.testimonials)").forEach(slider => {
-    const track = slider.querySelector("[data-track]");
-    const previous = slider.querySelector("[data-prev]");
-    const next = slider.querySelector("[data-next]");
-
-    if (!track) return;
-
-    function move(direction) {
-        track.scrollBy({
-            left: track.clientWidth * 0.82 * direction,
-            behavior: "smooth"
-        });
-    }
-
-    previous?.addEventListener("click", () => move(-1));
-    next?.addEventListener("click", () => move(1));
+document.addEventListener('submit', event => {
+  if (!event.target.matches('#contact-form, #valuation-form')) return;
+  event.preventDefault();
+  const result = $(event.target.id === 'contact-form' ? '#contact-result' : '#valuation-result');
+  result.hidden = false;
+  result.textContent = 'Form complete. This is a practice preview: your details have not been sent or saved. A real inquiry service can be connected later.';
+  result.setAttribute('tabindex', '-1');
+  result.focus();
 });
-
-
-/* 4. Contact modal */
-
-const contactModal = document.querySelector("#modal-global-contact-us");
-const contactTriggers = document.querySelectorAll(".contact-trigger");
-const contactClosers = document.querySelectorAll("[data-contact-close]");
-
-function setContactModal(open) {
-    if (!contactModal) return;
-
-    contactModal.classList.toggle("is-open", open);
-    contactModal.setAttribute("aria-hidden", String(!open));
-    document.body.classList.toggle("modal-open", open);
-}
-
-contactTriggers.forEach(trigger => {
-    trigger.addEventListener("click", () => setContactModal(true));
+[menu, detail].forEach(dialog => {
+  dialog.addEventListener('close', syncDialogState);
+  dialog.addEventListener('click', event => {
+    if (event.target !== dialog) return;
+    const bounds = dialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+  });
 });
-
-contactClosers.forEach(closer => {
-    closer.addEventListener("click", () => setContactModal(false));
-});
-
-document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-        setContactModal(false);
-    }
-});
-
-
-/* 5. Practice forms: prevent page reload */
-
-document.querySelectorAll("[data-demo-form]").forEach(form => {
-    form.addEventListener("submit", event => {
-        event.preventDefault();
-
-        const status = form.querySelector(".form-status");
-
-        if (status) {
-            status.textContent =
-                "Practice submission received — no live CRM or backend is connected.";
-        }
-    });
-});
-
-/* 6. Testimonials: centered overlapping carousel */
-
-const testimonialCarousel = document.querySelector("[data-testimonial-carousel]");
-
-if (testimonialCarousel) {
-    const testimonialCards = [
-        ...testimonialCarousel.querySelectorAll("[data-testimonial-card]")
-    ];
-
-    const testimonialPrev = document.querySelector("[data-testimonial-prev]");
-    const testimonialNext = document.querySelector("[data-testimonial-next]");
-
-    let activeTestimonial = 0;
-
-    function wrapTestimonialIndex(index) {
-        return (index + testimonialCards.length) % testimonialCards.length;
-    }
-
-    function renderTestimonials() {
-        const previousIndex = wrapTestimonialIndex(activeTestimonial - 1);
-        const nextIndex = wrapTestimonialIndex(activeTestimonial + 1);
-
-        testimonialCards.forEach((card, index) => {
-            card.classList.remove(
-                "is-active",
-                "is-prev",
-                "is-next",
-                "is-hidden"
-            );
-
-            if (index === activeTestimonial) {
-                card.classList.add("is-active");
-            } else if (index === previousIndex) {
-                card.classList.add("is-prev");
-            } else if (index === nextIndex) {
-                card.classList.add("is-next");
-            } else {
-                card.classList.add("is-hidden");
-            }
-        });
-    }
-
-    function showPreviousTestimonial() {
-        activeTestimonial =
-            wrapTestimonialIndex(activeTestimonial - 1);
-
-        renderTestimonials();
-    }
-
-    function showNextTestimonial() {
-        activeTestimonial =
-            wrapTestimonialIndex(activeTestimonial + 1);
-
-        renderTestimonials();
-    }
-
-    testimonialPrev?.addEventListener(
-        "click",
-        showPreviousTestimonial
-    );
-
-    testimonialNext?.addEventListener(
-        "click",
-        showNextTestimonial
-    );
-
-    testimonialCards.forEach((card, index) => {
-        card.addEventListener("click", event => {
-            if (card.classList.contains("is-prev")) {
-                activeTestimonial = index;
-                renderTestimonials();
-                return;
-            }
-
-            if (card.classList.contains("is-next")) {
-                activeTestimonial = index;
-                renderTestimonials();
-                return;
-            }
-
-            if (
-                card.classList.contains("is-active") &&
-                event.target.closest(".testimonial-read-more")
-            ) {
-                openTestimonialDialog(card);
-            }
-        });
-    });
-
-    renderTestimonials();
-}
-
-
-/* 7. Full testimonial dialog */
-
-const testimonialDialog =
-    document.querySelector("#testimonialDialog");
-
-const testimonialDialogName =
-    document.querySelector("#testimonialDialogName");
-
-const testimonialDialogCopy =
-    document.querySelector("#testimonialDialogCopy");
-
-const testimonialDialogClose =
-    document.querySelector(".testimonial-dialog-close");
-
-function openTestimonialDialog(card) {
-    if (
-        !testimonialDialog ||
-        !testimonialDialogName ||
-        !testimonialDialogCopy
-    ) {
-        return;
-    }
-
-    const name =
-        card.querySelector("h3")?.textContent.trim() || "";
-
-    const copy =
-        card.querySelector(".testimonial-full-copy")
-            ?.textContent
-            .trim() || "";
-
-    testimonialDialogName.textContent = name;
-    testimonialDialogCopy.textContent = copy;
-    testimonialDialog.showModal();
-}
-
-testimonialDialogClose?.addEventListener("click", () => {
-    testimonialDialog?.close();
-});
-
-testimonialDialog?.addEventListener("click", event => {
-    if (event.target === testimonialDialog) {
-        testimonialDialog.close();
-    }
-});
-
+window.addEventListener('hashchange', () => route());
+$('#copyright-year').textContent = new Date().getFullYear();
+route(false);
