@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="Explore an edited collection of Los Angeles homes and neighborhoods with Rochelle Reyes and Roger Tan. A Producer-style real estate practice website.">
     <meta name="theme-color" content="#000000">
-    <title>Rochelle + Roger | Los Angeles Real Estate</title>
+    <title>Roger + Rochelle | Los Angeles Real Estate</title>
     <link rel="stylesheet" href="template.css">
     <link rel="preload" href="https://s3-us-west-2.amazonaws.com/static-lp/fonts/compass/CompassSans/CompassSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="global-base.css">
@@ -16,11 +16,12 @@
   </head>
   <body>
     <a class="custom-skip-link" href="#main">Skip to content</a>
+    <!-- HEADER: keep the logo lock-up, desktop nav, and hamburger on the same fixed row. -->
     <header id="global-navbar" class="custom-header">
       <div class="custom-brand-group">
         <a class="custom-brand" href="#/" aria-label="Roger and Rochelle home">
           <img src="images/rr-logo-white.png" alt="RR" width="50" height="50">
-          <span>ROCHELLE <b>+</b> ROGER</span>
+          <span>ROGER <b class="custom-thin-plus">+</b> ROCHELLE</span>
         </a>
         <span class="custom-brand-divider" aria-hidden="true"></span>
         <img class="custom-compass-logo" src="images/compass_light.png" alt="Compass" width="145" height="20">
@@ -38,6 +39,7 @@
         <span></span>
       </button>
     </header>
+    <!-- SIDE MENU: RR logo stays top-left; all menu links are aligned to the right. -->
     <dialog class="custom-menu" id="navigation-menu" aria-label="Site navigation">
       <div class="custom-menu__top">
         <a class="custom-menu__brand" href="#/" aria-label="Roger and Rochelle home">
@@ -59,7 +61,9 @@
       </div>
     </dialog>
     <main id="main" tabindex="-1">
+      <!-- HOME PAGE -->
       <div class="custom-page" data-page="home">
+        <!-- HOME / HERO: full viewport with responsive center text. -->
         <section class="custom-hero" id="home-section-opening">
           <div class="custom-hero__slides" aria-hidden="true">
             <img class="custom-hero__slide" src="images/losangeles-1.jpg" alt="" fetchpriority="high">
@@ -68,13 +72,20 @@
             <img class="custom-hero__slide" src="images/westhollywood-1.jpg" alt="" decoding="async">
           </div>
           <div class="custom-hero__content">
-            <p class="custom-eyebrow">LOS ANGELES. A HOME OF YOUR OWN.</p>
-            <h1>Rochelle + Roger</h1>
-            <p class="custom-hero__subtitle">Distinctive homes. Personal perspective.</p>
-            <a class="custom-button custom-button--light" href="#/portfolio">Explore the Portfolio<span aria-hidden="true">↗</span>
+            <h1>Roger <span class="custom-thin-plus">+</span> Rochelle</h1>
+            <div class="custom-hero__credentials" aria-label="Agent license information">
+              <p>Rochelle Reyes | CA DRE#01842987</p>
+              <p>Roger Tan | CA DRE#01842990</p>
+            </div>
+
+            <!-- HERO CTA: keeping this here for later, but hiding it during the initial build.
+            <a class="custom-button custom-button--light" href="#/portfolio">
+              Explore the Portfolio <span aria-hidden="true">↗</span>
             </a>
+            -->
           </div>
         </section>
+        <!-- HOME / ABOUT: Rochelle row first, Roger row second. -->
         <section class="custom-section" id="home-section-introduction" aria-label="About Rochelle and Roger">
           <div class="custom-container custom-agent-stories">
             <article class="custom-agent-story">
@@ -105,6 +116,7 @@
             </article>
           </div>
         </section>
+        <!-- HOME / GSM: Buy, About Us, Sell. This background uses parallax. -->
         <section class="custom-gsm custom-parallax" id="home-section-buy-about-sell" aria-label="Buy, about us, and sell">
           <a class="custom-gsm__card" href="#/portfolio">
             <span class="custom-eyebrow">FIND YOUR PLACE</span>
@@ -125,6 +137,7 @@
             </span>
           </a>
         </section>
+        <!-- HOME / STATS: keep this fluid so the numbers resize with the viewer. -->
         <section class="custom-section" id="home-section-stats" aria-label="Rochelle Reyes by the numbers">
           <div class="custom-container">
             <div class="custom-section-heading">
@@ -161,70 +174,105 @@
             </div>
           </div>
         </section>
+        <!-- HOME / PROPERTIES: first 3 are FOR SALE; last 5 are SOLD. -->
         <section class="custom-section custom-home-portfolio" id="home-section-featured-properties">
           <div class="custom-featured-properties__heading custom-container">
             <h2>FEATURED PROPERTIES</h2>
             <p>Explore a selection of distinctive homes across Los Angeles, thoughtfully presented through architecture, setting, and lifestyle.</p>
           </div>
           <div class="custom-featured-properties" data-property-carousel>
-            <div class="custom-featured-properties__viewport"><div class="custom-featured-properties__track">
-              <article class="custom-featured-property" data-area="los-angeles" data-status="For Sale" data-title="The Canyon Residence" data-location="Los Angeles" data-details="4 Beds | 5 Baths | 3,850 Sq. Ft.">
-                <button class="custom-featured-property__media" type="button" data-property="canyon" aria-label="View The Canyon Residence">
-                  <img src="images/losangeles-1.jpg" alt="The Canyon Residence — illustrative property in Los Angeles" loading="lazy" decoding="async">
-                  <span class="custom-featured-property__status">FOR SALE</span>
-                  <span class="custom-featured-property__overlay"><strong>The Canyon Residence</strong><span>Los Angeles</span><span>4 Beds | 5 Baths | 3,850 Sq. Ft.</span></span>
-                </button>
-              </article>
-              <article class="custom-featured-property" data-area="beverly-hills" data-status="For Sale" data-title="The Garden Estate" data-location="Beverly Hills" data-details="5 Beds | 6 Baths | 5,200 Sq. Ft.">
-                <button class="custom-featured-property__media" type="button" data-property="garden" aria-label="View The Garden Estate">
-                  <img src="images/beverlyhills-1.jpg" alt="The Garden Estate — illustrative property in Beverly Hills" loading="lazy" decoding="async">
-                  <span class="custom-featured-property__status">FOR SALE</span>
-                  <span class="custom-featured-property__overlay"><strong>The Garden Estate</strong><span>Beverly Hills</span><span>5 Beds | 6 Baths | 5,200 Sq. Ft.</span></span>
-                </button>
-              </article>
-              <article class="custom-featured-property" data-area="santa-monica" data-status="For Sale" data-title="The Coastal Retreat" data-location="Santa Monica" data-details="3 Beds | 3 Baths | 2,650 Sq. Ft.">
-                <button class="custom-featured-property__media" type="button" data-property="coastal" aria-label="View The Coastal Retreat">
-                  <img src="images/santamonica-1.jpg" alt="The Coastal Retreat — illustrative property in Santa Monica" loading="lazy" decoding="async">
-                  <span class="custom-featured-property__status">FOR SALE</span>
-                  <span class="custom-featured-property__overlay"><strong>The Coastal Retreat</strong><span>Santa Monica</span><span>3 Beds | 3 Baths | 2,650 Sq. Ft.</span></span>
-                </button>
-              </article>
-              <article class="custom-featured-property" data-area="west-hollywood" data-status="Sold" data-title="The Courtyard House" data-location="West Hollywood" data-details="3 Beds | 4 Baths | 2,900 Sq. Ft.">
-                <button class="custom-featured-property__media" type="button" data-property="courtyard" aria-label="View The Courtyard House">
-                  <img src="images/westhollywood-1.jpg" alt="The Courtyard House — illustrative property in West Hollywood" loading="lazy" decoding="async">
-                  <span class="custom-featured-property__status">SOLD</span>
-                  <span class="custom-featured-property__overlay"><strong>The Courtyard House</strong><span>West Hollywood</span><span>3 Beds | 4 Baths | 2,900 Sq. Ft.</span></span>
-                </button>
-              </article>
-              <article class="custom-featured-property" data-area="los-angeles" data-status="Sold" data-title="The Hillside House" data-location="Los Angeles" data-details="4 Beds | 4 Baths | 3,400 Sq. Ft.">
-                <button class="custom-featured-property__media" type="button" data-property="hillside" aria-label="View The Hillside House">
-                  <img src="images/losangeles-2.jpg" alt="The Hillside House — illustrative property in Los Angeles" loading="lazy" decoding="async">
-                  <span class="custom-featured-property__status">SOLD</span>
-                  <span class="custom-featured-property__overlay"><strong>The Hillside House</strong><span>Los Angeles</span><span>4 Beds | 4 Baths | 3,400 Sq. Ft.</span></span>
-                </button>
-              </article>
-              <article class="custom-featured-property" data-area="beverly-hills" data-status="Sold" data-title="The Olive Grove Estate" data-location="Beverly Hills" data-details="5 Beds | 5 Baths | 4,800 Sq. Ft.">
-                <button class="custom-featured-property__media" type="button" data-property="olive" aria-label="View The Olive Grove Estate">
-                  <img src="images/beverlyhills-2.jpg" alt="The Olive Grove Estate — illustrative property in Beverly Hills" loading="lazy" decoding="async">
-                  <span class="custom-featured-property__status">SOLD</span>
-                  <span class="custom-featured-property__overlay"><strong>The Olive Grove Estate</strong><span>Beverly Hills</span><span>5 Beds | 5 Baths | 4,800 Sq. Ft.</span></span>
-                </button>
-              </article>
-              <article class="custom-featured-property" data-area="santa-monica" data-status="Sold" data-title="The Pacific Residence" data-location="Santa Monica" data-details="4 Beds | 4 Baths | 3,100 Sq. Ft.">
-                <button class="custom-featured-property__media" type="button" data-property="pacific" aria-label="View The Pacific Residence">
-                  <img src="images/santamonica-2.jpg" alt="The Pacific Residence — illustrative property in Santa Monica" loading="lazy" decoding="async">
-                  <span class="custom-featured-property__status">SOLD</span>
-                  <span class="custom-featured-property__overlay"><strong>The Pacific Residence</strong><span>Santa Monica</span><span>4 Beds | 4 Baths | 3,100 Sq. Ft.</span></span>
-                </button>
-              </article>
-              <article class="custom-featured-property" data-area="west-hollywood" data-status="Sold" data-title="The Modern Hideaway" data-location="West Hollywood" data-details="3 Beds | 3 Baths | 2,450 Sq. Ft.">
-                <button class="custom-featured-property__media" type="button" data-property="modern" aria-label="View The Modern Hideaway">
-                  <img src="images/westhollywood-2.jpg" alt="The Modern Hideaway — illustrative property in West Hollywood" loading="lazy" decoding="async">
-                  <span class="custom-featured-property__status">SOLD</span>
-                  <span class="custom-featured-property__overlay"><strong>The Modern Hideaway</strong><span>West Hollywood</span><span>3 Beds | 3 Baths | 2,450 Sq. Ft.</span></span>
-                </button>
-              </article>
-            </div></div>
+            <div class="custom-featured-properties__viewport">
+              <div class="custom-featured-properties__track">
+                <article class="custom-featured-property" data-area="los-angeles" data-status="For Sale" data-title="The Canyon Residence" data-location="Los Angeles" data-details="4 Beds | 5 Baths | 3,850 Sq. Ft.">
+                  <button class="custom-featured-property__media" type="button" data-property="canyon" aria-label="View The Canyon Residence">
+                    <img src="images/losangeles-1.jpg" alt="The Canyon Residence — illustrative property in Los Angeles" loading="lazy" decoding="async">
+                    <span class="custom-featured-property__status">FOR SALE</span>
+                    <span class="custom-featured-property__overlay">
+                      <strong>The Canyon Residence</strong>
+                      <span>Los Angeles</span>
+                      <span>4 Beds | 5 Baths | 3,850 Sq. Ft.</span>
+                    </span>
+                  </button>
+                </article>
+                <article class="custom-featured-property" data-area="beverly-hills" data-status="For Sale" data-title="The Garden Estate" data-location="Beverly Hills" data-details="5 Beds | 6 Baths | 5,200 Sq. Ft.">
+                  <button class="custom-featured-property__media" type="button" data-property="garden" aria-label="View The Garden Estate">
+                    <img src="images/beverlyhills-1.jpg" alt="The Garden Estate — illustrative property in Beverly Hills" loading="lazy" decoding="async">
+                    <span class="custom-featured-property__status">FOR SALE</span>
+                    <span class="custom-featured-property__overlay">
+                      <strong>The Garden Estate</strong>
+                      <span>Beverly Hills</span>
+                      <span>5 Beds | 6 Baths | 5,200 Sq. Ft.</span>
+                    </span>
+                  </button>
+                </article>
+                <article class="custom-featured-property" data-area="santa-monica" data-status="For Sale" data-title="The Coastal Retreat" data-location="Santa Monica" data-details="3 Beds | 3 Baths | 2,650 Sq. Ft.">
+                  <button class="custom-featured-property__media" type="button" data-property="coastal" aria-label="View The Coastal Retreat">
+                    <img src="images/santamonica-1.jpg" alt="The Coastal Retreat — illustrative property in Santa Monica" loading="lazy" decoding="async">
+                    <span class="custom-featured-property__status">FOR SALE</span>
+                    <span class="custom-featured-property__overlay">
+                      <strong>The Coastal Retreat</strong>
+                      <span>Santa Monica</span>
+                      <span>3 Beds | 3 Baths | 2,650 Sq. Ft.</span>
+                    </span>
+                  </button>
+                </article>
+                <article class="custom-featured-property" data-area="west-hollywood" data-status="Sold" data-title="The Courtyard House" data-location="West Hollywood" data-details="3 Beds | 4 Baths | 2,900 Sq. Ft.">
+                  <button class="custom-featured-property__media" type="button" data-property="courtyard" aria-label="View The Courtyard House">
+                    <img src="images/westhollywood-1.jpg" alt="The Courtyard House — illustrative property in West Hollywood" loading="lazy" decoding="async">
+                    <span class="custom-featured-property__status">SOLD</span>
+                    <span class="custom-featured-property__overlay">
+                      <strong>The Courtyard House</strong>
+                      <span>West Hollywood</span>
+                      <span>3 Beds | 4 Baths | 2,900 Sq. Ft.</span>
+                    </span>
+                  </button>
+                </article>
+                <article class="custom-featured-property" data-area="los-angeles" data-status="Sold" data-title="The Hillside House" data-location="Los Angeles" data-details="4 Beds | 4 Baths | 3,400 Sq. Ft.">
+                  <button class="custom-featured-property__media" type="button" data-property="hillside" aria-label="View The Hillside House">
+                    <img src="images/losangeles-2.jpg" alt="The Hillside House — illustrative property in Los Angeles" loading="lazy" decoding="async">
+                    <span class="custom-featured-property__status">SOLD</span>
+                    <span class="custom-featured-property__overlay">
+                      <strong>The Hillside House</strong>
+                      <span>Los Angeles</span>
+                      <span>4 Beds | 4 Baths | 3,400 Sq. Ft.</span>
+                    </span>
+                  </button>
+                </article>
+                <article class="custom-featured-property" data-area="beverly-hills" data-status="Sold" data-title="The Olive Grove Estate" data-location="Beverly Hills" data-details="5 Beds | 5 Baths | 4,800 Sq. Ft.">
+                  <button class="custom-featured-property__media" type="button" data-property="olive" aria-label="View The Olive Grove Estate">
+                    <img src="images/beverlyhills-2.jpg" alt="The Olive Grove Estate — illustrative property in Beverly Hills" loading="lazy" decoding="async">
+                    <span class="custom-featured-property__status">SOLD</span>
+                    <span class="custom-featured-property__overlay">
+                      <strong>The Olive Grove Estate</strong>
+                      <span>Beverly Hills</span>
+                      <span>5 Beds | 5 Baths | 4,800 Sq. Ft.</span>
+                    </span>
+                  </button>
+                </article>
+                <article class="custom-featured-property" data-area="santa-monica" data-status="Sold" data-title="The Pacific Residence" data-location="Santa Monica" data-details="4 Beds | 4 Baths | 3,100 Sq. Ft.">
+                  <button class="custom-featured-property__media" type="button" data-property="pacific" aria-label="View The Pacific Residence">
+                    <img src="images/santamonica-2.jpg" alt="The Pacific Residence — illustrative property in Santa Monica" loading="lazy" decoding="async">
+                    <span class="custom-featured-property__status">SOLD</span>
+                    <span class="custom-featured-property__overlay">
+                      <strong>The Pacific Residence</strong>
+                      <span>Santa Monica</span>
+                      <span>4 Beds | 4 Baths | 3,100 Sq. Ft.</span>
+                    </span>
+                  </button>
+                </article>
+                <article class="custom-featured-property" data-area="west-hollywood" data-status="Sold" data-title="The Modern Hideaway" data-location="West Hollywood" data-details="3 Beds | 3 Baths | 2,450 Sq. Ft.">
+                  <button class="custom-featured-property__media" type="button" data-property="modern" aria-label="View The Modern Hideaway">
+                    <img src="images/westhollywood-2.jpg" alt="The Modern Hideaway — illustrative property in West Hollywood" loading="lazy" decoding="async">
+                    <span class="custom-featured-property__status">SOLD</span>
+                    <span class="custom-featured-property__overlay">
+                      <strong>The Modern Hideaway</strong>
+                      <span>West Hollywood</span>
+                      <span>3 Beds | 3 Baths | 2,450 Sq. Ft.</span>
+                    </span>
+                  </button>
+                </article>
+              </div>
+            </div>
             <div class="custom-featured-properties__footer custom-container">
               <div class="custom-featured-properties__controls" aria-label="Property gallery controls">
                 <button type="button" data-property-carousel-prev aria-label="Previous property">‹</button>
@@ -234,6 +282,7 @@
             </div>
           </div>
         </section>
+        <!-- HOME / TESTIMONIALS -->
         <section class="custom-testimonial" id="home-section-testimonials">
           <div class="custom-container">
             <p class="custom-eyebrow">THE CLIENT EXPERIENCE / SAMPLE STORY</p>
@@ -243,15 +292,17 @@
             </a>
           </div>
         </section>
+        <!-- HOME / CONTACT CTA: button opens the modal; no form lives directly in this section. -->
         <section class="custom-section custom-home-contact custom-parallax" id="home-section-contact-us">
           <div class="custom-container custom-home-contact__layout">
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
-            <h2>WORK WITH ROCHELLE + ROGER</h2>
+            <h2>WORK WITH ROCHELLE <span class="custom-thin-plus">+</span> ROGER</h2>
             <p>Whether you’re buying, selling, or simply exploring what comes next, we’re here to make the process personal, clear, and thoughtfully guided.</p>
             <button type="button" class="custom-button custom-button--light" data-open-contact-modal>CONTACT US <span aria-hidden="true">↗</span></button>
           </div>
         </section>
       </div>
+      <!-- PORTFOLIO PAGE: same property status order as the homepage (3 For Sale, then 5 Sold). -->
       <div class="custom-page" data-page="portfolio" hidden>
         <section class="custom-page-intro" id="portfolio-section-opening">
           <div class="custom-container">
@@ -406,6 +457,7 @@
           </div>
         </section>
       </div>
+      <!-- HOME VALUATION PAGE -->
       <div class="custom-page" data-page="home-valuation" hidden>
         <section class="custom-valuation" id="home-valuation-section-valuation">
           <div class="custom-valuation__image">
@@ -509,6 +561,7 @@
           </div>
         </section>
       </div>
+      <!-- NEIGHBORHOODS PAGE -->
       <div class="custom-page" data-page="neighborhoods" hidden>
         <section class="custom-page-intro" id="neighborhoods-section-opening">
           <div class="custom-container">
@@ -584,6 +637,7 @@
           </div>
         </section>
       </div>
+      <!-- MEET THE TEAM PAGE: hero rotates team -> Rochelle -> Roger. -->
       <div class="custom-page" data-page="meet-the-team" hidden>
         <section class="custom-wide-hero custom-team-hero" id="meet-the-team-section-opening">
           <div class="custom-team-hero__images" aria-hidden="true">
@@ -691,6 +745,7 @@
           </div>
         </section>
       </div>
+      <!-- TESTIMONIALS PAGE -->
       <div class="custom-page" data-page="testimonials" hidden>
         <section class="custom-page-intro" id="testimonials-section-opening">
           <div class="custom-container">
@@ -737,6 +792,7 @@
           </div>
         </section>
       </div>
+      <!-- CONTACT US PAGE: this is the full inquiry page opened from the side menu. -->
       <div class="custom-page" data-page="contact-us" hidden>
         <section class="custom-page-intro" id="contact-us-section-opening">
           <div class="custom-container">
@@ -822,6 +878,7 @@
           </div>
         </section>
       </div>
+      <!-- COMPASS CONCIERGE PAGE -->
       <div class="custom-page" data-page="compass-concierge" hidden>
         <section class="custom-wide-hero" id="compass-concierge-section-opening">
           <img src="images/losangeles-2.jpg" alt="A contemporary Los Angeles residence" class="" fetchpriority="high" decoding="async">
@@ -907,10 +964,11 @@
         </section>
       </div>
     </main>
+    <!-- FOOTER -->
     <footer class="custom-footer">
       <div class="custom-footer__main">
         <div>
-          <a class="custom-footer__wordmark" href="#/">Roger + Rochelle</a>
+          <a class="custom-footer__wordmark" href="#/">Roger <span class="custom-thin-plus">+</span> Rochelle</a>
           <p>Distinctive homes. Personal perspective.</p>
           <img class="custom-footer__compass" src="images/compass_dark.png" alt="Compass" width="155" height="22" loading="lazy">
         </div>
@@ -930,7 +988,7 @@
         </div>
       </div>
       <div class="custom-footer__bottom">
-        <p>© <span id="copyright-year"></span> Roger + Rochelle · Design practice</p>
+        <p>© <span id="copyright-year"></span> Roger <span class="custom-thin-plus">+</span> Rochelle · Design practice</p>
         <div>
           <details class="custom-footer-disclosure">
             <summary>Privacy</summary>
@@ -945,11 +1003,12 @@
       </div>
       <p class="custom-demo-note">Independent practice template, not an official Compass or Luxury Presence website. Generated property images, sample listings and sample testimonials are illustrative. Names are used for this design exercise; brokerage affiliation and professional credentials are not represented. Forms run locally and do not send inquiries. Contact details are placeholders.</p>
     </footer>
+    <!-- CONTACT MODAL: full-screen random home image behind the centered inquiry form. -->
     <dialog id="contact-modal" class="custom-contact-modal" aria-labelledby="contact-modal-title">
       <button type="button" class="custom-contact-modal__close custom-icon-button" data-close-contact-modal aria-label="Close contact form">×</button>
       <div class="custom-contact-modal__body">
         <p class="custom-eyebrow">LET’S CONNECT</p>
-        <h2 id="contact-modal-title">WORK WITH ROCHELLE + ROGER</h2>
+        <h2 id="contact-modal-title">WORK WITH ROCHELLE <span class="custom-thin-plus">+</span> ROGER</h2>
         <p class="custom-contact-modal__intro">Tell us a little about what you have in mind and we’ll start from there.</p>
         <form class="custom-contact-form" id="contact-modal-form">
           <div class="custom-form-grid">
@@ -994,6 +1053,7 @@
         <div class="custom-form-status" id="contact-modal-result" hidden aria-live="polite"></div>
       </div>
     </dialog>
+    <!-- PROPERTY DETAIL MODAL -->
     <dialog id="detail-dialog" class="custom-detail" aria-label="Details">
       <button class="custom-detail__close custom-icon-button" data-close-detail aria-label="Close details">×</button>
       <div id="detail-content"></div>
