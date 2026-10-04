@@ -1292,6 +1292,15 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   color: #666;
 }
 
+/* Short monitors: hide the full desktop navigation too.
+   This keeps the header cleaner on wide screens that are only 768px tall or shorter. */
+
+@media (max-height: 768px) {
+  .custom-desktop-nav {
+    display: none;
+  }
+}
+
 /* Smaller screens: keep one header row, hide desktop links, keep the hamburger. */
 
 @media (max-width: 1280px) {

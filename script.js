@@ -91,10 +91,13 @@ function movePropertyCarousel(direction) {
    MEET THE TEAM HERO
    ------------------------------ */
 
-// Rotate the 3 team hero images every 4 seconds.
-// The actual 1.5-second fade is controlled in page-base.css.
+// Change the 3 team hero images every 3 seconds.
+// page-base.css handles the 1.5-second crossfade.
+// page-advanced.css handles the alternating pan + zoom movement.
 function startTeamHero() {
   const images = $$('[data-team-hero-image]');
+  const fadeDuration = 1500;
+  const slideDuration = 3000;
 
   if (
     images.length < 2 ||
@@ -109,13 +112,40 @@ function startTeamHero() {
 
   if (activeIndex < 0) {
     activeIndex = 0;
+    images[activeIndex].classList.add('is-active');
   }
 
+  // Start by panning left, then alternate direction every time an image appears.
+  let panLeft = true;
+  images[activeIndex].classList.add('team-motion--left');
+
   window.setInterval(() => {
-    images[activeIndex].classList.remove('is-active');
+    const outgoingImage = images[activeIndex];
+
+    // Keep the outgoing image's motion running while its opacity fades out.
+    outgoingImage.classList.remove('is-active');
+    outgoingImage.classList.add('is-leaving');
+
     activeIndex = (activeIndex + 1) % images.length;
-    images[activeIndex].classList.add('is-active');
-  }, 4000);
+    const incomingImage = images[activeIndex];
+
+    panLeft = !panLeft;
+
+    // Reset the incoming image's old direction before assigning the new one.
+    incomingImage.classList.remove(
+      'is-leaving',
+      'team-motion--left',
+      'team-motion--right',
+    );
+    incomingImage.classList.add(
+      panLeft ? 'team-motion--left' : 'team-motion--right',
+      'is-active',
+    );
+
+    window.setTimeout(() => {
+      outgoingImage.classList.remove('is-leaving');
+    }, fadeDuration);
+  }, slideDuration);
 }
 
 
@@ -254,7 +284,7 @@ function route(focus = true) {
           .map((word) => word[0].toUpperCase() + word.slice(1))
           .join(' ');
 
-  document.title = `${title} | Roger + Rochelle`;
+  document.title = `${title} | Rochelle + Roger`;
 
   const href =
     page.dataset.page === 'home'

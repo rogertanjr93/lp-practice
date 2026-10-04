@@ -1491,6 +1491,19 @@ body[data-page=home-valuation] .custom-header {
   gap: clamp(42px, 7vw, 112px);
 }
 
+/* Roger row: description left, photo right on desktop. */
+.custom-agent-story--reverse {
+  grid-template-areas: "copy photo";
+}
+
+.custom-agent-story--reverse .custom-agent-story__copy {
+  grid-area: copy;
+}
+
+.custom-agent-story--reverse .custom-agent-story__photo {
+  grid-area: photo;
+}
+
 .custom-agent-story__photo img {
   width: 100%;
   height: auto;
@@ -1691,10 +1704,11 @@ body[data-page=home-valuation] .custom-header {
     gap: 30px;
   }
 
-  /* Preserve each row's source order when it stacks. */
-
-  .custom-agent-story--reverse .custom-agent-story__photo {
-    order: -1;
+  /* Roger mobile: photo first, description underneath. */
+  .custom-agent-story--reverse {
+    grid-template-areas:
+      "photo"
+      "copy";
   }
 
   .custom-agent-story__photo img {
@@ -1870,6 +1884,15 @@ body[data-page=home-valuation] .custom-header {
 #home-section-opening h1 {
   font-size: clamp(38px, 8vmin, 112px);
   line-height: .98;
+}
+
+/* RR mark sits above the names in the opening hero. Keep it responsive too. */
+#home-section-opening .custom-hero__rr-logo {
+  display: block;
+  width: clamp(58px, 8vmin, 104px);
+  height: auto;
+  margin: 0 auto clamp(14px, 2.2vmin, 26px);
+  object-fit: contain;
 }
 
 /* Agent license lines sit directly below the names in the opening hero. */
@@ -2198,7 +2221,7 @@ body[data-page=home-valuation] .custom-header {
   right: 15px;
 }
 
-/* Meet the Team hero: 80dvh, 3 images, 4s per image, 1.5s crossfade. */
+/* Meet the Team hero: 80dvh, 3 images, 3s per image, 1.5s crossfade. */
 
 #meet-the-team-section-opening {
   height: 80dvh;

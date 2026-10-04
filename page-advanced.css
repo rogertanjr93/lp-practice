@@ -1,0 +1,57 @@
+/* ==========================================================
+   MEET THE TEAM HERO — PAN + ZOOM
+   ==========================================================
+   Keep this in Advanced CSS because this is a visual effect,
+   not part of the base page layout.
+
+   The image changes every 3 seconds in script.js.
+   The extra 1.5 seconds here lets the outgoing image keep
+   moving while it finishes its crossfade.
+   ========================================================== */
+
+.custom-team-hero__image {
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* Pan one way while slowly zooming in. */
+.custom-team-hero__image.team-motion--left.is-active,
+.custom-team-hero__image.team-motion--left.is-leaving {
+  animation: team-hero-pan-left 4.5s ease-out both;
+}
+
+/* Then reverse the pan direction on the next image. */
+.custom-team-hero__image.team-motion--right.is-active,
+.custom-team-hero__image.team-motion--right.is-leaving {
+  animation: team-hero-pan-right 4.5s ease-out both;
+}
+
+@keyframes team-hero-pan-left {
+  from {
+    transform: scale(1.035) translate3d(1.5%, 0, 0);
+  }
+
+  to {
+    transform: scale(1.11) translate3d(-1.5%, 0, 0);
+  }
+}
+
+@keyframes team-hero-pan-right {
+  from {
+    transform: scale(1.035) translate3d(-1.5%, 0, 0);
+  }
+
+  to {
+    transform: scale(1.11) translate3d(1.5%, 0, 0);
+  }
+}
+
+/* Respect reduced-motion settings and fall back to the normal fade. */
+@media (prefers-reduced-motion: reduce) {
+  .custom-team-hero__image.team-motion--left.is-active,
+  .custom-team-hero__image.team-motion--left.is-leaving,
+  .custom-team-hero__image.team-motion--right.is-active,
+  .custom-team-hero__image.team-motion--right.is-leaving {
+    animation: none;
+  }
+}
