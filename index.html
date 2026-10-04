@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#000000">
     <title>Roger + Rochelle | Los Angeles Real Estate</title>
     <link rel="stylesheet" href="template.css">
+    <link rel="preload" href="https://s3-us-west-2.amazonaws.com/static-lp/fonts/compass/CompassSans/CompassSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="global-base.css">
     <link rel="stylesheet" href="global-advanced.css">
     <link rel="stylesheet" href="page-base.css">
@@ -39,7 +40,9 @@
     </header>
     <dialog class="custom-menu" id="navigation-menu" aria-label="Site navigation">
       <div class="custom-menu__top">
-        <span class="custom-eyebrow">ROGER + ROCHELLE</span>
+        <a class="custom-menu__brand" href="#/" aria-label="Roger and Rochelle home">
+          <img src="images/rr-logo-black.png" alt="RR" width="76" height="76">
+        </a>
         <button data-close-menu class="custom-icon-button" aria-label="Close menu">×</button>
       </div>
       <div class="custom-menu__body">
@@ -53,18 +56,11 @@
           <a href="#/contact-us">Contact Us</a>
           <a href="#/compass-concierge">Compass Concierge</a>
         </nav>
-        <div class="custom-menu__aside">
-          <p class="custom-eyebrow">A PLACE TO CALL YOUR OWN</p>
-          <p>Los Angeles<br>Beverly Hills<br>Santa Monica<br>West Hollywood</p>
-          <a href="tel:+13105550148">310.555.0148</a>
-          <small>Demonstration contact number</small>
-        </div>
       </div>
     </dialog>
     <main id="main" tabindex="-1">
       <div class="custom-page" data-page="home">
         <section class="custom-hero" id="home-section-opening">
-          <input class="custom-slideshow-toggle" id="pause-slideshow" type="checkbox" aria-label="Pause homepage slideshow">
           <div class="custom-hero__slides" aria-hidden="true">
             <img class="custom-hero__slide" src="images/losangeles-1.jpg" alt="" fetchpriority="high">
             <img class="custom-hero__slide" src="images/beverlyhills-1.jpg" alt="" decoding="async">
@@ -78,46 +74,94 @@
             <a class="custom-button custom-button--light" href="#/portfolio">Explore the Portfolio<span aria-hidden="true">↗</span>
             </a>
           </div>
-          <div class="custom-hero__bottom">
-            <div class="custom-hero__location">
-              <small>FOUR NEIGHBORHOODS. ONE PERSONAL APPROACH.</small>Los Angeles &amp; the Westside</div>
-            <a href="#home-section-introduction" data-scroll="home-section-introduction" class="custom-hero__scroll">Discover more <span>↓</span>
-            </a>
-            <label class="custom-slide-pause" for="pause-slideshow">
-              <span class="custom-pause-label">Ⅱ   Pause</span>
-              <span class="custom-play-label">▷   Play</span>
-            </label>
+        </section>
+        <section class="custom-section" id="home-section-introduction" aria-label="About Rochelle and Roger">
+          <div class="custom-container custom-agent-stories">
+            <article class="custom-agent-story">
+              <div class="custom-agent-story__photo">
+                <img src="images/agent-home-about-rochelle.jpg" alt="Rochelle Reyes" width="1200" height="1500" loading="lazy" decoding="async">
+              </div>
+              <div class="custom-agent-story__copy">
+                <p class="custom-eyebrow">A PERSONAL PERSPECTIVE</p>
+                <h2>Meet Rochelle.</h2>
+                <p>Rochelle Reyes is a Los Angeles-based real estate agent specializing in residential and luxury properties throughout Los Angeles and surrounding communities. She works with first-time buyers, growing families, investors, and homeowners looking to sell.</p>
+                <p>Rochelle believes that real estate should feel personal and straightforward. She takes the time to understand each client's goals, preferences, and priorities so she can provide guidance tailored to their needs.</p>
+                <a class="custom-button custom-button--outline" href="#/meet-the-team">More About Rochelle <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+            <article class="custom-agent-story custom-agent-story--reverse">
+              <div class="custom-agent-story__copy">
+                <p class="custom-eyebrow">AN EYE FOR THE DETAILS</p>
+                <h2>Meet Roger.</h2>
+                <p>The way a room catches the light. The flow from indoors to out. The small details that make everyday life feel a little more considered.</p>
+                <p>Roger brings an appreciation for design and a practical, organized perspective to the search for home. Together with Rochelle, he shares a simple priority: understanding what your next move means to you.</p>
+                <a class="custom-button custom-button--outline" href="#/meet-the-team">More About Roger <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <div class="custom-agent-story__photo">
+                <img src="images/agent-home-about-roger.jpg" alt="Roger Tan" width="1200" height="1500" loading="lazy" decoding="async">
+              </div>
+            </article>
           </div>
         </section>
-        <div class="custom-localities">
-          <a href="#/neighborhoods?area=los-angeles">Los Angeles</a>
-          <span>·</span>
-          <a href="#/neighborhoods?area=beverly-hills">Beverly Hills</a>
-          <span>·</span>
-          <a href="#/neighborhoods?area=santa-monica">Santa Monica</a>
-          <span>·</span>
-          <a href="#/neighborhoods?area=west-hollywood">West Hollywood</a>
-        </div>
-        <section class="custom-section" id="home-section-introduction">
-          <div class="custom-container custom-about">
-            <div class="custom-about__photo">
-              <img src="images/agent-team-opening.jpg" alt="Rochelle Reyes and Roger Tan standing together" class="custom-home-team-photo" loading="lazy" decoding="async">
-              <div class="custom-photo-caption">
-                <span>Rochelle Reyes &amp; Roger Tan</span>
-                <span>Los Angeles, CA</span>
+        <section class="custom-gsm custom-parallax" id="home-section-buy-about-sell" aria-label="Buy, about us, and sell">
+          <a class="custom-gsm__card" href="#/portfolio">
+            <span class="custom-eyebrow">FIND YOUR PLACE</span>
+            <h2>BUY</h2>
+            <span class="custom-gsm__link">Explore homes <b aria-hidden="true">↗</b>
+            </span>
+          </a>
+          <a class="custom-gsm__card" href="#/meet-the-team">
+            <span class="custom-eyebrow">A PERSONAL APPROACH</span>
+            <h2>ABOUT US</h2>
+            <span class="custom-gsm__link">Meet the team <b aria-hidden="true">↗</b>
+            </span>
+          </a>
+          <a class="custom-gsm__card" href="#/home-valuation">
+            <span class="custom-eyebrow">YOUR NEXT CHAPTER</span>
+            <h2>SELL</h2>
+            <span class="custom-gsm__link">Discover your home's value <b aria-hidden="true">↗</b>
+            </span>
+          </a>
+        </section>
+        <section class="custom-section" id="home-section-stats" aria-label="Rochelle Reyes by the numbers">
+          <div class="custom-container">
+            <div class="custom-section-heading">
+              <div>
+                <p class="custom-eyebrow">ROCHELLE REYES / BY THE NUMBERS</p>
+                <h2>Experience that makes a difference.</h2>
               </div>
             </div>
-            <div class="custom-about__copy">
-              <p class="custom-eyebrow">MEET ROCHELLE &amp; ROGER</p>
-              <h2>Two perspectives.<br>One place to call home.</h2>
-              <p>Real estate is personal. It’s the light in your favorite room, the neighborhood you come back to, and the life you imagine building there.</p>
-              <p>We bring a considered, people-first perspective to every conversation—helping you explore what comes next with clarity and confidence.</p>
-              <a class="custom-button custom-button--outline" href="#/meet-the-team">Meet the Team<span aria-hidden="true">↗</span>
-              </a>
+            <div class="custom-stats">
+              <div class="custom-stat">
+                <span class="custom-stat__value">6+</span>
+                <h3>Years of Experience</h3>
+              </div>
+              <div class="custom-stat">
+                <span class="custom-stat__value">$48M+</span>
+                <h3>in Sales</h3>
+              </div>
+              <div class="custom-stat">
+                <span class="custom-stat__value">75+</span>
+                <h3>Homes Sold</h3>
+              </div>
+              <div class="custom-stat">
+                <span class="custom-stat__value">$1.8M</span>
+                <h3>Average Sale Price</h3>
+              </div>
+              <div class="custom-stat">
+                <span class="custom-stat__value custom-stat__value--location">Los Angeles</span>
+                <h3>&amp; Surrounding Areas</h3>
+              </div>
+              <div class="custom-stat">
+                <span class="custom-stat__value">100+</span>
+                <h3>Clients Served</h3>
+              </div>
             </div>
           </div>
         </section>
-        <section class="custom-section custom-off-white custom-home-portfolio" id="home-section-featured-properties">
+        <section class="custom-section custom-home-portfolio custom-parallax" id="home-section-featured-properties">
           <div class="custom-container">
             <div class="custom-section-heading">
               <div>
@@ -174,65 +218,6 @@
             <p class="custom-result-count">A selection of illustrative listings. Property details are sample content.</p>
           </div>
         </section>
-        <section class="custom-gsm" id="home-section-buy-about-sell" aria-label="Buy, about us, and sell">
-          <img src="images/home-gsm-image.jpg" alt="An inviting outdoor porch" loading="lazy">
-          <a class="custom-gsm__card" href="#/portfolio">
-            <span class="custom-eyebrow">FIND YOUR PLACE</span>
-            <h2>BUY</h2>
-            <span class="custom-gsm__link">Explore homes <b aria-hidden="true">↗</b>
-            </span>
-          </a>
-          <a class="custom-gsm__card" href="#/meet-the-team">
-            <span class="custom-eyebrow">A PERSONAL APPROACH</span>
-            <h2>ABOUT US</h2>
-            <span class="custom-gsm__link">Meet the team <b aria-hidden="true">↗</b>
-            </span>
-          </a>
-          <a class="custom-gsm__card" href="#/home-valuation">
-            <span class="custom-eyebrow">YOUR NEXT CHAPTER</span>
-            <h2>SELL</h2>
-            <span class="custom-gsm__link">Discover your home's value <b aria-hidden="true">↗</b>
-            </span>
-          </a>
-        </section>
-        <section class="custom-section" id="home-section-neighborhoods">
-          <div class="custom-container">
-            <div class="custom-section-heading">
-              <div>
-                <p class="custom-eyebrow">A LOCAL POINT OF VIEW</p>
-                <h2>Find your kind of California.</h2>
-              </div>
-              <a class="custom-text-link" href="#/neighborhoods">Explore Neighborhoods <span>↗</span>
-              </a>
-            </div>
-            <div class="custom-neighborhood-grid">
-              <a class="custom-neighborhood-card" href="#/portfolio?area=los-angeles">
-                <img src="images/losangeles-1.jpg" alt="Illustrative home in Los Angeles" class="" loading="lazy" decoding="async">
-                <span>
-                  <small>01 / THE NEIGHBORHOODS</small>Los Angeles<b aria-hidden="true">↗</b>
-                </span>
-              </a>
-              <a class="custom-neighborhood-card" href="#/portfolio?area=beverly-hills">
-                <img src="images/beverlyhills-1.jpg" alt="Illustrative home in Beverly Hills" class="" loading="lazy" decoding="async">
-                <span>
-                  <small>02 / THE NEIGHBORHOODS</small>Beverly Hills<b aria-hidden="true">↗</b>
-                </span>
-              </a>
-              <a class="custom-neighborhood-card" href="#/portfolio?area=santa-monica">
-                <img src="images/santamonica-1.jpg" alt="Illustrative home in Santa Monica" class="" loading="lazy" decoding="async">
-                <span>
-                  <small>03 / THE NEIGHBORHOODS</small>Santa Monica<b aria-hidden="true">↗</b>
-                </span>
-              </a>
-              <a class="custom-neighborhood-card" href="#/portfolio?area=west-hollywood">
-                <img src="images/westhollywood-1.jpg" alt="Illustrative home in West Hollywood" class="" loading="lazy" decoding="async">
-                <span>
-                  <small>04 / THE NEIGHBORHOODS</small>West Hollywood<b aria-hidden="true">↗</b>
-                </span>
-              </a>
-            </div>
-          </div>
-        </section>
         <section class="custom-testimonial" id="home-section-testimonials">
           <div class="custom-container">
             <p class="custom-eyebrow">THE CLIENT EXPERIENCE / SAMPLE STORY</p>
@@ -242,14 +227,39 @@
             </a>
           </div>
         </section>
-        <section class="custom-cta" id="home-section-work-with-us">
-          <img src="images/losangeles-2.jpg" alt="A contemporary Los Angeles residence" class="" loading="lazy" decoding="async">
-          <div>
-            <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
-            <h2>Let’s make it home.</h2>
-            <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#/contact-us">Work With Us<span aria-hidden="true">↗</span>
-            </a>
+        <section class="custom-section custom-home-contact custom-parallax" id="home-section-contact-us">
+          <div class="custom-container custom-home-contact__layout">
+            <div>
+              <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
+              <h2>Let’s make it home.</h2>
+              <p>A new address begins with a conversation.<br>Tell us where you want to go next.</p>
+              <a class="custom-text-link" href="#/contact-us">Contact Us <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <form class="custom-home-contact__form" id="home-contact-form">
+              <div class="custom-form-grid">
+                <div class="custom-field custom-full">
+                  <label for="home-contact-name">Full name *</label>
+                  <input id="home-contact-name" name="name" autocomplete="name" required>
+                </div>
+                <div class="custom-field">
+                  <label for="home-contact-email">Email *</label>
+                  <input id="home-contact-email" name="email" type="email" autocomplete="email" required>
+                </div>
+                <div class="custom-field">
+                  <label for="home-contact-phone">Phone</label>
+                  <input id="home-contact-phone" name="phone" type="tel" autocomplete="tel">
+                </div>
+                <div class="custom-field custom-full">
+                  <label for="home-contact-message">Your message *</label>
+                  <textarea id="home-contact-message" name="message" rows="3" required></textarea>
+                </div>
+              </div>
+              <p class="custom-home-contact__note">Practice form. Your message is not sent or saved.</p>
+              <button class="custom-button custom-button--light" type="submit">Preview Inquiry <span aria-hidden="true">↗</span>
+              </button>
+              <p id="home-contact-result" role="status" hidden></p>
+            </form>
           </div>
         </section>
       </div>
@@ -607,14 +617,29 @@
               <article class="custom-agent-card">
                 <img src="images/agent-detail-portrait-rochelle.jpg" alt="Rochelle Reyes" class="" loading="lazy" decoding="async">
                 <div class="custom-agent-card__content">
-                  <p class="custom-eyebrow">A thoughtful approach</p>
+                  <p class="custom-eyebrow">Los Angeles Real Estate Agent</p>
                   <h3>Rochelle Reyes</h3>
-                  <p>A people-first perspective on the places we call home.</p>
+                  <p>Residential homes, condos, and luxury properties. Personal guidance for buyers and sellers across Los Angeles and surrounding communities.</p>
                   <details class="custom-agent-bio">
                     <summary class="custom-text-link">More About Rochelle <span>+</span>
                     </summary>
-                    <p>A welcoming, people-first perspective on finding the right place to call home.</p>
-                    <a class="custom-text-link" href="#/contact-us">Let’s Connect ↗</a>
+                    <p>Rochelle Reyes is a Los Angeles-based real estate agent specializing in residential and luxury properties throughout Los Angeles and surrounding communities. She works with first-time buyers, growing families, investors, and homeowners looking to sell.</p>
+                    <p>Rochelle believes that real estate should feel personal and straightforward. She takes the time to understand each client's goals, preferences, and priorities so she can provide guidance tailored to their needs.</p>
+                    <p>Known for her responsive communication and attention to detail, Rochelle helps clients navigate every stage of the real estate process—from exploring properties and preparing offers to negotiating and closing.</p>
+                    <p>Outside of real estate, Rochelle enjoys discovering new restaurants, exploring local neighborhoods, and spending time with family and friends.</p>
+                    <div class="custom-agent-specialties">
+                      <h4>Specialties</h4>
+                      <ul>
+                        <li>Residential Real Estate</li>
+                        <li>Luxury Homes</li>
+                        <li>First-Time Homebuyers</li>
+                        <li>Home Sellers</li>
+                        <li>Relocation</li>
+                      </ul>
+                      <h4>Areas Served</h4>
+                      <p>Los Angeles, Beverly Hills, Santa Monica, West Hollywood, and surrounding areas.</p>
+                    </div>
+                    <a class="custom-text-link" href="#/contact-us">Schedule a Consultation ↗</a>
                   </details>
                 </div>
               </article>

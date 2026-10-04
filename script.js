@@ -117,9 +117,10 @@ document.addEventListener('change', event => {
   if (event.target.id === 'area-filter') filterPortfolio();
 });
 document.addEventListener('submit', event => {
-  if (!event.target.matches('#contact-form, #valuation-form')) return;
+  if (!event.target.matches('#contact-form, #valuation-form, #home-contact-form')) return;
   event.preventDefault();
-  const result = $(event.target.id === 'contact-form' ? '#contact-result' : '#valuation-result');
+  const results = { 'contact-form': '#contact-result', 'valuation-form': '#valuation-result', 'home-contact-form': '#home-contact-result' };
+  const result = $(results[event.target.id]);
   result.hidden = false;
   result.textContent = 'Form complete. This is a practice preview: your details have not been sent or saved. A real inquiry service can be connected later.';
   result.setAttribute('tabindex', '-1');
