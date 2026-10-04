@@ -1055,36 +1055,171 @@ nav#global-navbar.scroll .header {
 }
 
 /* =========================================================
-   TESTIMONIAL PLACEHOLDER
+   TESTIMONIALS — LUCY + LAUREN-INSPIRED CARD STRUCTURE
    ========================================================= */
 
 .featured-testimonials {
     padding: var(--section-y) 0;
-    background: #eae4da;
+    background: #eee9e0;
+    color: var(--ink);
 }
 
-.testimonials-header {
-    margin-bottom: 55px;
+.testimonials-heading {
+    max-width: 720px;
+    margin-bottom: clamp(48px, 6vw, 78px);
 }
 
-.testimonial-placeholder {
-    max-width: 1100px;
-}
-
-.placeholder-label {
+.testimonials-heading h2 {
     margin-bottom: 18px;
-    color: var(--stone);
-    font-size: 9px;
+}
+
+.testimonials-subtitle {
+    margin-bottom: 0;
+    color: #665f57;
+    font-family: var(--global-primary-font-family);
+    font-size: clamp(22px, 2vw, 30px);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: clamp(28px, 4vw, 58px);
+    row-gap: clamp(55px, 7vw, 90px);
+}
+
+.testimonial-card {
+    min-width: 0;
+}
+
+.testimonial-card summary {
+    display: block;
+    list-style: none;
+    cursor: pointer;
+}
+
+.testimonial-card summary::-webkit-details-marker {
+    display: none;
+}
+
+.testimonial-image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 27px;
+    border-radius: 50%;
+    background-image:
+        url("images/testimonial-placeholder.png"),
+        radial-gradient(circle at 50% 34%, #ded7cc 0 20%, transparent 21%),
+        radial-gradient(circle at 50% 77%, #ded7cc 0 32%, transparent 33%),
+        linear-gradient(145deg, #9f968b, #605a54);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 0 0 0 1px rgba(24, 24, 23, 0.08);
+}
+
+.testimonial-card h3 {
+    margin-bottom: 17px;
+    font-family: var(--global-secondary-font-family);
+    font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
-.testimonial-placeholder blockquote {
-    margin-bottom: 26px;
+.testimonial-preview,
+.testimonial-full p {
+    color: #4f4a44;
     font-family: var(--global-primary-font-family);
-    font-size: clamp(34px, 4.8vw, 66px);
-    line-height: 1.12;
+    font-size: clamp(19px, 1.55vw, 24px);
+    line-height: 1.52;
+}
+
+.testimonial-preview {
+    display: -webkit-box;
+    min-height: 7.1em;
+    margin-bottom: 21px;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+.read-more-label {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.read-more-label::before {
+    content: "Read More";
+}
+
+.read-more-label::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transition: transform var(--transition);
+    transform-origin: left;
+}
+
+.testimonial-card summary:hover .read-more-label::after {
+    transform: scaleX(0.35);
+}
+
+.testimonial-full {
+    padding-top: 24px;
+    animation: testimonial-open 0.35s ease both;
+}
+
+.testimonial-full p {
+    margin-bottom: 0;
+}
+
+.testimonial-card[open] .testimonial-preview {
+    display: none;
+}
+
+.testimonial-card[open] .read-more-label::before {
+    content: "Read Less";
+}
+
+@keyframes testimonial-open {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-image {
+        width: 128px;
+        height: 128px;
+    }
+
+    .testimonial-preview {
+        min-height: 0;
+    }
 }
 
 /* =========================================================
