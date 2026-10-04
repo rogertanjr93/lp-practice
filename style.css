@@ -350,22 +350,22 @@ nav#global-navbar.scroll .header {
 }
 
 .opening-slide-1 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/hero-1.jpg");
+    background-image: url("images/hero-1.jpg");
     animation: hero-one 28s linear infinite;
 }
 
 .opening-slide-2 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/hero-2.jpg");
+    background-image: url("images/hero-2.jpg");
     animation: hero-two 28s linear 7s infinite;
 }
 
 .opening-slide-3 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/hero-3.jpg");
+    background-image: url("images/hero-3.jpg");
     animation: hero-three 28s linear 14s infinite;
 }
 
 .opening-slide-4 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/hero-4.jpg");
+    background-image: url("images/hero-4.jpg");
     animation: hero-four 28s linear 21s infinite;
 }
 
@@ -605,19 +605,19 @@ nav#global-navbar.scroll .header {
 }
 
 .property-image-1 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/service-1.jpg");
+    background-image: url("images/property-1.jpg");
 }
 
 .property-image-2 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/service-2.jpg");
+    background-image: url("images/property-2.jpg");
 }
 
 .property-image-3 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/service-3.jpg");
+    background-image: url("images/property-3.jpg");
 }
 
 .property-image-4 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/hero-2.jpg");
+    background-image: url("images/property-4.jpg");
 }
 
 .property-copy {
@@ -664,32 +664,17 @@ nav#global-navbar.scroll .header {
     gap: clamp(52px, 8vw, 125px);
 }
 
-.portrait-placeholder {
-    display: flex;
-    min-height: 690px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background:
-        radial-gradient(circle at 65% 25%, rgba(255, 255, 255, 0.28), transparent 26%),
-        linear-gradient(145deg, #b9aa9b, #6f655d 58%, #3c3834);
-    color: var(--white);
+.featured-agent__image {
+    width: 100%;
+    overflow: hidden;
 }
 
-.portrait-initials {
-    font-family: var(--global-primary-font-family);
-    font-size: clamp(90px, 12vw, 170px);
-    line-height: 0.8;
-    letter-spacing: -0.06em;
-}
-
-.portrait-note {
-    margin-top: 22px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: 0.7;
+.featured-agent__image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 0.82 / 1;
+    object-fit: cover;
+    object-position: center top;
 }
 
 .featured-agent__info {
@@ -770,11 +755,11 @@ nav#global-navbar.scroll .header {
 }
 
 .buying-card {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/buy.jpg");
+    background-image: url("images/buying.jpg");
 }
 
 .selling-card {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/sell.jpg");
+    background-image: url("images/selling.jpg");
 }
 
 .buy-sell-overlay {
@@ -842,19 +827,19 @@ nav#global-navbar.scroll .header {
 }
 
 .neighborhood-1 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/hero-1.jpg");
+    background-image: url("images/neighborhood-los-angeles.jpg");
 }
 
 .neighborhood-2 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/service-2.jpg");
+    background-image: url("images/neighborhood-beverly-hills.jpg");
 }
 
 .neighborhood-3 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/hero-3.jpg");
+    background-image: url("images/neighborhood-santa-monica.jpg");
 }
 
 .neighborhood-4 {
-    background-image: url("https://onayon-soop.github.io/marciassignment/images/hero-4.jpg");
+    background-image: url("images/neighborhood-west-hollywood.jpg");
 }
 
 .featured-neighborhoods-grid .overlay {
@@ -961,7 +946,7 @@ nav#global-navbar.scroll .header {
 
 .valuation-bg {
     background:
-        url("https://onayon-soop.github.io/marciassignment/images/contact.jpg")
+        url("images/home-valuation.jpg")
         center / cover no-repeat;
 }
 
@@ -1074,7 +1059,7 @@ nav#global-navbar.scroll .header {
 
 .testimonials-background {
     background:
-        url("https://onayon-soop.github.io/marciassignment/images/hero-3.jpg")
+        url("images/testimonials-bg.jpg")
         center / cover no-repeat;
     transform: scale(1.02);
 }
@@ -1112,7 +1097,7 @@ nav#global-navbar.scroll .header {
 
 .testimonial-stage {
     position: relative;
-    height: 500px;
+    height: 560px;
     margin-inline: auto;
 }
 
@@ -1176,11 +1161,7 @@ nav#global-navbar.scroll .header {
     flex: 0 0 150px;
     margin: 0 auto 24px;
     border-radius: 50%;
-    background-image:
-        url("images/testimonial-placeholder.png"),
-        radial-gradient(circle at 50% 34%, #ddd6cb 0 20%, transparent 21%),
-        radial-gradient(circle at 50% 77%, #ddd6cb 0 32%, transparent 33%),
-        linear-gradient(145deg, #aaa095, #625c55);
+    background-image: url("images/testimonial-placeholder.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1238,7 +1219,7 @@ nav#global-navbar.scroll .header {
     display: flex;
     justify-content: center;
     gap: 14px;
-    margin-top: 5px;
+    margin-top: 28px;
 }
 
 .testimonial-arrow {
@@ -1314,7 +1295,7 @@ nav#global-navbar.scroll .header {
     }
 
     .testimonial-stage {
-        height: 470px;
+        height: 530px;
     }
 
     .testimonial-card {
@@ -1342,7 +1323,7 @@ nav#global-navbar.scroll .header {
     }
 
     .testimonial-stage {
-        height: 470px;
+        height: 500px;
     }
 
     .testimonial-card {
@@ -1426,7 +1407,7 @@ button.newsletter-signup__form-item {
     place-items: center;
     overflow: hidden;
     background:
-        url("https://onayon-soop.github.io/marciassignment/images/hero-4.jpg")
+        url("images/work-with-rochelle.jpg")
         center / cover no-repeat;
     color: var(--white);
     text-align: center;
@@ -1772,10 +1753,6 @@ footer#global-footer .serif {
 
     .featured-agent {
         grid-template-columns: 1fr;
-    }
-
-    .portrait-placeholder {
-        min-height: 560px;
     }
 
     .specialties-grid {
