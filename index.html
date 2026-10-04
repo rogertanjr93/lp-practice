@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Producer-style Luxury Presence training practice site using Marci Metzger content.">
-    <title>Marci Metzger | Producer Practice</title>
+    <meta name="description" content="Rochelle Reyes — Los Angeles real estate practice build using a Producer-style structure.">
+    <title>Rochelle Reyes | Los Angeles Real Estate</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,16 +17,15 @@
 
 <body>
     <!-- =========================================================
-         PRODUCER-LIKE GLOBAL NAVIGATION
+         GLOBAL NAVIGATION
+         Producer-like hooks are intentional for CSS practice.
          ========================================================= -->
     <nav id="global-navbar" aria-label="Main navigation">
         <div class="header">
             <div class="navbar container">
-                <a class="brand" href="#home" aria-label="Marci Metzger Home">
-                    <img
-                        src="https://onayon-soop.github.io/marciassignment/images/logo.png"
-                        alt="Marci Metzger Homes"
-                    >
+                <a class="brand" href="#home" aria-label="Rochelle Reyes Home">
+                    <span class="brand-name">Rochelle Reyes</span>
+                    <span class="brand-sub">Los Angeles Real Estate</span>
                 </a>
 
                 <button
@@ -41,12 +40,11 @@
                 </button>
 
                 <ul class="navigation" id="producerNavigation">
-                    <li class="navigation__item"><a class="navigation__link" href="#properties">Portfolio</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#properties">Properties</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#about">About</a></li>
                     <li class="navigation__item"><a class="navigation__link" href="#neighborhoods">Neighborhoods</a></li>
-                    <li class="navigation__item"><a class="navigation__link" href="#home-search">Home Search</a></li>
                     <li class="navigation__item"><a class="navigation__link" href="#valuation">Home Valuation</a></li>
                     <li class="navigation__item"><button class="navigation__link contact-trigger" type="button">Contact</button></li>
-                    <li class="navigation__item nav-phone"><a class="navigation__link" href="tel:+12069196886">(206) 919-6886</a></li>
                 </ul>
             </div>
         </div>
@@ -54,7 +52,9 @@
 
     <main>
         <!-- =====================================================
-             OPENING WITH SEARCH
+             OPENING / HERO
+             Design brief: large imagery, minimal copy, premium feel.
+             Entire slideshow is CSS-only.
              ===================================================== -->
         <section class="opening-with-search" id="home">
             <div class="opening-slides" aria-hidden="true">
@@ -67,294 +67,86 @@
             <div class="opening-overlay" aria-hidden="true"></div>
 
             <div class="center-block">
-                <div class="lp-title-group">
-                    <p class="pretitle">Pahrump, Nevada Real Estate</p>
-                    <h1 class="lp-h1">Marci Metzger</h1>
-                    <p class="opening-subtitle">The Ridge Realty Group</p>
+                <p class="pretitle">Los Angeles, California</p>
+                <h1>Rochelle Reyes</h1>
+                <p class="opening-subtitle">Residential &amp; Luxury Real Estate</p>
+                <a class="hero-cta" href="#properties">Explore Properties</a>
+            </div>
+
+            <a class="scroll-cue" href="#intro" aria-label="Scroll to introduction">
+                <span>Discover</span>
+                <span class="scroll-line"></span>
+            </a>
+        </section>
+
+        <!-- =====================================================
+             INTRO
+             ===================================================== -->
+        <section class="location-intro section-light" id="intro">
+            <div class="container intro-layout">
+                <div>
+                    <p class="eyebrow">Los Angeles Real Estate</p>
+                    <h2>Personal Guidance.<br>Clear Direction.</h2>
                 </div>
 
-                <form class="opening-search" data-demo-form>
-                    <label class="sr-only" for="openingSearch">Search by Address, City, or Neighborhood</label>
-                    <input
-                        id="openingSearch"
-                        type="search"
-                        placeholder="Search by Address, City, or Neighborhood"
-                    >
-                    <button class="search-button" type="submit">Search</button>
-                </form>
-
-                <p class="form-status" aria-live="polite"></p>
+                <div class="intro-copy">
+                    <p class="lead">
+                        Rochelle Reyes is a Los Angeles-based real estate agent specializing
+                        in residential and luxury properties throughout Los Angeles and
+                        surrounding communities.
+                    </p>
+                    <p>
+                        She works with first-time buyers, growing families, investors,
+                        and homeowners looking to sell.
+                    </p>
+                    <a class="lp-link" href="#about">Meet Rochelle</a>
+                </div>
             </div>
         </section>
 
         <!-- =====================================================
-             LOCATION INTRO
+             STATS
+             Exact values from Agent Notes.
              ===================================================== -->
-        <section class="location-intro section-light">
-            <div class="container narrow">
-                <p class="eyebrow">Southern Nevada</p>
-                <h2>Pahrump Real Estate</h2>
-                <p class="lead">
-                    Pahrump offers wide-open desert views, golf communities, acreage,
-                    and easy access to Las Vegas while keeping a relaxed small-town feel.
-                    Marci Metzger and The Ridge Realty Group help buyers and sellers
-                    navigate residential homes, land, and investment opportunities
-                    throughout the valley.
-                </p>
-                <a class="lp-link" href="#featured-agent">Meet Marci</a>
-            </div>
-        </section>
-
-        <!-- =====================================================
-             BUYING / SELLING CTAS
-             ===================================================== -->
-        <section class="buy-sell-section">
-            <article class="buy-sell-card buying-card">
-                <div class="buy-sell-overlay"></div>
-                <div class="buy-sell-content">
-                    <p class="eyebrow light">Buying</p>
-                    <h2>Buying A Home?</h2>
-                    <p>Browse available homes and land throughout Pahrump and Southern Nevada.</p>
-                    <a class="lp-btn lp-btn-light" href="#properties">View Properties</a>
-                </div>
-            </article>
-
-            <article class="buy-sell-card selling-card">
-                <div class="buy-sell-overlay"></div>
-                <div class="buy-sell-content">
-                    <p class="eyebrow light">Selling</p>
-                    <h2>Selling A Home?</h2>
-                    <p>Find out what your Pahrump property may be worth in today's market.</p>
-                    <a class="lp-btn lp-btn-light" href="#valuation">Get Home Value</a>
-                </div>
-            </article>
-        </section>
-
-        <!-- =====================================================
-             TEAM / AGENT INTRO + STATS
-             ===================================================== -->
-        <section class="featured-team-section section-dark">
-            <div class="container">
-                <div class="featured-team-header">
-                    <div>
-                        <p class="eyebrow light">Local Experience</p>
-                        <h2>Marci Metzger<br><span>The Ridge Realty Group</span></h2>
-                    </div>
-                    <a class="lp-link light-link" href="#featured-agent">About Marci</a>
-                </div>
-
-                <p class="team-intro">
-                    More than three decades in real estate, hundreds of completed
-                    transactions, and deep knowledge of the Pahrump market.
-                </p>
-            </div>
-        </section>
-
-        <div class="stats">
+        <section class="stats">
             <div class="container stats__container black-bg">
                 <div class="stats__item">
-                    <span class="stats__counter">$28.5M+</span>
-                    <span class="stats__label">Sales Closed in 2021</span>
+                    <span class="stats__counter">6+</span>
+                    <span class="stats__label">Years of Experience</span>
                 </div>
+
                 <div class="stats__item">
-                    <span class="stats__counter">700+</span>
-                    <span class="stats__label">Total Sales</span>
+                    <span class="stats__counter">$48M+</span>
+                    <span class="stats__label">In Sales</span>
                 </div>
+
                 <div class="stats__item">
-                    <span class="stats__counter">30+</span>
-                    <span class="stats__label">Years in Real Estate</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- =====================================================
-             FEATURED NEIGHBORHOODS
-             ===================================================== -->
-        <section class="featured-neighborhoods-section section-light" id="neighborhoods">
-            <div class="container">
-                <div class="featured-team-header">
-                    <div>
-                        <p class="eyebrow">Discover Pahrump</p>
-                        <h2>Explore Neighborhoods</h2>
-                    </div>
+                    <span class="stats__counter">75+</span>
+                    <span class="stats__label">Homes Sold</span>
                 </div>
 
-                <div class="featured-neighborhoods-grid">
-                    <div class="items three-columns">
-                        <article class="grid-item item">
-                            <a class="item-wrapper" href="#home-search">
-                                <div class="image-holder neighborhood-1"></div>
-                                <div class="overlay"></div>
-                                <div class="tile-copy">
-                                    <span>Pahrump</span>
-                                    <strong>Homes for Sale</strong>
-                                </div>
-                            </a>
-                        </article>
-
-                        <article class="grid-item item">
-                            <a class="item-wrapper" href="#home-search">
-                                <div class="image-holder neighborhood-2"></div>
-                                <div class="overlay"></div>
-                                <div class="tile-copy">
-                                    <span>Mountain Falls</span>
-                                    <strong>Homes for Sale</strong>
-                                </div>
-                            </a>
-                        </article>
-
-                        <article class="grid-item item">
-                            <a class="item-wrapper" href="#home-search">
-                                <div class="image-holder neighborhood-3"></div>
-                                <div class="overlay"></div>
-                                <div class="tile-copy">
-                                    <span>Southern Nevada</span>
-                                    <strong>Real Estate</strong>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- =====================================================
-             HOME VALUATION
-             ===================================================== -->
-        <section class="redesign home-valuation" id="valuation">
-            <div class="valuation-bg"></div>
-            <div class="valuation-overlay"></div>
-
-            <div class="container valuation-inner">
-                <div class="valuation-copy">
-                    <p class="eyebrow light">Know Your Position</p>
-                    <h2>Get Your Instant<br>Home Valuation</h2>
-                    <p>Enter your property details to practice the Producer valuation experience.</p>
-
-                    <ul class="home-valuation__steps" aria-label="Valuation steps">
-                        <li class="active">1</li>
-                        <li>2</li>
-                        <li>3</li>
-                    </ul>
+                <div class="stats__item">
+                    <span class="stats__counter">$1.8M</span>
+                    <span class="stats__label">Average Sale Price</span>
                 </div>
 
-                <form class="valuation-form" data-demo-form>
-                    <div class="inp">
-                        <label for="valuationAddress">Property Address</label>
-                        <input id="valuationAddress" type="text" placeholder="3190 NV-160, Pahrump, NV">
-                    </div>
-
-                    <div class="valuation-grid">
-                        <div class="inp">
-                            <label for="valuationName">Full Name</label>
-                            <input id="valuationName" type="text" placeholder="Full Name">
-                        </div>
-                        <div class="inp">
-                            <label for="valuationEmail">Email</label>
-                            <input id="valuationEmail" type="email" placeholder="Email">
-                        </div>
-                    </div>
-
-                    <div class="inp">
-                        <label for="valuationPhone">Phone</label>
-                        <input id="valuationPhone" type="tel" placeholder="Phone">
-                    </div>
-
-                    <button class="lp-btn lp-btn-light" type="submit">Unlock Your Free Valuation</button>
-                    <p class="form-status" aria-live="polite"></p>
-                </form>
-            </div>
-        </section>
-
-        <!-- =====================================================
-             HOME SEARCH CARDS
-             ===================================================== -->
-        <section class="home-search section-light" id="home-search">
-            <div class="container">
-                <div class="section-heading centered">
-                    <p class="eyebrow">Search by Area</p>
-                    <h2>Kickstart Your Home Search</h2>
-                </div>
-
-                <div class="home-search-grid">
-                    <a class="home-search-card" href="#properties">
-                        <div class="home-search-image search-image-1"></div>
-                        <div class="home-search-copy">
-                            <h3>Pahrump</h3>
-                            <p>Homes for Sale</p>
-                            <span>Explore Now</span>
-                        </div>
-                    </a>
-
-                    <a class="home-search-card" href="#properties">
-                        <div class="home-search-image search-image-2"></div>
-                        <div class="home-search-copy">
-                            <h3>Mountain Falls</h3>
-                            <p>Homes for Sale</p>
-                            <span>Explore Now</span>
-                        </div>
-                    </a>
-
-                    <a class="home-search-card" href="#properties">
-                        <div class="home-search-image search-image-3"></div>
-                        <div class="home-search-copy">
-                            <h3>Southern Nevada</h3>
-                            <p>Homes & Land</p>
-                            <span>Explore Now</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- =====================================================
-             FEATURED AGENT
-             ===================================================== -->
-        <section class="featured-agent-section" id="featured-agent">
-            <div class="container">
-                <h2 class="h2 section-kicker">Meet Your Local Expert</h2>
-
-                <div class="featured-agent">
-                    <div class="featured-agent__photo">
-                        <div class="featured-agent__image">
-                            <img
-                                src="https://onayon-soop.github.io/marciassignment/images/marci.jpg"
-                                alt="Marci Metzger"
-                            >
-                        </div>
-                    </div>
-
-                    <div class="featured-agent__info">
-                        <p class="eyebrow">Pahrump Realtor</p>
-                        <h2>Marci Metzger</h2>
-                        <p class="featured-agent-stat">30+ Years in Real Estate</p>
-                        <p>
-                            Marci has served buyers and sellers since 1995 and brings
-                            long-term market experience, local knowledge, and a practical
-                            approach to every transaction.
-                        </p>
-                        <p>
-                            With more than 700 total sales and deep roots in the Pahrump
-                            community, she helps clients move with clarity and confidence.
-                        </p>
-
-                        <ul class="links-row">
-                            <li><a class="lp-link" href="#properties">View Properties</a></li>
-                            <li><button class="lp-link button-link contact-trigger" type="button">Contact Marci</button></li>
-                        </ul>
-                    </div>
+                <div class="stats__item">
+                    <span class="stats__counter">100+</span>
+                    <span class="stats__label">Clients Served</span>
                 </div>
             </div>
         </section>
 
         <!-- =====================================================
              FEATURED PROPERTIES
+             No real listing data was supplied in the notes.
+             Cards are intentionally labeled as training placeholders.
              ===================================================== -->
         <section class="featured-properties-section section-dark" id="properties" data-slider>
             <div class="container">
                 <div class="featured-properties-header">
                     <div>
-                        <p class="eyebrow light">Selected Listings</p>
+                        <p class="eyebrow light">Portfolio</p>
                         <h2>Featured Properties</h2>
                     </div>
 
@@ -370,98 +162,351 @@
                 <article class="property-card">
                     <div class="property-image property-image-1"></div>
                     <div class="property-copy">
-                        <span class="property-status">For Sale</span>
-                        <h3>Featured Pahrump Property</h3>
-                        <p>3 BD | 2 BA | 2,100 Sq.Ft.</p>
-                        <strong>$585,000</strong>
-                        <a class="lp-link light-link" href="#">View Property</a>
+                        <span class="property-status">Training Placeholder</span>
+                        <h3>Los Angeles Residence</h3>
+                        <p>Listing details would be supplied by the MLS or client.</p>
+                        <a class="lp-link light-link" href="#contact">View Details</a>
                     </div>
                 </article>
 
                 <article class="property-card">
                     <div class="property-image property-image-2"></div>
                     <div class="property-copy">
-                        <span class="property-status">For Sale</span>
-                        <h3>Desert View Residence</h3>
-                        <p>4 BD | 3 BA | 2,860 Sq.Ft.</p>
-                        <strong>$725,000</strong>
-                        <a class="lp-link light-link" href="#">View Property</a>
+                        <span class="property-status">Training Placeholder</span>
+                        <h3>Luxury Home</h3>
+                        <p>Listing details would be supplied by the MLS or client.</p>
+                        <a class="lp-link light-link" href="#contact">View Details</a>
                     </div>
                 </article>
 
                 <article class="property-card">
                     <div class="property-image property-image-3"></div>
                     <div class="property-copy">
-                        <span class="property-status">For Sale</span>
-                        <h3>Mountain Falls Home</h3>
-                        <p>3 BD | 3 BA | 2,430 Sq.Ft.</p>
-                        <strong>$649,000</strong>
-                        <a class="lp-link light-link" href="#">View Property</a>
+                        <span class="property-status">Training Placeholder</span>
+                        <h3>Contemporary Residence</h3>
+                        <p>Listing details would be supplied by the MLS or client.</p>
+                        <a class="lp-link light-link" href="#contact">View Details</a>
                     </div>
                 </article>
 
                 <article class="property-card">
                     <div class="property-image property-image-4"></div>
                     <div class="property-copy">
-                        <span class="property-status">Land</span>
-                        <h3>Pahrump Acreage</h3>
-                        <p>Buildable Residential Lot</p>
-                        <strong>$195,000</strong>
-                        <a class="lp-link light-link" href="#">View Property</a>
+                        <span class="property-status">Training Placeholder</span>
+                        <h3>California Living</h3>
+                        <p>Listing details would be supplied by the MLS or client.</p>
+                        <a class="lp-link light-link" href="#contact">View Details</a>
                     </div>
                 </article>
             </div>
 
             <div class="container property-view-all">
-                <a class="lp-btn lp-btn-outline-light" href="#">View All</a>
+                <a class="lp-btn lp-btn-outline-light" href="#home-search">Begin Your Search</a>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             ABOUT / FEATURED AGENT
+             Copy comes directly from Agent Notes.
+             A headshot was not supplied, so the visual is a placeholder.
+             ===================================================== -->
+        <section class="featured-agent-section" id="about">
+            <div class="container">
+                <div class="featured-agent">
+                    <div class="featured-agent__photo">
+                        <div class="portrait-placeholder" aria-label="Rochelle Reyes portrait placeholder">
+                            <span class="portrait-initials">RR</span>
+                            <span class="portrait-note">Agent Portrait</span>
+                        </div>
+                    </div>
+
+                    <div class="featured-agent__info">
+                        <p class="eyebrow">Meet Rochelle</p>
+                        <h2>Real Estate Should Feel Personal &amp; Straightforward.</h2>
+
+                        <p>
+                            Rochelle Reyes is a Los Angeles-based real estate agent
+                            specializing in residential and luxury properties throughout
+                            Los Angeles and surrounding communities. She works with
+                            first-time buyers, growing families, investors, and homeowners
+                            looking to sell.
+                        </p>
+
+                        <p>
+                            Rochelle believes that real estate should feel personal and
+                            straightforward. She takes the time to understand each client's
+                            goals, preferences, and priorities so she can provide guidance
+                            tailored to their needs.
+                        </p>
+
+                        <p>
+                            Known for her responsive communication and attention to detail,
+                            Rochelle helps clients navigate every stage of the real estate
+                            process—from exploring properties and preparing offers to
+                            negotiating and closing.
+                        </p>
+
+                        <p>
+                            Outside of real estate, Rochelle enjoys discovering new
+                            restaurants, exploring local neighborhoods, and spending time
+                            with family and friends.
+                        </p>
+
+                        <button class="lp-link button-link contact-trigger" type="button">
+                            Schedule a Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             SPECIALTIES
+             Exact specialties from Agent Notes.
+             ===================================================== -->
+        <section class="specialties section-light">
+            <div class="container">
+                <div class="section-heading centered">
+                    <p class="eyebrow">How Rochelle Can Help</p>
+                    <h2>Specialties</h2>
+                </div>
+
+                <div class="specialties-grid">
+                    <article class="specialty-card">
+                        <span>01</span>
+                        <h3>Residential Real Estate</h3>
+                    </article>
+
+                    <article class="specialty-card">
+                        <span>02</span>
+                        <h3>Luxury Homes</h3>
+                    </article>
+
+                    <article class="specialty-card">
+                        <span>03</span>
+                        <h3>First-Time Homebuyers</h3>
+                    </article>
+
+                    <article class="specialty-card">
+                        <span>04</span>
+                        <h3>Home Sellers</h3>
+                    </article>
+
+                    <article class="specialty-card">
+                        <span>05</span>
+                        <h3>Relocation</h3>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             BUY / SELL
+             Derived from the stated ideal clients and website goal.
+             ===================================================== -->
+        <section class="buy-sell-section">
+            <article class="buy-sell-card buying-card">
+                <div class="buy-sell-overlay"></div>
+                <div class="buy-sell-content">
+                    <p class="eyebrow light">For Buyers</p>
+                    <h2>Find A Home That Fits Your Life.</h2>
+                    <p>
+                        From first-time buyers to growing families and investors,
+                        Rochelle provides clear guidance throughout the search and
+                        purchase process.
+                    </p>
+                    <a class="lp-btn lp-btn-light" href="#home-search">Start Searching</a>
+                </div>
+            </article>
+
+            <article class="buy-sell-card selling-card">
+                <div class="buy-sell-overlay"></div>
+                <div class="buy-sell-content">
+                    <p class="eyebrow light">For Sellers</p>
+                    <h2>Position Your Property With Confidence.</h2>
+                    <p>
+                        Thoughtful preparation, responsive communication, and attention
+                        to detail help homeowners move from listing to closing with a
+                        clear plan.
+                    </p>
+                    <a class="lp-btn lp-btn-light" href="#valuation">Get Home Value</a>
+                </div>
+            </article>
+        </section>
+
+        <!-- =====================================================
+             NEIGHBORHOODS
+             Exact backend order:
+             1. Los Angeles
+             2. Beverly Hills
+             3. Santa Monica
+             4. West Hollywood
+             ===================================================== -->
+        <section class="featured-neighborhoods-section section-light" id="neighborhoods">
+            <div class="container">
+                <div class="featured-team-header">
+                    <div>
+                        <p class="eyebrow">Areas Served</p>
+                        <h2>Explore Neighborhoods</h2>
+                    </div>
+                    <p class="neighborhood-note">
+                        Los Angeles, Beverly Hills, Santa Monica, West Hollywood,
+                        and surrounding areas.
+                    </p>
+                </div>
+
+                <div class="featured-neighborhoods-grid">
+                    <div class="items two-columns">
+                        <article class="grid-item item">
+                            <a class="item-wrapper" href="#contact">
+                                <div class="image-holder neighborhood-1"></div>
+                                <div class="overlay"></div>
+                                <div class="tile-copy">
+                                    <span class="tile-number">01</span>
+                                    <h3>Los Angeles</h3>
+                                    <strong>Explore Area</strong>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="grid-item item">
+                            <a class="item-wrapper" href="#contact">
+                                <div class="image-holder neighborhood-2"></div>
+                                <div class="overlay"></div>
+                                <div class="tile-copy">
+                                    <span class="tile-number">02</span>
+                                    <h3>Beverly Hills</h3>
+                                    <strong>Explore Area</strong>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="grid-item item">
+                            <a class="item-wrapper" href="#contact">
+                                <div class="image-holder neighborhood-3"></div>
+                                <div class="overlay"></div>
+                                <div class="tile-copy">
+                                    <span class="tile-number">03</span>
+                                    <h3>Santa Monica</h3>
+                                    <strong>Explore Area</strong>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="grid-item item">
+                            <a class="item-wrapper" href="#contact">
+                                <div class="image-holder neighborhood-4"></div>
+                                <div class="overlay"></div>
+                                <div class="tile-copy">
+                                    <span class="tile-number">04</span>
+                                    <h3>West Hollywood</h3>
+                                    <strong>Explore Area</strong>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             HOME SEARCH
+             Simulates a Producer search component.
+             ===================================================== -->
+        <section class="home-search section-dark" id="home-search">
+            <div class="container home-search-inner">
+                <div>
+                    <p class="eyebrow light">Property Search</p>
+                    <h2>Find Your Place<br>In Los Angeles.</h2>
+                </div>
+
+                <form class="home-search-form" data-demo-form>
+                    <label class="sr-only" for="homeSearchInput">Search by Address, City, or Neighborhood</label>
+                    <input
+                        id="homeSearchInput"
+                        type="search"
+                        placeholder="Search by Address, City, or Neighborhood"
+                    >
+                    <button class="search-button" type="submit">Search</button>
+                    <p class="form-status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             HOME VALUATION
+             ===================================================== -->
+        <section class="redesign home-valuation" id="valuation">
+            <div class="valuation-bg"></div>
+            <div class="valuation-overlay"></div>
+
+            <div class="container valuation-inner">
+                <div class="valuation-copy">
+                    <p class="eyebrow light">For Homeowners</p>
+                    <h2>What's Your Home Worth?</h2>
+                    <p>
+                        Start with your property address and contact details.
+                        This training form simulates the Producer valuation component.
+                    </p>
+
+                    <ul class="home-valuation__steps" aria-label="Valuation steps">
+                        <li class="active">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </div>
+
+                <form class="valuation-form" data-demo-form>
+                    <div class="inp">
+                        <label for="valuationAddress">Property Address</label>
+                        <input id="valuationAddress" type="text" placeholder="Property Address">
+                    </div>
+
+                    <div class="valuation-grid">
+                        <div class="inp">
+                            <label for="valuationName">Full Name</label>
+                            <input id="valuationName" type="text" placeholder="Full Name">
+                        </div>
+
+                        <div class="inp">
+                            <label for="valuationEmail">Email</label>
+                            <input id="valuationEmail" type="email" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="inp">
+                        <label for="valuationPhone">Phone</label>
+                        <input id="valuationPhone" type="tel" placeholder="Phone">
+                    </div>
+
+                    <button class="lp-btn lp-btn-dark" type="submit">Request Valuation</button>
+                    <p class="form-status" aria-live="polite"></p>
+                </form>
             </div>
         </section>
 
         <!-- =====================================================
              TESTIMONIALS
+             No testimonials were supplied.
+             This module stays in the Producer-style page structure,
+             but clearly shows training placeholder content.
              ===================================================== -->
-        <section class="redesign featured-testimonials testimonials" data-slider>
+        <section class="redesign featured-testimonials testimonials">
             <div class="container">
                 <div class="testimonials-header">
                     <div>
-                        <p class="eyebrow">Client Stories</p>
+                        <p class="eyebrow">Client Experience</p>
                         <h2>Testimonials</h2>
-                    </div>
-
-                    <div class="slick-links-nav">
-                        <button class="link" type="button" data-prev>Previous</button>
-                        <span class="separator">/</span>
-                        <button class="link" type="button" data-next>Next</button>
                     </div>
                 </div>
 
-                <div class="testimonial-viewport" data-track>
-                    <article class="testimonials__item">
-                        <div class="userpic"><span>MB</span></div>
-                        <blockquote>
-                            “Marci made the process clear from the beginning and helped us
-                            understand what mattered most when choosing our home.”
-                        </blockquote>
-                        <p>Michael B.</p>
-                    </article>
-
-                    <article class="testimonials__item">
-                        <div class="userpic"><span>SM</span></div>
-                        <blockquote>
-                            “As first-time buyers, we had a lot of questions. We always felt
-                            informed, supported, and comfortable with the next step.”
-                        </blockquote>
-                        <p>Sarah M.</p>
-                    </article>
-
-                    <article class="testimonials__item">
-                        <div class="userpic"><span>JL</span></div>
-                        <blockquote>
-                            “The attention to detail and local knowledge made our sale much
-                            smoother than we expected.”
-                        </blockquote>
-                        <p>Jessica L.</p>
-                    </article>
+                <div class="testimonial-placeholder">
+                    <p class="placeholder-label">Training Placeholder</p>
+                    <blockquote>
+                        Client testimonial content would be inserted here when supplied
+                        by the client or imported through the platform.
+                    </blockquote>
+                    <p>No testimonial copy was included in the bootcamp notes.</p>
                 </div>
             </div>
         </section>
@@ -472,9 +517,11 @@
         <section class="newsletter-signup section-light">
             <div class="container newsletter-inner">
                 <div>
-                    <p class="eyebrow">Stay Informed</p>
-                    <h2>Get Pahrump Real Estate Updates</h2>
-                    <p>Practice the Producer newsletter component with a simple static form.</p>
+                    <p class="eyebrow">Los Angeles Market</p>
+                    <h2>Stay Connected.</h2>
+                    <p>
+                        Receive property updates and local real estate information.
+                    </p>
                 </div>
 
                 <form class="newsletter-signup__form" data-demo-form>
@@ -487,130 +534,115 @@
         </section>
 
         <!-- =====================================================
-             WORK WITH US
+             WORK WITH ROCHELLE / CONSULTATION CTA
+             Website goal specifically mentions easy consultation.
              ===================================================== -->
-        <section class="work-with-us">
+        <section class="work-with-us" id="contact">
             <div class="work-with-us-overlay"></div>
-            <div class="container work-with-us-content">
-                <p class="eyebrow light">The Ridge Realty Group</p>
-                <h2>Work With Us</h2>
-                <p>
-                    Whether you're buying, selling, relocating, or simply planning your
-                    next move, local experience can make the process easier.
-                </p>
-                <button class="lp-btn lp-btn-light contact-trigger" type="button">Contact Us</button>
-            </div>
-        </section>
 
-        <!-- =====================================================
-             INSTAGRAM
-             ===================================================== -->
-        <section class="instagram-section section-light">
-            <div class="container instagram-inner">
-                <div>
-                    <p class="eyebrow">Social</p>
-                    <h2>Follow Marci on Instagram</h2>
-                </div>
-                <a
-                    class="lp-btn lp-btn-dark"
-                    href="https://www.instagram.com/marcimetzger_theridge/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Follow Marci
-                </a>
+            <div class="container work-with-us-content">
+                <p class="eyebrow light">Let's Get Started</p>
+                <h2>Work With Rochelle</h2>
+                <p>
+                    Whether you're buying, selling, investing, or relocating,
+                    start with a conversation about your goals and priorities.
+                </p>
+                <button class="lp-btn lp-btn-light contact-trigger" type="button">
+                    Schedule a Consultation
+                </button>
             </div>
         </section>
     </main>
 
     <!-- =========================================================
-         PRODUCER-LIKE FOOTER
+         GLOBAL FOOTER
+         No phone/email/license was supplied in the notes,
+         so none are fabricated here.
          ========================================================= -->
     <footer id="global-footer">
         <div class="container footer">
             <div class="info-wrap">
-                <h3 class="serif">Marci Metzger</h3>
-                <p class="footer-role">Pahrump Real Estate</p>
+                <h3 class="serif">Rochelle Reyes</h3>
+                <p class="footer-role">Los Angeles Real Estate</p>
 
                 <div class="info-wrap-contact">
                     <div class="info-wrap-contact_zone">
                         <div class="info-wrap-contact_cell">
-                            <span>Email</span>
-                            <a href="mailto:marci@example.com">marci@example.com</a>
+                            <span>Service Area</span>
+                            <p>Los Angeles &amp; Surrounding Areas</p>
                         </div>
 
                         <div class="info-wrap-contact_cell">
-                            <span>Phone</span>
-                            <a href="tel:+12069196886">(206) 919-6886</a>
+                            <span>Specialties</span>
+                            <p>Residential • Luxury • Buyers • Sellers • Relocation</p>
                         </div>
                     </div>
 
                     <div class="info-wrap-contact_zone">
                         <div class="info-wrap-contact_cell">
-                            <span>Address</span>
-                            <p>3190 NV-160, Suite F<br>Pahrump, NV 89048</p>
+                            <span>Contact</span>
+                            <button class="footer-contact-button contact-trigger" type="button">
+                                Schedule a Consultation
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="footer-branding">
-                <img
-                    src="https://onayon-soop.github.io/marciassignment/images/logo-ridge-realty-group.png"
-                    alt="The Ridge Realty Group"
-                >
-
-                <div class="lp-socials">
-                    <a href="https://www.facebook.com/MarciHomes/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/marcimetzger_theridge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/marci-metzger-30642496" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://www.yelp.com/biz/marci-metzger-the-ridge-realty-pahrump" target="_blank" rel="noopener noreferrer" aria-label="Yelp"><i class="fa-brands fa-yelp"></i></a>
-                </div>
-            </div>
-
             <div class="footer-bottom">
-                <p>Producer-style training practice site.</p>
-                <p>Copyright © 2026 Marci Metzger</p>
+                <p>Producer-style bootcamp practice build.</p>
+                <p>Training content only.</p>
             </div>
         </div>
     </footer>
 
     <!-- =========================================================
-         CONTACT OVERLAY
-         Uses Producer-like ID/class hooks for Allowed CSS practice.
+         CONTACT MODAL
+         Actual contact information was not supplied.
          ========================================================= -->
     <div id="modal-global-contact-us" class="modal" aria-hidden="true">
         <div class="contact-modal-backdrop" data-contact-close></div>
 
         <div class="contact-modal-panel" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
-            <button class="contact-modal-close" type="button" aria-label="Close contact form" data-contact-close>×</button>
+            <button
+                class="contact-modal-close"
+                type="button"
+                aria-label="Close contact form"
+                data-contact-close
+            >
+                ×
+            </button>
 
             <div class="container">
                 <section class="section-details">
                     <div class="info-zone">
-                        <p class="eyebrow light">Contact Details</p>
-                        <h2 id="contactModalTitle">Let's Talk Real Estate</h2>
+                        <p class="eyebrow light">Contact Rochelle</p>
+                        <h2 id="contactModalTitle">Schedule A Consultation</h2>
 
                         <div class="info-zone_contact">
-                            <span>Phone</span>
-                            <a href="tel:+12069196886">(206) 919-6886</a>
+                            <span>Service Area</span>
+                            <p>
+                                Los Angeles<br>
+                                Beverly Hills<br>
+                                Santa Monica<br>
+                                West Hollywood
+                            </p>
                         </div>
 
                         <div class="info-zone_contact">
-                            <span>Email</span>
-                            <a href="mailto:marci@example.com">marci@example.com</a>
-                        </div>
-
-                        <div class="info-zone_contact">
-                            <span>Address</span>
-                            <p>3190 NV-160, Suite F<br>Pahrump, NV 89048</p>
+                            <span>Practice Note</span>
+                            <p>
+                                Phone, email, brokerage, and license details were not
+                                provided in the bootcamp notes, so they are intentionally
+                                not invented here.
+                            </p>
                         </div>
                     </div>
                 </section>
 
                 <section class="section-message">
                     <form class="contact-form" data-demo-form>
-                        <h3>Submit a Message</h3>
+                        <h3>Tell Rochelle About Your Goals</h3>
 
                         <div class="form-row">
                             <label for="contactName">Name</label>
@@ -625,6 +657,18 @@
                         <div class="form-row">
                             <label for="contactPhone">Phone</label>
                             <input id="contactPhone" type="tel">
+                        </div>
+
+                        <div class="form-row">
+                            <label for="contactInterest">I'm Interested In</label>
+                            <select id="contactInterest">
+                                <option>Buying a Home</option>
+                                <option>Selling a Home</option>
+                                <option>Luxury Real Estate</option>
+                                <option>Relocation</option>
+                                <option>Investment Property</option>
+                                <option>General Consultation</option>
+                            </select>
                         </div>
 
                         <div class="form-row">

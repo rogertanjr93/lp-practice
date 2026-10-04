@@ -3,33 +3,37 @@
 PRODUCER PRACTICE OVERRIDES
 =====================================================================
 
-Keep this file separate from style.css.
+IMPORTANT:
+Do NOT put the normal site design here.
 
-Use this file for:
-- CSS copied from the Luxury Presence "Allowed CSS" library
-- experiments during training
+This file is your "LP training sandbox" for:
+- Allowed CSS snippets
+- selector practice
+- training revisions
 - temporary overrides
-- testing Producer selectors
+- desktop/mobile fixes
 
-The base remake deliberately includes several Producer-like hooks:
-    nav#global-navbar
-    .opening-with-search
-    .center-block
-    .search-button
-    .stats
-    .stats__counter
-    .featured-team-section
-    .featured-neighborhoods-section
-    .featured-neighborhoods-grid
-    .redesign.home-valuation
-    .featured-agent-section
-    .featured-properties-section
-    .redesign.featured-testimonials
-    .slick-links-nav
-    footer#global-footer
-    #modal-global-contact-us
+The base HTML intentionally contains Producer-like selectors such as:
 
-Paste experiments BELOW this line.
+nav#global-navbar
+.opening-with-search
+.center-block
+.search-button
+.stats
+.stats__counter
+.featured-agent-section
+.featured-neighborhoods-section
+.featured-neighborhoods-grid
+.redesign.home-valuation
+.featured-properties-section
+.redesign.featured-testimonials
+.slick-links-nav
+footer#global-footer
+footer#global-footer .info-wrap
+#modal-global-contact-us
+#modal-global-contact-us .info-zone_contact
+
+Paste your training CSS BELOW this line.
 =====================================================================
 */
 
