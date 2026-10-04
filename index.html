@@ -31,7 +31,7 @@
         <a href="#/neighborhoods">Neighborhoods</a>
         <a href="#/meet-the-team">Meet the Team</a>
         <a href="#/testimonials">Testimonials</a>
-        <a href="#/contact-us">Contact Us</a>
+        <button type="button" class="custom-nav-contact" data-open-contact-modal>Contact Us</button>
       </nav>
       <button class="custom-menu-toggle" aria-label="Open menu" aria-controls="navigation-menu" aria-expanded="false">
         <span></span>
@@ -229,37 +229,10 @@
         </section>
         <section class="custom-section custom-home-contact custom-parallax" id="home-section-contact-us">
           <div class="custom-container custom-home-contact__layout">
-            <div>
-              <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
-              <h2>Let’s make it home.</h2>
-              <p>A new address begins with a conversation.<br>Tell us where you want to go next.</p>
-              <a class="custom-text-link" href="#/contact-us">Contact Us <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-            <form class="custom-home-contact__form" id="home-contact-form">
-              <div class="custom-form-grid">
-                <div class="custom-field custom-full">
-                  <label for="home-contact-name">Full name *</label>
-                  <input id="home-contact-name" name="name" autocomplete="name" required>
-                </div>
-                <div class="custom-field">
-                  <label for="home-contact-email">Email *</label>
-                  <input id="home-contact-email" name="email" type="email" autocomplete="email" required>
-                </div>
-                <div class="custom-field">
-                  <label for="home-contact-phone">Phone</label>
-                  <input id="home-contact-phone" name="phone" type="tel" autocomplete="tel">
-                </div>
-                <div class="custom-field custom-full">
-                  <label for="home-contact-message">Your message *</label>
-                  <textarea id="home-contact-message" name="message" rows="3" required></textarea>
-                </div>
-              </div>
-              <p class="custom-home-contact__note">Practice form. Your message is not sent or saved.</p>
-              <button class="custom-button custom-button--light" type="submit">Preview Inquiry <span aria-hidden="true">↗</span>
-              </button>
-              <p id="home-contact-result" role="status" hidden></p>
-            </form>
+            <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
+            <h2>WORK WITH ROCHELLE + ROGER</h2>
+            <p>Whether you’re buying, selling, or simply exploring what comes next, we’re here to make the process personal, clear, and thoughtfully guided.</p>
+            <button type="button" class="custom-button custom-button--light" data-open-contact-modal>CONTACT US <span aria-hidden="true">↗</span></button>
           </div>
         </section>
       </div>
@@ -412,7 +385,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#/contact-us">Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
             </a>
           </div>
         </section>
@@ -590,7 +563,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#/contact-us">Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
             </a>
           </div>
         </section>
@@ -639,7 +612,7 @@
                       <h4>Areas Served</h4>
                       <p>Los Angeles, Beverly Hills, Santa Monica, West Hollywood, and surrounding areas.</p>
                     </div>
-                    <a class="custom-text-link" href="#/contact-us">Schedule a Consultation ↗</a>
+                    <a class="custom-text-link" href="#contact-modal" data-open-contact-modal>Schedule a Consultation ↗</a>
                   </details>
                 </div>
               </article>
@@ -653,7 +626,7 @@
                     <summary class="custom-text-link">More About Roger <span>+</span>
                     </summary>
                     <p>An appreciation for thoughtful design and a careful eye for the details behind every move.</p>
-                    <a class="custom-text-link" href="#/contact-us">Let’s Connect ↗</a>
+                    <a class="custom-text-link" href="#contact-modal" data-open-contact-modal>Let’s Connect ↗</a>
                   </details>
                 </div>
               </article>
@@ -693,7 +666,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#/contact-us">Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
             </a>
           </div>
         </section>
@@ -739,7 +712,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#/contact-us">Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
             </a>
           </div>
         </section>
@@ -845,7 +818,7 @@
               <h2>Make a thoughtful<br>first impression.</h2>
               <p>Compass Concierge can help eligible sellers fund improvements such as staging, painting, and flooring before a sale, subject to program approval and terms.</p>
               <p>Start with a conversation about the work your home needs and the options available in your market.</p>
-              <a class="custom-button custom-button--outline" href="#/contact-us">Start a Conversation<span aria-hidden="true">↗</span>
+              <a class="custom-button custom-button--outline" href="#contact-modal" data-open-contact-modal>Start a Conversation<span aria-hidden="true">↗</span>
               </a>
             </div>
             <div>
@@ -908,7 +881,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#/contact-us">Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
             </a>
           </div>
         </section>
@@ -930,7 +903,7 @@
         </div>
         <div>
           <h2>Let’s connect</h2>
-          <a href="#/contact-us">Contact Us ↗</a>
+          <a href="#contact-modal" data-open-contact-modal>Contact Us ↗</a>
           <a href="#/home-valuation">Home Valuation</a>
           <a href="#/compass-concierge">Compass Concierge</a>
           <p>Los Angeles, California</p>
@@ -952,6 +925,55 @@
       </div>
       <p class="custom-demo-note">Independent practice template, not an official Compass or Luxury Presence website. Generated property images, sample listings and sample testimonials are illustrative. Names are used for this design exercise; brokerage affiliation and professional credentials are not represented. Forms run locally and do not send inquiries. Contact details are placeholders.</p>
     </footer>
+    <dialog id="contact-modal" class="custom-contact-modal" aria-labelledby="contact-modal-title">
+      <button type="button" class="custom-contact-modal__close custom-icon-button" data-close-contact-modal aria-label="Close contact form">×</button>
+      <div class="custom-contact-modal__body">
+        <p class="custom-eyebrow">LET’S CONNECT</p>
+        <h2 id="contact-modal-title">WORK WITH ROCHELLE + ROGER</h2>
+        <p class="custom-contact-modal__intro">Tell us a little about what you have in mind and we’ll start from there.</p>
+        <form class="custom-contact-form" id="contact-modal-form">
+          <div class="custom-form-grid">
+            <div class="custom-field">
+              <label for="modal-first-name">First name *</label>
+              <input id="modal-first-name" name="first-name" type="text" required autocomplete="given-name">
+            </div>
+            <div class="custom-field">
+              <label for="modal-last-name">Last name *</label>
+              <input id="modal-last-name" name="last-name" type="text" required autocomplete="family-name">
+            </div>
+            <div class="custom-field">
+              <label for="modal-email">Email *</label>
+              <input id="modal-email" name="email" type="email" required autocomplete="email">
+            </div>
+            <div class="custom-field">
+              <label for="modal-phone">Phone</label>
+              <input id="modal-phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="custom-field custom-full">
+              <label for="modal-interest">I’m interested in</label>
+              <select id="modal-interest" name="interest">
+                <option>Buying a home</option>
+                <option>Selling a home</option>
+                <option>Home valuation</option>
+                <option>Compass Concierge</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="custom-field custom-full">
+              <label for="modal-message">Your message *</label>
+              <textarea id="modal-message" name="message" required rows="4" placeholder="Tell us a little about your plans."></textarea>
+            </div>
+            <label class="custom-check custom-full">
+              <input type="checkbox" required>I understand this is a practice form and my inquiry will not be sent.
+            </label>
+          </div>
+          <div class="custom-form-actions">
+            <button class="custom-button" type="submit">Preview Inquiry <span aria-hidden="true">↗</span></button>
+          </div>
+        </form>
+        <div class="custom-form-status" id="contact-modal-result" hidden aria-live="polite"></div>
+      </div>
+    </dialog>
     <dialog id="detail-dialog" class="custom-detail" aria-label="Details">
       <button class="custom-detail__close custom-icon-button" data-close-detail aria-label="Close details">×</button>
       <div id="detail-content"></div>

@@ -6,16 +6,18 @@ const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const pages = $$('.custom-page');
 const menu = $('#navigation-menu');
 const detail = $('#detail-dialog');
+const contactModal = $('#contact-modal');
 const menuButton = $('.custom-menu-toggle');
 let statusFilter = 'all';
 
 function syncDialogState() {
-  document.body.classList.toggle('custom-locked', menu.open || detail.open);
+  document.body.classList.toggle('custom-locked', menu.open || detail.open || contactModal.open);
   menuButton.setAttribute('aria-expanded', String(menu.open));
 }
 function closeDialogs() {
-  menu.close();
-  detail.close();
+  if (menu.open) menu.close();
+  if (detail.open) detail.close();
+  if (contactModal.open) contactModal.close();
   syncDialogState();
 }
 function filterPortfolio() {
@@ -73,13 +75,26 @@ function openProperty(card) {
   note.textContent = 'Illustrative listing only. Images are generated; property names, status, and dimensions are sample content.';
   const link = document.createElement('a');
   link.className = 'custom-button';
-  link.href = '#/contact-us';
+  link.href = '#contact-modal';
+  link.dataset.openContactModal = '';
   link.textContent = 'Discuss Your Search ↗';
   body.append(location, title, $('.custom-property-card__info > p:last-child', card).cloneNode(true), note, link);
   content.append(image, body);
   detail.showModal();
   syncDialogState();
 }
+function openContactModal() {
+  if (menu.open) menu.close();
+  if (detail.open) detail.close();
+  if (!contactModal.open) contactModal.showModal();
+  syncDialogState();
+  requestAnimationFrame(() => $('#modal-first-name')?.focus());
+}
+
+function syncHeader() {
+  $('.custom-header').classList.toggle('custom-header--scrolled', window.scrollY > 24);
+}
+
 function valuationStep(next) {
   const first = $('#valuation-step-1');
   const second = $('#valuation-step-2');
@@ -98,6 +113,8 @@ document.addEventListener('click', event => {
     $('#main').focus();
   }
   if (target.matches('.custom-menu-toggle')) { menu.showModal(); syncDialogState(); }
+  if (target.hasAttribute('data-open-contact-modal')) { event.preventDefault(); openContactModal(); }
+  if (target.hasAttribute('data-close-contact-modal')) { contactModal.close(); syncDialogState(); }
   if (target.hasAttribute('data-close-menu')) { menu.close(); syncDialogState(); }
   if (target.hasAttribute('data-close-detail')) { detail.close(); syncDialogState(); }
   if (target.hasAttribute('data-property')) openProperty(target.closest('.custom-property-card'));
@@ -117,16 +134,16 @@ document.addEventListener('change', event => {
   if (event.target.id === 'area-filter') filterPortfolio();
 });
 document.addEventListener('submit', event => {
-  if (!event.target.matches('#contact-form, #valuation-form, #home-contact-form')) return;
+  if (!event.target.matches('#contact-form, #valuation-form, #contact-modal-form')) return;
   event.preventDefault();
-  const results = { 'contact-form': '#contact-result', 'valuation-form': '#valuation-result', 'home-contact-form': '#home-contact-result' };
+  const results = { 'contact-form': '#contact-result', 'valuation-form': '#valuation-result', 'contact-modal-form': '#contact-modal-result' };
   const result = $(results[event.target.id]);
   result.hidden = false;
   result.textContent = 'Form complete. This is a practice preview: your details have not been sent or saved. A real inquiry service can be connected later.';
   result.setAttribute('tabindex', '-1');
   result.focus();
 });
-[menu, detail].forEach(dialog => {
+[menu, detail, contactModal].forEach(dialog => {
   dialog.addEventListener('close', syncDialogState);
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
@@ -135,5 +152,7 @@ document.addEventListener('submit', event => {
   });
 });
 window.addEventListener('hashchange', () => route());
+window.addEventListener('scroll', syncHeader, { passive: true });
 $('#copyright-year').textContent = new Date().getFullYear();
 route(false);
+syncHeader();
