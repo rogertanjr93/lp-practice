@@ -1,2 +1,36 @@
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="producer-practice.css">
+/*
+=====================================================================
+PRODUCER PRACTICE OVERRIDES
+=====================================================================
+
+Keep this file separate from style.css.
+
+Use this file for:
+- CSS copied from the Luxury Presence "Allowed CSS" library
+- experiments during training
+- temporary overrides
+- testing Producer selectors
+
+The base remake deliberately includes several Producer-like hooks:
+    nav#global-navbar
+    .opening-with-search
+    .center-block
+    .search-button
+    .stats
+    .stats__counter
+    .featured-team-section
+    .featured-neighborhoods-section
+    .featured-neighborhoods-grid
+    .redesign.home-valuation
+    .featured-agent-section
+    .featured-properties-section
+    .redesign.featured-testimonials
+    .slick-links-nav
+    footer#global-footer
+    #modal-global-contact-us
+
+Paste experiments BELOW this line.
+=====================================================================
+*/
+
+
