@@ -487,13 +487,17 @@
 
         <!-- =====================================================
              TESTIMONIALS
-             Inspired by the Lucy + Lauren reference structure:
-             image, client name, short preview, Read More.
-             All seven testimonials are fictional bootcamp practice copy.
-             Every image points to:
-             images/testimonial-placeholder.png
+             Lucy Mao-inspired layout:
+             white cards in a horizontal carousel,
+             image + name + preview + READ MORE,
+             arrows underneath the carousel.
              ===================================================== -->
-        <section class="redesign featured-testimonials testimonials" id="testimonials">
+        <section
+            class="redesign featured-testimonials testimonials"
+            id="testimonials"
+            data-slider
+            data-card-slider
+        >
             <div class="container">
                 <div class="testimonials-heading">
                     <p class="eyebrow">Client Experiences</p>
@@ -503,21 +507,19 @@
                     </p>
                 </div>
 
-                <div class="testimonials-grid">
+                <div class="testimonial-carousel" data-track>
 
-                    <details class="testimonial-card">
-                        <summary>
-                            <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
-                            <h3>Maya T.</h3>
-                            <p class="testimonial-preview">
-                                As a first-time buyer, I expected the process to feel overwhelming,
-                                but Rochelle made everything much easier to understand. She explained
-                                each step clearly, answered every question without making me feel rushed...
-                            </p>
-                            <span class="read-more-label"></span>
-                        </summary>
-
-                        <div class="testimonial-full">
+                    <article class="testimonial-card" data-card>
+                        <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
+                        <h3>Maya T.</h3>
+                        <p class="testimonial-preview">
+                            As a first-time buyer, I expected the process to feel overwhelming,
+                            but Rochelle made everything much easier to understand. She explained
+                            each step clearly, answered every question without making me feel rushed,
+                            and helped me stay focused on what actually mattered...
+                        </p>
+                        <details class="testimonial-details">
+                            <summary>Read More</summary>
                             <p>
                                 As a first-time buyer, I expected the process to feel overwhelming,
                                 but Rochelle made everything much easier to understand. She explained
@@ -526,22 +528,19 @@
                                 how responsive she was and how carefully she listened to what I wanted.
                                 By the time I found the right home, I felt confident instead of nervous.
                             </p>
-                        </div>
-                    </details>
+                        </details>
+                    </article>
 
-                    <details class="testimonial-card">
-                        <summary>
-                            <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
-                            <h3>Daniel R.</h3>
-                            <p class="testimonial-preview">
-                                Rochelle helped us sell our home and move into something that worked
-                                better for our growing family. She was organized, thoughtful, and always
-                                easy to reach...
-                            </p>
-                            <span class="read-more-label"></span>
-                        </summary>
-
-                        <div class="testimonial-full">
+                    <article class="testimonial-card" data-card>
+                        <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
+                        <h3>Daniel R.</h3>
+                        <p class="testimonial-preview">
+                            Rochelle helped us sell our home and move into something that worked
+                            better for our growing family. She was organized, thoughtful, and always
+                            easy to reach. What stood out most was how clearly she communicated...
+                        </p>
+                        <details class="testimonial-details">
+                            <summary>Read More</summary>
                             <p>
                                 Rochelle helped us sell our home and move into something that worked
                                 better for our growing family. She was organized, thoughtful, and always
@@ -550,22 +549,19 @@
                                 our attention, and what the next step would be. She made a complicated
                                 transition feel surprisingly manageable.
                             </p>
-                        </div>
-                    </details>
+                        </details>
+                    </article>
 
-                    <details class="testimonial-card">
-                        <summary>
-                            <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
-                            <h3>Sophia L.</h3>
-                            <p class="testimonial-preview">
-                                I was relocating to Los Angeles and knew very little about the different
-                                neighborhoods, so having Rochelle guide me through the process was
-                                incredibly helpful...
-                            </p>
-                            <span class="read-more-label"></span>
-                        </summary>
-
-                        <div class="testimonial-full">
+                    <article class="testimonial-card" data-card>
+                        <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
+                        <h3>Sophia L.</h3>
+                        <p class="testimonial-preview">
+                            I was relocating to Los Angeles and knew very little about the different
+                            neighborhoods, so having Rochelle guide me through the process was
+                            incredibly helpful. She took the time to understand my lifestyle...
+                        </p>
+                        <details class="testimonial-details">
+                            <summary>Read More</summary>
                             <p>
                                 I was relocating to Los Angeles and knew very little about the different
                                 neighborhoods, so having Rochelle guide me through the process was
@@ -577,22 +573,19 @@
                                 property. I ended up finding a home that genuinely fits the way I wanted
                                 to live.
                             </p>
-                        </div>
-                    </details>
+                        </details>
+                    </article>
 
-                    <details class="testimonial-card">
-                        <summary>
-                            <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
-                            <h3>Marcus P.</h3>
-                            <p class="testimonial-preview">
-                                Working with Rochelle was one of the smoothest real estate experiences
-                                I've had. I was looking for an investment property and needed someone
-                                who could move quickly while still paying attention to the details...
-                            </p>
-                            <span class="read-more-label"></span>
-                        </summary>
-
-                        <div class="testimonial-full">
+                    <article class="testimonial-card" data-card>
+                        <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
+                        <h3>Marcus P.</h3>
+                        <p class="testimonial-preview">
+                            Working with Rochelle was one of the smoothest real estate experiences
+                            I've had. I was looking for an investment property and needed someone
+                            who could move quickly while still paying attention to the details...
+                        </p>
+                        <details class="testimonial-details">
+                            <summary>Read More</summary>
                             <p>
                                 Working with Rochelle was one of the smoothest real estate experiences
                                 I've had. I was looking for an investment property and needed someone
@@ -605,22 +598,19 @@
                                 Her advice always felt practical and based on what made sense for my
                                 goals. I would absolutely work with her again.
                             </p>
-                        </div>
-                    </details>
+                        </details>
+                    </article>
 
-                    <details class="testimonial-card">
-                        <summary>
-                            <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
-                            <h3>Emily C.</h3>
-                            <p class="testimonial-preview">
-                                We had been thinking about selling for months but kept putting it off
-                                because the whole process felt like a lot to take on. Rochelle made it
-                                feel much more straightforward...
-                            </p>
-                            <span class="read-more-label"></span>
-                        </summary>
-
-                        <div class="testimonial-full">
+                    <article class="testimonial-card" data-card>
+                        <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
+                        <h3>Emily C.</h3>
+                        <p class="testimonial-preview">
+                            We had been thinking about selling for months but kept putting it off
+                            because the whole process felt like a lot to take on. Rochelle made it
+                            feel much more straightforward. She walked us through how to prepare...
+                        </p>
+                        <details class="testimonial-details">
+                            <summary>Read More</summary>
                             <p>
                                 We had been thinking about selling for months but kept putting it off
                                 because the whole process felt like a lot to take on. Rochelle made it
@@ -633,22 +623,19 @@
                                 home was a big decision for our family, and she treated it that way.
                                 We felt supported from the first conversation through closing.
                             </p>
-                        </div>
-                    </details>
+                        </details>
+                    </article>
 
-                    <details class="testimonial-card">
-                        <summary>
-                            <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
-                            <h3>Jordan M.</h3>
-                            <p class="testimonial-preview">
-                                Rochelle helped me purchase a condo in Los Angeles, and I could not have
-                                asked for a better experience. I had a fairly specific wish list and a
-                                lot of questions about different buildings and neighborhoods...
-                            </p>
-                            <span class="read-more-label"></span>
-                        </summary>
-
-                        <div class="testimonial-full">
+                    <article class="testimonial-card" data-card>
+                        <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
+                        <h3>Jordan M.</h3>
+                        <p class="testimonial-preview">
+                            Rochelle helped me purchase a condo in Los Angeles, and I could not have
+                            asked for a better experience. I had a fairly specific wish list and a
+                            lot of questions about different buildings and neighborhoods...
+                        </p>
+                        <details class="testimonial-details">
+                            <summary>Read More</summary>
                             <p>
                                 Rochelle helped me purchase a condo in Los Angeles, and I could not have
                                 asked for a better experience. I had a fairly specific wish list and a
@@ -662,22 +649,19 @@
                                 felt like I was making an informed decision rather than being pushed
                                 into one. Her attention to detail and communication made a huge difference.
                             </p>
-                        </div>
-                    </details>
+                        </details>
+                    </article>
 
-                    <details class="testimonial-card">
-                        <summary>
-                            <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
-                            <h3>Natalie B.</h3>
-                            <p class="testimonial-preview">
-                                Rochelle was wonderful to work with from beginning to end. She listened
-                                carefully, understood what I was looking for, and never made me feel like
-                                I had to settle...
-                            </p>
-                            <span class="read-more-label"></span>
-                        </summary>
-
-                        <div class="testimonial-full">
+                    <article class="testimonial-card" data-card>
+                        <div class="testimonial-image" role="img" aria-label="Client testimonial photo placeholder"></div>
+                        <h3>Natalie B.</h3>
+                        <p class="testimonial-preview">
+                            Rochelle was wonderful to work with from beginning to end. She listened
+                            carefully, understood what I was looking for, and never made me feel like
+                            I had to settle. Her knowledge of the Los Angeles market...
+                        </p>
+                        <details class="testimonial-details">
+                            <summary>Read More</summary>
                             <p>
                                 Rochelle was wonderful to work with from beginning to end. She listened
                                 carefully, understood what I was looking for, and never made me feel like
@@ -686,9 +670,18 @@
                                 I would gladly recommend her to anyone looking for a thoughtful and
                                 dependable agent.
                             </p>
-                        </div>
-                    </details>
+                        </details>
+                    </article>
 
+                </div>
+
+                <div class="testimonial-carousel-controls" aria-label="Testimonial carousel navigation">
+                    <button class="testimonial-arrow testimonial-arrow--prev" type="button" data-prev aria-label="Previous testimonials">
+                        <span aria-hidden="true">←</span>
+                    </button>
+                    <button class="testimonial-arrow testimonial-arrow--next" type="button" data-next aria-label="Next testimonials">
+                        <span aria-hidden="true">→</span>
+                    </button>
                 </div>
             </div>
         </section>
