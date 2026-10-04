@@ -28,7 +28,10 @@ function updateNavbarState() {
 }
 
 updateNavbarState();
-window.addEventListener("scroll", updateNavbarState, { passive: true });
+
+window.addEventListener("scroll", updateNavbarState, {
+    passive: true
+});
 
 
 /* 2. Mobile menu */
@@ -38,18 +41,26 @@ const navigation = document.querySelector(".navigation");
 
 hamburger?.addEventListener("click", () => {
     const isOpen = navigation?.classList.toggle("is-open") ?? false;
-    hamburger.setAttribute("aria-expanded", String(isOpen));
+
+    hamburger.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+    );
 });
 
 navigation?.querySelectorAll("a, button").forEach(item => {
     item.addEventListener("click", () => {
         navigation.classList.remove("is-open");
-        hamburger?.setAttribute("aria-expanded", "false");
+
+        hamburger?.setAttribute(
+            "aria-expanded",
+            "false"
+        );
     });
 });
 
 
-/* 3. Previous / Next buttons for scroll-snap property track */
+/* 3. Previous / Next buttons for scroll-snap sliders */
 
 document.querySelectorAll("[data-slider]").forEach(slider => {
     const track = slider.querySelector("[data-track]");
@@ -58,38 +69,67 @@ document.querySelectorAll("[data-slider]").forEach(slider => {
 
     if (!track) return;
 
+    const scrollStep = Number(
+        slider.dataset.scrollStep || 0.82
+    );
+
     function move(direction) {
         track.scrollBy({
-            left: track.clientWidth * 0.82 * direction,
+            left: track.clientWidth * scrollStep * direction,
             behavior: "smooth"
         });
     }
 
-    previous?.addEventListener("click", () => move(-1));
-    next?.addEventListener("click", () => move(1));
+    previous?.addEventListener("click", () => {
+        move(-1);
+    });
+
+    next?.addEventListener("click", () => {
+        move(1);
+    });
 });
 
 
 /* 4. Contact modal */
 
-const contactModal = document.querySelector("#modal-global-contact-us");
-const contactTriggers = document.querySelectorAll(".contact-trigger");
-const contactClosers = document.querySelectorAll("[data-contact-close]");
+const contactModal =
+    document.querySelector("#modal-global-contact-us");
+
+const contactTriggers =
+    document.querySelectorAll(".contact-trigger");
+
+const contactClosers =
+    document.querySelectorAll("[data-contact-close]");
 
 function setContactModal(open) {
     if (!contactModal) return;
 
-    contactModal.classList.toggle("is-open", open);
-    contactModal.setAttribute("aria-hidden", String(!open));
-    document.body.classList.toggle("modal-open", open);
+    contactModal.classList.toggle(
+        "is-open",
+        open
+    );
+
+    contactModal.setAttribute(
+        "aria-hidden",
+        String(!open)
+    );
+
+    document.body.classList.toggle(
+        "modal-open",
+        open
+    );
 }
 
 contactTriggers.forEach(trigger => {
-    trigger.addEventListener("click", () => setContactModal(true));
+    trigger.addEventListener("click", () => {
+        setContactModal(true);
+    });
 });
 
 contactClosers.forEach(closer => {
-    closer.addEventListener("click", () => setContactModal(false));
+    closer.addEventListener("click", () => {
+        setContactModal(false);
+    });
 });
 
 document.addEventListener("keydown", event => {
@@ -101,15 +141,18 @@ document.addEventListener("keydown", event => {
 
 /* 5. Practice forms: prevent page reload */
 
-document.querySelectorAll("[data-demo-form]").forEach(form => {
-    form.addEventListener("submit", event => {
-        event.preventDefault();
+document
+    .querySelectorAll("[data-demo-form]")
+    .forEach(form => {
+        form.addEventListener("submit", event => {
+            event.preventDefault();
 
-        const status = form.querySelector(".form-status");
+            const status =
+                form.querySelector(".form-status");
 
-        if (status) {
-            status.textContent =
-                "Practice submission received — no live CRM or backend is connected.";
-        }
+            if (status) {
+                status.textContent =
+                    "Practice submission received — no live CRM or backend is connected.";
+            }
+        });
     });
-});
