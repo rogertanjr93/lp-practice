@@ -1694,7 +1694,7 @@ body[data-page=home-valuation] .custom-header {
   /* Preserve each row's source order when it stacks. */
 
   .custom-agent-story--reverse .custom-agent-story__photo {
-    order: initial;
+    order: -1;
   }
 
   .custom-agent-story__photo img {
