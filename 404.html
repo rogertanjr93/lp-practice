@@ -78,7 +78,7 @@
 <a class="not-found__home" data-home-link>BACK TO HOME</a>
 </main>
 <script>
-  // Keep this 404 portable between a custom domain and GitHub project pages.
+  // I keep this path working on both a custom domain and GitHub Pages.
   const parts = window.location.pathname.split('/').filter(Boolean);
   const base = window.location.hostname.endsWith('github.io') && parts.length
     ? `/${parts[0]}/`

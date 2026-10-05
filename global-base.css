@@ -1,4 +1,4 @@
-/* Load Compass Sans first so the rest of the site can use it normally. */
+/* I load Compass Sans before the rest of my site styles. */
 
 @font-face {
   font-family: "CompassSans";
@@ -72,7 +72,7 @@
   font-display: swap;
 }
 
-/* Site basics: colors, type, spacing, buttons, containers, and shared helpers. */
+/* My global colors, type, spacing, buttons, containers, and helpers. */
 
 :root {
   --black: #000;
@@ -225,15 +225,7 @@ body.custom-locked {
   color: var(--muted);
 }
 
-/* ==========================================================
-   GLOBAL CTA BUTTONS
-   ==========================================================
-   Light/white background = white button with black border/text,
-   then black background with white text on hover.
-
-   Image/dark background = transparent button with white
-   border/text, then white background with black text on hover.
-   ========================================================== */
+/* My shared CTA button rules. */
 
 .custom-button {
   display: inline-flex;
@@ -257,7 +249,7 @@ body.custom-locked {
     border-color .25s ease;
 }
 
-/* Standard button for white/light sections. */
+/* My normal button treatment for white backgrounds. */
 .custom-button:hover,
 .custom-button--outline:hover,
 .custom-button--white:hover {
@@ -273,7 +265,7 @@ body.custom-locked {
   color: var(--black);
 }
 
-/* Use this modifier whenever the CTA sits over an image/dark background. */
+/* My light button treatment for image or dark backgrounds. */
 .custom-button--light {
   background: transparent;
   border-color: var(--white);
@@ -407,7 +399,7 @@ body.custom-locked {
   margin-bottom: 14px;
 }
 
-/* Global pieces used on every page: header, navigation, footer, and dialogs. */
+/* My shared header, navigation, footer, and dialog pieces. */
 
 .custom-header {
   height: var(--header-height);
@@ -612,7 +604,7 @@ body.custom-locked {
   margin-top: 12px;
 }
 
-/* Footer: contact details on the left, RR | COMPASS + legal copy on the right. */
+/* My footer layout. */
 
 .custom-footer {
   padding: 78px 56px 25px;
@@ -651,7 +643,7 @@ body.custom-locked {
   letter-spacing: -.035em;
 }
 
-/* Contact information belongs directly below Rochelle + Roger. */
+/* I keep our contact details under our names. */
 .custom-footer__contact {
   margin-top: 22px;
 }
@@ -673,7 +665,7 @@ body.custom-locked {
   text-underline-offset: 4px;
 }
 
-/* Keep the brokerage marks level with Rochelle + Roger on desktop. */
+/* I keep the brokerage marks level with our names on desktop. */
 .custom-footer__brokerage-lockup {
   display: flex;
   flex-wrap: nowrap;
@@ -708,7 +700,7 @@ body.custom-locked {
   height: auto;
 }
 
-/* License details now sit underneath RR | COMPASS. */
+/* I keep the license details under RR | COMPASS. */
 .custom-footer__licenses {
   margin-top: 22px;
   margin-bottom: 24px;
@@ -743,7 +735,7 @@ body.custom-locked {
   text-underline-offset: 3px;
 }
 
-/* Bottom row: equal side columns keep the social icons truly centered. */
+/* I use equal footer side columns so the social icons stay centered. */
 .custom-footer__bottom {
   max-width: var(--page-width);
   margin: auto;
@@ -761,7 +753,7 @@ body.custom-locked {
   justify-self: start;
 }
 
-/* Round social buttons live after the divider, centered on the copyright row. */
+/* My round footer social buttons. */
 .custom-footer__socials {
   display: flex;
   align-items: center;
@@ -884,7 +876,7 @@ body.custom-locked {
   border: 1px solid #000;
 }
 
-/* Shared responsive rules — keep these broad instead of page-specific. */
+/* My broad responsive rules. */
 
 a, button {
   touch-action: manipulation;
@@ -1071,7 +1063,7 @@ a, button {
   }
 }
 
-/* Reset the template nav behavior here so my custom header controls the layout. */
+/* I reset the template nav so my custom header controls it. */
 
 .custom-header nav, .custom-menu nav {
   font-style: normal;
@@ -1086,7 +1078,7 @@ a, button {
   font-weight: 600;
 }
 
-/* Main branding + desktop navigation. */
+/* My main branding and desktop navigation. */
 
 .custom-brand-group {
   display: flex;
@@ -1100,7 +1092,7 @@ a, button {
 }
 
 .custom-brand > span {
-  /* Keep our names visually as tall as the COMPASS wordmark beside them. */
+  /* I keep our names visually level with the COMPASS wordmark. */
   font-size: 20px;
   line-height: 1;
   letter-spacing: .06em;
@@ -1246,7 +1238,7 @@ a, button {
   }
 }
 
-/* Full-width page canvas and the typography rules that apply everywhere. */
+/* My full-width page canvas and site-wide typography. */
 
 :root {
   --global-primary-font-family: "CompassSans", sans-serif;
@@ -1275,7 +1267,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   border: 0;
 }
 
-/* IMPORTANT: logo lock-up + nav links + hamburger must stay on the same header row. */
+/* I keep the logo, nav links, and hamburger on one header row. */
 
 :root {
   --header-height: 100px;
@@ -1327,7 +1319,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   margin: 0;
 }
 
-/* Side menu drawer that slides in from the right. */
+/* My side menu drawer. */
 
 .custom-menu {
   inset: 0 0 0 auto;
@@ -1426,8 +1418,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   color: #666;
 }
 
-/* Short monitors: hide the full desktop navigation too.
-   This keeps the header cleaner on wide screens that are only 768px tall or shorter. */
+/* I hide the full desktop nav on short screens too. */
 
 @media (max-height: 768px) {
   .custom-desktop-nav {
@@ -1435,7 +1426,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   }
 }
 
-/* Smaller screens: keep one header row, hide desktop links, keep the hamburger. */
+/* On smaller screens I keep one header row and the hamburger. */
 
 @media (max-width: 1280px) {
   :root {
@@ -1518,8 +1509,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   }
 }
 
-/* Initial-build header correction: template.css fixes generic nav elements to the viewport.
-   Keep the custom nav inside our header row; the header itself is the fixed element. */
+/* I keep the custom nav inside the fixed header instead of letting template.css position it. */
 
 .custom-header nav, .custom-menu nav {
   position: static;
@@ -1582,7 +1572,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   text-underline-offset: 5px;
 }
 
-/* Side menu: RR logo stays top-left; the menu links stay right-aligned. */
+/* I keep the RR logo left and the side-menu links right. */
 
 .custom-menu__body nav {
   width: 100%;
@@ -1595,14 +1585,14 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   text-transform: uppercase;
 }
 
-/* The current page should be obvious when the drawer opens. */
-/* Current page in the side menu: grey it out instead of making it bold. */
+/* I make the current side-menu page easy to spot. */
+/* I grey the current side-menu page instead of bolding it. */
 .custom-menu nav a[aria-current="page"] {
   color: #9a9a9a;
   font-weight: 400;
 }
 
-/* Keep the two navigation areas at the same readable 16px size. */
+/* I keep both navigation areas at 16px. */
 
 .custom-desktop-nav > a,
 .custom-nav-contact,
@@ -1610,7 +1600,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   font-size: 16px;
 }
 
-/* Make only the + between our names lighter without shrinking its font size. */
+/* I only lighten the + between our names. */
 
 .custom-thin-plus,
 .custom-brand .custom-thin-plus {
@@ -1623,7 +1613,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   transform-origin: center;
 }
 
-/* Contact modal opened by the header and on-page Contact Us buttons. */
+/* My contact modal. */
 
 .custom-contact-modal {
   width: min(760px, calc(100% - 32px));
@@ -1692,7 +1682,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   }
 }
 
-/* Contact modal backdrop: random home photo fills the screen at 40% opacity. */
+/* My contact-modal background photo. */
 
 .custom-contact-modal {
   --custom-contact-modal-image: url("images/losangeles-1.jpg");
@@ -1785,7 +1775,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   }
 }
 
-/* Footer responsiveness: center everything on mobile and hide the long disclaimer. */
+/* On mobile I center the footer and hide the long legal copy. */
 
 @media (max-width: 760px) {
   .custom-footer {
@@ -1861,18 +1851,12 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   }
 }
 
-/* Name lock-up: intentionally lighter than before in both the header and opening hero. */
+/* I keep the name lock-up lighter in the header and hero. */
 .custom-brand > span {
   font-weight: 300;
 }
 
-/* ==========================================================
-   TEXT-ONLY PAGE INTRO TITLE LOCKUP
-   ==========================================================
-   Pages without an opening image use the page title, a slim
-   divider, and the white RR mark on one visual row.
-   The RR mark follows the title size so neither one dominates.
-   ========================================================== */
+/* My text-only page title lock-up. */
 
 .custom-page-intro__title-lockup {
   display: flex;
@@ -1880,7 +1864,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   gap: clamp(16px, 2vw, 30px);
   margin: 20px 0 25px;
 
-  /* Match the normal page-intro H1 scale. */
+  /* I match text-only page titles to the normal intro H1 size. */
   font-size: clamp(44px, 6.5vw, 92px);
 }
 

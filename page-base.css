@@ -1,4 +1,4 @@
-/* Page layouts live here. I keep global/header rules in global-base.css. */
+/* I keep page layouts here and shared site rules in global-base.css. */
 
 .custom-hero {
   min-height: 720px;
@@ -363,8 +363,7 @@
   text-align: center;
 }
 
-/* Homepage testimonials: one full-width story at a time.
-   The arrow visuals come directly from template.css via .lp-arrow. */
+/* My homepage testimonials use one full-width story at a time. */
 .custom-testimonial__viewport {
   width: 100%;
   overflow-x: auto;
@@ -406,13 +405,7 @@
   letter-spacing: .08em;
 }
 
-/* ==========================================================
-   NATIVE PRODUCER SWIPE NAV
-   ==========================================================
-   The arrow artwork comes from template.css via the native
-   .lp-i--arrow-left / .lp-i--arrow-right icon classes.
-   These rules only arrange the arrows and the centered VIEW ALL CTA.
-   ========================================================== */
+/* My shared arrow / VIEW ALL row. */
 
 .custom-swipe-nav {
   display: flex;
@@ -658,7 +651,7 @@
   border-bottom: 1px solid #ccc;
 }
 
-/* Keep the portrait directly beside the oversized quotation mark. */
+/* I keep the testimonial portrait close to the large quote mark. */
 .custom-quote__visual {
   display: flex;
   align-items: center;
@@ -927,7 +920,7 @@
   grid-column: 1/-1;
 }
 
-/* Page-specific responsive rules. */
+/* My page-specific responsive rules. */
 
 body[data-page=home-valuation] .custom-header {
   background: #000;
@@ -1304,8 +1297,7 @@ body[data-page=home-valuation] .custom-header {
   }
 }
 
-/* Home Hero slideshow structure only.
-   The actual image timing + pan/zoom animation lives in page-advanced.css. */
+/* My homepage hero structure. The timing and motion are in page-advanced.css. */
 
 .custom-hero__slides {
   position: absolute;
@@ -1323,7 +1315,7 @@ body[data-page=home-valuation] .custom-header {
   opacity: 0;
 }
 
-/* GSM section: one shared background behind the Buy / About Us / Sell cards. */
+/* My Buy / About Us / Sell background section. */
 
 #home-section-buy-about-sell {
   position: relative;
@@ -1365,8 +1357,7 @@ body[data-page=home-valuation] .custom-header {
   margin: 22px 0 35px;
 }
 
-/* GSM CTA: the HTML uses template.css's native .redesign .btn--primary-light style.
-   Keep only the section-specific minimum width here. */
+/* I only set the GSM button width here; the button style comes from template.css. */
 .custom-gsm__link {
   min-width: 170px;
 }
@@ -1413,7 +1404,7 @@ body[data-page=home-valuation] .custom-header {
   }
 }
 
-/* Home hero must fill the viewer screen with no white border or outside gutter. */
+/* I keep the homepage hero edge-to-edge. */
 
 #home-section-opening {
   box-sizing: border-box;
@@ -1457,14 +1448,14 @@ body[data-page=home-valuation] .custom-header {
   font-size: clamp(44px, 7.8vw, 112px);
 }
 
-/* These are the homepage sections that intentionally stay white. */
+/* My homepage white sections. */
 
 #home-section-introduction, #home-section-stats, #home-section-testimonials, .custom-footer {
   background: #fff;
   color: #000;
 }
 
-/* About layout: Rochelle image-left, Roger image-right. */
+/* My homepage About layout. */
 
 #home-section-introduction {
   padding-top: clamp(80px, 9vw, 140px);
@@ -1483,7 +1474,7 @@ body[data-page=home-valuation] .custom-header {
   gap: clamp(42px, 7vw, 112px);
 }
 
-/* Roger row: description left, photo right on desktop. */
+/* I keep Roger copy-left / photo-right on desktop. */
 .custom-agent-story--reverse {
   grid-template-areas: "copy photo";
 }
@@ -1515,9 +1506,9 @@ body[data-page=home-valuation] .custom-header {
   margin-top: 32px;
 }
 
-/* Parallax only belongs on GSM, Properties, and Contact; disable it for reduced motion. */
+/* I only use fixed parallax on GSM and Contact. */
 
-#home-section-buy-about-sell, #home-section-featured-properties, #home-section-contact-us {
+#home-section-buy-about-sell, #home-section-contact-us {
   position: relative;
   isolation: isolate;
   background-repeat: no-repeat;
@@ -1526,7 +1517,7 @@ body[data-page=home-valuation] .custom-header {
   background-attachment: fixed;
 }
 
-/* GSM should always read as one full-screen image with three equal cards. */
+/* I keep GSM as one full-screen image with three equal cards. */
 
 #home-section-buy-about-sell {
   width: 100%;
@@ -1549,7 +1540,7 @@ body[data-page=home-valuation] .custom-header {
   padding: clamp(28px, 4vw, 64px) clamp(10px, 2.5vw, 36px);
 }
 
-/* Homepage stats block. */
+/* My homepage stats layout. */
 
 .custom-stats {
   display: grid;
@@ -1582,30 +1573,11 @@ body[data-page=home-valuation] .custom-header {
   color: #636363;
 }
 
-/* Properties section background/parallax. The actual carousel rules are farther below. */
-
-#home-section-featured-properties {
-  background-image: linear-gradient(rgba(0, 0, 0, .70), rgba(0, 0, 0, .70)), url("images/westhollywood-2.jpg");
-  color: #fff;
-}
-
-#home-section-featured-properties .custom-property-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-#home-section-featured-properties .custom-property-card__info {
-  border-bottom-color: #fff5;
-}
-
-#home-section-featured-properties .custom-property-card__info > p, #home-section-featured-properties .custom-result-count {
-  color: #e0e0e0;
-}
-
 #home-section-testimonials blockquote {
   font-family: var(--sans);
 }
 
-/* Homepage Contact section is only the CTA over a parallax image — no form here. */
+/* My homepage Contact CTA. The form stays in the modal. */
 
 #home-section-contact-us {
   background-image: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)), url("images/losangeles-2.jpg");
@@ -1676,14 +1648,6 @@ body[data-page=home-valuation] .custom-header {
   .custom-stat h3 {
     font-size: 18px;
   }
-
-  #home-section-featured-properties .custom-property-grid {
-    gap: 18px;
-  }
-
-  #home-section-featured-properties .custom-property-card__info h3 {
-    font-size: 21px;
-  }
 }
 
 @media (max-width: 650px) {
@@ -1696,7 +1660,7 @@ body[data-page=home-valuation] .custom-header {
     gap: 30px;
   }
 
-  /* Roger mobile: photo first, description underneath. */
+  /* On mobile I put Roger's photo before his copy. */
   .custom-agent-story--reverse {
     grid-template-areas:
       "photo"
@@ -1723,13 +1687,7 @@ body[data-page=home-valuation] .custom-header {
     border-left: 0;
     border-top: 1px solid #ddd;
   }
-
-  #home-section-featured-properties .custom-property-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .custom-home-contact__layout {
+.custom-home-contact__layout {
     grid-template-columns: 1fr;
     gap: 45px;
   }
@@ -1761,12 +1719,12 @@ body[data-page=home-valuation] .custom-header {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #home-section-buy-about-sell, #home-section-featured-properties, #home-section-contact-us {
+  #home-section-buy-about-sell, #home-section-contact-us {
     background-attachment: scroll;
   }
 }
 
-/* Rochelle's stats only — keep these scoped so they do not affect other number blocks. */
+/* I keep Rochelle's stats rules scoped to this section. */
 
 #home-section-stats .custom-stats {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1852,7 +1810,7 @@ body[data-page=home-valuation] .custom-header {
   }
 }
 
-/* Home hero text scales with both viewport width and height. */
+/* I scale the homepage hero text with both width and height. */
 
 #home-section-opening .custom-hero__content {
   width: min(100%, 1320px);
@@ -1871,7 +1829,7 @@ body[data-page=home-valuation] .custom-header {
   line-height: .98;
 }
 
-/* RR mark should clearly read larger than the Rochelle + Roger title below it. */
+/* I keep the RR mark larger than the names below it. */
 #home-section-opening .custom-hero__rr-logo {
   display: block;
   width: clamp(130px, 16vmin, 210px);
@@ -1881,7 +1839,7 @@ body[data-page=home-valuation] .custom-header {
   object-fit: contain;
 }
 
-/* Agent license lines sit directly below the names in the opening hero. */
+/* I keep the agent license lines directly below the names. */
 
 #home-section-opening .custom-hero__credentials {
   display: flex;
@@ -1903,7 +1861,7 @@ body[data-page=home-valuation] .custom-header {
   padding-block: clamp(11px, 1.6vmin, 16px);
 }
 
-/* Stats should shrink/grow with the screen instead of jumping between fixed sizes. */
+/* I let the stats scale smoothly instead of jumping between fixed sizes. */
 
 #home-section-stats {
   padding-block: clamp(62px, 10vmin, 112px);
@@ -1940,7 +1898,7 @@ body[data-page=home-valuation] .custom-header {
   font-size: clamp(13px, 1.8vmin, 18px);
 }
 
-/* Homepage Contact stays simple: heading + copy + button. The form lives in the modal. */
+/* My homepage Contact section stays simple: heading, copy, button. */
 
 #home-section-contact-us {
   min-height: clamp(520px, 78vh, 900px);
@@ -2040,12 +1998,13 @@ body[data-page=home-valuation] .custom-header {
   }
 }
 
-/* Featured property carousel — homepage uses the first 3 as FOR SALE and last 5 as SOLD. */
+/* My Featured Properties carousel: 3 For Sale, then 5 Sold. */
 
 #home-section-featured-properties {
-  background: #fff;
-  background-image: none;
-  color: #000;
+  position: relative;
+  isolation: isolate;
+  background: #151515;
+  color: #fff;
   padding: clamp(58px, 7vh, 96px) 0 clamp(34px, 5vh, 64px);
   overflow: hidden;
 }
@@ -2068,7 +2027,7 @@ body[data-page=home-valuation] .custom-header {
   margin: clamp(20px, 2.4vh, 30px) auto 0;
   font-size: clamp(11px, .78vw, 14px);
   line-height: 1.7;
-  color: #333;
+  color: rgba(255, 255, 255, .78);
 }
 
 .custom-featured-properties__viewport {
@@ -2107,6 +2066,7 @@ body[data-page=home-valuation] .custom-header {
   content: "";
   position: absolute;
   inset: 42% 0 0;
+  z-index: 1;
   background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .62));
   pointer-events: none;
 }
@@ -2118,8 +2078,10 @@ body[data-page=home-valuation] .custom-header {
   transition: transform .6s ease;
 }
 
-.custom-featured-property__media:hover img {
-  transform: scale(1.018);
+@media (hover: hover) and (pointer: fine) {
+  .custom-featured-property__media:hover img {
+    transform: scale(1.018);
+  }
 }
 
 .custom-featured-property__status {
@@ -2167,7 +2129,7 @@ body[data-page=home-valuation] .custom-header {
   padding-top: clamp(28px, 3.5vh, 44px);
 }
 
-/* Featured Properties now uses one centered arrow / VIEW ALL / arrow control. */
+/* My centered Featured Properties arrows and VIEW ALL button. */
 .custom-featured-properties__controls {
   width: 100%;
 }
@@ -2177,7 +2139,7 @@ body[data-page=home-valuation] .custom-header {
   right: 15px;
 }
 
-/* Meet the Team hero: always fill the viewer's screen height. */
+/* I keep the Meet the Team hero at full viewport height. */
 
 #meet-the-team-section-opening {
   height: 100vh;
@@ -2233,24 +2195,14 @@ body[data-page=home-valuation] .custom-header {
     padding-inline: 18px;
   }
 
-  /* Use stable viewport height on phones so browser chrome does not resize this hero mid-scroll. */
+  /* I use svh on phones so the browser bars do not resize the team hero. */
   #meet-the-team-section-opening {
     height: 100svh;
     min-height: 100svh;
   }
 }
 
-/* ==========================================================
-   MOBILE HOMEPAGE STABILITY + NATIVE GSM FALLBACK
-   ==========================================================
-   Keep this at the end of page-base.css so it wins over the
-   desktop/full-screen rules declared earlier in the file.
-
-   - Hero uses stable svh on mobile to prevent viewport-bar jumps.
-   - GSM stacks into three touch-friendly rows.
-   - GSM CTA uses template.css's native .redesign .btn--primary-light.
-   - Fixed background parallax is disabled on mobile to avoid repaints.
-   ========================================================== */
+/* My mobile homepage overrides stay at the end so they win the cascade. */
 
 @media (max-width: 768px) {
   #home-section-opening {
@@ -2294,7 +2246,6 @@ body[data-page=home-valuation] .custom-header {
   }
 
   #home-section-buy-about-sell,
-  #home-section-featured-properties,
   #home-section-contact-us {
     background-attachment: scroll;
   }
@@ -2302,7 +2253,7 @@ body[data-page=home-valuation] .custom-header {
 
 
 
-/* 404 uses the normal hero system with a property image. */
+/* My 404 page uses the normal hero system. */
 .custom-404-hero .custom-hero__content {
   max-width: 900px;
 }

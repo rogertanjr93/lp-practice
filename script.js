@@ -1,14 +1,11 @@
-/*
- * Site behavior only.
- * I keep the page structure in index.html and the visual styling in the CSS files.
- */
+/* I keep the site behavior here. */
 'use strict';
 
-// Small shortcuts so I do not have to repeat querySelector everywhere.
+// My querySelector shortcuts.
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-// Main elements I reuse throughout the site.
+// My shared page elements.
 const pages = $$('.custom-page');
 const menu = $('#navigation-menu');
 const detail = $('#detail-dialog');
@@ -17,7 +14,7 @@ const menuButton = $('.custom-menu-toggle');
 const propertyCarousel = $('[data-property-carousel]');
 const testimonialCarousel = $('[data-testimonial-carousel]');
 
-// The contact modal picks one of these home images each time it opens.
+// My contact modal image pool.
 const contactModalImages = [
   'images/losangeles-1.jpg',
   'images/beverlyhills-1.jpg',
@@ -34,16 +31,14 @@ let propertyCarouselIndex = 1;
 let testimonialCarouselIndex = 0;
 let lastContactModalImage = -1;
 
-// Desktop mouse dragging is custom behavior. Touch/trackpad scrolling stays native.
-let propertyCarouselScrollFrame = 0;
+// I only customize mouse dragging; touch and trackpad stay native.
+let propertyCarouselScrollTimer = 0;
 let testimonialCarouselScrollFrame = 0;
 
 
-/* ------------------------------
-   FEATURED PROPERTY CAROUSEL
-   ------------------------------ */
+/* My Featured Properties carousel. */
 
-// Keep the active property centered inside the horizontal gallery.
+// I keep the active property centered.
 function centerPropertySlide(behavior = 'smooth') {
   if (!propertyCarousel) {
     return;
@@ -74,7 +69,7 @@ function centerPropertySlide(behavior = 'smooth') {
   });
 }
 
-// Move one property left or right and loop when I reach either end.
+// I loop the property carousel at both ends.
 function movePropertyCarousel(direction) {
   if (!propertyCarousel) {
     return;
@@ -93,8 +88,7 @@ function movePropertyCarousel(direction) {
 }
 
 
-// After manual scrolling, mark whichever card is closest to the center
-// as current so the overlap/blur styling stays in sync.
+// I mark the card nearest the center after scrolling settles.
 function syncPropertyCarouselFromScroll() {
   if (!propertyCarousel) {
     return;
@@ -131,12 +125,129 @@ function syncPropertyCarouselFromScroll() {
   });
 }
 
-// CSS handles native touch/trackpad scrolling. This shared helper adds
-// smooth 1:1 click-drag scrolling for a regular desktop mouse.
-//
-// IMPORTANT: while the pointer is down, do not recalculate the active card.
-// The blur/stacking changes are relatively expensive and were what made the
-// Featured Properties drag feel sticky before. We sync once after release.
+// I add mouse drag + a soft release without changing native touch scrolling.
+const carouselSettleFrames = new WeakMap();
+
+function cancelCarouselSettle(viewport) {
+  const frame = carouselSettleFrames.get(viewport);
+
+  if (frame) {
+    cancelAnimationFrame(frame);
+  }
+
+  carouselSettleFrames.delete(viewport);
+  viewport?.classList.remove('is-settling');
+}
+
+function getCenteredSlideTarget(viewport, slides, projectedLeft) {
+  if (!viewport || !slides.length) {
+    return null;
+  }
+
+  const viewportRect = viewport.getBoundingClientRect();
+  const maxLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+  let nearest = null;
+
+  slides.forEach((slide, index) => {
+    const rect = slide.getBoundingClientRect();
+    const rawLeft =
+      viewport.scrollLeft +
+      (rect.left - viewportRect.left) -
+      (viewport.clientWidth - rect.width) / 2;
+    const left = Math.min(maxLeft, Math.max(0, rawLeft));
+    const distance = Math.abs(left - projectedLeft);
+
+    if (!nearest || distance < nearest.distance) {
+      nearest = { index, left, distance };
+    }
+  });
+
+  return nearest;
+}
+
+function animateCarouselSettle(viewport, targetLeft, onComplete) {
+  if (!viewport) {
+    return;
+  }
+
+  const existingFrame = carouselSettleFrames.get(viewport);
+
+  if (existingFrame) {
+    cancelAnimationFrame(existingFrame);
+  }
+
+  const maxLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+  const startLeft = viewport.scrollLeft;
+  const endLeft = Math.min(maxLeft, Math.max(0, targetLeft));
+  const distance = endLeft - startLeft;
+  const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+  viewport.classList.add('is-settling');
+
+  if (reducedMotion || Math.abs(distance) < 0.5) {
+    viewport.scrollLeft = endLeft;
+    viewport.classList.remove('is-settling');
+    carouselSettleFrames.delete(viewport);
+    onComplete?.();
+    return;
+  }
+
+  const duration = Math.min(720, Math.max(420, 420 + Math.abs(distance) * 0.18));
+  const startedAt = performance.now();
+
+  const step = (now) => {
+    const progress = Math.min(1, (now - startedAt) / duration);
+    const eased = 1 - Math.pow(1 - progress, 5);
+
+    viewport.scrollLeft = startLeft + distance * eased;
+
+    if (progress < 1) {
+      carouselSettleFrames.set(viewport, requestAnimationFrame(step));
+      return;
+    }
+
+    viewport.scrollLeft = endLeft;
+    carouselSettleFrames.delete(viewport);
+    viewport.classList.remove('is-settling');
+    onComplete?.();
+  };
+
+  carouselSettleFrames.set(viewport, requestAnimationFrame(step));
+}
+
+function settleCarouselAfterMouseDrag(
+  viewport,
+  slides,
+  velocity,
+  setCurrentIndex,
+  onComplete,
+) {
+  if (!viewport || !slides.length) {
+    viewport?.classList.remove('is-settling');
+    return;
+  }
+
+  const maxLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+  const maxMomentum = viewport.clientWidth * 0.85;
+  const momentum = Math.max(
+    -maxMomentum,
+    Math.min(maxMomentum, velocity * 220),
+  );
+  const projectedLeft = Math.min(
+    maxLeft,
+    Math.max(0, viewport.scrollLeft + momentum),
+  );
+  const target = getCenteredSlideTarget(viewport, slides, projectedLeft);
+
+  if (!target) {
+    viewport.classList.remove('is-settling');
+    return;
+  }
+
+  setCurrentIndex?.(target.index);
+  animateCarouselSettle(viewport, target.left, onComplete);
+}
+
 function setupDesktopMouseDrag(viewport, {
   onDragStateChange,
   onRelease,
@@ -151,17 +262,25 @@ function setupDesktopMouseDrag(viewport, {
   let startX = 0;
   let startScrollLeft = 0;
   let pointerId = null;
+  let lastPointerX = 0;
+  let lastPointerTime = 0;
+  let scrollVelocity = 0;
 
   viewport.addEventListener('pointerdown', (event) => {
     if (event.pointerType !== 'mouse' || event.button !== 0) {
       return;
     }
 
+    cancelCarouselSettle(viewport);
+
     isDragging = true;
     didDrag = false;
     pointerId = event.pointerId;
     startX = event.clientX;
     startScrollLeft = viewport.scrollLeft;
+    lastPointerX = event.clientX;
+    lastPointerTime = performance.now();
+    scrollVelocity = 0;
 
     viewport.classList.add('is-dragging');
     viewport.setPointerCapture?.(event.pointerId);
@@ -184,9 +303,16 @@ function setupDesktopMouseDrag(viewport, {
       return;
     }
 
-    // Direct 1:1 movement feels much closer to native touch scrolling.
-    // requestAnimationFrame is unnecessary here; pointer events are already
-    // browser-scheduled and scrollLeft updates stay on the compositor path.
+    const now = performance.now();
+    const elapsed = Math.max(1, now - lastPointerTime);
+    const pointerDelta = event.clientX - lastPointerX;
+    const instantScrollVelocity = -pointerDelta / elapsed;
+
+    // I smooth the mouse velocity before release.
+    scrollVelocity = scrollVelocity * 0.68 + instantScrollVelocity * 0.32;
+    lastPointerX = event.clientX;
+    lastPointerTime = now;
+
     event.preventDefault();
     viewport.scrollLeft = startScrollLeft - distance;
   });
@@ -194,6 +320,20 @@ function setupDesktopMouseDrag(viewport, {
   const finishDrag = (event) => {
     if (!isDragging || event.pointerId !== pointerId) {
       return;
+    }
+
+    const releaseDelay = performance.now() - lastPointerTime;
+
+    if (releaseDelay > 80) {
+      const decay = Math.max(0, 1 - (releaseDelay - 80) / 220);
+      scrollVelocity *= decay;
+    }
+
+    scrollVelocity = Math.max(-2.4, Math.min(2.4, scrollVelocity));
+
+    // I keep snapping off until the release animation takes over.
+    if (didDrag) {
+      viewport.classList.add('is-settling');
     }
 
     isDragging = false;
@@ -204,10 +344,13 @@ function setupDesktopMouseDrag(viewport, {
     }
 
     onDragStateChange?.(false, didDrag);
-    onRelease?.(didDrag);
+    onRelease?.(didDrag, { velocity: scrollVelocity });
 
-    // Keep the drag flag alive through the synthetic click that follows
-    // pointerup, then clear it immediately afterward.
+    if (!didDrag) {
+      viewport.classList.remove('is-settling');
+    }
+
+    // I keep the drag flag through the click that follows pointerup.
     window.setTimeout(() => {
       didDrag = false;
       onDragStateChange?.(false, false);
@@ -235,7 +378,7 @@ function setupDesktopMouseDrag(viewport, {
   viewport.addEventListener(
     'scroll',
     () => {
-      if (isDragging) {
+      if (isDragging || viewport.classList.contains('is-settling')) {
         return;
       }
 
@@ -253,34 +396,43 @@ function setupPropertyCarouselMouseDrag() {
   const viewport = $('.custom-featured-properties__viewport', propertyCarousel);
 
   setupDesktopMouseDrag(viewport, {
-    onRelease: (didDrag) => {
+    onRelease: (didDrag, { velocity }) => {
       if (!didDrag) {
         return;
       }
 
-      syncPropertyCarouselFromScroll();
-      centerPropertySlide('smooth');
+      const slides = $$('.custom-featured-property', propertyCarousel);
+
+      settleCarouselAfterMouseDrag(
+        viewport,
+        slides,
+        velocity,
+        (index) => {
+          propertyCarouselIndex = index;
+          slides.forEach((slide, slideIndex) => {
+            slide.setAttribute('aria-current', String(slideIndex === index));
+          });
+        },
+        syncPropertyCarouselFromScroll,
+      );
     },
     onScroll: () => {
-      if (propertyCarouselScrollFrame) {
-        cancelAnimationFrame(propertyCarouselScrollFrame);
+      if (propertyCarouselScrollTimer) {
+        window.clearTimeout(propertyCarouselScrollTimer);
       }
 
-      propertyCarouselScrollFrame = requestAnimationFrame(() => {
+      propertyCarouselScrollTimer = window.setTimeout(() => {
         syncPropertyCarouselFromScroll();
-        propertyCarouselScrollFrame = 0;
-      });
+        propertyCarouselScrollTimer = 0;
+      }, 140);
     },
   });
 }
 
 
-/* ------------------------------
-   HOMEPAGE TESTIMONIAL CAROUSEL
-   ------------------------------ */
+/* My homepage testimonial carousel. */
 
-// CSS owns the layout and scroll snapping. JavaScript only gives the
-// previous/next buttons a one-story-at-a-time action.
+// I use JavaScript here only for testimonial controls and desktop mouse drag.
 function centerTestimonialSlide(behavior = 'smooth') {
   if (!testimonialCarousel) {
     return;
@@ -358,13 +510,25 @@ function setupTestimonialCarousel() {
   }
 
   setupDesktopMouseDrag(testimonialCarousel, {
-    onRelease: (didDrag) => {
+    onRelease: (didDrag, { velocity }) => {
       if (!didDrag) {
         return;
       }
 
-      syncTestimonialCarouselFromScroll();
-      centerTestimonialSlide('smooth');
+      const slides = $$('.custom-testimonial__slide', testimonialCarousel);
+
+      settleCarouselAfterMouseDrag(
+        testimonialCarousel,
+        slides,
+        velocity,
+        (index) => {
+          testimonialCarouselIndex = index;
+          slides.forEach((slide, slideIndex) => {
+            slide.setAttribute('aria-current', String(slideIndex === index));
+          });
+        },
+        syncTestimonialCarouselFromScroll,
+      );
     },
     onScroll: () => {
       if (testimonialCarouselScrollFrame) {
@@ -380,21 +544,14 @@ function setupTestimonialCarousel() {
 }
 
 
-/* ------------------------------
-   MEET THE TEAM HERO
-   ------------------------------ */
+/* My Meet the Team hero. */
 
-// No JavaScript slideshow here.
-// page-advanced.css handles the image timing and visual treatment.
-// Homepage = CSS hard-cuts + desktop pan/zoom; mobile = CSS hard-cuts only.
-// Meet the Team = CSS hard image swap every 4 seconds.
+// I keep both hero image rotations in CSS.
 
 
-/* ------------------------------
-   CONTACT MODAL
-   ------------------------------ */
+/* My contact modal. */
 
-// Pick a random home photo, but avoid showing the exact same one twice in a row.
+// I avoid repeating the same contact-modal photo twice.
 function chooseContactModalImage() {
   let next = Math.floor(Math.random() * contactModalImages.length);
 
@@ -413,7 +570,7 @@ function chooseContactModalImage() {
   );
 }
 
-// Lock page scrolling whenever one of my dialogs is open.
+// I lock page scrolling while a dialog is open.
 function syncDialogState() {
   document.body.classList.toggle(
     'custom-locked',
@@ -423,7 +580,7 @@ function syncDialogState() {
   menuButton.setAttribute('aria-expanded', String(menu.open));
 }
 
-// Close any open dialog before moving somewhere else in the site.
+// I close open dialogs before routing.
 function closeDialogs() {
   if (menu.open) {
     menu.close();
@@ -440,7 +597,7 @@ function closeDialogs() {
   syncDialogState();
 }
 
-// Open the centered inquiry form over a random full-screen house image.
+// I open the contact form over a random house image.
 function openContactModal() {
   chooseContactModalImage();
 
@@ -464,11 +621,9 @@ function openContactModal() {
 }
 
 
-/* ------------------------------
-   PORTFOLIO FILTERS + ROUTING
-   ------------------------------ */
+/* My portfolio filters and hash routing. */
 
-// Apply both the neighborhood filter and the For Sale / Sold filter.
+// I apply both Portfolio filters together.
 function filterPortfolio() {
   const area = $('#area-filter').value;
   let count = 0;
@@ -497,9 +652,9 @@ function filterPortfolio() {
   });
 }
 
-// This is a single-file site, so the hash decides which page block is visible.
+// I use the hash to switch between page sections.
 function route(focus = true) {
-  // Plain #section anchors (Skip to content, modal anchors, etc.) are not page routes.
+  // I leave normal #section anchors alone.
   if (location.hash && !location.hash.startsWith('#/')) {
     return;
   }
@@ -582,11 +737,9 @@ function route(focus = true) {
 }
 
 
-/* ------------------------------
-   PROPERTY DETAIL DIALOG
-   ------------------------------ */
+/* My property detail dialog. */
 
-// Build the property dialog from whichever property card was clicked.
+// I build the property dialog from the clicked card.
 function openProperty(card) {
   if (!card) {
     return;
@@ -641,11 +794,9 @@ function openProperty(card) {
 }
 
 
-/* ------------------------------
-   HEADER + HOME VALUATION
-   ------------------------------ */
+/* My header and Home Valuation behavior. */
 
-// Add the solid/scrolled header treatment once I move away from the top.
+// I switch the header style after leaving the top.
 function syncHeader() {
   $('.custom-header').classList.toggle(
     'custom-header--scrolled',
@@ -653,7 +804,7 @@ function syncHeader() {
   );
 }
 
-// Switch between the two steps of the home valuation form.
+// I switch between the two valuation steps here.
 function valuationStep(next) {
   const first = $('#valuation-step-1');
   const second = $('#valuation-step-2');
@@ -673,11 +824,9 @@ function valuationStep(next) {
 }
 
 
-/* ------------------------------
-   SITE EVENTS
-   ------------------------------ */
+/* My shared site events. */
 
-// One click listener handles buttons and links that are repeated across pages.
+// I handle repeated buttons and links from one click listener.
 document.addEventListener('click', (event) => {
   const target = event.target.closest('button, a');
 
@@ -764,14 +913,14 @@ document.addEventListener('click', (event) => {
   }
 });
 
-// The neighborhood dropdown only exists on the Portfolio page.
+// I only wire this dropdown when the Portfolio page has it.
 document.addEventListener('change', (event) => {
   if (event.target.id === 'area-filter') {
     filterPortfolio();
   }
 });
 
-// Keep the current front-end form confirmation in one place.
+// I keep the demo form confirmation in one place.
 document.addEventListener('submit', (event) => {
   if (
     !event.target.matches(
@@ -798,7 +947,7 @@ document.addEventListener('submit', (event) => {
   result.focus();
 });
 
-// Keep dialog state in sync and allow clicking outside a dialog to close it.
+// I keep dialog state synced and close on outside clicks.
 [menu, detail, contactModal].forEach((dialog) => {
   dialog.addEventListener('close', syncDialogState);
 
@@ -832,9 +981,7 @@ window.addEventListener(
 );
 
 
-/* ------------------------------
-   INITIAL SETUP
-   ------------------------------ */
+/* My startup calls. */
 
 $('#copyright-year').textContent = new Date().getFullYear();
 

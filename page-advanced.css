@@ -1,29 +1,8 @@
-/* ==========================================================
-   CUSTOM-ONLY FILE
-   ==========================================================
-   Keep only effects here that template.css does not natively provide:
-   timed hero motion/swaps, GSM hover lift, the stats marquee, and the
-   overlapping/blurred Featured Properties treatment. Native carousel
-   arrow visuals are intentionally reused from template.css instead.
-   ========================================================== */
+/* I keep the extra visual effects here instead of mixing them into my base layout. */
 
-/* ==========================================================
-   PAGE ADVANCED CSS
-   ==========================================================
-   Visual polish lives here so the base layout stays easy to
-   maintain. Keep these effects CSS-first whenever possible.
-   ========================================================== */
+/* My page-level visual polish. */
 
-/* ==========================================================
-   HOME HERO — 8 PROPERTY IMAGES / CALMER MOTION
-   ==========================================================
-   - CSS only; no JavaScript slideshow timer.
-   - A new image appears every 3 seconds.
-   - Hard cut between images; no crossfade.
-   - Motion cycles: pan left, zoom in, pan right, zoom out.
-   - Keep the movement subtle enough that the house still feels
-     like a listing photo instead of a dramatic camera move.
-   ========================================================== */
+/* My homepage hero animation. */
 
 #home-section-opening .custom-hero__slide {
   transform-origin: center center;
@@ -33,16 +12,14 @@
   animation-fill-mode: both;
 }
 
-/* Only reserve transform compositor layers on larger screens.
-   Keeping eight full-screen transform layers alive on a phone can make
-   the first scroll away from the Hero feel choppy. */
+/* I only keep hero compositor layers on larger screens. */
 @media (min-width: 769px) {
   #home-section-opening .custom-hero__slide {
     will-change: transform, opacity;
   }
 }
 
-/* Each of the 8 images owns one 3-second slot in the 24-second loop. */
+/* I give each hero image one 3-second slot. */
 #home-section-opening .custom-hero__slide:nth-child(1) {
   animation-name: home-hero-pan-left;
   animation-delay: -0.4s;
@@ -83,7 +60,7 @@
   animation-delay: 20.6s;
 }
 
-/* Gentle right-to-left pan with a small zoom. */
+/* My left-pan hero motion. */
 @keyframes home-hero-pan-left {
   0% {
     opacity: 0;
@@ -106,7 +83,7 @@
   }
 }
 
-/* Centered slow zoom-in. */
+/* My centered zoom-in hero motion. */
 @keyframes home-hero-zoom-in {
   0% {
     opacity: 0;
@@ -129,7 +106,7 @@
   }
 }
 
-/* Gentle left-to-right pan with a small zoom. */
+/* My right-pan hero motion. */
 @keyframes home-hero-pan-right {
   0% {
     opacity: 0;
@@ -152,7 +129,7 @@
   }
 }
 
-/* Start slightly closer and slowly pull back. */
+/* My zoom-out hero motion. */
 @keyframes home-hero-zoom-out {
   0% {
     opacity: 0;
@@ -175,12 +152,7 @@
   }
 }
 
-/* ==========================================================
-   MEET THE TEAM — SIMPLE 3-IMAGE SWAP
-   ==========================================================
-   No pan, zoom, or fade here. Each image stays completely still
-   for 4 seconds, then hard-switches to the next one.
-   ========================================================== */
+/* My Meet the Team hero swaps images every 4 seconds. */
 
 .custom-team-hero__image {
   transform: none;
@@ -215,13 +187,7 @@
   }
 }
 
-/* ==========================================================
-   GSM CARDS — DESKTOP-ONLY CUSTOM HOVER
-   ==========================================================
-   Mobile/touch uses the template.css native .redesign button style
-   without custom motion. Only fine-pointer desktop screens get the
-   extra card darkening + content lift below.
-   ========================================================== */
+/* I only add the GSM lift effect on desktop hover devices. */
 
 @media (min-width: 769px) and (hover: hover) and (pointer: fine) {
   .custom-gsm__card {
@@ -250,8 +216,7 @@
     transform: translateY(-12px);
   }
 
-  /* The entire card is clickable, so hovering anywhere should also
-     trigger the template-native light button's inverted state. */
+  /* I flip the GSM button when I hover anywhere on the card. */
   .custom-gsm__card:hover .custom-gsm__link {
     background-color: #ffffff;
     border-color: #ffffff;
@@ -259,16 +224,7 @@
   }
 }
 
-/* ==========================================================
-   STATS — ONE-ROW CONTINUOUS MARQUEE
-   ==========================================================
-   Only the stats move. The section eyebrow + heading above stay
-   exactly where they are.
-
-   The HTML contains the same six stats twice. That second set is
-   aria-hidden and exists only so this CSS loop can be seamless.
-   Movement is LEFT -> RIGHT as requested.
-   ========================================================== */
+/* My stats marquee moves only the stats row. */
 
 #home-section-stats .custom-stats-marquee {
   width: 100%;
@@ -293,7 +249,7 @@
   border-left: 1px solid #ddd !important;
 }
 
-/* Keep the first item of each repeated six-item set clean. */
+/* I keep the first stat in each repeated set clean. */
 #home-section-stats .custom-stat:nth-child(6n + 1) {
   border-left: 0 !important;
 }
@@ -329,14 +285,7 @@
   }
 }
 
-/* ==========================================================
-   MOBILE HERO PERFORMANCE
-   ==========================================================
-   Keep all 8 images and the 3-second timing on phones, but remove
-   the pan/zoom transforms. This keeps the Hero CSS-only while
-   avoiding eight continuously transformed full-screen images during
-   mobile scrolling.
-   ========================================================== */
+/* On phones I keep the hero image swaps but remove the pan/zoom motion. */
 
 @media (max-width: 768px) {
   #home-section-opening .custom-hero__slide {
@@ -365,11 +314,7 @@
   }
 }
 
-/* ==========================================================
-   REDUCED MOTION
-   ==========================================================
-   Stop decorative movement if the viewer asks for less motion.
-   ========================================================== */
+/* I stop decorative motion when reduced motion is enabled. */
 
 @media (prefers-reduced-motion: reduce) {
   #home-section-opening .custom-hero__slide,
@@ -395,7 +340,7 @@
     justify-content: center;
   }
 
-  /* Hide the duplicated stats when the moving marquee is disabled. */
+  /* I hide the repeated marquee stats when motion is off. */
   #home-section-stats .custom-stat[aria-hidden="true"] {
     display: none;
   }
@@ -408,19 +353,33 @@
   }
 }
 
-/* ==========================================================
-   FEATURED PROPERTIES — OVERLAPPING CAROUSEL
-   ==========================================================
-   Keep the existing property-card dimensions, but let the cards
-   overlap so there are no white gutters between the images.
+/* My Featured Properties background and overlap polish. */
 
-   The current card stays crisp and on top. Neighboring cards are
-   softened slightly so the centered property remains the focus.
+#home-section-featured-properties::before {
+  content: "";
+  position: absolute;
+  inset: -5%;
+  z-index: 0;
+  background: url("images/westhollywood-2.jpg") center center / cover no-repeat;
+  filter: blur(22px) brightness(.62) saturate(.9);
+  transform: scale(1.08);
+  pointer-events: none;
+}
 
-   Scrolling / snapping is defined here for BOTH desktop and mobile.
-   Mouse click-drag itself needs the tiny pointer handler in script.js
-   because CSS does not provide native mouse drag-to-scroll behavior.
-   ========================================================== */
+#home-section-featured-properties::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, .46);
+  pointer-events: none;
+}
+
+#home-section-featured-properties > * {
+  position: relative;
+  z-index: 2;
+}
+
 
 #home-section-featured-properties .custom-featured-properties__viewport {
   overflow-x: auto;
@@ -434,8 +393,50 @@
   display: none;
 }
 
-/* Desktop mouse drag: temporarily disable snapping while the pointer is down.
-   Touch and trackpad scrolling remain native and keep normal snap behavior. */
+#home-section-featured-properties .custom-featured-properties__track {
+  gap: 0;
+}
+
+#home-section-featured-properties .custom-featured-property {
+  --property-dim: .24;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  scroll-snap-align: center;
+}
+
+#home-section-featured-properties .custom-featured-property + .custom-featured-property {
+  margin-left: -12vw;
+}
+
+#home-section-featured-properties .custom-featured-property__media {
+  isolation: isolate;
+  contain: paint;
+}
+
+#home-section-featured-properties .custom-featured-property__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, var(--property-dim));
+  opacity: 1;
+  transition: opacity .28s ease;
+  pointer-events: none;
+}
+
+#home-section-featured-properties .custom-featured-property[aria-current="true"] {
+  z-index: 3;
+}
+
+#home-section-featured-properties .custom-featured-property[aria-current="true"] .custom-featured-property__media::before {
+  opacity: 0;
+}
+
+#home-section-featured-properties .custom-featured-properties__controls .custom-swipe-nav__button {
+  color: #fff;
+}
+
 @media (hover: hover) and (pointer: fine) {
   #home-section-featured-properties .custom-featured-properties__viewport,
   #home-section-testimonials .custom-testimonial__viewport {
@@ -443,9 +444,15 @@
   }
 
   #home-section-featured-properties .custom-featured-properties__viewport.is-dragging,
+  #home-section-featured-properties .custom-featured-properties__viewport.is-settling,
+  #home-section-testimonials .custom-testimonial__viewport.is-dragging,
+  #home-section-testimonials .custom-testimonial__viewport.is-settling {
+    scroll-snap-type: none;
+  }
+
+  #home-section-featured-properties .custom-featured-properties__viewport.is-dragging,
   #home-section-testimonials .custom-testimonial__viewport.is-dragging {
     cursor: grabbing;
-    scroll-snap-type: none;
     user-select: none;
   }
 
@@ -458,62 +465,26 @@
   #home-section-featured-properties .custom-featured-property__media img {
     -webkit-user-drag: none;
   }
-}
 
-#home-section-featured-properties .custom-featured-properties__track {
-  gap: 0;
-}
-
-/* Keep each card at its existing width; only pull the next card back
-   over the previous one to remove the white gaps. */
-#home-section-featured-properties .custom-featured-property {
-  position: relative;
-  z-index: 1;
-  scroll-snap-align: center;
-  transition:
-    filter .35s ease,
-    opacity .35s ease;
-}
-
-#home-section-featured-properties .custom-featured-property + .custom-featured-property {
-  margin-left: -12vw;
-}
-
-/* Inactive cards stay visible, just a little softer. */
-#home-section-featured-properties .custom-featured-property:not([aria-current="true"]) .custom-featured-property__media {
-  filter: blur(1.5px) brightness(.76);
-  opacity: .78;
-  transition:
-    filter .35s ease,
-    opacity .35s ease;
-}
-
-/* The centered/current card sits above its neighbors. */
-#home-section-featured-properties .custom-featured-property[aria-current="true"] {
-  z-index: 3;
-}
-
-#home-section-featured-properties .custom-featured-property[aria-current="true"] .custom-featured-property__media {
-  filter: none;
-  opacity: 1;
-}
-
-/* If I point at a neighboring card with the mouse, let it come forward
-   and sharpen so it feels immediately interactive. */
-@media (hover: hover) and (pointer: fine) {
-  #home-section-featured-properties .custom-featured-property:hover {
+  #home-section-featured-properties .custom-featured-properties__viewport:not(.is-dragging):not(.is-settling) .custom-featured-property:hover {
     z-index: 4;
   }
 
-  #home-section-featured-properties .custom-featured-property:hover .custom-featured-property__media {
-    filter: none;
-    opacity: 1;
+  #home-section-featured-properties .custom-featured-properties__viewport:not(.is-dragging):not(.is-settling) .custom-featured-property:hover .custom-featured-property__media::before {
+    opacity: 0;
+  }
+
+  #home-section-featured-properties .custom-featured-properties__viewport.is-dragging .custom-featured-property__media img,
+  #home-section-featured-properties .custom-featured-properties__viewport.is-settling .custom-featured-property__media img {
+    transform: none;
   }
 }
 
-/* Mobile keeps the same scrolling system. The overlap is slightly
-   smaller so the 90vw cards do not cover too much of one another. */
 @media (max-width: 760px) {
+  #home-section-featured-properties .custom-featured-property {
+    --property-dim: .16;
+  }
+
   #home-section-featured-properties .custom-featured-property + .custom-featured-property {
     margin-left: -8vw;
   }
@@ -524,57 +495,107 @@
   }
 }
 
-/* ==========================================================
-   CAROUSEL NAV — EXTRA-LONG THIN PRODUCER ARROWS
-   ==========================================================
-   The actual arrow glyph still comes from template.css through
-   .lp-i--arrow-left / .lp-i--arrow-right. The Producer template
-   does not include a thinner or extra-long variant, so only the
-   proportions are customized here.
-   ========================================================== */
+/* My carousel arrows: long line arrows on desktop, compact arrows on mobile. */
 
-.custom-swipe-nav__button {
-  width: clamp(82px, 8vw, 116px);
-  overflow: visible;
-  font-size: clamp(28px, 2.8vw, 38px);
-}
-
-.custom-swipe-nav__button .lp-i::before {
-  transform: scaleX(2.15) scaleY(.62);
-  transform-origin: center;
-}
-
-/* VIEW ALL now sits between the arrows, so keep it vertically aligned. */
+/* I keep VIEW ALL centered between both arrows. */
 .custom-swipe-nav .custom-button {
   margin: 0;
 }
 
-@media (max-width: 760px) {
+@media (min-width: 761px) {
   .custom-swipe-nav__button {
-    width: 72px;
+    width: clamp(96px, 9vw, 128px);
+    height: 52px;
+    padding: 0;
+    overflow: visible;
+    font-size: 0;
+  }
+
+  .custom-swipe-nav__button .lp-i {
+    position: relative;
+    display: block;
+    width: clamp(72px, 6.4vw, 94px);
+    height: 18px;
+    line-height: 0;
+  }
+
+  /* I draw the desktop arrow shaft here. */
+  .custom-swipe-nav__button .lp-i::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    -webkit-mask-image: none;
+    mask-image: none;
+    transform: translateY(-50%);
+  }
+
+  .custom-swipe-nav__button .lp-i::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+  }
+
+  .custom-swipe-nav__button .lp-i--arrow-left::after {
+    left: 0;
+    border-left: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .custom-swipe-nav__button .lp-i--arrow-right::after {
+    right: 0;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
+
+/* I keep the mobile arrows the same height as VIEW ALL. */
+@media (max-width: 760px) {
+  .custom-swipe-nav {
+    align-items: center;
+  }
+
+  .custom-swipe-nav__button {
+    flex: 0 0 56px;
+    width: 56px;
+    min-height: 52px;
+    height: 52px;
+    padding: 0;
     font-size: 26px;
+    line-height: 0;
+  }
+
+  .custom-swipe-nav__button .lp-i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    line-height: 0;
   }
 
   .custom-swipe-nav__button .lp-i::before {
-    transform: scaleX(1.9) scaleY(.65);
+    transform: none;
+    transform-origin: center;
+    vertical-align: middle;
+  }
+
+  #home-section-testimonials .custom-testimonial__controls > * {
+    align-self: center;
   }
 }
 
-@media (max-width: 760px) {
-  #home-section-featured-properties .custom-featured-property:not([aria-current="true"]) .custom-featured-property__media {
-    filter: blur(.8px) brightness(.80);
-    opacity: .82;
-  }
-}
-
-/* Keep the centered arrow / VIEW ALL / arrow control inside very narrow phones. */
+/* I tighten the controls on very narrow phones. */
 @media (max-width: 480px) {
   .custom-swipe-nav__button {
-    width: 52px;
+    flex-basis: 48px;
+    width: 48px;
     font-size: 22px;
-  }
-
-  .custom-swipe-nav__button .lp-i::before {
-    transform: scaleX(1.7) scaleY(.68);
   }
 }

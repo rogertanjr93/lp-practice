@@ -17,7 +17,7 @@
 </head>
 <body>
 <a class="custom-skip-link" href="#main">Skip to content</a>
-<!-- HEADER: keep the logo lock-up, desktop nav, and hamburger on the same fixed row. -->
+<!-- My fixed header. -->
 <header class="custom-header" id="global-navbar">
 <div class="custom-brand-group">
 <a aria-label="Rochelle and Roger home" class="custom-brand" href="#/">
@@ -39,7 +39,7 @@
 <span></span>
 </button>
 </header>
-<!-- SIDE MENU: RR logo stays top-left; all menu links are aligned to the right. -->
+<!-- My slide-out menu. -->
 <dialog aria-label="Site navigation" class="custom-menu" id="navigation-menu">
 <div class="custom-menu__top">
 <a aria-label="Rochelle and Roger home" class="custom-menu__brand" href="#/">
@@ -61,11 +61,11 @@
 </div>
 </dialog>
 <main id="main" tabindex="-1">
-<!-- HOME PAGE -->
+<!-- My homepage. -->
 <div class="custom-page" data-page="home">
-<!-- HOME / HERO: full viewport with responsive center text. -->
+<!-- My homepage hero. -->
 <section class="custom-hero" id="home-section-opening">
-<!-- CSS-only Hero slideshow: all 8 property images cycle every 3 seconds. -->
+<!-- I rotate all 8 property images here. -->
 <div aria-hidden="true" class="custom-hero__slides">
 <img alt="" class="custom-hero__slide" fetchpriority="high" src="images/losangeles-1.jpg"/>
 <img alt="" class="custom-hero__slide" decoding="async" src="images/beverlyhills-1.jpg"/>
@@ -77,21 +77,21 @@
 <img alt="" class="custom-hero__slide" decoding="async" src="images/westhollywood-2.jpg"/>
 </div>
 <div class="custom-hero__content">
-<!-- White RR mark lives here instead of in the fixed header. -->
+<!-- I keep the white RR mark inside the hero. -->
 <img alt="RR" class="custom-hero__rr-logo" height="210" src="images/rr-logo-white.png" width="210"/>
 <h1>Rochelle <span class="custom-thin-plus">+</span> Roger</h1>
 <div aria-label="Agent license information" class="custom-hero__credentials">
 <p>Rochelle Reyes | CA DRE#01842987</p>
 <p>Roger Tan | CA DRE#01842990</p>
 </div>
-<!-- HERO CTA: keeping this here for later, but hiding it during the initial build.
+<!-- I may reuse this hero CTA later.
             <a class="custom-button custom-button--light" href="#/portfolio">
               Explore the Portfolio
             </a>
             -->
 </div>
 </section>
-<!-- HOME / ABOUT: Rochelle row first, Roger row second. -->
+<!-- My homepage About section. -->
 <section aria-label="About Rochelle and Roger" class="custom-section" id="home-section-introduction">
 <div class="custom-container custom-agent-stories">
 <article class="custom-agent-story">
@@ -122,7 +122,7 @@
 </article>
 </div>
 </section>
-<!-- HOME / GSM: Buy, About Us, Sell. This background uses parallax. -->
+<!-- My homepage Buy / About Us / Sell section. -->
 <section aria-label="Buy, about us, and sell" class="custom-gsm custom-parallax redesign" id="home-section-buy-about-sell">
 <a class="custom-gsm__card" href="#/portfolio">
 <span class="custom-eyebrow">FIND YOUR PLACE</span>
@@ -143,7 +143,7 @@
             </span>
 </a>
 </section>
-<!-- HOME / STATS: keep this fluid so the numbers resize with the viewer. -->
+<!-- My homepage stats. -->
 <section aria-label="Rochelle Reyes by the numbers" class="custom-section" id="home-section-stats">
 <div class="custom-container">
 <div class="custom-section-heading">
@@ -152,7 +152,7 @@
 <h2>Experience that makes a difference</h2>
 </div>
 </div>
-<!-- Stats marquee: duplicate the six items once so the CSS loop can stay seamless. -->
+<!-- I repeat the six stats once so the marquee can loop cleanly. -->
 <div class="custom-stats-marquee">
 <div class="custom-stats">
 <div class="custom-stat">
@@ -179,7 +179,7 @@
 <span class="custom-stat__value">100+</span>
 <h3>Clients Served</h3>
 </div>
-<!-- Duplicate set is visual only; screen readers already have the original six stats. -->
+<!-- This repeated stat set is visual only. -->
 <div aria-hidden="true" class="custom-stat">
 <span class="custom-stat__value">6+</span>
 <h3>Years of Experience</h3>
@@ -208,7 +208,7 @@
 </div>
 </div>
 </section>
-<!-- HOME / PROPERTIES: first 3 are FOR SALE; last 5 are SOLD. -->
+<!-- My Featured Properties: first 3 are For Sale, last 5 are Sold. -->
 <section class="custom-section custom-home-portfolio" id="home-section-featured-properties">
 <div class="custom-featured-properties__heading custom-container">
 <h2>FEATURED PROPERTIES</h2>
@@ -312,7 +312,7 @@
 <button aria-label="Previous property" class="custom-swipe-nav__button" data-property-carousel-prev="" type="button">
 <span aria-hidden="true" class="lp-i lp-i--arrow-left"></span>
 </button>
-<a class="custom-button custom-button--outline" href="#/portfolio">VIEW ALL</a>
+<a class="custom-button custom-button--light" href="#/portfolio">VIEW ALL</a>
 <button aria-label="Next property" class="custom-swipe-nav__button" data-property-carousel-next="" type="button">
 <span aria-hidden="true" class="lp-i lp-i--arrow-right"></span>
 </button>
@@ -320,7 +320,7 @@
 </div>
 </div>
 </section>
-<!-- HOME / TESTIMONIALS -->
+<!-- My homepage testimonials. -->
 <section class="custom-testimonial" id="home-section-testimonials">
 <div class="custom-container">
 <p class="custom-eyebrow">TESTIMONIALS</p>
@@ -371,7 +371,7 @@
 </div>
 </div>
 </section>
-<!-- HOME / CONTACT CTA: button opens the modal; no form lives directly in this section. -->
+<!-- My homepage contact CTA. -->
 <section class="custom-section custom-home-contact custom-parallax" id="home-section-contact-us">
 <div class="custom-container custom-home-contact__layout">
 <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
@@ -381,7 +381,7 @@
 </div>
 </section>
 </div>
-<!-- PORTFOLIO PAGE: same property status order as the homepage (3 For Sale, then 5 Sold). -->
+<!-- My Portfolio page: 3 For Sale, then 5 Sold. -->
 <div class="custom-page" data-page="portfolio" hidden="">
 <section class="custom-page-intro" id="portfolio-section-opening">
 <div class="custom-container">
@@ -535,7 +535,7 @@
 </div>
 </section>
 </div>
-<!-- HOME VALUATION PAGE -->
+<!-- My Home Valuation page. -->
 <div class="custom-page" data-page="home-valuation" hidden="">
 <section class="custom-valuation" id="home-valuation-section-valuation">
 <div class="custom-valuation__image">
@@ -636,7 +636,7 @@
 </div>
 </section>
 </div>
-<!-- NEIGHBORHOODS PAGE -->
+<!-- My Neighborhoods page. -->
 <div class="custom-page" data-page="neighborhoods" hidden="">
 <section class="custom-page-intro" id="neighborhoods-section-opening">
 <div class="custom-container">
@@ -712,7 +712,7 @@
 </div>
 </section>
 </div>
-<!-- MEET THE TEAM PAGE: hero rotates team -> Rochelle -> Roger. -->
+<!-- My Meet the Team page. -->
 <div class="custom-page" data-page="meet-the-team" hidden="">
 <section class="custom-wide-hero custom-team-hero" id="meet-the-team-section-opening">
 <div aria-hidden="true" class="custom-team-hero__images">
@@ -821,7 +821,7 @@
 </div>
 </section>
 </div>
-<!-- TESTIMONIALS PAGE -->
+<!-- My Testimonials page. -->
 <div class="custom-page" data-page="testimonials" hidden="">
 <section class="custom-page-intro" id="testimonials-section-opening">
 <div class="custom-container">
@@ -919,7 +919,7 @@
 </div>
 </section>
 </div>
-<!-- CONTACT US PAGE: this is the full inquiry page opened from the side menu. -->
+<!-- My Contact Us page. -->
 <div class="custom-page" data-page="contact-us" hidden="">
 <section class="custom-page-intro" id="contact-us-section-opening">
 <div class="custom-container">
@@ -1002,7 +1002,7 @@
 </div>
 </section>
 </div>
-<!-- COMPASS CONCIERGE PAGE -->
+<!-- My Compass Concierge page. -->
 <div class="custom-page" data-page="compass-concierge" hidden="">
 <section class="custom-wide-hero" id="compass-concierge-section-opening">
 <img alt="A contemporary Los Angeles residence" class="" decoding="async" fetchpriority="high" src="images/losangeles-2.jpg"/>
@@ -1088,7 +1088,7 @@
 </section>
 </div>
 
-<!-- 404 PAGE: shown for unknown internal hash routes. -->
+<!-- My in-site 404 page. -->
 <div class="custom-page" data-page="404" hidden>
 <section class="custom-hero custom-404-hero" id="404-section-opening">
 <img alt="A contemporary Los Angeles property" class="custom-hero__image" decoding="async" src="images/losangeles-1.jpg"/>
@@ -1101,14 +1101,14 @@
 </section>
 </div>
 </main>
-<!-- FOOTER: contact details on the left, brokerage/legal information on the right. -->
+<!-- My footer. -->
 <footer class="custom-footer">
 <div class="custom-footer__main">
 <div class="custom-footer__identity">
 <a class="custom-footer__wordmark" href="#/">
             Rochelle <span class="custom-thin-plus">+</span> Roger
           </a>
-<!-- Quick contact details stay directly below our names. -->
+<!-- I keep the contact details under our names. -->
 <div aria-label="Contact information" class="custom-footer__contact">
 <p><a href="mailto:rrcompass@rochelleandroger.com">rrcompass@rochelleandroger.com</a></p>
 <p>
@@ -1119,20 +1119,20 @@
 <p>1808 Stanford St, Santa Monica, 90404 CA</p>
 </div>
 </div>
-<!-- Keep RR | COMPASS level with Rochelle + Roger, then place brokerage details below it. -->
+<!-- I keep RR | COMPASS level with our names. -->
 <div class="custom-footer__brokerage">
 <div aria-label="RR and Compass" class="custom-footer__brokerage-lockup">
 <img alt="RR" class="custom-footer__rr-logo" height="72" loading="lazy" src="images/rr-logo-black.png" width="72"/>
 <span aria-hidden="true" class="custom-footer__logo-divider">|</span>
 <img alt="Compass" class="custom-footer__compass" height="22" loading="lazy" src="images/compass_dark.png" width="155"/>
 </div>
-<!-- License details now belong directly below the brokerage lock-up. -->
+<!-- I keep the license details under the brokerage lock-up. -->
 <div aria-label="California real estate license information" class="custom-footer__licenses">
 <p>Rochelle Reyes | CA DRE#01842987</p>
 <p>Roger Tan | CA DRE#01842990</p>
 <p>Compass California, Inc. | CA DRE# 01991628</p>
 </div>
-<!-- Desktop legal copy. Hide this long legal block on mobile to keep the footer compact. -->
+<!-- I hide this long legal copy on mobile. -->
 <div class="custom-footer__disclaimer">
 <p>COMPASS, the Compass logo, and other various trademarks, logos, designs, and slogans are the registered and unregistered trademarks of Compass, Inc. dba Compass in the U.S. and/or other countries.</p>
 <p>Corporate Responsibility, Privacy &amp; Legal Notices: Compass is a licensed real estate broker. Compass is licensed to do business as: Compass in Arizona, California, Colorado, Connecticut, Florida, Georgia, Hawaii, Illinois, Indiana, Louisiana, Maryland, Massachusetts, Minnesota, Michigan, Mississippi, Nevada, New Jersey, New York, North Carolina, Rhode Island, Texas, Virginia, and Washington; Compass RE in Delaware, Idaho, Pennsylvania and Tennessee; Compass Real Estate in Washington, DC, Maine, New Hampshire, Vermont, and Wyoming; Compass Realty Group in Missouri and Kansas; and Compass Carolinas, LLC in South Carolina. California License # 01991628, 1527235, 1527365, 1356742, 1443761, 1997075, 1935359, 1961027, 1842987, 1869607, 1866771, 1527205, 1079009, 1272467. No guarantee, warranty or representation of any kind is made regarding the completeness or accuracy of descriptions or measurements (including square footage measurements and property condition), such should be independently verified, and Compass expressly disclaims any liability in connection therewith. No financial or legal advice provided. Equal Housing Opportunity. © Compass 2026. 212-913-9058.</p>
@@ -1151,7 +1151,7 @@
 </div>
 </div>
 </div>
-<!-- Bottom footer row: copyright left, round social icons centered, utility links right. -->
+<!-- My footer bottom row. -->
 <div class="custom-footer__bottom">
 <p class="custom-footer__copyright">© <span id="copyright-year"></span> Rochelle <span class="custom-thin-plus">+</span> Roger</p>
 <div aria-label="Social media links" class="custom-footer__socials">
@@ -1200,7 +1200,7 @@
 </div>
 </div>
 </footer>
-<!-- CONTACT MODAL: full-screen random home image behind the centered inquiry form. -->
+<!-- My contact modal. -->
 <dialog aria-labelledby="contact-modal-title" class="custom-contact-modal" id="contact-modal">
 <button aria-label="Close contact form" class="custom-contact-modal__close custom-icon-button" data-close-contact-modal="" type="button">×</button>
 <div class="custom-contact-modal__body">
@@ -1247,7 +1247,7 @@
 <div aria-live="polite" class="custom-form-status" hidden="" id="contact-modal-result"></div>
 </div>
 </dialog>
-<!-- PROPERTY DETAIL MODAL -->
+<!-- My property detail modal. -->
 <dialog aria-label="Details" class="custom-detail" id="detail-dialog">
 <button aria-label="Close details" class="custom-detail__close custom-icon-button" data-close-detail="">×</button>
 <div id="detail-content"></div>
