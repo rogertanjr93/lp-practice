@@ -18,11 +18,17 @@
 
 #home-section-opening .custom-hero__slide {
   transform-origin: center center;
-  will-change: transform, opacity;
   animation-duration: 24s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
+}
+
+/* Only prepare transform layers on larger screens. */
+@media (min-width: 769px) {
+  #home-section-opening .custom-hero__slide {
+    will-change: transform, opacity;
+  }
 }
 
 /* Each of the 8 images owns one 3-second slot in the 24-second loop. */
@@ -330,5 +336,95 @@
   .custom-gsm__card:hover .custom-gsm__link {
     transition: none;
     transform: none;
+  }
+}
+
+/* ==========================================================
+   MOBILE HERO PERFORMANCE
+   ==========================================================
+   Keep the 8-image slideshow on mobile, but remove pan/zoom
+   so scrolling away from the Hero stays smooth.
+   ========================================================== */
+
+@media (max-width: 768px) {
+  #home-section-opening .custom-hero__slide {
+    will-change: opacity;
+    transform: none !important;
+  }
+
+  @keyframes home-hero-pan-left {
+    0% {
+      opacity: 0;
+      transform: none;
+    }
+
+    0.01%,
+    12.49% {
+      opacity: 1;
+      transform: none;
+    }
+
+    12.5%,
+    100% {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  @keyframes home-hero-pan-right {
+    0% {
+      opacity: 0;
+      transform: none;
+    }
+
+    0.01%,
+    12.49% {
+      opacity: 1;
+      transform: none;
+    }
+
+    12.5%,
+    100% {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  @keyframes home-hero-zoom-in {
+    0% {
+      opacity: 0;
+      transform: none;
+    }
+
+    0.01%,
+    12.49% {
+      opacity: 1;
+      transform: none;
+    }
+
+    12.5%,
+    100% {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  @keyframes home-hero-zoom-out {
+    0% {
+      opacity: 0;
+      transform: none;
+    }
+
+    0.01%,
+    12.49% {
+      opacity: 1;
+      transform: none;
+    }
+
+    12.5%,
+    100% {
+      opacity: 0;
+      transform: none;
+    }
   }
 }
