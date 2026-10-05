@@ -10,11 +10,12 @@
    ========================================================== */
 
 .custom-team-hero__image {
-  transform-origin: center center;
+  /* Keep the top of each portrait anchored even while it zooms. */
+  transform-origin: center top;
   will-change: transform, opacity;
 }
 
-/* Pan one way while slowly zooming in. */
+/* Pan one way while zooming in enough to make the movement clearly visible. */
 .custom-team-hero__image.team-motion--left.is-active,
 .custom-team-hero__image.team-motion--left.is-leaving {
   animation: team-hero-pan-left 4.5s ease-out both;
@@ -28,21 +29,21 @@
 
 @keyframes team-hero-pan-left {
   from {
-    transform: scale(1.035) translate3d(1.5%, 0, 0);
+    transform: scale(1.04) translate3d(4%, 0, 0);
   }
 
   to {
-    transform: scale(1.11) translate3d(-1.5%, 0, 0);
+    transform: scale(1.20) translate3d(-4%, 0, 0);
   }
 }
 
 @keyframes team-hero-pan-right {
   from {
-    transform: scale(1.035) translate3d(-1.5%, 0, 0);
+    transform: scale(1.04) translate3d(-4%, 0, 0);
   }
 
   to {
-    transform: scale(1.11) translate3d(1.5%, 0, 0);
+    transform: scale(1.20) translate3d(4%, 0, 0);
   }
 }
 

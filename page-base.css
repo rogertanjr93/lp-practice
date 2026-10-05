@@ -1886,10 +1886,10 @@ body[data-page=home-valuation] .custom-header {
   line-height: .98;
 }
 
-/* RR mark sits above the names in the opening hero. Keep it responsive too. */
+/* RR mark should always feel larger than the Rochelle + Roger title below it. */
 #home-section-opening .custom-hero__rr-logo {
   display: block;
-  width: clamp(58px, 8vmin, 104px);
+  width: clamp(90px, 12vmin, 150px);
   height: auto;
   margin: 0 auto clamp(14px, 2.2vmin, 26px);
   object-fit: contain;

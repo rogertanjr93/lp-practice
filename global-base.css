@@ -596,6 +596,8 @@ body.custom-locked {
   margin-top: 12px;
 }
 
+/* Footer: simple identity on the left, licensing/disclaimer on the right. */
+
 .custom-footer {
   padding: 78px 56px 25px;
   background: #fff;
@@ -605,33 +607,100 @@ body.custom-locked {
   max-width: var(--page-width);
   margin: auto;
   display: grid;
-  grid-template-columns: 1.7fr 1fr 1fr;
-  gap: 60px;
-  padding-bottom: 70px;
+  grid-template-columns: minmax(260px, .8fr) minmax(0, 1.65fr);
+  gap: clamp(48px, 7vw, 110px);
+  padding-bottom: 62px;
+}
+
+.custom-footer__identity {
+  align-self: start;
 }
 
 .custom-footer__wordmark {
+  display: inline-block;
   font-size: 32px;
   letter-spacing: -.035em;
 }
 
-.custom-footer__main p {
-  color: #636363;
-  font-size: 13px;
-  margin: 12px 0 30px;
+/* Social links sit directly below Rochelle + Roger. */
+.custom-footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
 }
 
-.custom-footer__main h2 {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: .2em;
-  margin: 5px 0 24px;
+.custom-footer__socials a {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: #111;
 }
 
-.custom-footer__main>div:not(:first-child)>a {
+.custom-footer__socials svg {
+  width: 19px;
+  height: 19px;
+}
+
+.custom-footer__socials a:hover {
+  opacity: .55;
+}
+
+/* Footer brokerage marks: black RR logo | COMPASS logo. */
+.custom-footer__brokerage-lockup {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.custom-footer__rr-logo {
   display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.custom-footer__logo-divider {
+  color: #9b9b9b;
+  font-size: 32px;
+  font-weight: 200;
+  line-height: 1;
+}
+
+.custom-footer__compass {
+  display: block;
+  width: 155px;
+  height: auto;
+}
+
+.custom-footer__legal {
+  max-width: 790px;
+}
+
+.custom-footer__licenses {
+  margin-bottom: 26px;
+}
+
+.custom-footer__licenses p {
+  margin: 0 0 6px;
+  color: #222;
   font-size: 13px;
-  margin-bottom: 9px;
+  line-height: 1.55;
+}
+
+.custom-footer__disclaimer {
+  margin: 0;
+  color: #636363;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.custom-footer__disclaimer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .custom-footer__bottom {
@@ -646,7 +715,7 @@ body.custom-locked {
   gap: 20px;
 }
 
-.custom-footer__bottom>div {
+.custom-footer__bottom > div {
   display: flex;
   gap: 25px;
 }
@@ -656,14 +725,6 @@ body.custom-locked {
   background: transparent;
   padding: 0;
   font-size: 10px;
-}
-
-.custom-demo-note {
-  max-width: var(--page-width);
-  margin: auto;
-  font-size: 10px;
-  line-height: 1.7;
-  color: #777;
 }
 
 .custom-detail {
@@ -885,13 +946,9 @@ a, button {
   }
 
   .custom-footer__main {
-    grid-template-columns: 1fr 1fr;
-    gap: 38px;
+    grid-template-columns: 1fr;
+    gap: 42px;
     padding-bottom: 35px;
-  }
-
-  .custom-footer__main>div:first-child {
-    grid-column: 1/-1;
   }
 
   .custom-footer__bottom {
@@ -973,8 +1030,10 @@ a, button {
 }
 
 .custom-brand > span {
-  font-size: 12px;
-  letter-spacing: .08em;
+  /* Keep our names visually as tall as the COMPASS wordmark beside them. */
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .06em;
   white-space: nowrap;
 }
 
@@ -1048,6 +1107,10 @@ a, button {
     gap: 13px;
   }
 
+  .custom-brand > span {
+    font-size: 18px;
+  }
+
   .custom-compass-logo {
     width: 115px;
   }
@@ -1085,7 +1148,8 @@ a, button {
 
   .custom-brand > span {
     display: block;
-    font-size: 9px;
+    font-size: 14px;
+    line-height: 1;
     letter-spacing: .025em;
   }
 
@@ -1346,7 +1410,8 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   }
 
   .custom-brand > span {
-    font-size: 8px;
+    font-size: 13px;
+    line-height: 1;
     letter-spacing: .02em;
   }
 
@@ -1457,6 +1522,12 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
 .custom-menu nav a {
   margin-left: auto;
   text-align: right;
+  text-transform: uppercase;
+}
+
+/* The current page should be obvious when the drawer opens. */
+.custom-menu nav a[aria-current="page"] {
+  font-weight: 700;
 }
 
 /* Keep the two navigation areas at the same readable 16px size. */
