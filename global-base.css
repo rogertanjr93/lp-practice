@@ -596,7 +596,7 @@ body.custom-locked {
   margin-top: 12px;
 }
 
-/* Footer: simple identity on the left, licensing/disclaimer on the right. */
+/* Footer: names/legal copy on the left, RR | COMPASS on the right. */
 
 .custom-footer {
   padding: 78px 56px 25px;
@@ -607,13 +607,15 @@ body.custom-locked {
   max-width: var(--page-width);
   margin: auto;
   display: grid;
-  grid-template-columns: minmax(260px, .8fr) minmax(0, 1.65fr);
-  gap: clamp(48px, 7vw, 110px);
-  padding-bottom: 62px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: clamp(48px, 7vw, 120px);
+  padding-bottom: 58px;
 }
 
 .custom-footer__identity {
-  align-self: start;
+  min-width: 0;
+  max-width: 900px;
 }
 
 .custom-footer__wordmark {
@@ -622,75 +624,21 @@ body.custom-locked {
   letter-spacing: -.035em;
 }
 
-/* Social links sit directly below Rochelle + Roger. */
-.custom-footer__socials {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 18px;
-}
-
-.custom-footer__socials a {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  color: #111;
-}
-
-.custom-footer__socials svg {
-  width: 19px;
-  height: 19px;
-}
-
-.custom-footer__socials a:hover {
-  opacity: .55;
-}
-
-/* Footer brokerage marks: black RR logo | COMPASS logo. */
-.custom-footer__brokerage-lockup {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-top: 34px;
-}
-
-.custom-footer__rr-logo {
-  display: block;
-  width: 58px;
-  height: 58px;
-  object-fit: contain;
-}
-
-.custom-footer__logo-divider {
-  color: #9b9b9b;
-  font-size: 32px;
-  font-weight: 200;
-  line-height: 1;
-}
-
-.custom-footer__compass {
-  display: block;
-  width: 155px;
-  height: auto;
-}
-
-.custom-footer__legal {
-  max-width: 790px;
-}
-
+/* License details belong directly below our names. */
 .custom-footer__licenses {
-  margin-bottom: 26px;
+  margin-top: 22px;
+  margin-bottom: 24px;
 }
 
 .custom-footer__licenses p {
-  margin: 0 0 6px;
+  margin: 0 0 7px;
   color: #222;
   font-size: 13px;
   line-height: 1.55;
 }
 
 .custom-footer__disclaimer {
+  max-width: 860px;
   margin: 0;
   color: #636363;
   font-size: 12px;
@@ -703,21 +651,106 @@ body.custom-locked {
   text-underline-offset: 3px;
 }
 
+/* Keep the brokerage marks level with the Rochelle + Roger wordmark on desktop. */
+.custom-footer__brokerage-lockup {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-self: end;
+  gap: 16px;
+  margin: 0;
+  padding-top: 2px;
+}
+
+.custom-footer__rr-logo {
+  display: block;
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.custom-footer__logo-divider {
+  flex: 0 0 auto;
+  color: #9b9b9b;
+  font-size: 30px;
+  font-weight: 200;
+  line-height: 1;
+}
+
+.custom-footer__compass {
+  display: block;
+  flex: 0 1 155px;
+  width: 155px;
+  max-width: 155px;
+  height: auto;
+}
+
+/* Bottom row: equal side columns keep the social icons truly centered. */
 .custom-footer__bottom {
   max-width: var(--page-width);
   margin: auto;
   border-top: 1px solid #ddd;
   padding: 22px 0;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
   font-size: 10px;
   color: #636363;
-  gap: 20px;
 }
 
-.custom-footer__bottom > div {
+.custom-footer__copyright {
+  justify-self: start;
+}
+
+/* Round social buttons live after the divider, centered on the copyright row. */
+.custom-footer__socials {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.custom-footer__socials a {
+  display: inline-flex;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  width: 36px !important;
+  height: 36px !important;
+  max-width: 36px;
+  max-height: 36px;
+  padding: 0;
+  overflow: hidden;
+  color: #111;
+  border: 1px solid #222;
+  border-radius: 50%;
+}
+
+.custom-footer__socials svg {
+  display: block;
+  flex: 0 0 17px;
+  width: 17px !important;
+  height: 17px !important;
+  max-width: 17px !important;
+  max-height: 17px !important;
+}
+
+.custom-footer__socials a:hover {
+  color: #fff;
+  background: #111;
+}
+
+.custom-footer__utilities {
+  display: flex;
+  justify-self: end;
+  justify-content: flex-end;
+  align-items: center;
   gap: 25px;
+  min-width: 0;
 }
 
 .custom-footer__bottom button {
@@ -939,26 +972,6 @@ a, button {
   .custom-menu nav a {
     font-size: 29px;
     line-height: 1.65;
-  }
-
-  .custom-footer {
-    padding: 55px 22px 25px;
-  }
-
-  .custom-footer__main {
-    grid-template-columns: 1fr;
-    gap: 42px;
-    padding-bottom: 35px;
-  }
-
-  .custom-footer__bottom {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .custom-footer__bottom>div {
-    gap: 16px;
-    flex-wrap: wrap;
   }
 
   .custom-detail__image {
@@ -1711,4 +1724,79 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
     right: 18px;
     margin: 0;
   }
+}
+
+/* Footer responsiveness: keep everything centered on mobile and hide the long disclaimer. */
+
+@media (max-width: 760px) {
+  .custom-footer {
+    padding: 55px 22px 25px;
+    text-align: center;
+  }
+
+  .custom-footer__main {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 30px;
+    padding-bottom: 35px;
+  }
+
+  .custom-footer__identity {
+    width: 100%;
+    max-width: 620px;
+    text-align: center;
+  }
+
+  .custom-footer__wordmark {
+    text-align: center;
+  }
+
+  .custom-footer__licenses {
+    margin-top: 18px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .custom-footer__disclaimer {
+    display: none;
+  }
+
+  .custom-footer__brokerage-lockup {
+    justify-self: center;
+    justify-content: center;
+    padding-top: 0;
+  }
+
+  .custom-footer__bottom {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .custom-footer__copyright,
+  .custom-footer__socials,
+  .custom-footer__utilities {
+    justify-self: center;
+    justify-content: center;
+  }
+
+  .custom-footer__copyright {
+    order: 1;
+  }
+
+  .custom-footer__socials {
+    order: 2;
+  }
+
+  .custom-footer__utilities {
+    order: 3;
+    flex-wrap: wrap;
+    gap: 14px 18px;
+  }
+}
+
+/* Name lock-up: intentionally lighter than before in both the header and opening hero. */
+.custom-brand > span {
+  font-weight: 300;
 }

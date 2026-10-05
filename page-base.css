@@ -1205,7 +1205,8 @@ body[data-page=home-valuation] .custom-header {
   }
 }
 
-/* Home hero slideshow: one image from each service area. */
+/* Home Hero slideshow structure only.
+   The actual image timing + pan/zoom animation lives in page-advanced.css. */
 
 .custom-hero__slides {
   position: absolute;
@@ -1221,76 +1222,6 @@ body[data-page=home-valuation] .custom-header {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  animation: producer-hero-slide 28s linear infinite;
-}
-
-.custom-hero__slide:nth-child(2) {
-  animation-delay: -21s;
-}
-
-.custom-hero__slide:nth-child(3) {
-  animation-delay: -14s;
-}
-
-.custom-hero__slide:nth-child(4) {
-  animation-delay: -7s;
-}
-
-@keyframes producer-hero-slide {
-  0%, 20% {
-    opacity: 1;
-  }
-
-  25%, 95% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.custom-slideshow-toggle {
-  position: absolute;
-  right: 56px;
-  bottom: 40px;
-  width: 100px;
-  height: 42px;
-  margin: 0;
-  opacity: 0;
-  z-index: 3;
-  cursor: pointer;
-}
-
-.custom-slide-pause {
-  display: block;
-  padding: 10px 15px;
-  min-width: 100px;
-  border: 1px solid #fff7;
-  font-size: 10px;
-  letter-spacing: .1em;
-  cursor: pointer;
-}
-
-.custom-play-label {
-  display: none;
-}
-
-.custom-slideshow-toggle:checked ~ .custom-hero__slides .custom-hero__slide {
-  animation-play-state: paused;
-}
-
-.custom-slideshow-toggle:checked ~ .custom-hero__bottom .custom-pause-label {
-  display: none;
-}
-
-.custom-slideshow-toggle:checked ~ .custom-hero__bottom .custom-play-label {
-  display: inline;
-}
-
-.custom-slideshow-toggle:focus-visible ~ .custom-hero__bottom .custom-slide-pause {
-  outline: 2px solid #fff;
-  outline-offset: 5px;
 }
 
 /* GSM section: one shared background behind the Buy / About Us / Sell cards. */
@@ -1883,13 +1814,15 @@ body[data-page=home-valuation] .custom-header {
 
 #home-section-opening h1 {
   font-size: clamp(38px, 8vmin, 112px);
+  font-weight: 300;
   line-height: .98;
 }
 
-/* RR mark should always feel larger than the Rochelle + Roger title below it. */
+/* RR mark should clearly read larger than the Rochelle + Roger title below it. */
 #home-section-opening .custom-hero__rr-logo {
   display: block;
-  width: clamp(90px, 12vmin, 150px);
+  width: clamp(130px, 16vmin, 210px);
+  max-width: 210px;
   height: auto;
   margin: 0 auto clamp(14px, 2.2vmin, 26px);
   object-fit: contain;
@@ -2221,7 +2154,7 @@ body[data-page=home-valuation] .custom-header {
   right: 15px;
 }
 
-/* Meet the Team hero: 80dvh, 3 images, 3s per image, 1.5s crossfade. */
+/* Meet the Team hero: 80dvh. CSS handles the 3-image slideshow + motion. */
 
 #meet-the-team-section-opening {
   height: 80dvh;
@@ -2243,7 +2176,6 @@ body[data-page=home-valuation] .custom-header {
   object-fit: cover;
   object-position: center top;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
 }
 
 .custom-team-hero__image.is-active {

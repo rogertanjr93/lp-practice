@@ -1,58 +1,293 @@
 /* ==========================================================
-   MEET THE TEAM HERO — PAN + ZOOM
+   HERO IMAGE MOTION — CSS ONLY
    ==========================================================
-   Keep this in Advanced CSS because this is a visual effect,
-   not part of the base page layout.
+   No JavaScript timer here. CSS controls the image changes,
+   fades, pans, and zooms by itself.
 
-   The image changes every 3 seconds in script.js.
-   The extra 1.5 seconds here lets the outgoing image keep
-   moving while it finishes its crossfade.
+   HOME HERO
+   - Uses all 8 property images.
+   - A new image begins every 3 seconds.
+   - Motion alternates: pan left, zoom in, pan right, zoom out.
+
+   MEET THE TEAM HERO
+   - Keeps the 3 team images.
+   - A new image begins every 3 seconds.
+   - Uses the same obvious pan / zoom treatment.
    ========================================================== */
 
+/* ------------------------------
+   HOME HERO — 8 PROPERTY IMAGES
+   ------------------------------ */
+
+#home-section-opening .custom-hero__slide {
+  transform-origin: center center;
+  will-change: transform, opacity;
+  animation-duration: 24s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+/* Each image gets its own 3-second slot in the 24-second loop. */
+#home-section-opening .custom-hero__slide:nth-child(1) {
+  animation-name: home-hero-pan-left;
+  animation-delay: -0.4s;
+}
+
+#home-section-opening .custom-hero__slide:nth-child(2) {
+  animation-name: home-hero-zoom-in;
+  animation-delay: 2.6s;
+}
+
+#home-section-opening .custom-hero__slide:nth-child(3) {
+  animation-name: home-hero-pan-right;
+  animation-delay: 5.6s;
+}
+
+#home-section-opening .custom-hero__slide:nth-child(4) {
+  animation-name: home-hero-zoom-out;
+  animation-delay: 8.6s;
+}
+
+#home-section-opening .custom-hero__slide:nth-child(5) {
+  animation-name: home-hero-pan-left;
+  animation-delay: 11.6s;
+}
+
+#home-section-opening .custom-hero__slide:nth-child(6) {
+  animation-name: home-hero-zoom-in;
+  animation-delay: 14.6s;
+}
+
+#home-section-opening .custom-hero__slide:nth-child(7) {
+  animation-name: home-hero-pan-right;
+  animation-delay: 17.6s;
+}
+
+#home-section-opening .custom-hero__slide:nth-child(8) {
+  animation-name: home-hero-zoom-out;
+  animation-delay: 20.6s;
+}
+
+/* Pan from right to left while slowly moving closer. */
+@keyframes home-hero-pan-left {
+  0% {
+    opacity: 0;
+    transform: scale(1.08) translate3d(5%, 0, 0);
+  }
+
+  3% {
+    opacity: 1;
+  }
+
+  8.5% {
+    opacity: 1;
+  }
+
+  15% {
+    opacity: 0;
+    transform: scale(1.18) translate3d(-5%, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.18) translate3d(-5%, 0, 0);
+  }
+}
+
+/* Stay centered and make the zoom itself the obvious movement. */
+@keyframes home-hero-zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.00);
+  }
+
+  3% {
+    opacity: 1;
+  }
+
+  8.5% {
+    opacity: 1;
+  }
+
+  15% {
+    opacity: 0;
+    transform: scale(1.20);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.20);
+  }
+}
+
+/* Reverse the pan direction for the next moving image. */
+@keyframes home-hero-pan-right {
+  0% {
+    opacity: 0;
+    transform: scale(1.08) translate3d(-5%, 0, 0);
+  }
+
+  3% {
+    opacity: 1;
+  }
+
+  8.5% {
+    opacity: 1;
+  }
+
+  15% {
+    opacity: 0;
+    transform: scale(1.18) translate3d(5%, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.18) translate3d(5%, 0, 0);
+  }
+}
+
+/* Start close and slowly pull back for a different feel. */
+@keyframes home-hero-zoom-out {
+  0% {
+    opacity: 0;
+    transform: scale(1.20);
+  }
+
+  3% {
+    opacity: 1;
+  }
+
+  8.5% {
+    opacity: 1;
+  }
+
+  15% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+/* ------------------------------
+   MEET THE TEAM — 3 TEAM IMAGES
+   ------------------------------ */
+
 .custom-team-hero__image {
-  /* Keep the top of each portrait anchored even while it zooms. */
+  /* Keep faces anchored toward the top while the image moves. */
   transform-origin: center top;
   will-change: transform, opacity;
+  animation-duration: 9s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
 }
 
-/* Pan one way while zooming in enough to make the movement clearly visible. */
-.custom-team-hero__image.team-motion--left.is-active,
-.custom-team-hero__image.team-motion--left.is-leaving {
-  animation: team-hero-pan-left 4.5s ease-out both;
+.custom-team-hero__image:nth-child(1) {
+  animation-name: team-hero-pan-left;
+  animation-delay: -0.4s;
 }
 
-/* Then reverse the pan direction on the next image. */
-.custom-team-hero__image.team-motion--right.is-active,
-.custom-team-hero__image.team-motion--right.is-leaving {
-  animation: team-hero-pan-right 4.5s ease-out both;
+.custom-team-hero__image:nth-child(2) {
+  animation-name: team-hero-zoom-in;
+  animation-delay: 2.6s;
+}
+
+.custom-team-hero__image:nth-child(3) {
+  animation-name: team-hero-pan-right;
+  animation-delay: 5.6s;
 }
 
 @keyframes team-hero-pan-left {
-  from {
-    transform: scale(1.04) translate3d(4%, 0, 0);
+  0% {
+    opacity: 0;
+    transform: scale(1.08) translate3d(5%, 0, 0);
   }
 
-  to {
-    transform: scale(1.20) translate3d(-4%, 0, 0);
+  8% {
+    opacity: 1;
+  }
+
+  22% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0;
+    transform: scale(1.20) translate3d(-5%, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.20) translate3d(-5%, 0, 0);
+  }
+}
+
+@keyframes team-hero-zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.00);
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  22% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0;
+    transform: scale(1.22);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.22);
   }
 }
 
 @keyframes team-hero-pan-right {
-  from {
-    transform: scale(1.04) translate3d(-4%, 0, 0);
+  0% {
+    opacity: 0;
+    transform: scale(1.08) translate3d(-5%, 0, 0);
   }
 
-  to {
-    transform: scale(1.20) translate3d(4%, 0, 0);
+  8% {
+    opacity: 1;
+  }
+
+  22% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0;
+    transform: scale(1.20) translate3d(5%, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.20) translate3d(5%, 0, 0);
   }
 }
 
-/* Respect reduced-motion settings and fall back to the normal fade. */
+/* Accessibility: no motion when the viewer asks for reduced motion. */
 @media (prefers-reduced-motion: reduce) {
-  .custom-team-hero__image.team-motion--left.is-active,
-  .custom-team-hero__image.team-motion--left.is-leaving,
-  .custom-team-hero__image.team-motion--right.is-active,
-  .custom-team-hero__image.team-motion--right.is-leaving {
+  #home-section-opening .custom-hero__slide,
+  .custom-team-hero__image {
     animation: none;
+    opacity: 0;
+    transform: none;
+  }
+
+  #home-section-opening .custom-hero__slide:first-child,
+  .custom-team-hero__image:first-child {
+    opacity: 1;
   }
 }

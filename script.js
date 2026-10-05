@@ -91,62 +91,8 @@ function movePropertyCarousel(direction) {
    MEET THE TEAM HERO
    ------------------------------ */
 
-// Change the 3 team hero images every 3 seconds.
-// page-base.css handles the 1.5-second crossfade.
-// page-advanced.css handles the alternating pan + zoom movement.
-function startTeamHero() {
-  const images = $$('[data-team-hero-image]');
-  const fadeDuration = 1500;
-  const slideDuration = 3000;
-
-  if (
-    images.length < 2 ||
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  ) {
-    return;
-  }
-
-  let activeIndex = images.findIndex((image) =>
-    image.classList.contains('is-active'),
-  );
-
-  if (activeIndex < 0) {
-    activeIndex = 0;
-    images[activeIndex].classList.add('is-active');
-  }
-
-  // Start by panning left, then alternate direction every time an image appears.
-  let panLeft = true;
-  images[activeIndex].classList.add('team-motion--left');
-
-  window.setInterval(() => {
-    const outgoingImage = images[activeIndex];
-
-    // Keep the outgoing image's motion running while its opacity fades out.
-    outgoingImage.classList.remove('is-active');
-    outgoingImage.classList.add('is-leaving');
-
-    activeIndex = (activeIndex + 1) % images.length;
-    const incomingImage = images[activeIndex];
-
-    panLeft = !panLeft;
-
-    // Reset the incoming image's old direction before assigning the new one.
-    incomingImage.classList.remove(
-      'is-leaving',
-      'team-motion--left',
-      'team-motion--right',
-    );
-    incomingImage.classList.add(
-      panLeft ? 'team-motion--left' : 'team-motion--right',
-      'is-active',
-    );
-
-    window.setTimeout(() => {
-      outgoingImage.classList.remove('is-leaving');
-    }, fadeDuration);
-  }, slideDuration);
-}
+// No JavaScript slideshow here.
+// page-advanced.css handles the full image timing, fade, pan, and zoom.
 
 
 /* ------------------------------
@@ -585,4 +531,3 @@ $('#copyright-year').textContent = new Date().getFullYear();
 route(false);
 syncHeader();
 requestAnimationFrame(() => centerPropertySlide('auto'));
-startTeamHero();
