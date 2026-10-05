@@ -38,7 +38,41 @@ let testimonialCarouselScrollFrame = 0;
 
 /* My Featured Properties carousel. */
 
-// I keep the active property centered.
+// I keep the active property centered and mark the two cards beside it.
+function applyPropertyCarouselState(index) {
+  if (!propertyCarousel) {
+    return;
+  }
+
+  const slides = $$('.custom-featured-property', propertyCarousel);
+
+  if (!slides.length) {
+    return;
+  }
+
+  propertyCarouselIndex = Math.max(0, Math.min(slides.length - 1, index));
+
+  slides.forEach((slide, slideIndex) => {
+    const isActive = slideIndex === propertyCarouselIndex;
+    const isPrev = slideIndex === propertyCarouselIndex - 1;
+    const isNext = slideIndex === propertyCarouselIndex + 1;
+
+    slide.classList.toggle('is-active', isActive);
+    slide.classList.toggle('is-prev', isPrev);
+    slide.classList.toggle('is-next', isNext);
+    slide.setAttribute('aria-current', String(isActive));
+  });
+}
+
+function getPropertySlideLeft(viewport, slide) {
+  const maxLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+  const left =
+    slide.offsetLeft -
+    (viewport.clientWidth - slide.offsetWidth) / 2;
+
+  return Math.min(maxLeft, Math.max(0, left));
+}
+
 function centerPropertySlide(behavior = 'smooth') {
   if (!propertyCarousel) {
     return;
@@ -52,20 +86,10 @@ function centerPropertySlide(behavior = 'smooth') {
     return;
   }
 
-  const slideRect = slide.getBoundingClientRect();
-  const viewportRect = viewport.getBoundingClientRect();
-  const left =
-    viewport.scrollLeft +
-    (slideRect.left - viewportRect.left) -
-    (viewport.clientWidth - slide.clientWidth) / 2;
-
-  viewport.scrollTo({ left, behavior });
-
-  slides.forEach((item, index) => {
-    item.setAttribute(
-      'aria-current',
-      String(index === propertyCarouselIndex),
-    );
+  applyPropertyCarouselState(propertyCarouselIndex);
+  viewport.scrollTo({
+    left: getPropertySlideLeft(viewport, slide),
+    behavior,
   });
 }
 
@@ -88,7 +112,7 @@ function movePropertyCarousel(direction) {
 }
 
 
-// I mark the card nearest the center after scrolling settles.
+// I switch the layered state only after scrolling settles.
 function syncPropertyCarouselFromScroll() {
   if (!propertyCarousel) {
     return;
@@ -101,15 +125,12 @@ function syncPropertyCarouselFromScroll() {
     return;
   }
 
-  const viewportRect = viewport.getBoundingClientRect();
-  const viewportCenter = viewportRect.left + viewportRect.width / 2;
-
+  const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
   let nearestIndex = 0;
   let nearestDistance = Infinity;
 
   slides.forEach((slide, index) => {
-    const rect = slide.getBoundingClientRect();
-    const slideCenter = rect.left + rect.width / 2;
+    const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
     const distance = Math.abs(slideCenter - viewportCenter);
 
     if (distance < nearestDistance) {
@@ -118,11 +139,7 @@ function syncPropertyCarouselFromScroll() {
     }
   });
 
-  propertyCarouselIndex = nearestIndex;
-
-  slides.forEach((slide, index) => {
-    slide.setAttribute('aria-current', String(index === nearestIndex));
-  });
+  applyPropertyCarouselState(nearestIndex);
 }
 
 // I add mouse drag + a soft release without changing native touch scrolling.
@@ -144,16 +161,13 @@ function getCenteredSlideTarget(viewport, slides, projectedLeft) {
     return null;
   }
 
-  const viewportRect = viewport.getBoundingClientRect();
   const maxLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
   let nearest = null;
 
   slides.forEach((slide, index) => {
-    const rect = slide.getBoundingClientRect();
     const rawLeft =
-      viewport.scrollLeft +
-      (rect.left - viewportRect.left) -
-      (viewport.clientWidth - rect.width) / 2;
+      slide.offsetLeft -
+      (viewport.clientWidth - slide.offsetWidth) / 2;
     const left = Math.min(maxLeft, Math.max(0, rawLeft));
     const distance = Math.abs(left - projectedLeft);
 
@@ -410,10 +424,7 @@ function setupPropertyCarouselMouseDrag() {
         slides,
         velocity,
         (index) => {
-          propertyCarouselIndex = index;
-          slides.forEach((slide, slideIndex) => {
-            slide.setAttribute('aria-current', String(slideIndex === index));
-          });
+          applyPropertyCarouselState(index);
         },
         syncPropertyCarouselFromScroll,
       );
