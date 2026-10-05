@@ -1323,28 +1323,16 @@ body[data-page=home-valuation] .custom-header {
   border-left: 1px solid #fff6;
 }
 
-.custom-gsm__card:hover {
-  background: #0009;
-}
-
 .custom-gsm__card h2 {
   font-size: clamp(35px, 3.8vw, 60px);
   letter-spacing: .03em;
   margin: 22px 0 35px;
 }
 
-/* GSM CTA: reuse the site's standard image-background button style.
-   The whole GSM card is already the clickable link, so this remains a span. */
+/* GSM CTA: the HTML uses template.css's native .redesign .btn--primary-light style.
+   Keep only the section-specific minimum width here. */
 .custom-gsm__link {
   min-width: 170px;
-}
-
-/* Since the whole card is clickable, hovering anywhere on the card
-   should also show the CTA's normal image-background hover state. */
-.custom-gsm__card:hover .custom-gsm__link {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #000000;
 }
 
 .custom-agent-bio {
@@ -1363,7 +1351,7 @@ body[data-page=home-valuation] .custom-header {
   margin-top: 25px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .custom-slideshow-toggle {
     right: 22px;
     bottom: 27px;
@@ -1371,28 +1359,6 @@ body[data-page=home-valuation] .custom-header {
 
   .custom-hero__location {
     max-width: 52%;
-  }
-
-  #home-section-buy-about-sell {
-    min-height: 360px;
-  }
-
-  .custom-gsm__card {
-    padding: 50px 9px;
-  }
-
-  .custom-gsm__card .custom-eyebrow {
-    font-size: 7px;
-    letter-spacing: .08em;
-  }
-
-  .custom-gsm__card h2 {
-    font-size: clamp(20px, 4.2vw, 32px);
-    letter-spacing: 0;
-  }
-
-  .custom-gsm__link {
-    min-width: 145px;
   }
 }
 
@@ -1725,14 +1691,6 @@ body[data-page=home-valuation] .custom-header {
   #home-section-featured-properties .custom-property-grid {
     grid-template-columns: 1fr;
     gap: 40px;
-  }
-
-  #home-section-buy-about-sell {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  #home-section-buy-about-sell .custom-gsm__card {
-    padding-inline: 8px;
   }
 
   .custom-home-contact__layout {
@@ -2264,3 +2222,64 @@ body[data-page=home-valuation] .custom-header {
     order: 2;
   }
 }
+
+/* ==========================================================
+   MOBILE HOMEPAGE STABILITY + NATIVE GSM FALLBACK
+   ==========================================================
+   Keep this at the end of page-base.css so it wins over the
+   desktop/full-screen rules declared earlier in the file.
+
+   - Hero uses stable svh on mobile to prevent viewport-bar jumps.
+   - GSM stacks into three touch-friendly rows.
+   - GSM CTA uses template.css's native .redesign .btn--primary-light.
+   - Fixed background parallax is disabled on mobile to avoid repaints.
+   ========================================================== */
+
+@media (max-width: 768px) {
+  #home-section-opening {
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+  }
+
+  #home-section-buy-about-sell {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(220px, 1fr));
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+    background-attachment: scroll;
+  }
+
+  #home-section-buy-about-sell .custom-gsm__card {
+    min-height: 220px;
+    padding: 42px 24px;
+  }
+
+  #home-section-buy-about-sell .custom-gsm__card + .custom-gsm__card {
+    border-left: 0;
+    border-top: 1px solid #fff6;
+  }
+
+  #home-section-buy-about-sell .custom-gsm__card .custom-eyebrow {
+    font-size: 9px;
+    letter-spacing: .1em;
+  }
+
+  #home-section-buy-about-sell .custom-gsm__card h2 {
+    margin: 16px 0 24px;
+    font-size: clamp(30px, 10vw, 46px);
+    letter-spacing: .02em;
+  }
+
+  #home-section-buy-about-sell .custom-gsm__link {
+    min-width: 0;
+  }
+
+  #home-section-buy-about-sell,
+  #home-section-featured-properties,
+  #home-section-contact-us {
+    background-attachment: scroll;
+  }
+}
+
