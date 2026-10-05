@@ -1539,8 +1539,10 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
 }
 
 /* The current page should be obvious when the drawer opens. */
+/* Current page in the side menu: grey it out instead of making it bold. */
 .custom-menu nav a[aria-current="page"] {
-  font-weight: 700;
+  color: #9a9a9a;
+  font-weight: 400;
 }
 
 /* Keep the two navigation areas at the same readable 16px size. */

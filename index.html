@@ -86,7 +86,7 @@
 
             <!-- HERO CTA: keeping this here for later, but hiding it during the initial build.
             <a class="custom-button custom-button--light" href="#/portfolio">
-              Explore the Portfolio <span aria-hidden="true">↗</span>
+              Explore the Portfolio
             </a>
             -->
           </div>
@@ -103,7 +103,7 @@
                 <h2>Meet Rochelle.</h2>
                 <p>Rochelle Reyes is a Los Angeles-based real estate agent specializing in residential and luxury properties throughout Los Angeles and surrounding communities. She works with first-time buyers, growing families, investors, and homeowners looking to sell.</p>
                 <p>Rochelle believes that real estate should feel personal and straightforward. She takes the time to understand each client's goals, preferences, and priorities so she can provide guidance tailored to their needs.</p>
-                <a class="custom-button custom-button--outline" href="#/meet-the-team">More About Rochelle <span aria-hidden="true">↗</span>
+                <a class="custom-button custom-button--outline" href="#/meet-the-team">More About Rochelle
                 </a>
               </div>
             </article>
@@ -113,7 +113,7 @@
                 <h2>Meet Roger.</h2>
                 <p>The way a room catches the light. The flow from indoors to out. The small details that make everyday life feel a little more considered.</p>
                 <p>Roger brings an appreciation for design and a practical, organized perspective to the search for home. Together with Rochelle, he shares a simple priority: understanding what your next move means to you.</p>
-                <a class="custom-button custom-button--outline" href="#/meet-the-team">More About Roger <span aria-hidden="true">↗</span>
+                <a class="custom-button custom-button--outline" href="#/meet-the-team">More About Roger
                 </a>
               </div>
               <div class="custom-agent-story__photo">
@@ -127,19 +127,19 @@
           <a class="custom-gsm__card" href="#/portfolio">
             <span class="custom-eyebrow">FIND YOUR PLACE</span>
             <h2>BUY</h2>
-            <span class="custom-gsm__link">Explore homes <b aria-hidden="true">↗</b>
+            <span class="custom-gsm__link">Explore homes
             </span>
           </a>
           <a class="custom-gsm__card" href="#/meet-the-team">
             <span class="custom-eyebrow">A PERSONAL APPROACH</span>
             <h2>ABOUT US</h2>
-            <span class="custom-gsm__link">Meet the team <b aria-hidden="true">↗</b>
+            <span class="custom-gsm__link">Meet the team
             </span>
           </a>
           <a class="custom-gsm__card" href="#/home-valuation">
             <span class="custom-eyebrow">YOUR NEXT CHAPTER</span>
             <h2>SELL</h2>
-            <span class="custom-gsm__link">Discover your home's value <b aria-hidden="true">↗</b>
+            <span class="custom-gsm__link">Discover your home's value
             </span>
           </a>
         </section>
@@ -152,30 +152,59 @@
                 <h2>Experience that makes a difference.</h2>
               </div>
             </div>
-            <div class="custom-stats">
-              <div class="custom-stat">
-                <span class="custom-stat__value">6+</span>
-                <h3>Years of Experience</h3>
-              </div>
-              <div class="custom-stat">
-                <span class="custom-stat__value">$48M+</span>
-                <h3>in Sales</h3>
-              </div>
-              <div class="custom-stat">
-                <span class="custom-stat__value">75+</span>
-                <h3>Homes Sold</h3>
-              </div>
-              <div class="custom-stat">
-                <span class="custom-stat__value">$1.8M</span>
-                <h3>Average Sale Price</h3>
-              </div>
-              <div class="custom-stat">
-                <span class="custom-stat__value custom-stat__value--location">Los Angeles</span>
-                <h3>&amp; Surrounding Areas</h3>
-              </div>
-              <div class="custom-stat">
-                <span class="custom-stat__value">100+</span>
-                <h3>Clients Served</h3>
+            <!-- Stats marquee: duplicate the six items once so the CSS loop can stay seamless. -->
+            <div class="custom-stats-marquee">
+              <div class="custom-stats">
+                <div class="custom-stat">
+                  <span class="custom-stat__value">6+</span>
+                  <h3>Years of Experience</h3>
+                </div>
+                <div class="custom-stat">
+                  <span class="custom-stat__value">$48M+</span>
+                  <h3>in Sales</h3>
+                </div>
+                <div class="custom-stat">
+                  <span class="custom-stat__value">75+</span>
+                  <h3>Homes Sold</h3>
+                </div>
+                <div class="custom-stat">
+                  <span class="custom-stat__value">$1.8M</span>
+                  <h3>Average Sale Price</h3>
+                </div>
+                <div class="custom-stat">
+                  <span class="custom-stat__value custom-stat__value--location">Los Angeles</span>
+                  <h3>&amp; Surrounding Areas</h3>
+                </div>
+                <div class="custom-stat">
+                  <span class="custom-stat__value">100+</span>
+                  <h3>Clients Served</h3>
+                </div>
+
+                <!-- Duplicate set is visual only; screen readers already have the original six stats. -->
+                <div class="custom-stat" aria-hidden="true">
+                  <span class="custom-stat__value">6+</span>
+                  <h3>Years of Experience</h3>
+                </div>
+                <div class="custom-stat" aria-hidden="true">
+                  <span class="custom-stat__value">$48M+</span>
+                  <h3>in Sales</h3>
+                </div>
+                <div class="custom-stat" aria-hidden="true">
+                  <span class="custom-stat__value">75+</span>
+                  <h3>Homes Sold</h3>
+                </div>
+                <div class="custom-stat" aria-hidden="true">
+                  <span class="custom-stat__value">$1.8M</span>
+                  <h3>Average Sale Price</h3>
+                </div>
+                <div class="custom-stat" aria-hidden="true">
+                  <span class="custom-stat__value custom-stat__value--location">Los Angeles</span>
+                  <h3>&amp; Surrounding Areas</h3>
+                </div>
+                <div class="custom-stat" aria-hidden="true">
+                  <span class="custom-stat__value">100+</span>
+                  <h3>Clients Served</h3>
+                </div>
               </div>
             </div>
           </div>
@@ -294,7 +323,7 @@
             <p class="custom-eyebrow">THE CLIENT EXPERIENCE / SAMPLE STORY</p>
             <blockquote>“From our first conversation to the final details, we felt heard, informed, and completely at home with the process.”</blockquote>
             <p class="custom-testimonial-source">ILLUSTRATIVE TESTIMONIAL · NOT A CLIENT ENDORSEMENT</p>
-            <a class="custom-text-link" href="#/testimonials">More Stories <span>↗</span>
+            <a class="custom-text-link" href="#/testimonials">More Stories
             </a>
           </div>
         </section>
@@ -304,7 +333,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>WORK WITH ROCHELLE <span class="custom-thin-plus">+</span> ROGER</h2>
             <p>Whether you’re buying, selling, or simply exploring what comes next, we’re here to make the process personal, clear, and thoughtfully guided.</p>
-            <button type="button" class="custom-button custom-button--light" data-open-contact-modal>CONTACT US <span aria-hidden="true">↗</span></button>
+            <button type="button" class="custom-button custom-button--light" data-open-contact-modal>CONTACT US</button>
           </div>
         </section>
       </div>
@@ -458,7 +487,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
             </a>
           </div>
         </section>
@@ -538,7 +567,7 @@
                 </div>
                 <div class="custom-step-actions">
                   <button type="button" id="valuation-back">← Back</button>
-                  <button class="custom-button" type="submit">Preview Request <span>↗</span>
+                  <button class="custom-button" type="submit">Preview Request
                   </button>
                 </div>
               </fieldset>
@@ -586,7 +615,7 @@
                 <p>An architectural home in the hills. A quiet retreat above the city. Explore the possibilities of Los Angeles living, from contemporary spaces to warm, character-filled residences.</p>
                 <span class="custom-neighborhood-tag">Hillside homes · Contemporary architecture</span>
                 <div>
-                  <a class="custom-text-link" href="#/portfolio?area=los-angeles">Explore the Collection <span>↗</span>
+                  <a class="custom-text-link" href="#/portfolio?area=los-angeles">Explore the Collection
                   </a>
                 </div>
               </div>
@@ -599,7 +628,7 @@
                 <p>Discover a residential point of view shaped by elegant architecture, established gardens, and considered details. Our Beverly Hills collection celebrates homes with a lasting sense of place.</p>
                 <span class="custom-neighborhood-tag">Refined estates · Garden settings</span>
                 <div>
-                  <a class="custom-text-link" href="#/portfolio?area=beverly-hills">Explore the Collection <span>↗</span>
+                  <a class="custom-text-link" href="#/portfolio?area=beverly-hills">Explore the Collection
                   </a>
                 </div>
               </div>
@@ -612,7 +641,7 @@
                 <p>Light-filled rooms, welcoming outdoor spaces, and a relaxed California sensibility. Find inspiration for a home that brings everyday life a little closer to the coast.</p>
                 <span class="custom-neighborhood-tag">Coastal character · Indoor-outdoor living</span>
                 <div>
-                  <a class="custom-text-link" href="#/portfolio?area=santa-monica">Explore the Collection <span>↗</span>
+                  <a class="custom-text-link" href="#/portfolio?area=santa-monica">Explore the Collection
                   </a>
                 </div>
               </div>
@@ -625,7 +654,7 @@
                 <p>Expressive design, intimate courtyards, and distinctive spaces. Explore a collection of homes that pairs an urban setting with a personal sense of retreat.</p>
                 <span class="custom-neighborhood-tag">Design-forward homes · Private courtyards</span>
                 <div>
-                  <a class="custom-text-link" href="#/portfolio?area=west-hollywood">Explore the Collection <span>↗</span>
+                  <a class="custom-text-link" href="#/portfolio?area=west-hollywood">Explore the Collection
                   </a>
                 </div>
               </div>
@@ -638,7 +667,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
             </a>
           </div>
         </section>
@@ -692,7 +721,7 @@
                       <h4>Areas Served</h4>
                       <p>Los Angeles, Beverly Hills, Santa Monica, West Hollywood, and surrounding areas.</p>
                     </div>
-                    <a class="custom-text-link" href="#contact-modal" data-open-contact-modal>Schedule a Consultation ↗</a>
+                    <a class="custom-text-link" href="#contact-modal" data-open-contact-modal>Schedule a Consultation</a>
                   </details>
                 </div>
               </article>
@@ -706,7 +735,7 @@
                     <summary class="custom-text-link">More About Roger <span>+</span>
                     </summary>
                     <p>An appreciation for thoughtful design and a careful eye for the details behind every move.</p>
-                    <a class="custom-text-link" href="#contact-modal" data-open-contact-modal>Let’s Connect ↗</a>
+                    <a class="custom-text-link" href="#contact-modal" data-open-contact-modal>Let’s Connect</a>
                   </details>
                 </div>
               </article>
@@ -746,7 +775,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
             </a>
           </div>
         </section>
@@ -793,7 +822,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
             </a>
           </div>
         </section>
@@ -866,7 +895,7 @@
                     <input type="checkbox" required>I understand this is a practice form and my inquiry will not be sent.</label>
                 </div>
                 <div class="custom-form-actions">
-                  <button class="custom-button" type="submit">Preview Inquiry <span>↗</span>
+                  <button class="custom-button" type="submit">Preview Inquiry
                   </button>
                 </div>
               </form>
@@ -879,7 +908,7 @@
           <div>
             <p class="custom-eyebrow">GET TO KNOW US</p>
             <h2>Real people. A shared perspective.</h2>
-            <a class="custom-button custom-button--light" href="#/meet-the-team">Meet the Team<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#/meet-the-team">Meet the Team
             </a>
           </div>
         </section>
@@ -901,7 +930,7 @@
               <h2>Make a thoughtful<br>first impression.</h2>
               <p>Compass Concierge can help eligible sellers fund improvements such as staging, painting, and flooring before a sale, subject to program approval and terms.</p>
               <p>Start with a conversation about the work your home needs and the options available in your market.</p>
-              <a class="custom-button custom-button--outline" href="#contact-modal" data-open-contact-modal>Start a Conversation<span aria-hidden="true">↗</span>
+              <a class="custom-button custom-button--outline" href="#contact-modal" data-open-contact-modal>Start a Conversation
               </a>
             </div>
             <div>
@@ -931,7 +960,7 @@
               <div>
                 <span>06</span>Cosmetic updates</div>
             </div>
-            <p class="custom-note custom-concierge-terms">Availability, eligibility, covered work, fees, and repayment requirements depend on program terms. Fees or interest may apply. No sale price or timing is guaranteed. Review the <a href="https://www.compass.com/concierge/" target="_blank" rel="noopener" style="text-decoration:underline">official Compass Concierge information ↗</a> for current details.</p>
+            <p class="custom-note custom-concierge-terms">Availability, eligibility, covered work, fees, and repayment requirements depend on program terms. Fees or interest may apply. No sale price or timing is guaranteed. Review the <a href="https://www.compass.com/concierge/" target="_blank" rel="noopener" style="text-decoration:underline">official Compass Concierge information</a> for current details.</p>
           </div>
         </section>
         <section class="custom-section" id="compass-concierge-section-faq">
@@ -964,7 +993,7 @@
             <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
             <h2>Let’s make it home.</h2>
             <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us<span aria-hidden="true">↗</span>
+            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
             </a>
           </div>
         </section>
@@ -1088,7 +1117,7 @@
             </label>
           </div>
           <div class="custom-form-actions">
-            <button class="custom-button" type="submit">Preview Inquiry <span aria-hidden="true">↗</span></button>
+            <button class="custom-button" type="submit">Preview Inquiry</button>
           </div>
         </form>
         <div class="custom-form-status" id="contact-modal-result" hidden aria-live="polite"></div>

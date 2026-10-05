@@ -1,24 +1,20 @@
 /* ==========================================================
-   HERO IMAGE MOTION — CSS ONLY
+   PAGE ADVANCED CSS
    ==========================================================
-   No JavaScript timer here. CSS controls the image changes,
-   pans, and zooms by itself.
-
-   HOME HERO
-   - Uses all 8 property images.
-   - A new image begins every 3 seconds.
-   - Uses a hard cut between images — NO crossfade.
-   - Motion alternates: pan left, zoom in, pan right, zoom out.
-
-   MEET THE TEAM HERO
-   - Keeps the 3 team images.
-   - A new image begins every 3 seconds.
-   - Keeps its existing fade + pan / zoom treatment.
+   Visual polish lives here so the base layout stays easy to
+   maintain. Keep these effects CSS-first whenever possible.
    ========================================================== */
 
-/* ------------------------------
-   HOME HERO — 8 PROPERTY IMAGES
-   ------------------------------ */
+/* ==========================================================
+   HOME HERO — 8 PROPERTY IMAGES / CALMER MOTION
+   ==========================================================
+   - CSS only; no JavaScript slideshow timer.
+   - A new image appears every 3 seconds.
+   - Hard cut between images; no crossfade.
+   - Motion cycles: pan left, zoom in, pan right, zoom out.
+   - Keep the movement subtle enough that the house still feels
+     like a listing photo instead of a dramatic camera move.
+   ========================================================== */
 
 #home-section-opening .custom-hero__slide {
   transform-origin: center center;
@@ -29,7 +25,7 @@
   animation-fill-mode: both;
 }
 
-/* Each image gets its own 3-second slot in the 24-second loop. */
+/* Each of the 8 images owns one 3-second slot in the 24-second loop. */
 #home-section-opening .custom-hero__slide:nth-child(1) {
   animation-name: home-hero-pan-left;
   animation-delay: -0.4s;
@@ -70,38 +66,30 @@
   animation-delay: 20.6s;
 }
 
-/* Pan from right to left while slowly moving closer. */
+/* Gentle right-to-left pan with a small zoom. */
 @keyframes home-hero-pan-left {
-  /* Stay hidden until this slide's 3-second slot begins. */
   0% {
     opacity: 0;
-    transform: scale(1.08) translate3d(5%, 0, 0);
+    transform: scale(1.03) translate3d(2%, 0, 0);
   }
 
-  /* Almost-instant switch on — avoids a visible fade. */
   0.01% {
     opacity: 1;
   }
 
-  /* Keep moving for the full 3-second slot. */
   12.49% {
     opacity: 1;
-    transform: scale(1.18) translate3d(-5%, 0, 0);
+    transform: scale(1.10) translate3d(-2%, 0, 0);
   }
 
-  /* Hard cut off exactly when the next slide takes over. */
-  12.5% {
-    opacity: 0;
-    transform: scale(1.18) translate3d(-5%, 0, 0);
-  }
-
+  12.5%,
   100% {
     opacity: 0;
-    transform: scale(1.18) translate3d(-5%, 0, 0);
+    transform: scale(1.10) translate3d(-2%, 0, 0);
   }
 }
 
-/* Stay centered and make the zoom itself the obvious movement. */
+/* Centered slow zoom-in. */
 @keyframes home-hero-zoom-in {
   0% {
     opacity: 0;
@@ -114,25 +102,21 @@
 
   12.49% {
     opacity: 1;
-    transform: scale(1.20);
+    transform: scale(1.10);
   }
 
-  12.5% {
-    opacity: 0;
-    transform: scale(1.20);
-  }
-
+  12.5%,
   100% {
     opacity: 0;
-    transform: scale(1.20);
+    transform: scale(1.10);
   }
 }
 
-/* Reverse the pan direction for the next moving image. */
+/* Gentle left-to-right pan with a small zoom. */
 @keyframes home-hero-pan-right {
   0% {
     opacity: 0;
-    transform: scale(1.08) translate3d(-5%, 0, 0);
+    transform: scale(1.03) translate3d(-2%, 0, 0);
   }
 
   0.01% {
@@ -141,25 +125,21 @@
 
   12.49% {
     opacity: 1;
-    transform: scale(1.18) translate3d(5%, 0, 0);
+    transform: scale(1.10) translate3d(2%, 0, 0);
   }
 
-  12.5% {
-    opacity: 0;
-    transform: scale(1.18) translate3d(5%, 0, 0);
-  }
-
+  12.5%,
   100% {
     opacity: 0;
-    transform: scale(1.18) translate3d(5%, 0, 0);
+    transform: scale(1.10) translate3d(2%, 0, 0);
   }
 }
 
-/* Start close and slowly pull back for a different feel. */
+/* Start slightly closer and slowly pull back. */
 @keyframes home-hero-zoom-out {
   0% {
     opacity: 0;
-    transform: scale(1.20);
+    transform: scale(1.10);
   }
 
   0.01% {
@@ -168,30 +148,24 @@
 
   12.49% {
     opacity: 1;
-    transform: scale(1.04);
+    transform: scale(1.02);
   }
 
-  12.5% {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-
+  12.5%,
   100% {
     opacity: 0;
-    transform: scale(1.04);
+    transform: scale(1.02);
   }
 }
 
-/* ------------------------------
+/* ==========================================================
    MEET THE TEAM — SIMPLE 3-IMAGE SWAP
-   ------------------------------
-   No pan, zoom, or fade here. Each image stays still for
-   4 seconds, then switches instantly to the next image.
-   The full loop is 12 seconds: team -> Rochelle -> Roger.
-   ------------------------------ */
+   ==========================================================
+   No pan, zoom, or fade here. Each image stays completely still
+   for 4 seconds, then hard-switches to the next one.
+   ========================================================== */
 
 .custom-team-hero__image {
-  /* Keep the image completely still. CSS only controls which one is visible. */
   transform: none;
   will-change: opacity;
   animation-name: team-hero-image-swap;
@@ -200,17 +174,14 @@
   animation-iteration-count: infinite;
 }
 
-/* First image: visible from 0s to 4s. */
 .custom-team-hero__image:nth-child(1) {
   animation-delay: 0s;
 }
 
-/* Rochelle: visible from 4s to 8s. */
 .custom-team-hero__image:nth-child(2) {
   animation-delay: 4s;
 }
 
-/* Roger: visible from 8s to 12s. */
 .custom-team-hero__image:nth-child(3) {
   animation-delay: 8s;
 }
@@ -227,28 +198,11 @@
   }
 }
 
-/* Accessibility: no motion when the viewer asks for reduced motion. */
-@media (prefers-reduced-motion: reduce) {
-  #home-section-opening .custom-hero__slide,
-  .custom-team-hero__image {
-    animation: none;
-    opacity: 0;
-    transform: none;
-  }
-
-  #home-section-opening .custom-hero__slide:first-child,
-  .custom-team-hero__image:first-child {
-    opacity: 1;
-  }
-}
-
-
 /* ==========================================================
-   GSM CARDS — HOVER LIFT / BOUNCE
+   GSM CARDS — HOVER LIFT
    ==========================================================
-   Move the text + CTA upward slightly when hovering a card.
-   The spring-style easing gives it a soft bounce instead of
-   just sliding straight up.
+   Move the text + CTA together when hovering the card. Keep it
+   springy, but subtle enough for the luxury look.
    ========================================================== */
 
 .custom-gsm__card > * {
@@ -257,18 +211,120 @@
     opacity 0.3s ease;
 }
 
-/* Lift all of the card content when I hover the card. */
 .custom-gsm__card:hover > * {
   transform: translateY(-12px);
 }
 
-/* Let the CTA move just a little farther for extra depth. */
+/* Let the CTA move a touch farther so the hover has some depth. */
 .custom-gsm__card:hover .custom-gsm__link {
   transform: translateY(-17px);
 }
 
-/* Keep motion accessibility-friendly. */
+/* ==========================================================
+   STATS — ONE-ROW CONTINUOUS MARQUEE
+   ==========================================================
+   Only the stats move. The section eyebrow + heading above stay
+   exactly where they are.
+
+   The HTML contains the same six stats twice. That second set is
+   aria-hidden and exists only so this CSS loop can be seamless.
+   Movement is LEFT -> RIGHT as requested.
+   ========================================================== */
+
+#home-section-stats .custom-stats-marquee {
+  width: 100%;
+  overflow: hidden;
+  margin-top: clamp(28px, 4vw, 52px);
+}
+
+#home-section-stats .custom-stats {
+  display: flex;
+  grid-template-columns: none;
+  width: max-content;
+  row-gap: 0;
+  transform: translateX(-50%);
+  animation: home-stats-marquee-right 30s linear infinite;
+}
+
+#home-section-stats .custom-stat {
+  flex: 0 0 clamp(220px, 22vw, 330px);
+  min-width: 0;
+  padding: 28px clamp(18px, 2vw, 32px);
+  border-top: 0 !important;
+  border-left: 1px solid #ddd !important;
+}
+
+/* Keep the first item of each repeated six-item set clean. */
+#home-section-stats .custom-stat:nth-child(6n + 1) {
+  border-left: 0 !important;
+}
+
+#home-section-stats .custom-stat__value {
+  font-size: clamp(48px, 5.4vw, 78px);
+  min-height: 1.1em;
+}
+
+#home-section-stats .custom-stat__value--location {
+  font-size: clamp(30px, 3vw, 44px);
+  min-height: 1.35em;
+}
+
+@keyframes home-stats-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 650px) {
+  #home-section-stats .custom-stat {
+    flex-basis: min(76vw, 280px);
+    padding-inline: 20px;
+  }
+
+  #home-section-stats .custom-stats {
+    animation-duration: 24s;
+  }
+}
+
+/* ==========================================================
+   REDUCED MOTION
+   ==========================================================
+   Stop decorative movement if the viewer asks for less motion.
+   ========================================================== */
+
 @media (prefers-reduced-motion: reduce) {
+  #home-section-opening .custom-hero__slide,
+  .custom-team-hero__image,
+  #home-section-stats .custom-stats {
+    animation: none;
+    transform: none;
+  }
+
+  #home-section-opening .custom-hero__slide,
+  .custom-team-hero__image {
+    opacity: 0;
+  }
+
+  #home-section-opening .custom-hero__slide:first-child,
+  .custom-team-hero__image:first-child {
+    opacity: 1;
+  }
+
+  #home-section-stats .custom-stats {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Hide the duplicated stats when the moving marquee is disabled. */
+  #home-section-stats .custom-stat[aria-hidden="true"] {
+    display: none;
+  }
+
   .custom-gsm__card > *,
   .custom-gsm__card:hover > *,
   .custom-gsm__card:hover .custom-gsm__link {
