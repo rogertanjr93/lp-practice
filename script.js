@@ -32,13 +32,12 @@ let testimonialCarouselIndex = 0;
 let lastContactModalImage = -1;
 
 // I only customize mouse dragging; touch and trackpad stay native.
-let propertyCarouselScrollTimer = 0;
+let propertyCarouselScrollFrame = 0;
 let testimonialCarouselScrollFrame = 0;
 
 
 /* My Featured Properties carousel. */
 
-// I keep the active property centered and mark the two cards beside it.
 function applyPropertyCarouselState(index) {
   if (!propertyCarousel) {
     return;
@@ -54,17 +53,15 @@ function applyPropertyCarouselState(index) {
 
   slides.forEach((slide, slideIndex) => {
     const isActive = slideIndex === propertyCarouselIndex;
-    const isPrev = slideIndex === propertyCarouselIndex - 1;
-    const isNext = slideIndex === propertyCarouselIndex + 1;
 
     slide.classList.toggle('is-active', isActive);
-    slide.classList.toggle('is-prev', isPrev);
-    slide.classList.toggle('is-next', isNext);
+    slide.classList.toggle('is-prev', slideIndex === propertyCarouselIndex - 1);
+    slide.classList.toggle('is-next', slideIndex === propertyCarouselIndex + 1);
     slide.setAttribute('aria-current', String(isActive));
   });
 }
 
-function getPropertySlideLeft(viewport, slide) {
+function getCenteredSlideLeft(viewport, slide) {
   const maxLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
   const left =
     slide.offsetLeft -
@@ -73,23 +70,106 @@ function getPropertySlideLeft(viewport, slide) {
   return Math.min(maxLeft, Math.max(0, left));
 }
 
-function centerPropertySlide(behavior = 'smooth') {
+function getNearestSlideIndex(viewport, slides) {
+  const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+  let nearestIndex = 0;
+  let nearestDistance = Infinity;
+
+  slides.forEach((slide, index) => {
+    const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+    const distance = Math.abs(slideCenter - viewportCenter);
+
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearestIndex = index;
+    }
+  });
+
+  return nearestIndex;
+}
+
+function getPropertyLayerShift(viewport) {
+  const fluidShift = viewport.clientWidth * .09;
+
+  if (window.innerWidth <= 760) {
+    return Math.min(54, Math.max(36, fluidShift));
+  }
+
+  return Math.min(148, Math.max(72, fluidShift));
+}
+
+// I tie the card depth directly to scroll position so it never jumps after release.
+function updatePropertyCarouselVisuals() {
   if (!propertyCarousel) {
     return;
   }
 
   const viewport = $('.custom-featured-properties__viewport', propertyCarousel);
   const slides = $$('.custom-featured-property', propertyCarousel);
-  const slide = slides[propertyCarouselIndex];
+
+  if (!viewport || !slides.length) {
+    return;
+  }
+
+  const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+  const step = slides.length > 1
+    ? Math.abs(slides[1].offsetLeft - slides[0].offsetLeft)
+    : slides[0].offsetWidth;
+  const layerShift = getPropertyLayerShift(viewport);
+
+  slides.forEach((slide) => {
+    const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+    const distance = (slideCenter - viewportCenter) / Math.max(1, step);
+    const absoluteDistance = Math.abs(distance);
+    const neighborWeight = Math.max(0, 1 - Math.abs(absoluteDistance - 1));
+    const direction = distance === 0 ? 0 : -Math.sign(distance);
+    const shift = direction * layerShift * neighborWeight;
+    const scale = Math.max(.90, 1 - Math.min(2, absoluteDistance) * .05);
+    const dim = Math.min(.30, absoluteDistance * .16);
+
+    slide.style.setProperty('--property-x', `${shift.toFixed(2)}px`);
+    slide.style.setProperty('--property-scale', scale.toFixed(4));
+    slide.style.setProperty('--property-dim', dim.toFixed(4));
+  });
+
+  const nearestIndex = getNearestSlideIndex(viewport, slides);
+
+  if (nearestIndex !== propertyCarouselIndex) {
+    applyPropertyCarouselState(nearestIndex);
+  }
+}
+
+function centerPropertySlide(behavior = 'smooth', initialVelocity = 0) {
+  if (!propertyCarousel) {
+    return;
+  }
+
+  const viewport = $('.custom-featured-properties__viewport', propertyCarousel);
+  const slides = $$('.custom-featured-property', propertyCarousel);
+  const targetIndex = propertyCarouselIndex;
+  const slide = slides[targetIndex];
 
   if (!viewport || !slide) {
     return;
   }
 
-  applyPropertyCarouselState(propertyCarouselIndex);
-  viewport.scrollTo({
-    left: getPropertySlideLeft(viewport, slide),
-    behavior,
+  const targetLeft = getCenteredSlideLeft(viewport, slide);
+
+  if (behavior === 'auto') {
+    cancelCarouselSettle(viewport);
+    viewport.scrollLeft = targetLeft;
+    applyPropertyCarouselState(targetIndex);
+    updatePropertyCarouselVisuals();
+    return;
+  }
+
+  animateCarouselSettle(viewport, targetLeft, {
+    initialVelocity,
+    onFrame: updatePropertyCarouselVisuals,
+    onComplete: () => {
+      applyPropertyCarouselState(targetIndex);
+      updatePropertyCarouselVisuals();
+    },
   });
 }
 
@@ -111,38 +191,11 @@ function movePropertyCarousel(direction) {
   centerPropertySlide('smooth');
 }
 
-
-// I switch the layered state only after scrolling settles.
 function syncPropertyCarouselFromScroll() {
-  if (!propertyCarousel) {
-    return;
-  }
-
-  const viewport = $('.custom-featured-properties__viewport', propertyCarousel);
-  const slides = $$('.custom-featured-property', propertyCarousel);
-
-  if (!viewport || !slides.length) {
-    return;
-  }
-
-  const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
-  let nearestIndex = 0;
-  let nearestDistance = Infinity;
-
-  slides.forEach((slide, index) => {
-    const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-    const distance = Math.abs(slideCenter - viewportCenter);
-
-    if (distance < nearestDistance) {
-      nearestDistance = distance;
-      nearestIndex = index;
-    }
-  });
-
-  applyPropertyCarouselState(nearestIndex);
+  updatePropertyCarouselVisuals();
 }
 
-// I add mouse drag + a soft release without changing native touch scrolling.
+// I add mouse drag + a spring release without changing native touch scrolling.
 const carouselSettleFrames = new WeakMap();
 
 function cancelCarouselSettle(viewport) {
@@ -161,14 +214,10 @@ function getCenteredSlideTarget(viewport, slides, projectedLeft) {
     return null;
   }
 
-  const maxLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
   let nearest = null;
 
   slides.forEach((slide, index) => {
-    const rawLeft =
-      slide.offsetLeft -
-      (viewport.clientWidth - slide.offsetWidth) / 2;
-    const left = Math.min(maxLeft, Math.max(0, rawLeft));
+    const left = getCenteredSlideLeft(viewport, slide);
     const distance = Math.abs(left - projectedLeft);
 
     if (!nearest || distance < nearest.distance) {
@@ -179,48 +228,65 @@ function getCenteredSlideTarget(viewport, slides, projectedLeft) {
   return nearest;
 }
 
-function animateCarouselSettle(viewport, targetLeft, onComplete) {
+// I use one spring for mouse release and arrow clicks so both motions feel the same.
+function animateCarouselSettle(viewport, targetLeft, {
+  initialVelocity = 0,
+  onFrame,
+  onComplete,
+} = {}) {
   if (!viewport) {
     return;
   }
 
-  const existingFrame = carouselSettleFrames.get(viewport);
-
-  if (existingFrame) {
-    cancelAnimationFrame(existingFrame);
-  }
+  cancelCarouselSettle(viewport);
 
   const maxLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-  const startLeft = viewport.scrollLeft;
   const endLeft = Math.min(maxLeft, Math.max(0, targetLeft));
-  const distance = endLeft - startLeft;
   const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
   viewport.classList.add('is-settling');
 
-  if (reducedMotion || Math.abs(distance) < 0.5) {
+  if (reducedMotion || Math.abs(endLeft - viewport.scrollLeft) < .5) {
     viewport.scrollLeft = endLeft;
+    onFrame?.();
     viewport.classList.remove('is-settling');
-    carouselSettleFrames.delete(viewport);
     onComplete?.();
     return;
   }
 
-  const duration = Math.min(720, Math.max(420, 420 + Math.abs(distance) * 0.18));
-  const startedAt = performance.now();
+  let position = viewport.scrollLeft;
+  let velocity = initialVelocity;
+  let previousTime = performance.now();
+  const startedAt = previousTime;
+  const stiffness = .00012;
+  const damping = .022;
 
   const step = (now) => {
-    const progress = Math.min(1, (now - startedAt) / duration);
-    const eased = 1 - Math.pow(1 - progress, 5);
+    const deltaTime = Math.min(32, Math.max(1, now - previousTime));
+    previousTime = now;
 
-    viewport.scrollLeft = startLeft + distance * eased;
+    const displacement = endLeft - position;
+    const acceleration = displacement * stiffness - velocity * damping;
 
-    if (progress < 1) {
+    velocity += acceleration * deltaTime;
+    position += velocity * deltaTime;
+    position = Math.min(maxLeft, Math.max(0, position));
+
+    viewport.scrollLeft = position;
+    onFrame?.();
+
+    const isSettled =
+      Math.abs(endLeft - position) < .35 &&
+      Math.abs(velocity) < .012;
+    const timedOut = now - startedAt > 1400;
+
+    if (!isSettled && !timedOut) {
       carouselSettleFrames.set(viewport, requestAnimationFrame(step));
       return;
     }
 
     viewport.scrollLeft = endLeft;
+    onFrame?.();
     carouselSettleFrames.delete(viewport);
     viewport.classList.remove('is-settling');
     onComplete?.();
@@ -234,6 +300,7 @@ function settleCarouselAfterMouseDrag(
   slides,
   velocity,
   setCurrentIndex,
+  onFrame,
   onComplete,
 ) {
   if (!viewport || !slides.length) {
@@ -242,10 +309,10 @@ function settleCarouselAfterMouseDrag(
   }
 
   const maxLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-  const maxMomentum = viewport.clientWidth * 0.85;
+  const maxMomentum = viewport.clientWidth * .72;
   const momentum = Math.max(
     -maxMomentum,
-    Math.min(maxMomentum, velocity * 220),
+    Math.min(maxMomentum, velocity * 190),
   );
   const projectedLeft = Math.min(
     maxLeft,
@@ -258,9 +325,12 @@ function settleCarouselAfterMouseDrag(
     return;
   }
 
-  animateCarouselSettle(viewport, target.left, () => {
-    setCurrentIndex?.(target.index);
-    onComplete?.();
+  setCurrentIndex?.(target.index);
+
+  animateCarouselSettle(viewport, target.left, {
+    initialVelocity: velocity,
+    onFrame,
+    onComplete,
   });
 }
 
@@ -324,8 +394,7 @@ function setupDesktopMouseDrag(viewport, {
     const pointerDelta = event.clientX - lastPointerX;
     const instantScrollVelocity = -pointerDelta / elapsed;
 
-    // I smooth the mouse velocity before release.
-    scrollVelocity = scrollVelocity * 0.68 + instantScrollVelocity * 0.32;
+    scrollVelocity = scrollVelocity * .62 + instantScrollVelocity * .38;
     lastPointerX = event.clientX;
     lastPointerTime = now;
 
@@ -340,14 +409,13 @@ function setupDesktopMouseDrag(viewport, {
 
     const releaseDelay = performance.now() - lastPointerTime;
 
-    if (releaseDelay > 80) {
-      const decay = Math.max(0, 1 - (releaseDelay - 80) / 220);
+    if (releaseDelay > 70) {
+      const decay = Math.max(0, 1 - (releaseDelay - 70) / 220);
       scrollVelocity *= decay;
     }
 
-    scrollVelocity = Math.max(-2.4, Math.min(2.4, scrollVelocity));
+    scrollVelocity = Math.max(-2.2, Math.min(2.2, scrollVelocity));
 
-    // I keep snapping off until the release animation takes over.
     if (didDrag) {
       viewport.classList.add('is-settling');
     }
@@ -366,7 +434,6 @@ function setupDesktopMouseDrag(viewport, {
       viewport.classList.remove('is-settling');
     }
 
-    // I keep the drag flag through the click that follows pointerup.
     window.setTimeout(() => {
       didDrag = false;
       onDragStateChange?.(false, false);
@@ -394,10 +461,6 @@ function setupDesktopMouseDrag(viewport, {
   viewport.addEventListener(
     'scroll',
     () => {
-      if (isDragging || viewport.classList.contains('is-settling')) {
-        return;
-      }
-
       onScroll?.();
     },
     { passive: true },
@@ -424,20 +487,23 @@ function setupPropertyCarouselMouseDrag() {
         slides,
         velocity,
         (index) => {
-          applyPropertyCarouselState(index);
+          propertyCarouselIndex = index;
         },
-        syncPropertyCarouselFromScroll,
+        updatePropertyCarouselVisuals,
+        () => {
+          syncPropertyCarouselFromScroll();
+        },
       );
     },
     onScroll: () => {
-      if (propertyCarouselScrollTimer) {
-        window.clearTimeout(propertyCarouselScrollTimer);
+      if (propertyCarouselScrollFrame) {
+        return;
       }
 
-      propertyCarouselScrollTimer = window.setTimeout(() => {
+      propertyCarouselScrollFrame = requestAnimationFrame(() => {
         syncPropertyCarouselFromScroll();
-        propertyCarouselScrollTimer = 0;
-      }, 140);
+        propertyCarouselScrollFrame = 0;
+      });
     },
   });
 }
@@ -445,29 +511,51 @@ function setupPropertyCarouselMouseDrag() {
 
 /* My homepage testimonial carousel. */
 
-// I use JavaScript here only for testimonial controls and desktop mouse drag.
-function centerTestimonialSlide(behavior = 'smooth') {
+function setTestimonialCarouselState(index) {
   if (!testimonialCarousel) {
     return;
   }
 
   const slides = $$('.custom-testimonial__slide', testimonialCarousel);
-  const slide = slides[testimonialCarouselIndex];
+
+  if (!slides.length) {
+    return;
+  }
+
+  testimonialCarouselIndex = Math.max(0, Math.min(slides.length - 1, index));
+
+  slides.forEach((slide, slideIndex) => {
+    slide.setAttribute('aria-current', String(slideIndex === testimonialCarouselIndex));
+  });
+}
+
+function centerTestimonialSlide(behavior = 'smooth', initialVelocity = 0) {
+  if (!testimonialCarousel) {
+    return;
+  }
+
+  const slides = $$('.custom-testimonial__slide', testimonialCarousel);
+  const targetIndex = testimonialCarouselIndex;
+  const slide = slides[targetIndex];
 
   if (!slide) {
     return;
   }
 
-  testimonialCarousel.scrollTo({
-    left: slide.offsetLeft,
-    behavior,
-  });
+  const targetLeft = getCenteredSlideLeft(testimonialCarousel, slide);
 
-  slides.forEach((item, index) => {
-    item.setAttribute(
-      'aria-current',
-      String(index === testimonialCarouselIndex),
-    );
+  if (behavior === 'auto') {
+    cancelCarouselSettle(testimonialCarousel);
+    testimonialCarousel.scrollLeft = targetLeft;
+    setTestimonialCarouselState(targetIndex);
+    return;
+  }
+
+  animateCarouselSettle(testimonialCarousel, targetLeft, {
+    initialVelocity,
+    onComplete: () => {
+      setTestimonialCarouselState(targetIndex);
+    },
   });
 }
 
@@ -494,27 +582,16 @@ function syncTestimonialCarouselFromScroll() {
   }
 
   const slides = $$('.custom-testimonial__slide', testimonialCarousel);
-  const viewportRect = testimonialCarousel.getBoundingClientRect();
-  const viewportCenter = viewportRect.left + viewportRect.width / 2;
 
-  let nearestIndex = 0;
-  let nearestDistance = Infinity;
+  if (!slides.length) {
+    return;
+  }
 
-  slides.forEach((slide, index) => {
-    const rect = slide.getBoundingClientRect();
-    const distance = Math.abs((rect.left + rect.width / 2) - viewportCenter);
+  const nearestIndex = getNearestSlideIndex(testimonialCarousel, slides);
 
-    if (distance < nearestDistance) {
-      nearestDistance = distance;
-      nearestIndex = index;
-    }
-  });
-
-  testimonialCarouselIndex = nearestIndex;
-
-  slides.forEach((slide, index) => {
-    slide.setAttribute('aria-current', String(index === nearestIndex));
-  });
+  if (nearestIndex !== testimonialCarouselIndex) {
+    setTestimonialCarouselState(nearestIndex);
+  }
 }
 
 function setupTestimonialCarousel() {
@@ -536,16 +613,14 @@ function setupTestimonialCarousel() {
         velocity,
         (index) => {
           testimonialCarouselIndex = index;
-          slides.forEach((slide, slideIndex) => {
-            slide.setAttribute('aria-current', String(slideIndex === index));
-          });
         },
+        null,
         syncTestimonialCarouselFromScroll,
       );
     },
     onScroll: () => {
       if (testimonialCarouselScrollFrame) {
-        cancelAnimationFrame(testimonialCarouselScrollFrame);
+        return;
       }
 
       testimonialCarouselScrollFrame = requestAnimationFrame(() => {

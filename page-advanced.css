@@ -358,11 +358,11 @@
 #home-section-featured-properties::before {
   content: "";
   position: absolute;
-  inset: -3px;
+  inset: -2px;
   z-index: 0;
   background: url("images/westhollywood-2.jpg") center center / cover no-repeat;
-  filter: blur(1.5px) brightness(.62) saturate(.9);
-  transform: scale(1.008);
+  filter: blur(1px) brightness(.64) saturate(.92);
+  transform: scale(1.006);
   pointer-events: none;
 }
 
@@ -371,7 +371,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgba(0, 0, 0, .48);
+  background: rgba(0, 0, 0, .46);
   pointer-events: none;
 }
 
@@ -380,11 +380,16 @@
   z-index: 2;
 }
 
+#home-section-featured-properties .custom-featured-properties__viewport,
+#home-section-testimonials .custom-testimonial__viewport {
+  scroll-snap-type: x proximity;
+  scroll-behavior: auto;
+  overscroll-behavior-inline: contain;
+}
+
 #home-section-featured-properties .custom-featured-properties__viewport {
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-inline: contain;
   scrollbar-width: none;
 }
 
@@ -392,66 +397,39 @@
   display: none;
 }
 
+#home-section-testimonials .custom-testimonial__slide {
+  scroll-snap-stop: normal;
+}
+
 #home-section-featured-properties .custom-featured-properties__track {
   gap: 8px;
 }
 
 #home-section-featured-properties .custom-featured-property {
+  --property-x: 0px;
+  --property-scale: .90;
   --property-dim: .30;
-  --property-layer-shift: clamp(72px, 9vw, 148px);
   position: relative;
   z-index: 1;
   scroll-snap-align: center;
-  transform: translate3d(0, 0, 0) scale(.90);
+  transform: translateX(var(--property-x)) scale(var(--property-scale));
   transform-origin: center center;
-  transition: transform .58s cubic-bezier(.22, .61, .36, 1);
 }
 
 #home-section-featured-properties .custom-featured-property.is-prev,
 #home-section-featured-properties .custom-featured-property.is-next {
-  --property-dim: .16;
   z-index: 2;
-  transition: transform .58s cubic-bezier(.22, .61, .36, 1);
+  will-change: transform;
 }
 
-#home-section-featured-properties .custom-featured-property.is-prev {
-  transform: translate3d(var(--property-layer-shift), 0, 0) scale(.95);
-  transform-origin: right center;
-}
-
-#home-section-featured-properties .custom-featured-property.is-next {
-  transform: translate3d(calc(var(--property-layer-shift) * -1), 0, 0) scale(.95);
-  transform-origin: left center;
-}
-
-#home-section-featured-properties .custom-featured-property.is-active,
-#home-section-featured-properties .custom-featured-property[aria-current="true"] {
-  --property-dim: 0;
-  z-index: 4;
-  transform: translate3d(0, 0, 0) scale(1);
-  transform-origin: center center;
-  transition: transform .58s cubic-bezier(.22, .61, .36, 1);
+#home-section-featured-properties .custom-featured-property.is-active {
+  z-index: 3;
+  will-change: transform;
 }
 
 #home-section-featured-properties .custom-featured-property__media {
   isolation: isolate;
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transition: box-shadow .45s ease, outline-color .45s ease;
-  outline: 1px solid transparent;
-}
-
-#home-section-featured-properties .custom-featured-property.is-active .custom-featured-property__media,
-#home-section-featured-properties .custom-featured-property[aria-current="true"] .custom-featured-property__media {
-  box-shadow: 0 22px 54px rgba(0, 0, 0, .28);
-  outline-color: rgba(255, 255, 255, .16);
-}
-
-#home-section-featured-properties .custom-featured-property__media img {
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .18);
 }
 
 #home-section-featured-properties .custom-featured-property__media::before {
@@ -459,14 +437,18 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgba(0, 0, 0, var(--property-dim));
-  opacity: 1;
-  transition: background-color .42s ease;
+  background: #000;
+  opacity: var(--property-dim);
   pointer-events: none;
 }
 
 #home-section-featured-properties .custom-featured-properties__controls .custom-swipe-nav__button {
   color: #fff;
+}
+
+#home-section-featured-properties .custom-featured-properties__viewport.is-settling,
+#home-section-testimonials .custom-testimonial__viewport.is-settling {
+  scroll-snap-type: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -498,45 +480,19 @@
     -webkit-user-drag: none;
   }
 
-  #home-section-featured-properties .custom-featured-properties__viewport:not(.is-dragging):not(.is-settling) .custom-featured-property:hover {
-    --property-dim: .08;
-  }
-
   #home-section-featured-properties .custom-featured-properties__viewport:not(.is-dragging):not(.is-settling) .custom-featured-property__media:hover img {
-    transform: translateZ(0) scale(1.012);
+    transform: scale(1.012);
   }
 
   #home-section-featured-properties .custom-featured-properties__viewport.is-dragging .custom-featured-property__media img,
   #home-section-featured-properties .custom-featured-properties__viewport.is-settling .custom-featured-property__media img {
-    transform: translateZ(0);
+    transform: none;
   }
 }
 
 @media (max-width: 760px) {
   #home-section-featured-properties .custom-featured-properties__track {
     gap: 6px;
-  }
-
-  #home-section-featured-properties .custom-featured-property {
-    --property-dim: .25;
-    --property-layer-shift: clamp(36px, 9vw, 54px);
-    transform: translate3d(0, 0, 0) scale(.92);
-  }
-
-  #home-section-featured-properties .custom-featured-property.is-prev {
-    --property-dim: .13;
-    transform: translate3d(var(--property-layer-shift), 0, 0) scale(.96);
-  }
-
-  #home-section-featured-properties .custom-featured-property.is-next {
-    --property-dim: .13;
-    transform: translate3d(calc(var(--property-layer-shift) * -1), 0, 0) scale(.96);
-  }
-
-  #home-section-featured-properties .custom-featured-property.is-active,
-  #home-section-featured-properties .custom-featured-property[aria-current="true"] {
-    --property-dim: 0;
-    transform: translate3d(0, 0, 0) scale(1);
   }
 
   #home-section-featured-properties .custom-featured-properties__viewport {
