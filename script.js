@@ -32,6 +32,12 @@ let statusFilter = 'all';
 let propertyCarouselIndex = 1;
 let lastContactModalImage = -1;
 
+// Mouse drag state for the Featured Properties carousel.
+let propertyCarouselDragStartX = 0;
+let propertyCarouselDragStartScroll = 0;
+let propertyCarouselDidDrag = false;
+let propertyCarouselScrollFrame = 0;
+
 
 /* ------------------------------
    FEATURED PROPERTY CAROUSEL
@@ -87,12 +93,146 @@ function movePropertyCarousel(direction) {
 }
 
 
+// After manual scrolling, mark whichever card is closest to the center
+// as current so the overlap/blur styling stays in sync.
+function syncPropertyCarouselFromScroll() {
+  if (!propertyCarousel) {
+    return;
+  }
+
+  const viewport = $('.custom-featured-properties__viewport', propertyCarousel);
+  const slides = $$('.custom-featured-property', propertyCarousel);
+
+  if (!viewport || !slides.length) {
+    return;
+  }
+
+  const viewportRect = viewport.getBoundingClientRect();
+  const viewportCenter = viewportRect.left + viewportRect.width / 2;
+
+  let nearestIndex = 0;
+  let nearestDistance = Infinity;
+
+  slides.forEach((slide, index) => {
+    const rect = slide.getBoundingClientRect();
+    const slideCenter = rect.left + rect.width / 2;
+    const distance = Math.abs(slideCenter - viewportCenter);
+
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearestIndex = index;
+    }
+  });
+
+  propertyCarouselIndex = nearestIndex;
+
+  slides.forEach((slide, index) => {
+    slide.setAttribute('aria-current', String(index === nearestIndex));
+  });
+}
+
+// CSS handles native touch/trackpad scrolling. This small handler only
+// adds the missing desktop-mouse click-drag behavior.
+function setupPropertyCarouselMouseDrag() {
+  if (!propertyCarousel) {
+    return;
+  }
+
+  const viewport = $('.custom-featured-properties__viewport', propertyCarousel);
+
+  if (!viewport) {
+    return;
+  }
+
+  viewport.addEventListener('pointerdown', (event) => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) {
+      return;
+    }
+
+    propertyCarouselDragStartX = event.clientX;
+    propertyCarouselDragStartScroll = viewport.scrollLeft;
+    propertyCarouselDidDrag = false;
+    viewport.classList.add('is-dragging');
+  });
+
+  viewport.addEventListener('pointermove', (event) => {
+    if (
+      event.pointerType !== 'mouse' ||
+      !viewport.classList.contains('is-dragging')
+    ) {
+      return;
+    }
+
+    const distance = event.clientX - propertyCarouselDragStartX;
+
+    if (Math.abs(distance) > 4 && !propertyCarouselDidDrag) {
+      propertyCarouselDidDrag = true;
+      viewport.setPointerCapture(event.pointerId);
+    }
+
+    if (propertyCarouselDidDrag) {
+      viewport.scrollLeft = propertyCarouselDragStartScroll - distance;
+    }
+  });
+
+  const finishDrag = (event) => {
+    if (!viewport.classList.contains('is-dragging')) {
+      return;
+    }
+
+    viewport.classList.remove('is-dragging');
+
+    if (viewport.hasPointerCapture?.(event.pointerId)) {
+      viewport.releasePointerCapture(event.pointerId);
+    }
+
+    syncPropertyCarouselFromScroll();
+    centerPropertySlide('smooth');
+  };
+
+  viewport.addEventListener('pointerup', finishDrag);
+  viewport.addEventListener('pointercancel', finishDrag);
+
+  // Prevent a drag-release from accidentally opening a property dialog.
+  viewport.addEventListener(
+    'click',
+    (event) => {
+      if (!propertyCarouselDidDrag) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      propertyCarouselDidDrag = false;
+    },
+    true,
+  );
+
+  viewport.addEventListener(
+    'scroll',
+    () => {
+      if (propertyCarouselScrollFrame) {
+        cancelAnimationFrame(propertyCarouselScrollFrame);
+      }
+
+      propertyCarouselScrollFrame = requestAnimationFrame(() => {
+        syncPropertyCarouselFromScroll();
+        propertyCarouselScrollFrame = 0;
+      });
+    },
+    { passive: true },
+  );
+}
+
+
 /* ------------------------------
    MEET THE TEAM HERO
    ------------------------------ */
 
 // No JavaScript slideshow here.
-// page-advanced.css handles the full image timing, fade, pan, and zoom.
+// page-advanced.css handles the image timing and visual treatment.
+// Homepage = CSS hard-cuts + desktop pan/zoom; mobile = CSS hard-cuts only.
+// Meet the Team = CSS hard image swap every 4 seconds.
 
 
 /* ------------------------------
@@ -530,4 +670,5 @@ $('#copyright-year').textContent = new Date().getFullYear();
 
 route(false);
 syncHeader();
+setupPropertyCarouselMouseDrag();
 requestAnimationFrame(() => centerPropertySlide('auto'));

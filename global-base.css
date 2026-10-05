@@ -225,6 +225,16 @@ body.custom-locked {
   color: var(--muted);
 }
 
+/* ==========================================================
+   GLOBAL CTA BUTTONS
+   ==========================================================
+   Light/white background = white button with black border/text,
+   then black background with white text on hover.
+
+   Image/dark background = transparent button with white
+   border/text, then white background with black text on hover.
+   ========================================================== */
+
 .custom-button {
   display: inline-flex;
   align-items: center;
@@ -233,41 +243,47 @@ body.custom-locked {
   min-height: 52px;
   padding: 15px 29px;
   border: 1px solid var(--black);
-  background: var(--black);
-  color: var(--white);
+  background: var(--white);
+  color: var(--black);
   font-size: 10px;
   letter-spacing: .15em;
   font-weight: 600;
   text-transform: uppercase;
   line-height: 1.5;
-  transition: background .2s, color .2s;
+  text-decoration: none;
+  transition:
+    background-color .25s ease,
+    color .25s ease,
+    border-color .25s ease;
 }
 
-.custom-button--outline {
-  background: transparent;
-  color: var(--black);
+/* Standard button for white/light sections. */
+.custom-button:hover,
+.custom-button--outline:hover,
+.custom-button--white:hover {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
 }
 
+.custom-button--outline,
 .custom-button--white {
   background: var(--white);
+  border-color: var(--black);
   color: var(--black);
-  border-color: var(--white);
 }
 
+/* Use this modifier whenever the CTA sits over an image/dark background. */
 .custom-button--light {
   background: transparent;
+  border-color: var(--white);
   color: var(--white);
-  border-color: #fff9;
 }
 
-.custom-button:hover {
-  background: #353535;
-  color: #fff;
-}
-
-.custom-button--white:hover, .custom-button--light:hover {
-  background: #fff;
-  color: #000;
+.custom-button--light:hover {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--black);
 }
 
 .custom-text-link {

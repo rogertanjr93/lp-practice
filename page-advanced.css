@@ -24,7 +24,9 @@
   animation-fill-mode: both;
 }
 
-/* Only prepare transform layers on larger screens. */
+/* Only reserve transform compositor layers on larger screens.
+   Keeping eight full-screen transform layers alive on a phone can make
+   the first scroll away from the Hero feel choppy. */
 @media (min-width: 769px) {
   #home-section-opening .custom-hero__slide {
     will-change: transform, opacity;
@@ -217,6 +219,15 @@
     opacity 0.3s ease;
 }
 
+/* Keep the button color transition too; this rule loads after page-base.css. */
+.custom-gsm__card .custom-gsm__link {
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color .25s ease,
+    color .25s ease,
+    border-color .25s ease;
+}
+
 .custom-gsm__card:hover > * {
   transform: translateY(-12px);
 }
@@ -297,6 +308,42 @@
 }
 
 /* ==========================================================
+   MOBILE HERO PERFORMANCE
+   ==========================================================
+   Keep all 8 images and the 3-second timing on phones, but remove
+   the pan/zoom transforms. This keeps the Hero CSS-only while
+   avoiding eight continuously transformed full-screen images during
+   mobile scrolling.
+   ========================================================== */
+
+@media (max-width: 768px) {
+  #home-section-opening .custom-hero__slide {
+    animation-name: home-hero-mobile-hard-cut !important;
+    will-change: opacity;
+    transform: none !important;
+  }
+}
+
+@keyframes home-hero-mobile-hard-cut {
+  0% {
+    opacity: 0;
+    transform: none;
+  }
+
+  0.01%,
+  12.49% {
+    opacity: 1;
+    transform: none;
+  }
+
+  12.5%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+/* ==========================================================
    REDUCED MOTION
    ==========================================================
    Stop decorative movement if the viewer asks for less motion.
@@ -340,91 +387,118 @@
 }
 
 /* ==========================================================
-   MOBILE HERO PERFORMANCE
+   FEATURED PROPERTIES — OVERLAPPING CAROUSEL
    ==========================================================
-   Keep the 8-image slideshow on mobile, but remove pan/zoom
-   so scrolling away from the Hero stays smooth.
+   Keep the existing property-card dimensions, but let the cards
+   overlap so there are no white gutters between the images.
+
+   The current card stays crisp and on top. Neighboring cards are
+   softened slightly so the centered property remains the focus.
+
+   Scrolling / snapping is defined here for BOTH desktop and mobile.
+   Mouse click-drag itself needs the tiny pointer handler in script.js
+   because CSS does not provide native mouse drag-to-scroll behavior.
    ========================================================== */
 
-@media (max-width: 768px) {
-  #home-section-opening .custom-hero__slide {
-    will-change: opacity;
-    transform: none !important;
+#home-section-featured-properties .custom-featured-properties__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+#home-section-featured-properties .custom-featured-properties__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+#home-section-featured-properties .custom-featured-properties__viewport.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+#home-section-featured-properties .custom-featured-properties__track {
+  gap: 0;
+}
+
+/* Keep each card at its existing width; only pull the next card back
+   over the previous one to remove the white gaps. */
+#home-section-featured-properties .custom-featured-property {
+  position: relative;
+  z-index: 1;
+  scroll-snap-align: center;
+  transition:
+    filter .35s ease,
+    opacity .35s ease;
+}
+
+#home-section-featured-properties .custom-featured-property + .custom-featured-property {
+  margin-left: -12vw;
+}
+
+/* Inactive cards stay visible, just a little softer. */
+#home-section-featured-properties .custom-featured-property:not([aria-current="true"]) .custom-featured-property__media {
+  filter: blur(1.5px) brightness(.76);
+  opacity: .78;
+  transition:
+    filter .35s ease,
+    opacity .35s ease;
+}
+
+/* The centered/current card sits above its neighbors. */
+#home-section-featured-properties .custom-featured-property[aria-current="true"] {
+  z-index: 3;
+}
+
+#home-section-featured-properties .custom-featured-property[aria-current="true"] .custom-featured-property__media {
+  filter: none;
+  opacity: 1;
+}
+
+/* If I point at a neighboring card with the mouse, let it come forward
+   and sharpen so it feels immediately interactive. */
+@media (hover: hover) and (pointer: fine) {
+  #home-section-featured-properties .custom-featured-property:hover {
+    z-index: 4;
   }
 
-  @keyframes home-hero-pan-left {
-    0% {
-      opacity: 0;
-      transform: none;
-    }
+  #home-section-featured-properties .custom-featured-property:hover .custom-featured-property__media {
+    filter: none;
+    opacity: 1;
+  }
+}
 
-    0.01%,
-    12.49% {
-      opacity: 1;
-      transform: none;
-    }
-
-    12.5%,
-    100% {
-      opacity: 0;
-      transform: none;
-    }
+/* Mobile keeps the same scrolling system. The overlap is slightly
+   smaller so the 90vw cards do not cover too much of one another. */
+@media (max-width: 760px) {
+  #home-section-featured-properties .custom-featured-property + .custom-featured-property {
+    margin-left: -8vw;
   }
 
-  @keyframes home-hero-pan-right {
-    0% {
-      opacity: 0;
-      transform: none;
-    }
-
-    0.01%,
-    12.49% {
-      opacity: 1;
-      transform: none;
-    }
-
-    12.5%,
-    100% {
-      opacity: 0;
-      transform: none;
-    }
+  #home-section-featured-properties .custom-featured-properties__viewport {
+    cursor: auto;
+    -webkit-overflow-scrolling: touch;
   }
+}
 
-  @keyframes home-hero-zoom-in {
-    0% {
-      opacity: 0;
-      transform: none;
-    }
+/* ==========================================================
+   TESTIMONIALS — CTA SPACING
+   ==========================================================
+   The homepage Testimonials link now uses the same light-background
+   CTA button treatment as the rest of the site.
+   ========================================================== */
 
-    0.01%,
-    12.49% {
-      opacity: 1;
-      transform: none;
-    }
+#home-section-testimonials .custom-button {
+  margin-top: 28px;
+}
 
-    12.5%,
-    100% {
-      opacity: 0;
-      transform: none;
-    }
-  }
-
-  @keyframes home-hero-zoom-out {
-    0% {
-      opacity: 0;
-      transform: none;
-    }
-
-    0.01%,
-    12.49% {
-      opacity: 1;
-      transform: none;
-    }
-
-    12.5%,
-    100% {
-      opacity: 0;
-      transform: none;
-    }
+@media (max-width: 760px) {
+  #home-section-featured-properties .custom-featured-property:not([aria-current="true"]) .custom-featured-property__media {
+    filter: blur(.8px) brightness(.80);
+    opacity: .82;
   }
 }

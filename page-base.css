@@ -1270,17 +1270,34 @@ body[data-page=home-valuation] .custom-header {
   margin: 22px 0 35px;
 }
 
+/* GSM CTAs use the image-background button treatment.
+   The whole card is already clickable, so this stays a styled span. */
 .custom-gsm__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  min-width: 170px;
+  padding: 15px 29px;
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
   font-size: 10px;
-  letter-spacing: .1em;
+  font-weight: 600;
+  letter-spacing: .15em;
+  line-height: 1.5;
   text-transform: uppercase;
-  border-bottom: 1px solid #fff9;
-  padding-bottom: 8px;
+  text-decoration: none;
+  transition:
+    background-color .25s ease,
+    color .25s ease,
+    border-color .25s ease;
 }
 
-.custom-gsm__link b {
-  margin-left: 15px;
-  font-weight: 400;
+.custom-gsm__link:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
 }
 
 .custom-agent-bio {
@@ -1328,12 +1345,11 @@ body[data-page=home-valuation] .custom-header {
   }
 
   .custom-gsm__link {
-    font-size: 8px;
-    letter-spacing: 0;
-  }
-
-  .custom-gsm__link b {
-    display: none;
+    min-height: 46px;
+    min-width: 145px;
+    padding: 12px 20px;
+    font-size: 9px;
+    letter-spacing: .12em;
   }
 }
 
@@ -2020,16 +2036,7 @@ body[data-page=home-valuation] .custom-header {
 
 .custom-featured-properties__viewport {
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-inline: contain;
-}
-
-.custom-featured-properties__viewport::-webkit-scrollbar {
-  display: none;
+  overflow: hidden;
 }
 
 .custom-featured-properties__track {
