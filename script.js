@@ -244,8 +244,10 @@ function settleCarouselAfterMouseDrag(
     return;
   }
 
-  setCurrentIndex?.(target.index);
-  animateCarouselSettle(viewport, target.left, onComplete);
+  animateCarouselSettle(viewport, target.left, () => {
+    setCurrentIndex?.(target.index);
+    onComplete?.();
+  });
 }
 
 function setupDesktopMouseDrag(viewport, {

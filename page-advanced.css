@@ -358,11 +358,11 @@
 #home-section-featured-properties::before {
   content: "";
   position: absolute;
-  inset: -5%;
+  inset: -8px;
   z-index: 0;
   background: url("images/westhollywood-2.jpg") center center / cover no-repeat;
-  filter: blur(22px) brightness(.62) saturate(.9);
-  transform: scale(1.08);
+  filter: blur(4px) brightness(.64) saturate(.88);
+  transform: scale(1.02);
   pointer-events: none;
 }
 
@@ -371,7 +371,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgba(0, 0, 0, .46);
+  background: rgba(0, 0, 0, .42);
   pointer-events: none;
 }
 
@@ -379,7 +379,6 @@
   position: relative;
   z-index: 2;
 }
-
 
 #home-section-featured-properties .custom-featured-properties__viewport {
   overflow-x: auto;
@@ -398,10 +397,8 @@
 }
 
 #home-section-featured-properties .custom-featured-property {
-  --property-dim: .24;
+  --property-dim: .18;
   position: relative;
-  z-index: 1;
-  isolation: isolate;
   scroll-snap-align: center;
 }
 
@@ -409,9 +406,17 @@
   margin-left: -12vw;
 }
 
+/* I keep the overlap stack fixed so cards do not jump in front of each other while scrolling. */
 #home-section-featured-properties .custom-featured-property__media {
   isolation: isolate;
-  contain: paint;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+#home-section-featured-properties .custom-featured-property__media img {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 #home-section-featured-properties .custom-featured-property__media::before {
@@ -421,12 +426,8 @@
   z-index: 1;
   background: rgba(0, 0, 0, var(--property-dim));
   opacity: 1;
-  transition: opacity .28s ease;
+  transition: opacity .38s ease;
   pointer-events: none;
-}
-
-#home-section-featured-properties .custom-featured-property[aria-current="true"] {
-  z-index: 3;
 }
 
 #home-section-featured-properties .custom-featured-property[aria-current="true"] .custom-featured-property__media::before {
@@ -466,12 +467,12 @@
     -webkit-user-drag: none;
   }
 
-  #home-section-featured-properties .custom-featured-properties__viewport:not(.is-dragging):not(.is-settling) .custom-featured-property:hover {
-    z-index: 4;
-  }
-
   #home-section-featured-properties .custom-featured-properties__viewport:not(.is-dragging):not(.is-settling) .custom-featured-property:hover .custom-featured-property__media::before {
     opacity: 0;
+  }
+
+  #home-section-featured-properties .custom-featured-properties__viewport:not(.is-dragging):not(.is-settling) .custom-featured-property__media:hover img {
+    transform: scale(1.018);
   }
 
   #home-section-featured-properties .custom-featured-properties__viewport.is-dragging .custom-featured-property__media img,
@@ -482,7 +483,7 @@
 
 @media (max-width: 760px) {
   #home-section-featured-properties .custom-featured-property {
-    --property-dim: .16;
+    --property-dim: .12;
   }
 
   #home-section-featured-properties .custom-featured-property + .custom-featured-property {
