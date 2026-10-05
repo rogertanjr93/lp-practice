@@ -363,16 +363,54 @@
   text-align: center;
 }
 
+/* Homepage testimonials: one full-width story at a time.
+   The arrow visuals come directly from template.css via .lp-arrow. */
+.custom-testimonial__viewport {
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+}
+
+.custom-testimonial__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-testimonial__track {
+  display: flex;
+  width: 100%;
+}
+
+.custom-testimonial__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  padding-inline: clamp(12px, 4vw, 60px);
+}
+
 .custom-testimonial blockquote {
   font-family: var(--serif);
   font-size: clamp(25px, 3.1vw, 42px);
   line-height: 1.4;
   max-width: 870px;
-  margin: 30px auto;
+  margin: 30px auto 18px;
 }
 
-.custom-testimonial .custom-text-link {
-  margin-top: 28px;
+.custom-testimonial__name {
+  display: block;
+  margin: 0 auto;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: .08em;
+}
+
+.custom-testimonial__controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 28px 0 26px;
 }
 
 .custom-cta {
@@ -584,23 +622,44 @@
   border-bottom: 1px solid #ccc;
 }
 
-.custom-quote>span {
+/* Keep the portrait directly beside the oversized quotation mark. */
+.custom-quote__visual {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.custom-quote__mark {
   font-family: var(--serif);
   font-size: 70px;
   line-height: .8;
 }
 
+.custom-quote__image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
 .custom-quote blockquote {
-  margin: 15px 0 28px;
+  margin: 18px 0 18px;
   font-family: var(--serif);
   font-size: 26px;
   line-height: 1.5;
 }
 
-.custom-quote p {
-  font-size: 10px;
+.custom-quote__name {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: .05em;
+}
+
+.custom-testimonial-source {
+  font-size: 9px;
+  letter-spacing: .16em;
   text-transform: uppercase;
-  letter-spacing: .13em;
 }
 
 .custom-valuation {
@@ -886,11 +945,6 @@ body[data-page=home-valuation] .custom-header {
   border-top: 1px solid #ccc;
 }
 
-.custom-testimonial-source {
-  font-size: 9px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
 
 .custom-home-team-photo {
   object-position: center !important;
@@ -1133,6 +1187,15 @@ body[data-page=home-valuation] .custom-header {
     font-size: 24px;
   }
 
+  .custom-quote__image {
+    width: 56px;
+    height: 56px;
+  }
+
+  .custom-quote__mark {
+    font-size: 58px;
+  }
+
   .custom-valuation {
     grid-template-columns: 1fr;
   }
@@ -1270,31 +1333,15 @@ body[data-page=home-valuation] .custom-header {
   margin: 22px 0 35px;
 }
 
-/* GSM CTAs use the image-background button treatment.
-   The whole card is already clickable, so this stays a styled span. */
+/* GSM CTA: reuse the site's standard image-background button style.
+   The whole GSM card is already the clickable link, so this remains a span. */
 .custom-gsm__link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 52px;
   min-width: 170px;
-  padding: 15px 29px;
-  border: 1px solid #ffffff;
-  background: transparent;
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .15em;
-  line-height: 1.5;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition:
-    background-color .25s ease,
-    color .25s ease,
-    border-color .25s ease;
 }
 
-.custom-gsm__link:hover {
+/* Since the whole card is clickable, hovering anywhere on the card
+   should also show the CTA's normal image-background hover state. */
+.custom-gsm__card:hover .custom-gsm__link {
   background: #ffffff;
   border-color: #ffffff;
   color: #000000;
@@ -1345,11 +1392,7 @@ body[data-page=home-valuation] .custom-header {
   }
 
   .custom-gsm__link {
-    min-height: 46px;
     min-width: 145px;
-    padding: 12px 20px;
-    font-size: 9px;
-    letter-spacing: .12em;
   }
 }
 
@@ -2136,18 +2179,6 @@ body[data-page=home-valuation] .custom-header {
   gap: 6px;
 }
 
-.custom-featured-properties__controls button {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border: 1px solid #222;
-  background: #fff;
-  color: #000;
-  font-size: 27px;
-  line-height: 1;
-  cursor: pointer;
-}
 
 .custom-featured-properties__footer .custom-button {
   min-width: 190px;

@@ -1,1153 +1,1225 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="Explore an edited collection of Los Angeles homes and neighborhoods with Rochelle Reyes and Roger Tan. A Producer-style real estate practice website.">
-    <meta name="theme-color" content="#000000">
-    <title>Rochelle + Roger | Los Angeles Real Estate</title>
-    <link rel="stylesheet" href="template.css">
-    <link rel="preload" href="https://s3-us-west-2.amazonaws.com/static-lp/fonts/compass/CompassSans/CompassSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="global-base.css">
-    <link rel="stylesheet" href="global-advanced.css">
-    <link rel="stylesheet" href="page-base.css">
-    <link rel="stylesheet" href="page-advanced.css">
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <a class="custom-skip-link" href="#main">Skip to content</a>
-    <!-- HEADER: keep the logo lock-up, desktop nav, and hamburger on the same fixed row. -->
-    <header id="global-navbar" class="custom-header">
-      <div class="custom-brand-group">
-        <a class="custom-brand" href="#/" aria-label="Rochelle and Roger home">
-          <span>ROCHELLE <b class="custom-thin-plus">+</b> ROGER</span>
-        </a>
-        <span class="custom-brand-divider" aria-hidden="true"></span>
-        <img class="custom-compass-logo" src="images/compass_light.png" alt="Compass" width="145" height="20">
-      </div>
-      <nav class="custom-desktop-nav" aria-label="Main navigation">
-        <a href="#/portfolio">Portfolio</a>
-        <a href="#/home-valuation">Home Valuation</a>
-        <a href="#/neighborhoods">Neighborhoods</a>
-        <a href="#/meet-the-team">Meet the Team</a>
-        <a href="#/testimonials">Testimonials</a>
-        <button type="button" class="custom-nav-contact" data-open-contact-modal>Contact Us</button>
-      </nav>
-      <button class="custom-menu-toggle" aria-label="Open menu" aria-controls="navigation-menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-      </button>
-    </header>
-    <!-- SIDE MENU: RR logo stays top-left; all menu links are aligned to the right. -->
-    <dialog class="custom-menu" id="navigation-menu" aria-label="Site navigation">
-      <div class="custom-menu__top">
-        <a class="custom-menu__brand" href="#/" aria-label="Rochelle and Roger home">
-          <img src="images/rr-logo-black.png" alt="RR" width="76" height="76">
-        </a>
-        <button data-close-menu class="custom-icon-button" aria-label="Close menu">×</button>
-      </div>
-      <div class="custom-menu__body">
-        <nav aria-label="All pages">
-          <a href="#/">Homepage</a>
-          <a href="#/portfolio">Portfolio</a>
-          <a href="#/home-valuation">Home Valuation</a>
-          <a href="#/neighborhoods">Neighborhoods</a>
-          <a href="#/meet-the-team">Meet the Team</a>
-          <a href="#/testimonials">Testimonials</a>
-          <a href="#/contact-us">Contact Us</a>
-          <a href="#/compass-concierge">Compass Concierge</a>
-        </nav>
-      </div>
-    </dialog>
-    <main id="main" tabindex="-1">
-      <!-- HOME PAGE -->
-      <div class="custom-page" data-page="home">
-        <!-- HOME / HERO: full viewport with responsive center text. -->
-        <section class="custom-hero" id="home-section-opening">
-          <!-- CSS-only Hero slideshow: all 8 property images cycle every 3 seconds. -->
-          <div class="custom-hero__slides" aria-hidden="true">
-            <img class="custom-hero__slide" src="images/losangeles-1.jpg" alt="" fetchpriority="high">
-            <img class="custom-hero__slide" src="images/beverlyhills-1.jpg" alt="" decoding="async">
-            <img class="custom-hero__slide" src="images/santamonica-1.jpg" alt="" decoding="async">
-            <img class="custom-hero__slide" src="images/westhollywood-1.jpg" alt="" decoding="async">
-            <img class="custom-hero__slide" src="images/losangeles-2.jpg" alt="" decoding="async">
-            <img class="custom-hero__slide" src="images/beverlyhills-2.jpg" alt="" decoding="async">
-            <img class="custom-hero__slide" src="images/santamonica-2.jpg" alt="" decoding="async">
-            <img class="custom-hero__slide" src="images/westhollywood-2.jpg" alt="" decoding="async">
-          </div>
-          <div class="custom-hero__content">
-            <!-- White RR mark lives here instead of in the fixed header. -->
-            <img class="custom-hero__rr-logo" src="images/rr-logo-white.png" alt="RR" width="210" height="210">
-            <h1>Rochelle <span class="custom-thin-plus">+</span> Roger</h1>
-            <div class="custom-hero__credentials" aria-label="Agent license information">
-              <p>Rochelle Reyes | CA DRE#01842987</p>
-              <p>Roger Tan | CA DRE#01842990</p>
-            </div>
+<!DOCTYPE html>
 
-            <!-- HERO CTA: keeping this here for later, but hiding it during the initial build.
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Explore an edited collection of Los Angeles homes and neighborhoods with Rochelle Reyes and Roger Tan." name="description"/>
+<meta content="#000000" name="theme-color"/>
+<title>Rochelle + Roger | Los Angeles Real Estate</title>
+<link href="template.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="https://s3-us-west-2.amazonaws.com/static-lp/fonts/compass/CompassSans/CompassSans-Regular.woff2" rel="preload" type="font/woff2"/>
+<link href="global-base.css" rel="stylesheet"/>
+<link href="global-advanced.css" rel="stylesheet"/>
+<link href="page-base.css" rel="stylesheet"/>
+<link href="page-advanced.css" rel="stylesheet"/>
+<script defer="" src="script.js"></script>
+</head>
+<body>
+<a class="custom-skip-link" href="#main">Skip to content</a>
+<!-- HEADER: keep the logo lock-up, desktop nav, and hamburger on the same fixed row. -->
+<header class="custom-header" id="global-navbar">
+<div class="custom-brand-group">
+<a aria-label="Rochelle and Roger home" class="custom-brand" href="#/">
+<span>ROCHELLE <b class="custom-thin-plus">+</b> ROGER</span>
+</a>
+<span aria-hidden="true" class="custom-brand-divider"></span>
+<img alt="Compass" class="custom-compass-logo" height="20" src="images/compass_light.png" width="145"/>
+</div>
+<nav aria-label="Main navigation" class="custom-desktop-nav">
+<a href="#/portfolio">Portfolio</a>
+<a href="#/home-valuation">Home Valuation</a>
+<a href="#/neighborhoods">Neighborhoods</a>
+<a href="#/meet-the-team">Meet the Team</a>
+<a href="#/testimonials">Testimonials</a>
+<button class="custom-nav-contact" data-open-contact-modal="" type="button">Contact Us</button>
+</nav>
+<button aria-controls="navigation-menu" aria-expanded="false" aria-label="Open menu" class="custom-menu-toggle">
+<span></span>
+<span></span>
+</button>
+</header>
+<!-- SIDE MENU: RR logo stays top-left; all menu links are aligned to the right. -->
+<dialog aria-label="Site navigation" class="custom-menu" id="navigation-menu">
+<div class="custom-menu__top">
+<a aria-label="Rochelle and Roger home" class="custom-menu__brand" href="#/">
+<img alt="RR" height="76" src="images/rr-logo-black.png" width="76"/>
+</a>
+<button aria-label="Close menu" class="custom-icon-button" data-close-menu="">×</button>
+</div>
+<div class="custom-menu__body">
+<nav aria-label="All pages">
+<a href="#/">Homepage</a>
+<a href="#/portfolio">Portfolio</a>
+<a href="#/home-valuation">Home Valuation</a>
+<a href="#/neighborhoods">Neighborhoods</a>
+<a href="#/meet-the-team">Meet the Team</a>
+<a href="#/testimonials">Testimonials</a>
+<a href="#/contact-us">Contact Us</a>
+<a href="#/compass-concierge">Compass Concierge</a>
+</nav>
+</div>
+</dialog>
+<main id="main" tabindex="-1">
+<!-- HOME PAGE -->
+<div class="custom-page" data-page="home">
+<!-- HOME / HERO: full viewport with responsive center text. -->
+<section class="custom-hero" id="home-section-opening">
+<!-- CSS-only Hero slideshow: all 8 property images cycle every 3 seconds. -->
+<div aria-hidden="true" class="custom-hero__slides">
+<img alt="" class="custom-hero__slide" fetchpriority="high" src="images/losangeles-1.jpg"/>
+<img alt="" class="custom-hero__slide" decoding="async" src="images/beverlyhills-1.jpg"/>
+<img alt="" class="custom-hero__slide" decoding="async" src="images/santamonica-1.jpg"/>
+<img alt="" class="custom-hero__slide" decoding="async" src="images/westhollywood-1.jpg"/>
+<img alt="" class="custom-hero__slide" decoding="async" src="images/losangeles-2.jpg"/>
+<img alt="" class="custom-hero__slide" decoding="async" src="images/beverlyhills-2.jpg"/>
+<img alt="" class="custom-hero__slide" decoding="async" src="images/santamonica-2.jpg"/>
+<img alt="" class="custom-hero__slide" decoding="async" src="images/westhollywood-2.jpg"/>
+</div>
+<div class="custom-hero__content">
+<!-- White RR mark lives here instead of in the fixed header. -->
+<img alt="RR" class="custom-hero__rr-logo" height="210" src="images/rr-logo-white.png" width="210"/>
+<h1>Rochelle <span class="custom-thin-plus">+</span> Roger</h1>
+<div aria-label="Agent license information" class="custom-hero__credentials">
+<p>Rochelle Reyes | CA DRE#01842987</p>
+<p>Roger Tan | CA DRE#01842990</p>
+</div>
+<!-- HERO CTA: keeping this here for later, but hiding it during the initial build.
             <a class="custom-button custom-button--light" href="#/portfolio">
               Explore the Portfolio
             </a>
             -->
-          </div>
-        </section>
-        <!-- HOME / ABOUT: Rochelle row first, Roger row second. -->
-        <section class="custom-section" id="home-section-introduction" aria-label="About Rochelle and Roger">
-          <div class="custom-container custom-agent-stories">
-            <article class="custom-agent-story">
-              <div class="custom-agent-story__photo">
-                <img src="images/agent-home-about-rochelle.jpg" alt="Rochelle Reyes" width="1200" height="1500" loading="lazy" decoding="async">
-              </div>
-              <div class="custom-agent-story__copy">
-                <p class="custom-eyebrow">A PERSONAL PERSPECTIVE</p>
-                <h2>Meet Rochelle.</h2>
-                <p>Rochelle Reyes is a Los Angeles-based real estate agent specializing in residential and luxury properties throughout Los Angeles and surrounding communities. She works with first-time buyers, growing families, investors, and homeowners looking to sell.</p>
-                <p>Rochelle believes that real estate should feel personal and straightforward. She takes the time to understand each client's goals, preferences, and priorities so she can provide guidance tailored to their needs.</p>
-                <a class="custom-button custom-button--outline" href="#/meet-the-team">More About Rochelle
+</div>
+</section>
+<!-- HOME / ABOUT: Rochelle row first, Roger row second. -->
+<section aria-label="About Rochelle and Roger" class="custom-section" id="home-section-introduction">
+<div class="custom-container custom-agent-stories">
+<article class="custom-agent-story">
+<div class="custom-agent-story__photo">
+<img alt="Rochelle Reyes" decoding="async" height="1500" loading="lazy" src="images/agent-home-about-rochelle.jpg" width="1200"/>
+</div>
+<div class="custom-agent-story__copy">
+<p class="custom-eyebrow">A PERSONAL PERSPECTIVE</p>
+<h2>Meet Rochelle</h2>
+<p>Rochelle Reyes is a Los Angeles-based real estate agent specializing in residential and luxury properties throughout Los Angeles and surrounding communities. She works with first-time buyers, growing families, investors, and homeowners looking to sell.</p>
+<p>Rochelle believes that real estate should feel personal and straightforward. She takes the time to understand each client's goals, preferences, and priorities so she can provide guidance tailored to their needs.</p>
+<a class="custom-button custom-button--outline" href="#/meet-the-team">More About Rochelle
                 </a>
-              </div>
-            </article>
-            <article class="custom-agent-story custom-agent-story--reverse">
-              <div class="custom-agent-story__copy">
-                <p class="custom-eyebrow">AN EYE FOR THE DETAILS</p>
-                <h2>Meet Roger.</h2>
-                <p>The way a room catches the light. The flow from indoors to out. The small details that make everyday life feel a little more considered.</p>
-                <p>Roger brings an appreciation for design and a practical, organized perspective to the search for home. Together with Rochelle, he shares a simple priority: understanding what your next move means to you.</p>
-                <a class="custom-button custom-button--outline" href="#/meet-the-team">More About Roger
+</div>
+</article>
+<article class="custom-agent-story custom-agent-story--reverse">
+<div class="custom-agent-story__copy">
+<p class="custom-eyebrow">AN EYE FOR THE DETAILS</p>
+<h2>Meet Roger</h2>
+<p>The way a room catches the light. The flow from indoors to out. The small details that make everyday life feel a little more considered.</p>
+<p>Roger brings an appreciation for design and a practical, organized perspective to the search for home. Together with Rochelle, he shares a simple priority: understanding what your next move means to you.</p>
+<a class="custom-button custom-button--outline" href="#/meet-the-team">More About Roger
                 </a>
-              </div>
-              <div class="custom-agent-story__photo">
-                <img src="images/agent-home-about-roger.jpg" alt="Roger Tan" width="1200" height="1500" loading="lazy" decoding="async">
-              </div>
-            </article>
-          </div>
-        </section>
-        <!-- HOME / GSM: Buy, About Us, Sell. This background uses parallax. -->
-        <section class="custom-gsm custom-parallax" id="home-section-buy-about-sell" aria-label="Buy, about us, and sell">
-          <a class="custom-gsm__card" href="#/portfolio">
-            <span class="custom-eyebrow">FIND YOUR PLACE</span>
-            <h2>BUY</h2>
-            <span class="custom-gsm__link">Explore homes
+</div>
+<div class="custom-agent-story__photo">
+<img alt="Roger Tan" decoding="async" height="1500" loading="lazy" src="images/agent-home-about-roger.jpg" width="1200"/>
+</div>
+</article>
+</div>
+</section>
+<!-- HOME / GSM: Buy, About Us, Sell. This background uses parallax. -->
+<section aria-label="Buy, about us, and sell" class="custom-gsm custom-parallax" id="home-section-buy-about-sell">
+<a class="custom-gsm__card" href="#/portfolio">
+<span class="custom-eyebrow">FIND YOUR PLACE</span>
+<h2>BUY</h2>
+<span class="custom-button custom-button--light custom-gsm__link">Explore homes
             </span>
-          </a>
-          <a class="custom-gsm__card" href="#/meet-the-team">
-            <span class="custom-eyebrow">A PERSONAL APPROACH</span>
-            <h2>ABOUT US</h2>
-            <span class="custom-gsm__link">Meet the team
+</a>
+<a class="custom-gsm__card" href="#/meet-the-team">
+<span class="custom-eyebrow">A PERSONAL APPROACH</span>
+<h2>ABOUT US</h2>
+<span class="custom-button custom-button--light custom-gsm__link">Meet the team
             </span>
-          </a>
-          <a class="custom-gsm__card" href="#/home-valuation">
-            <span class="custom-eyebrow">YOUR NEXT CHAPTER</span>
-            <h2>SELL</h2>
-            <span class="custom-gsm__link">Discover your home's value
+</a>
+<a class="custom-gsm__card" href="#/home-valuation">
+<span class="custom-eyebrow">YOUR NEXT CHAPTER</span>
+<h2>SELL</h2>
+<span class="custom-button custom-button--light custom-gsm__link">Discover your home's value
             </span>
-          </a>
-        </section>
-        <!-- HOME / STATS: keep this fluid so the numbers resize with the viewer. -->
-        <section class="custom-section" id="home-section-stats" aria-label="Rochelle Reyes by the numbers">
-          <div class="custom-container">
-            <div class="custom-section-heading">
-              <div>
-                <p class="custom-eyebrow">ROCHELLE REYES / BY THE NUMBERS</p>
-                <h2>Experience that makes a difference.</h2>
-              </div>
-            </div>
-            <!-- Stats marquee: duplicate the six items once so the CSS loop can stay seamless. -->
-            <div class="custom-stats-marquee">
-              <div class="custom-stats">
-                <div class="custom-stat">
-                  <span class="custom-stat__value">6+</span>
-                  <h3>Years of Experience</h3>
-                </div>
-                <div class="custom-stat">
-                  <span class="custom-stat__value">$48M+</span>
-                  <h3>in Sales</h3>
-                </div>
-                <div class="custom-stat">
-                  <span class="custom-stat__value">75+</span>
-                  <h3>Homes Sold</h3>
-                </div>
-                <div class="custom-stat">
-                  <span class="custom-stat__value">$1.8M</span>
-                  <h3>Average Sale Price</h3>
-                </div>
-                <div class="custom-stat">
-                  <span class="custom-stat__value custom-stat__value--location">Los Angeles</span>
-                  <h3>&amp; Surrounding Areas</h3>
-                </div>
-                <div class="custom-stat">
-                  <span class="custom-stat__value">100+</span>
-                  <h3>Clients Served</h3>
-                </div>
+</a>
+</section>
+<!-- HOME / STATS: keep this fluid so the numbers resize with the viewer. -->
+<section aria-label="Rochelle Reyes by the numbers" class="custom-section" id="home-section-stats">
+<div class="custom-container">
+<div class="custom-section-heading">
+<div>
+<p class="custom-eyebrow">ROCHELLE REYES / BY THE NUMBERS</p>
+<h2>Experience that makes a difference</h2>
+</div>
+</div>
+<!-- Stats marquee: duplicate the six items once so the CSS loop can stay seamless. -->
+<div class="custom-stats-marquee">
+<div class="custom-stats">
+<div class="custom-stat">
+<span class="custom-stat__value">6+</span>
+<h3>Years of Experience</h3>
+</div>
+<div class="custom-stat">
+<span class="custom-stat__value">$48M+</span>
+<h3>in Sales</h3>
+</div>
+<div class="custom-stat">
+<span class="custom-stat__value">75+</span>
+<h3>Homes Sold</h3>
+</div>
+<div class="custom-stat">
+<span class="custom-stat__value">$1.8M</span>
+<h3>Average Sale Price</h3>
+</div>
+<div class="custom-stat">
+<span class="custom-stat__value custom-stat__value--location">Los Angeles</span>
+<h3>&amp; Surrounding Areas</h3>
+</div>
+<div class="custom-stat">
+<span class="custom-stat__value">100+</span>
+<h3>Clients Served</h3>
+</div>
+<!-- Duplicate set is visual only; screen readers already have the original six stats. -->
+<div aria-hidden="true" class="custom-stat">
+<span class="custom-stat__value">6+</span>
+<h3>Years of Experience</h3>
+</div>
+<div aria-hidden="true" class="custom-stat">
+<span class="custom-stat__value">$48M+</span>
+<h3>in Sales</h3>
+</div>
+<div aria-hidden="true" class="custom-stat">
+<span class="custom-stat__value">75+</span>
+<h3>Homes Sold</h3>
+</div>
+<div aria-hidden="true" class="custom-stat">
+<span class="custom-stat__value">$1.8M</span>
+<h3>Average Sale Price</h3>
+</div>
+<div aria-hidden="true" class="custom-stat">
+<span class="custom-stat__value custom-stat__value--location">Los Angeles</span>
+<h3>&amp; Surrounding Areas</h3>
+</div>
+<div aria-hidden="true" class="custom-stat">
+<span class="custom-stat__value">100+</span>
+<h3>Clients Served</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- HOME / PROPERTIES: first 3 are FOR SALE; last 5 are SOLD. -->
+<section class="custom-section custom-home-portfolio" id="home-section-featured-properties">
+<div class="custom-featured-properties__heading custom-container">
+<h2>FEATURED PROPERTIES</h2>
+<p>Explore a selection of distinctive homes across Los Angeles, thoughtfully presented through architecture, setting, and lifestyle.</p>
+</div>
+<div class="custom-featured-properties" data-property-carousel="">
+<div class="custom-featured-properties__viewport">
+<div class="custom-featured-properties__track">
+<article class="custom-featured-property" data-area="los-angeles" data-details="4 Beds | 5 Baths | 3,850 Sq. Ft." data-location="Los Angeles" data-status="For Sale" data-title="The Canyon Residence">
+<button aria-label="View The Canyon Residence" class="custom-featured-property__media" data-property="canyon" type="button">
+<img alt="The Canyon Residence — property in Los Angeles" decoding="async" loading="lazy" src="images/losangeles-1.jpg"/>
+<span class="custom-featured-property__status">FOR SALE</span>
+<span class="custom-featured-property__overlay">
+<strong>The Canyon Residence</strong>
+<span>Los Angeles</span>
+<span>4 Beds | 5 Baths | 3,850 Sq. Ft.</span>
+</span>
+</button>
+</article>
+<article class="custom-featured-property" data-area="beverly-hills" data-details="5 Beds | 6 Baths | 5,200 Sq. Ft." data-location="Beverly Hills" data-status="For Sale" data-title="The Garden Estate">
+<button aria-label="View The Garden Estate" class="custom-featured-property__media" data-property="garden" type="button">
+<img alt="The Garden Estate — property in Beverly Hills" decoding="async" loading="lazy" src="images/beverlyhills-1.jpg"/>
+<span class="custom-featured-property__status">FOR SALE</span>
+<span class="custom-featured-property__overlay">
+<strong>The Garden Estate</strong>
+<span>Beverly Hills</span>
+<span>5 Beds | 6 Baths | 5,200 Sq. Ft.</span>
+</span>
+</button>
+</article>
+<article class="custom-featured-property" data-area="santa-monica" data-details="3 Beds | 3 Baths | 2,650 Sq. Ft." data-location="Santa Monica" data-status="For Sale" data-title="The Coastal Retreat">
+<button aria-label="View The Coastal Retreat" class="custom-featured-property__media" data-property="coastal" type="button">
+<img alt="The Coastal Retreat — property in Santa Monica" decoding="async" loading="lazy" src="images/santamonica-1.jpg"/>
+<span class="custom-featured-property__status">FOR SALE</span>
+<span class="custom-featured-property__overlay">
+<strong>The Coastal Retreat</strong>
+<span>Santa Monica</span>
+<span>3 Beds | 3 Baths | 2,650 Sq. Ft.</span>
+</span>
+</button>
+</article>
+<article class="custom-featured-property" data-area="west-hollywood" data-details="3 Beds | 4 Baths | 2,900 Sq. Ft." data-location="West Hollywood" data-status="Sold" data-title="The Courtyard House">
+<button aria-label="View The Courtyard House" class="custom-featured-property__media" data-property="courtyard" type="button">
+<img alt="The Courtyard House — property in West Hollywood" decoding="async" loading="lazy" src="images/westhollywood-1.jpg"/>
+<span class="custom-featured-property__status">SOLD</span>
+<span class="custom-featured-property__overlay">
+<strong>The Courtyard House</strong>
+<span>West Hollywood</span>
+<span>3 Beds | 4 Baths | 2,900 Sq. Ft.</span>
+</span>
+</button>
+</article>
+<article class="custom-featured-property" data-area="los-angeles" data-details="4 Beds | 4 Baths | 3,400 Sq. Ft." data-location="Los Angeles" data-status="Sold" data-title="The Hillside House">
+<button aria-label="View The Hillside House" class="custom-featured-property__media" data-property="hillside" type="button">
+<img alt="The Hillside House — property in Los Angeles" decoding="async" loading="lazy" src="images/losangeles-2.jpg"/>
+<span class="custom-featured-property__status">SOLD</span>
+<span class="custom-featured-property__overlay">
+<strong>The Hillside House</strong>
+<span>Los Angeles</span>
+<span>4 Beds | 4 Baths | 3,400 Sq. Ft.</span>
+</span>
+</button>
+</article>
+<article class="custom-featured-property" data-area="beverly-hills" data-details="5 Beds | 5 Baths | 4,800 Sq. Ft." data-location="Beverly Hills" data-status="Sold" data-title="The Olive Grove Estate">
+<button aria-label="View The Olive Grove Estate" class="custom-featured-property__media" data-property="olive" type="button">
+<img alt="The Olive Grove Estate — property in Beverly Hills" decoding="async" loading="lazy" src="images/beverlyhills-2.jpg"/>
+<span class="custom-featured-property__status">SOLD</span>
+<span class="custom-featured-property__overlay">
+<strong>The Olive Grove Estate</strong>
+<span>Beverly Hills</span>
+<span>5 Beds | 5 Baths | 4,800 Sq. Ft.</span>
+</span>
+</button>
+</article>
+<article class="custom-featured-property" data-area="santa-monica" data-details="4 Beds | 4 Baths | 3,100 Sq. Ft." data-location="Santa Monica" data-status="Sold" data-title="The Pacific Residence">
+<button aria-label="View The Pacific Residence" class="custom-featured-property__media" data-property="pacific" type="button">
+<img alt="The Pacific Residence — property in Santa Monica" decoding="async" loading="lazy" src="images/santamonica-2.jpg"/>
+<span class="custom-featured-property__status">SOLD</span>
+<span class="custom-featured-property__overlay">
+<strong>The Pacific Residence</strong>
+<span>Santa Monica</span>
+<span>4 Beds | 4 Baths | 3,100 Sq. Ft.</span>
+</span>
+</button>
+</article>
+<article class="custom-featured-property" data-area="west-hollywood" data-details="3 Beds | 3 Baths | 2,450 Sq. Ft." data-location="West Hollywood" data-status="Sold" data-title="The Modern Hideaway">
+<button aria-label="View The Modern Hideaway" class="custom-featured-property__media" data-property="modern" type="button">
+<img alt="The Modern Hideaway — property in West Hollywood" decoding="async" loading="lazy" src="images/westhollywood-2.jpg"/>
+<span class="custom-featured-property__status">SOLD</span>
+<span class="custom-featured-property__overlay">
+<strong>The Modern Hideaway</strong>
+<span>West Hollywood</span>
+<span>3 Beds | 3 Baths | 2,450 Sq. Ft.</span>
+</span>
+</button>
+</article>
+</div>
+</div>
+<div class="custom-featured-properties__footer custom-container">
+<div aria-label="Property gallery controls" class="custom-featured-properties__controls">
+<button aria-label="Previous property" class="lp-arrow lp-arrow--dark lp-arrow--prev" data-property-carousel-prev="" type="button"></button>
+<button aria-label="Next property" class="lp-arrow lp-arrow--dark lp-arrow--next" data-property-carousel-next="" type="button"></button>
+</div>
+<a class="custom-button custom-button--outline" href="#/portfolio">VIEW ALL PROPERTIES</a>
+</div>
+</div>
+</section>
+<!-- HOME / TESTIMONIALS -->
+<section class="custom-testimonial" id="home-section-testimonials">
+<div class="custom-container">
+<p class="custom-eyebrow">TESTIMONIALS</p>
+<div aria-label="Testimonials" class="custom-testimonial__viewport" data-testimonial-carousel="">
+<div class="custom-testimonial__track">
+<article class="custom-testimonial__slide" aria-current="true">
+<blockquote>“From our first conversation to the final details, we felt heard, informed, and completely at home with the process.”</blockquote>
+<cite class="custom-testimonial__name">- Marvin K.</cite>
+</article>
+<article class="custom-testimonial__slide">
+<blockquote>“A thoughtful plan, beautiful presentation, and clear communication. Every step felt considered.”</blockquote>
+<cite class="custom-testimonial__name">- Elena R.</cite>
+</article>
+<article class="custom-testimonial__slide">
+<blockquote>“They understood what mattered to us—the light, the layout, and the feeling of walking through the front door.”</blockquote>
+<cite class="custom-testimonial__name">- Daniel C.</cite>
+</article>
+<article class="custom-testimonial__slide">
+<blockquote>“What could have felt overwhelming became a series of clear, manageable decisions.”</blockquote>
+<cite class="custom-testimonial__name">- Sophia M.</cite>
+</article>
+<article class="custom-testimonial__slide">
+<blockquote>“We never felt rushed. Every option was explained clearly, and when the right home appeared, we knew exactly how to move.”</blockquote>
+<cite class="custom-testimonial__name">- Adrian L.</cite>
+</article>
+<article class="custom-testimonial__slide">
+<blockquote>“They brought calm to every conversation and made the sale feel organized from preparation through closing.”</blockquote>
+<cite class="custom-testimonial__name">- Natalie P.</cite>
+</article>
+<article class="custom-testimonial__slide">
+<blockquote>“Their attention to the small details made a huge difference. We always knew what was happening and what came next.”</blockquote>
+<cite class="custom-testimonial__name">- Marcus T.</cite>
+</article>
+<article class="custom-testimonial__slide">
+<blockquote>“We came in with a long wish list and left with a home that somehow felt even better than what we imagined.”</blockquote>
+<cite class="custom-testimonial__name">- Camille B.</cite>
+</article>
+</div>
+</div>
+<div aria-label="Testimonial controls" class="custom-testimonial__controls">
+<button aria-label="Previous testimonial" class="lp-arrow lp-arrow--dark lp-arrow--prev" data-testimonial-prev="" type="button"></button>
+<button aria-label="Next testimonial" class="lp-arrow lp-arrow--dark lp-arrow--next" data-testimonial-next="" type="button"></button>
+</div>
+<a class="custom-button custom-button--outline" href="#/testimonials">VIEW ALL</a>
+</div>
+</section>
+<!-- HOME / CONTACT CTA: button opens the modal; no form lives directly in this section. -->
+<section class="custom-section custom-home-contact custom-parallax" id="home-section-contact-us">
+<div class="custom-container custom-home-contact__layout">
+<p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
+<h2>WORK WITH ROCHELLE <span class="custom-thin-plus">+</span> ROGER</h2>
+<p>Whether you’re buying, selling, or simply exploring what comes next, we’re here to make the process personal, clear, and thoughtfully guided.</p>
+<button class="custom-button custom-button--light" data-open-contact-modal="" type="button">CONTACT US</button>
+</div>
+</section>
+</div>
+<!-- PORTFOLIO PAGE: same property status order as the homepage (3 For Sale, then 5 Sold). -->
+<div class="custom-page" data-page="portfolio" hidden="">
+<section class="custom-page-intro" id="portfolio-section-opening">
+<div class="custom-container">
+<p class="custom-eyebrow">THE COLLECTION</p><div class="custom-page-intro__title-lockup"><h1>A place for your next chapter</h1><span aria-hidden="true" class="custom-page-intro__title-divider"></span><img alt="" aria-hidden="true" class="custom-page-intro__title-logo" height="92" loading="eager" src="images/rr-logo-white.png" width="92"/></div>
 
-                <!-- Duplicate set is visual only; screen readers already have the original six stats. -->
-                <div class="custom-stat" aria-hidden="true">
-                  <span class="custom-stat__value">6+</span>
-                  <h3>Years of Experience</h3>
-                </div>
-                <div class="custom-stat" aria-hidden="true">
-                  <span class="custom-stat__value">$48M+</span>
-                  <h3>in Sales</h3>
-                </div>
-                <div class="custom-stat" aria-hidden="true">
-                  <span class="custom-stat__value">75+</span>
-                  <h3>Homes Sold</h3>
-                </div>
-                <div class="custom-stat" aria-hidden="true">
-                  <span class="custom-stat__value">$1.8M</span>
-                  <h3>Average Sale Price</h3>
-                </div>
-                <div class="custom-stat" aria-hidden="true">
-                  <span class="custom-stat__value custom-stat__value--location">Los Angeles</span>
-                  <h3>&amp; Surrounding Areas</h3>
-                </div>
-                <div class="custom-stat" aria-hidden="true">
-                  <span class="custom-stat__value">100+</span>
-                  <h3>Clients Served</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- HOME / PROPERTIES: first 3 are FOR SALE; last 5 are SOLD. -->
-        <section class="custom-section custom-home-portfolio" id="home-section-featured-properties">
-          <div class="custom-featured-properties__heading custom-container">
-            <h2>FEATURED PROPERTIES</h2>
-            <p>Explore a selection of distinctive homes across Los Angeles, thoughtfully presented through architecture, setting, and lifestyle.</p>
-          </div>
-          <div class="custom-featured-properties" data-property-carousel>
-            <div class="custom-featured-properties__viewport">
-              <div class="custom-featured-properties__track">
-                <article class="custom-featured-property" data-area="los-angeles" data-status="For Sale" data-title="The Canyon Residence" data-location="Los Angeles" data-details="4 Beds | 5 Baths | 3,850 Sq. Ft.">
-                  <button class="custom-featured-property__media" type="button" data-property="canyon" aria-label="View The Canyon Residence">
-                    <img src="images/losangeles-1.jpg" alt="The Canyon Residence — illustrative property in Los Angeles" loading="lazy" decoding="async">
-                    <span class="custom-featured-property__status">FOR SALE</span>
-                    <span class="custom-featured-property__overlay">
-                      <strong>The Canyon Residence</strong>
-                      <span>Los Angeles</span>
-                      <span>4 Beds | 5 Baths | 3,850 Sq. Ft.</span>
-                    </span>
-                  </button>
-                </article>
-                <article class="custom-featured-property" data-area="beverly-hills" data-status="For Sale" data-title="The Garden Estate" data-location="Beverly Hills" data-details="5 Beds | 6 Baths | 5,200 Sq. Ft.">
-                  <button class="custom-featured-property__media" type="button" data-property="garden" aria-label="View The Garden Estate">
-                    <img src="images/beverlyhills-1.jpg" alt="The Garden Estate — illustrative property in Beverly Hills" loading="lazy" decoding="async">
-                    <span class="custom-featured-property__status">FOR SALE</span>
-                    <span class="custom-featured-property__overlay">
-                      <strong>The Garden Estate</strong>
-                      <span>Beverly Hills</span>
-                      <span>5 Beds | 6 Baths | 5,200 Sq. Ft.</span>
-                    </span>
-                  </button>
-                </article>
-                <article class="custom-featured-property" data-area="santa-monica" data-status="For Sale" data-title="The Coastal Retreat" data-location="Santa Monica" data-details="3 Beds | 3 Baths | 2,650 Sq. Ft.">
-                  <button class="custom-featured-property__media" type="button" data-property="coastal" aria-label="View The Coastal Retreat">
-                    <img src="images/santamonica-1.jpg" alt="The Coastal Retreat — illustrative property in Santa Monica" loading="lazy" decoding="async">
-                    <span class="custom-featured-property__status">FOR SALE</span>
-                    <span class="custom-featured-property__overlay">
-                      <strong>The Coastal Retreat</strong>
-                      <span>Santa Monica</span>
-                      <span>3 Beds | 3 Baths | 2,650 Sq. Ft.</span>
-                    </span>
-                  </button>
-                </article>
-                <article class="custom-featured-property" data-area="west-hollywood" data-status="Sold" data-title="The Courtyard House" data-location="West Hollywood" data-details="3 Beds | 4 Baths | 2,900 Sq. Ft.">
-                  <button class="custom-featured-property__media" type="button" data-property="courtyard" aria-label="View The Courtyard House">
-                    <img src="images/westhollywood-1.jpg" alt="The Courtyard House — illustrative property in West Hollywood" loading="lazy" decoding="async">
-                    <span class="custom-featured-property__status">SOLD</span>
-                    <span class="custom-featured-property__overlay">
-                      <strong>The Courtyard House</strong>
-                      <span>West Hollywood</span>
-                      <span>3 Beds | 4 Baths | 2,900 Sq. Ft.</span>
-                    </span>
-                  </button>
-                </article>
-                <article class="custom-featured-property" data-area="los-angeles" data-status="Sold" data-title="The Hillside House" data-location="Los Angeles" data-details="4 Beds | 4 Baths | 3,400 Sq. Ft.">
-                  <button class="custom-featured-property__media" type="button" data-property="hillside" aria-label="View The Hillside House">
-                    <img src="images/losangeles-2.jpg" alt="The Hillside House — illustrative property in Los Angeles" loading="lazy" decoding="async">
-                    <span class="custom-featured-property__status">SOLD</span>
-                    <span class="custom-featured-property__overlay">
-                      <strong>The Hillside House</strong>
-                      <span>Los Angeles</span>
-                      <span>4 Beds | 4 Baths | 3,400 Sq. Ft.</span>
-                    </span>
-                  </button>
-                </article>
-                <article class="custom-featured-property" data-area="beverly-hills" data-status="Sold" data-title="The Olive Grove Estate" data-location="Beverly Hills" data-details="5 Beds | 5 Baths | 4,800 Sq. Ft.">
-                  <button class="custom-featured-property__media" type="button" data-property="olive" aria-label="View The Olive Grove Estate">
-                    <img src="images/beverlyhills-2.jpg" alt="The Olive Grove Estate — illustrative property in Beverly Hills" loading="lazy" decoding="async">
-                    <span class="custom-featured-property__status">SOLD</span>
-                    <span class="custom-featured-property__overlay">
-                      <strong>The Olive Grove Estate</strong>
-                      <span>Beverly Hills</span>
-                      <span>5 Beds | 5 Baths | 4,800 Sq. Ft.</span>
-                    </span>
-                  </button>
-                </article>
-                <article class="custom-featured-property" data-area="santa-monica" data-status="Sold" data-title="The Pacific Residence" data-location="Santa Monica" data-details="4 Beds | 4 Baths | 3,100 Sq. Ft.">
-                  <button class="custom-featured-property__media" type="button" data-property="pacific" aria-label="View The Pacific Residence">
-                    <img src="images/santamonica-2.jpg" alt="The Pacific Residence — illustrative property in Santa Monica" loading="lazy" decoding="async">
-                    <span class="custom-featured-property__status">SOLD</span>
-                    <span class="custom-featured-property__overlay">
-                      <strong>The Pacific Residence</strong>
-                      <span>Santa Monica</span>
-                      <span>4 Beds | 4 Baths | 3,100 Sq. Ft.</span>
-                    </span>
-                  </button>
-                </article>
-                <article class="custom-featured-property" data-area="west-hollywood" data-status="Sold" data-title="The Modern Hideaway" data-location="West Hollywood" data-details="3 Beds | 3 Baths | 2,450 Sq. Ft.">
-                  <button class="custom-featured-property__media" type="button" data-property="modern" aria-label="View The Modern Hideaway">
-                    <img src="images/westhollywood-2.jpg" alt="The Modern Hideaway — illustrative property in West Hollywood" loading="lazy" decoding="async">
-                    <span class="custom-featured-property__status">SOLD</span>
-                    <span class="custom-featured-property__overlay">
-                      <strong>The Modern Hideaway</strong>
-                      <span>West Hollywood</span>
-                      <span>3 Beds | 3 Baths | 2,450 Sq. Ft.</span>
-                    </span>
-                  </button>
-                </article>
-              </div>
-            </div>
-            <div class="custom-featured-properties__footer custom-container">
-              <div class="custom-featured-properties__controls" aria-label="Property gallery controls">
-                <button type="button" data-property-carousel-prev aria-label="Previous property">‹</button>
-                <button type="button" data-property-carousel-next aria-label="Next property">›</button>
-              </div>
-              <a class="custom-button custom-button--outline" href="#/portfolio">VIEW ALL PROPERTIES</a>
-            </div>
-          </div>
-        </section>
-        <!-- HOME / TESTIMONIALS -->
-        <section class="custom-testimonial" id="home-section-testimonials">
-          <div class="custom-container">
-            <p class="custom-eyebrow">TESTIMONIALS</p>
-            <blockquote>“From our first conversation to the final details, we felt heard, informed, and completely at home with the process.”</blockquote>
-            <a class="custom-button custom-button--outline" href="#/testimonials">VIEW ALL</a>
-          </div>
-        </section>
-        <!-- HOME / CONTACT CTA: button opens the modal; no form lives directly in this section. -->
-        <section class="custom-section custom-home-contact custom-parallax" id="home-section-contact-us">
-          <div class="custom-container custom-home-contact__layout">
-            <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
-            <h2>WORK WITH ROCHELLE <span class="custom-thin-plus">+</span> ROGER</h2>
-            <p>Whether you’re buying, selling, or simply exploring what comes next, we’re here to make the process personal, clear, and thoughtfully guided.</p>
-            <button type="button" class="custom-button custom-button--light" data-open-contact-modal>CONTACT US</button>
-          </div>
-        </section>
-      </div>
-      <!-- PORTFOLIO PAGE: same property status order as the homepage (3 For Sale, then 5 Sold). -->
-      <div class="custom-page" data-page="portfolio" hidden>
-        <section class="custom-page-intro" id="portfolio-section-opening">
-          <div class="custom-container">
-            <p class="custom-eyebrow">THE COLLECTION</p>
-            <h1>A place for your next chapter.</h1>
-            <p>Explore homes through architecture, setting, and a sense of possibility.</p>
-          </div>
-        </section>
-        <section class="custom-section" id="portfolio-section-portfolio">
-          <div class="custom-container">
-            <p class="custom-note custom-portfolio-note">Practice portfolio: these generated images and fictional property details demonstrate the design. No properties shown are offered for sale.</p>
-            <div class="custom-filter-bar">
-              <div class="custom-filter-tabs" aria-label="Filter by listing status">
-                <button data-filter="all" aria-pressed="true">All Homes</button>
-                <button data-filter="For Sale" aria-pressed="false">For Sale</button>
-                <button data-filter="Sold" aria-pressed="false">Sold</button>
-              </div>
-              <label class="custom-filter-select">Neighborhood<select id="area-filter">
-                  <option value="all">All neighborhoods</option>
-                  <option value="los-angeles">Los Angeles</option>
-                  <option value="beverly-hills">Beverly Hills</option>
-                  <option value="santa-monica">Santa Monica</option>
-                  <option value="west-hollywood">West Hollywood</option>
-                </select>
-              </label>
-            </div>
-            <div class="custom-property-grid" id="portfolio-grid">
-              <article class="custom-property-card" data-area="los-angeles" data-status="For Sale">
-                <button class="custom-property-card__media" data-property="canyon" aria-label="View The Canyon Residence">
-                  <img src="images/losangeles-1.jpg" alt="The Canyon Residence — illustrative property in Los Angeles" class="" loading="lazy" decoding="async">
-                  <span class="custom-property-card__status">FOR SALE</span>
-                  <span class="custom-property-card__arrow" aria-hidden="true">↗</span>
-                </button>
-                <div class="custom-property-card__info">
-                  <p class="custom-eyebrow">Los Angeles</p>
-                  <h3>
-                    <button data-property="canyon">The Canyon Residence</button>
-                  </h3>
-                  <p>4 Beds <span aria-hidden="true">  |  </span> 5 Baths <span aria-hidden="true">  |  </span> 3,850 Sq. Ft.</p>
-                </div>
-              </article>
-              <article class="custom-property-card" data-area="beverly-hills" data-status="For Sale">
-                <button class="custom-property-card__media" data-property="garden" aria-label="View The Garden Estate">
-                  <img src="images/beverlyhills-1.jpg" alt="The Garden Estate — illustrative property in Beverly Hills" class="" loading="lazy" decoding="async">
-                  <span class="custom-property-card__status">FOR SALE</span>
-                  <span class="custom-property-card__arrow" aria-hidden="true">↗</span>
-                </button>
-                <div class="custom-property-card__info">
-                  <p class="custom-eyebrow">Beverly Hills</p>
-                  <h3>
-                    <button data-property="garden">The Garden Estate</button>
-                  </h3>
-                  <p>5 Beds <span aria-hidden="true">  |  </span> 6 Baths <span aria-hidden="true">  |  </span> 5,200 Sq. Ft.</p>
-                </div>
-              </article>
-              <article class="custom-property-card" data-area="santa-monica" data-status="For Sale">
-                <button class="custom-property-card__media" data-property="coastal" aria-label="View The Coastal Retreat">
-                  <img src="images/santamonica-1.jpg" alt="The Coastal Retreat — illustrative property in Santa Monica" class="" loading="lazy" decoding="async">
-                  <span class="custom-property-card__status">FOR SALE</span>
-                  <span class="custom-property-card__arrow" aria-hidden="true">↗</span>
-                </button>
-                <div class="custom-property-card__info">
-                  <p class="custom-eyebrow">Santa Monica</p>
-                  <h3>
-                    <button data-property="coastal">The Coastal Retreat</button>
-                  </h3>
-                  <p>3 Beds <span aria-hidden="true">  |  </span> 3 Baths <span aria-hidden="true">  |  </span> 2,650 Sq. Ft.</p>
-                </div>
-              </article>
-              <article class="custom-property-card" data-area="west-hollywood" data-status="Sold">
-                <button class="custom-property-card__media" data-property="courtyard" aria-label="View The Courtyard House">
-                  <img src="images/westhollywood-1.jpg" alt="The Courtyard House — illustrative property in West Hollywood" class="" loading="lazy" decoding="async">
-                  <span class="custom-property-card__status">SOLD</span>
-                  <span class="custom-property-card__arrow" aria-hidden="true">↗</span>
-                </button>
-                <div class="custom-property-card__info">
-                  <p class="custom-eyebrow">West Hollywood</p>
-                  <h3>
-                    <button data-property="courtyard">The Courtyard House</button>
-                  </h3>
-                  <p>3 Beds <span aria-hidden="true">  |  </span> 4 Baths <span aria-hidden="true">  |  </span> 2,900 Sq. Ft.</p>
-                </div>
-              </article>
-              <article class="custom-property-card" data-area="los-angeles" data-status="Sold">
-                <button class="custom-property-card__media" data-property="hillside" aria-label="View The Hillside House">
-                  <img src="images/losangeles-2.jpg" alt="The Hillside House — illustrative property in Los Angeles" class="" loading="lazy" decoding="async">
-                  <span class="custom-property-card__status">SOLD</span>
-                  <span class="custom-property-card__arrow" aria-hidden="true">↗</span>
-                </button>
-                <div class="custom-property-card__info">
-                  <p class="custom-eyebrow">Los Angeles</p>
-                  <h3>
-                    <button data-property="hillside">The Hillside House</button>
-                  </h3>
-                  <p>4 Beds <span aria-hidden="true">  |  </span> 4 Baths <span aria-hidden="true">  |  </span> 3,400 Sq. Ft.</p>
-                </div>
-              </article>
-              <article class="custom-property-card" data-area="beverly-hills" data-status="Sold">
-                <button class="custom-property-card__media" data-property="olive" aria-label="View The Olive Grove Estate">
-                  <img src="images/beverlyhills-2.jpg" alt="The Olive Grove Estate — illustrative property in Beverly Hills" class="" loading="lazy" decoding="async">
-                  <span class="custom-property-card__status">SOLD</span>
-                  <span class="custom-property-card__arrow" aria-hidden="true">↗</span>
-                </button>
-                <div class="custom-property-card__info">
-                  <p class="custom-eyebrow">Beverly Hills</p>
-                  <h3>
-                    <button data-property="olive">The Olive Grove Estate</button>
-                  </h3>
-                  <p>5 Beds <span aria-hidden="true">  |  </span> 5 Baths <span aria-hidden="true">  |  </span> 4,800 Sq. Ft.</p>
-                </div>
-              </article>
-              <article class="custom-property-card" data-area="santa-monica" data-status="Sold">
-                <button class="custom-property-card__media" data-property="pacific" aria-label="View The Pacific Residence">
-                  <img src="images/santamonica-2.jpg" alt="The Pacific Residence — illustrative property in Santa Monica" class="" loading="lazy" decoding="async">
-                  <span class="custom-property-card__status">SOLD</span>
-                  <span class="custom-property-card__arrow" aria-hidden="true">↗</span>
-                </button>
-                <div class="custom-property-card__info">
-                  <p class="custom-eyebrow">Santa Monica</p>
-                  <h3>
-                    <button data-property="pacific">The Pacific Residence</button>
-                  </h3>
-                  <p>4 Beds <span aria-hidden="true">  |  </span> 4 Baths <span aria-hidden="true">  |  </span> 3,100 Sq. Ft.</p>
-                </div>
-              </article>
-              <article class="custom-property-card" data-area="west-hollywood" data-status="Sold">
-                <button class="custom-property-card__media" data-property="modern" aria-label="View The Modern Hideaway">
-                  <img src="images/westhollywood-2.jpg" alt="The Modern Hideaway — illustrative property in West Hollywood" class="" loading="lazy" decoding="async">
-                  <span class="custom-property-card__status">SOLD</span>
-                  <span class="custom-property-card__arrow" aria-hidden="true">↗</span>
-                </button>
-                <div class="custom-property-card__info">
-                  <p class="custom-eyebrow">West Hollywood</p>
-                  <h3>
-                    <button data-property="modern">The Modern Hideaway</button>
-                  </h3>
-                  <p>3 Beds <span aria-hidden="true">  |  </span> 3 Baths <span aria-hidden="true">  |  </span> 2,450 Sq. Ft.</p>
-                </div>
-              </article>
-            </div>
-            <p class="custom-result-count" id="portfolio-count" role="status">8 homes · Illustrative collection</p>
-          </div>
-        </section>
-        <section class="custom-cta" id="portfolio-section-work-with-us">
-          <img src="images/losangeles-2.jpg" alt="A contemporary Los Angeles residence" class="" loading="lazy" decoding="async">
-          <div>
-            <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
-            <h2>Let’s make it home.</h2>
-            <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
+<p>Explore homes through architecture, setting, and a sense of possibility.</p>
+</div>
+</section>
+<section class="custom-section" id="portfolio-section-portfolio">
+<div class="custom-container">
+<div class="custom-filter-bar">
+<div aria-label="Filter by listing status" class="custom-filter-tabs">
+<button aria-pressed="true" data-filter="all">All Homes</button>
+<button aria-pressed="false" data-filter="For Sale">For Sale</button>
+<button aria-pressed="false" data-filter="Sold">Sold</button>
+</div>
+<label class="custom-filter-select">Neighborhood<select id="area-filter">
+<option value="all">All neighborhoods</option>
+<option value="los-angeles">Los Angeles</option>
+<option value="beverly-hills">Beverly Hills</option>
+<option value="santa-monica">Santa Monica</option>
+<option value="west-hollywood">West Hollywood</option>
+</select>
+</label>
+</div>
+<div class="custom-property-grid" id="portfolio-grid">
+<article class="custom-property-card" data-area="los-angeles" data-status="For Sale">
+<button aria-label="View The Canyon Residence" class="custom-property-card__media" data-property="canyon">
+<img alt="The Canyon Residence — property in Los Angeles" class="" decoding="async" loading="lazy" src="images/losangeles-1.jpg"/>
+<span class="custom-property-card__status">FOR SALE</span>
+<span aria-hidden="true" class="custom-property-card__arrow">↗</span>
+</button>
+<div class="custom-property-card__info">
+<p class="custom-eyebrow">Los Angeles</p>
+<h3>
+<button data-property="canyon">The Canyon Residence</button>
+</h3>
+<p>4 Beds <span aria-hidden="true">  |  </span> 5 Baths <span aria-hidden="true">  |  </span> 3,850 Sq. Ft.</p>
+</div>
+</article>
+<article class="custom-property-card" data-area="beverly-hills" data-status="For Sale">
+<button aria-label="View The Garden Estate" class="custom-property-card__media" data-property="garden">
+<img alt="The Garden Estate — property in Beverly Hills" class="" decoding="async" loading="lazy" src="images/beverlyhills-1.jpg"/>
+<span class="custom-property-card__status">FOR SALE</span>
+<span aria-hidden="true" class="custom-property-card__arrow">↗</span>
+</button>
+<div class="custom-property-card__info">
+<p class="custom-eyebrow">Beverly Hills</p>
+<h3>
+<button data-property="garden">The Garden Estate</button>
+</h3>
+<p>5 Beds <span aria-hidden="true">  |  </span> 6 Baths <span aria-hidden="true">  |  </span> 5,200 Sq. Ft.</p>
+</div>
+</article>
+<article class="custom-property-card" data-area="santa-monica" data-status="For Sale">
+<button aria-label="View The Coastal Retreat" class="custom-property-card__media" data-property="coastal">
+<img alt="The Coastal Retreat — property in Santa Monica" class="" decoding="async" loading="lazy" src="images/santamonica-1.jpg"/>
+<span class="custom-property-card__status">FOR SALE</span>
+<span aria-hidden="true" class="custom-property-card__arrow">↗</span>
+</button>
+<div class="custom-property-card__info">
+<p class="custom-eyebrow">Santa Monica</p>
+<h3>
+<button data-property="coastal">The Coastal Retreat</button>
+</h3>
+<p>3 Beds <span aria-hidden="true">  |  </span> 3 Baths <span aria-hidden="true">  |  </span> 2,650 Sq. Ft.</p>
+</div>
+</article>
+<article class="custom-property-card" data-area="west-hollywood" data-status="Sold">
+<button aria-label="View The Courtyard House" class="custom-property-card__media" data-property="courtyard">
+<img alt="The Courtyard House — property in West Hollywood" class="" decoding="async" loading="lazy" src="images/westhollywood-1.jpg"/>
+<span class="custom-property-card__status">SOLD</span>
+<span aria-hidden="true" class="custom-property-card__arrow">↗</span>
+</button>
+<div class="custom-property-card__info">
+<p class="custom-eyebrow">West Hollywood</p>
+<h3>
+<button data-property="courtyard">The Courtyard House</button>
+</h3>
+<p>3 Beds <span aria-hidden="true">  |  </span> 4 Baths <span aria-hidden="true">  |  </span> 2,900 Sq. Ft.</p>
+</div>
+</article>
+<article class="custom-property-card" data-area="los-angeles" data-status="Sold">
+<button aria-label="View The Hillside House" class="custom-property-card__media" data-property="hillside">
+<img alt="The Hillside House — property in Los Angeles" class="" decoding="async" loading="lazy" src="images/losangeles-2.jpg"/>
+<span class="custom-property-card__status">SOLD</span>
+<span aria-hidden="true" class="custom-property-card__arrow">↗</span>
+</button>
+<div class="custom-property-card__info">
+<p class="custom-eyebrow">Los Angeles</p>
+<h3>
+<button data-property="hillside">The Hillside House</button>
+</h3>
+<p>4 Beds <span aria-hidden="true">  |  </span> 4 Baths <span aria-hidden="true">  |  </span> 3,400 Sq. Ft.</p>
+</div>
+</article>
+<article class="custom-property-card" data-area="beverly-hills" data-status="Sold">
+<button aria-label="View The Olive Grove Estate" class="custom-property-card__media" data-property="olive">
+<img alt="The Olive Grove Estate — property in Beverly Hills" class="" decoding="async" loading="lazy" src="images/beverlyhills-2.jpg"/>
+<span class="custom-property-card__status">SOLD</span>
+<span aria-hidden="true" class="custom-property-card__arrow">↗</span>
+</button>
+<div class="custom-property-card__info">
+<p class="custom-eyebrow">Beverly Hills</p>
+<h3>
+<button data-property="olive">The Olive Grove Estate</button>
+</h3>
+<p>5 Beds <span aria-hidden="true">  |  </span> 5 Baths <span aria-hidden="true">  |  </span> 4,800 Sq. Ft.</p>
+</div>
+</article>
+<article class="custom-property-card" data-area="santa-monica" data-status="Sold">
+<button aria-label="View The Pacific Residence" class="custom-property-card__media" data-property="pacific">
+<img alt="The Pacific Residence — property in Santa Monica" class="" decoding="async" loading="lazy" src="images/santamonica-2.jpg"/>
+<span class="custom-property-card__status">SOLD</span>
+<span aria-hidden="true" class="custom-property-card__arrow">↗</span>
+</button>
+<div class="custom-property-card__info">
+<p class="custom-eyebrow">Santa Monica</p>
+<h3>
+<button data-property="pacific">The Pacific Residence</button>
+</h3>
+<p>4 Beds <span aria-hidden="true">  |  </span> 4 Baths <span aria-hidden="true">  |  </span> 3,100 Sq. Ft.</p>
+</div>
+</article>
+<article class="custom-property-card" data-area="west-hollywood" data-status="Sold">
+<button aria-label="View The Modern Hideaway" class="custom-property-card__media" data-property="modern">
+<img alt="The Modern Hideaway — property in West Hollywood" class="" decoding="async" loading="lazy" src="images/westhollywood-2.jpg"/>
+<span class="custom-property-card__status">SOLD</span>
+<span aria-hidden="true" class="custom-property-card__arrow">↗</span>
+</button>
+<div class="custom-property-card__info">
+<p class="custom-eyebrow">West Hollywood</p>
+<h3>
+<button data-property="modern">The Modern Hideaway</button>
+</h3>
+<p>3 Beds <span aria-hidden="true">  |  </span> 3 Baths <span aria-hidden="true">  |  </span> 2,450 Sq. Ft.</p>
+</div>
+</article>
+</div>
+<p class="custom-result-count" id="portfolio-count" role="status">8 homes</p>
+</div>
+</section>
+<section class="custom-cta" id="portfolio-section-work-with-us">
+<img alt="A contemporary Los Angeles residence" class="" decoding="async" loading="lazy" src="images/losangeles-2.jpg"/>
+<div>
+<p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
+<h2>Let’s make it home</h2>
+<p>A new address begins with a conversation. Tell us where you want to go next.</p>
+<a class="custom-button custom-button--light" data-open-contact-modal="" href="#contact-modal">Work With Us
             </a>
-          </div>
-        </section>
-      </div>
-      <!-- HOME VALUATION PAGE -->
-      <div class="custom-page" data-page="home-valuation" hidden>
-        <section class="custom-valuation" id="home-valuation-section-valuation">
-          <div class="custom-valuation__image">
-            <img src="images/beverlyhills-2.jpg" alt="An elegant residential estate" class="" fetchpriority="high" decoding="async">
-            <div>
-              <p class="custom-eyebrow">A FRESH PERSPECTIVE ON YOUR PROPERTY</p>
-              <h2>Every home<br>has a story.</h2>
-            </div>
-          </div>
-          <div class="custom-valuation__body">
-            <p class="custom-eyebrow">HOME VALUATION</p>
-            <h1>What’s your<br>next chapter worth?</h1>
-            <p>Begin a conversation about your home, your plans, and the factors that shape its value.</p>
-            <form id="valuation-form">
-              <fieldset id="valuation-step-1">
-                <legend>01 / Your property</legend>
-                <div class="custom-form-grid">
-                  <div class="custom-field">
-                    <label for="address">Street address *</label>
-                    <input id="address" name="address" type="text" required autocomplete="street-address" class="custom-address">
-                  </div>
-                  <div class="custom-field">
-                    <label for="city">City *</label>
-                    <input id="city" name="city" type="text" required autocomplete="address-level2">
-                  </div>
-                  <div class="custom-field">
-                    <label for="zip">ZIP code *</label>
-                    <input id="zip" name="zip" type="text" required pattern="[0-9]{5}(-[0-9]{4})?" inputmode="numeric" autocomplete="postal-code" title="Enter a 5-digit ZIP code">
-                  </div>
-                  <div class="custom-field">
-                    <label for="property-type">Property type</label>
-                    <select id="property-type" name="property-type">
-                      <option>Single-family home</option>
-                      <option>Condominium</option>
-                      <option>Townhouse</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="custom-step-actions">
-                  <span class="custom-note">Step 1 of 2</span>
-                  <button class="custom-button" type="button" id="valuation-next">Continue <span>→</span>
+</div>
+</section>
+</div>
+<!-- HOME VALUATION PAGE -->
+<div class="custom-page" data-page="home-valuation" hidden="">
+<section class="custom-valuation" id="home-valuation-section-valuation">
+<div class="custom-valuation__image">
+<img alt="An elegant residential estate" class="" decoding="async" fetchpriority="high" src="images/beverlyhills-2.jpg"/>
+<div>
+<p class="custom-eyebrow">A FRESH PERSPECTIVE ON YOUR PROPERTY</p>
+<h2>Every home<br/>has a story</h2>
+</div>
+</div>
+<div class="custom-valuation__body">
+<p class="custom-eyebrow">HOME VALUATION</p>
+<h1>What’s your<br/>next chapter worth?</h1>
+<p>Begin a conversation about your home, your plans, and the factors that shape its value.</p>
+<form id="valuation-form">
+<fieldset id="valuation-step-1">
+<legend>01 / Your property</legend>
+<div class="custom-form-grid">
+<div class="custom-field">
+<label for="address">Street address *</label>
+<input autocomplete="street-address" class="custom-address" id="address" name="address" required="" type="text"/>
+</div>
+<div class="custom-field">
+<label for="city">City *</label>
+<input autocomplete="address-level2" id="city" name="city" required="" type="text"/>
+</div>
+<div class="custom-field">
+<label for="zip">ZIP code *</label>
+<input autocomplete="postal-code" id="zip" inputmode="numeric" name="zip" pattern="[0-9]{5}(-[0-9]{4})?" required="" title="Enter a 5-digit ZIP code" type="text"/>
+</div>
+<div class="custom-field">
+<label for="property-type">Property type</label>
+<select id="property-type" name="property-type">
+<option>Single-family home</option>
+<option>Condominium</option>
+<option>Townhouse</option>
+<option>Other</option>
+</select>
+</div>
+</div>
+<div class="custom-step-actions">
+<span class="custom-note">Step 1 of 2</span>
+<button class="custom-button" id="valuation-next" type="button">Continue <span>→</span>
+</button>
+</div>
+</fieldset>
+<fieldset disabled="" hidden="" id="valuation-step-2">
+<legend>02 / Your details</legend>
+<div class="custom-form-grid">
+<div class="custom-field">
+<label for="valuation-name">Full name *</label>
+<input autocomplete="name" id="valuation-name" name="valuation-name" required="" type="text"/>
+</div>
+<div class="custom-field">
+<label for="valuation-email">Email *</label>
+<input autocomplete="email" id="valuation-email" name="valuation-email" required="" type="email"/>
+</div>
+<div class="custom-field">
+<label for="valuation-phone">Phone</label>
+<input autocomplete="tel" id="valuation-phone" name="valuation-phone" type="tel"/>
+</div>
+<div class="custom-field">
+<label for="timeline">When are you considering selling?</label>
+<select id="timeline" name="timeline">
+<option>Just exploring</option>
+<option>Within 3 months</option>
+<option>3–6 months</option>
+<option>6+ months</option>
+</select>
+</div>
+</div>
+<div class="custom-step-actions">
+<button id="valuation-back" type="button">← Back</button>
+<button class="custom-button" type="submit">Request Valuation
                   </button>
-                </div>
-              </fieldset>
-              <fieldset id="valuation-step-2" hidden disabled>
-                <legend>02 / Your details</legend>
-                <div class="custom-form-grid">
-                  <div class="custom-field">
-                    <label for="valuation-name">Full name *</label>
-                    <input id="valuation-name" name="valuation-name" type="text" required autocomplete="name">
-                  </div>
-                  <div class="custom-field">
-                    <label for="valuation-email">Email *</label>
-                    <input id="valuation-email" name="valuation-email" type="email" required autocomplete="email">
-                  </div>
-                  <div class="custom-field">
-                    <label for="valuation-phone">Phone</label>
-                    <input id="valuation-phone" name="valuation-phone" type="tel" autocomplete="tel">
-                  </div>
-                  <div class="custom-field">
-                    <label for="timeline">When are you considering selling?</label>
-                    <select id="timeline" name="timeline">
-                      <option>Just exploring</option>
-                      <option>Within 3 months</option>
-                      <option>3–6 months</option>
-                      <option>6+ months</option>
-                    </select>
-                  </div>
-                  <label class="custom-check custom-full">
-                    <input type="checkbox" required>I understand this demonstration is a practice form and does not submit an inquiry.</label>
-                </div>
-                <div class="custom-step-actions">
-                  <button type="button" id="valuation-back">← Back</button>
-                  <button class="custom-button" type="submit">Preview Request
-                  </button>
-                </div>
-              </fieldset>
-            </form>
-            <div id="valuation-result" class="custom-form-status" hidden aria-live="polite"></div>
-            <p class="custom-valuation-note">Demo only. No automated valuation, appraisal, or inquiry delivery is provided. Enter sample information to try the form.</p>
-          </div>
-        </section>
-        <section class="custom-section">
-          <div class="custom-container custom-values">
-            <div>
-              <small>01 / THE HOME</small>
-              <h3>More than square footage.</h3>
-              <p>Condition, layout, improvements, and a property’s individual character all deserve attention.</p>
-            </div>
-            <div>
-              <small>02 / THE CONTEXT</small>
-              <h3>A local perspective.</h3>
-              <p>A real valuation considers relevant comparable properties and current market conditions.</p>
-            </div>
-            <div>
-              <small>03 / YOUR PLANS</small>
-              <h3>A thoughtful next step.</h3>
-              <p>Your timing and goals help shape the conversation about preparing a home for sale.</p>
-            </div>
-          </div>
-        </section>
-      </div>
-      <!-- NEIGHBORHOODS PAGE -->
-      <div class="custom-page" data-page="neighborhoods" hidden>
-        <section class="custom-page-intro" id="neighborhoods-section-opening">
-          <div class="custom-container">
-            <p class="custom-eyebrow">EXPLORE THE NEIGHBORHOODS</p>
-            <h1>Four places. Endless possibility.</h1>
-            <p>Discover a different expression of Los Angeles living. Where will your next chapter begin?</p>
-          </div>
-        </section>
-        <section class="custom-section" id="neighborhoods-section-neighborhoods">
-          <div class="custom-container custom-neighborhood-list">
-            <article class="custom-neighborhood-row" id="area-los-angeles">
-              <img src="images/losangeles-1.jpg" alt="Illustrative residential architecture in Los Angeles" class="" loading="lazy" decoding="async">
-              <div>
-                <p class="custom-eyebrow">01 / A different perspective</p>
-                <h2>Los Angeles</h2>
-                <p>An architectural home in the hills. A quiet retreat above the city. Explore the possibilities of Los Angeles living, from contemporary spaces to warm, character-filled residences.</p>
-                <span class="custom-neighborhood-tag">Hillside homes · Contemporary architecture</span>
-                <div>
-                  <a class="custom-text-link" href="#/portfolio?area=los-angeles">Explore the Collection
+</div>
+</fieldset>
+</form>
+<div aria-live="polite" class="custom-form-status" hidden="" id="valuation-result"></div>
+</div>
+</section>
+<section class="custom-section">
+<div class="custom-container custom-values">
+<div>
+<small>01 / THE HOME</small>
+<h3>More than square footage</h3>
+<p>Condition, layout, improvements, and a property’s individual character all deserve attention.</p>
+</div>
+<div>
+<small>02 / THE CONTEXT</small>
+<h3>A local perspective</h3>
+<p>A real valuation considers relevant comparable properties and current market conditions.</p>
+</div>
+<div>
+<small>03 / YOUR PLANS</small>
+<h3>A thoughtful next step</h3>
+<p>Your timing and goals help shape the conversation about preparing a home for sale.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- NEIGHBORHOODS PAGE -->
+<div class="custom-page" data-page="neighborhoods" hidden="">
+<section class="custom-page-intro" id="neighborhoods-section-opening">
+<div class="custom-container">
+<p class="custom-eyebrow">EXPLORE THE NEIGHBORHOODS</p><div class="custom-page-intro__title-lockup"><h1>Four places. Endless possibility</h1><span aria-hidden="true" class="custom-page-intro__title-divider"></span><img alt="" aria-hidden="true" class="custom-page-intro__title-logo" height="92" loading="eager" src="images/rr-logo-white.png" width="92"/></div>
+
+<p>Discover a different expression of Los Angeles living. Where will your next chapter begin?</p>
+</div>
+</section>
+<section class="custom-section" id="neighborhoods-section-neighborhoods">
+<div class="custom-container custom-neighborhood-list">
+<article class="custom-neighborhood-row" id="area-los-angeles">
+<img alt="Residential architecture in Los Angeles" class="" decoding="async" loading="lazy" src="images/losangeles-1.jpg"/>
+<div>
+<p class="custom-eyebrow">01 / A different perspective</p>
+<h2>Los Angeles</h2>
+<p>An architectural home in the hills. A quiet retreat above the city. Explore the possibilities of Los Angeles living, from contemporary spaces to warm, character-filled residences.</p>
+<span class="custom-neighborhood-tag">Hillside homes · Contemporary architecture</span>
+<div>
+<a class="custom-text-link" href="#/portfolio?area=los-angeles">Explore the Collection
                   </a>
-                </div>
-              </div>
-            </article>
-            <article class="custom-neighborhood-row" id="area-beverly-hills">
-              <img src="images/beverlyhills-1.jpg" alt="Illustrative residential architecture in Beverly Hills" class="" loading="lazy" decoding="async">
-              <div>
-                <p class="custom-eyebrow">02 / Timeless by nature</p>
-                <h2>Beverly Hills</h2>
-                <p>Discover a residential point of view shaped by elegant architecture, established gardens, and considered details. Our Beverly Hills collection celebrates homes with a lasting sense of place.</p>
-                <span class="custom-neighborhood-tag">Refined estates · Garden settings</span>
-                <div>
-                  <a class="custom-text-link" href="#/portfolio?area=beverly-hills">Explore the Collection
+</div>
+</div>
+</article>
+<article class="custom-neighborhood-row" id="area-beverly-hills">
+<img alt="Residential architecture in Beverly Hills" class="" decoding="async" loading="lazy" src="images/beverlyhills-1.jpg"/>
+<div>
+<p class="custom-eyebrow">02 / Timeless by nature</p>
+<h2>Beverly Hills</h2>
+<p>Discover a residential point of view shaped by elegant architecture, established gardens, and considered details. Our Beverly Hills collection celebrates homes with a lasting sense of place.</p>
+<span class="custom-neighborhood-tag">Refined estates · Garden settings</span>
+<div>
+<a class="custom-text-link" href="#/portfolio?area=beverly-hills">Explore the Collection
                   </a>
-                </div>
-              </div>
-            </article>
-            <article class="custom-neighborhood-row" id="area-santa-monica">
-              <img src="images/santamonica-1.jpg" alt="Illustrative residential architecture in Santa Monica" class="" loading="lazy" decoding="async">
-              <div>
-                <p class="custom-eyebrow">03 / Room to breathe</p>
-                <h2>Santa Monica</h2>
-                <p>Light-filled rooms, welcoming outdoor spaces, and a relaxed California sensibility. Find inspiration for a home that brings everyday life a little closer to the coast.</p>
-                <span class="custom-neighborhood-tag">Coastal character · Indoor-outdoor living</span>
-                <div>
-                  <a class="custom-text-link" href="#/portfolio?area=santa-monica">Explore the Collection
+</div>
+</div>
+</article>
+<article class="custom-neighborhood-row" id="area-santa-monica">
+<img alt="Residential architecture in Santa Monica" class="" decoding="async" loading="lazy" src="images/santamonica-1.jpg"/>
+<div>
+<p class="custom-eyebrow">03 / Room to breathe</p>
+<h2>Santa Monica</h2>
+<p>Light-filled rooms, welcoming outdoor spaces, and a relaxed California sensibility. Find inspiration for a home that brings everyday life a little closer to the coast.</p>
+<span class="custom-neighborhood-tag">Coastal character · Indoor-outdoor living</span>
+<div>
+<a class="custom-text-link" href="#/portfolio?area=santa-monica">Explore the Collection
                   </a>
-                </div>
-              </div>
-            </article>
-            <article class="custom-neighborhood-row" id="area-west-hollywood">
-              <img src="images/westhollywood-1.jpg" alt="Illustrative residential architecture in West Hollywood" class="" loading="lazy" decoding="async">
-              <div>
-                <p class="custom-eyebrow">04 / An original point of view</p>
-                <h2>West Hollywood</h2>
-                <p>Expressive design, intimate courtyards, and distinctive spaces. Explore a collection of homes that pairs an urban setting with a personal sense of retreat.</p>
-                <span class="custom-neighborhood-tag">Design-forward homes · Private courtyards</span>
-                <div>
-                  <a class="custom-text-link" href="#/portfolio?area=west-hollywood">Explore the Collection
+</div>
+</div>
+</article>
+<article class="custom-neighborhood-row" id="area-west-hollywood">
+<img alt="Residential architecture in West Hollywood" class="" decoding="async" loading="lazy" src="images/westhollywood-1.jpg"/>
+<div>
+<p class="custom-eyebrow">04 / An original point of view</p>
+<h2>West Hollywood</h2>
+<p>Expressive design, intimate courtyards, and distinctive spaces. Explore a collection of homes that pairs an urban setting with a personal sense of retreat.</p>
+<span class="custom-neighborhood-tag">Design-forward homes · Private courtyards</span>
+<div>
+<a class="custom-text-link" href="#/portfolio?area=west-hollywood">Explore the Collection
                   </a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-        <section class="custom-cta" id="neighborhoods-section-work-with-us">
-          <img src="images/losangeles-2.jpg" alt="A contemporary Los Angeles residence" class="" loading="lazy" decoding="async">
-          <div>
-            <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
-            <h2>Let’s make it home.</h2>
-            <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
+</div>
+</div>
+</article>
+</div>
+</section>
+<section class="custom-cta" id="neighborhoods-section-work-with-us">
+<img alt="A contemporary Los Angeles residence" class="" decoding="async" loading="lazy" src="images/losangeles-2.jpg"/>
+<div>
+<p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
+<h2>Let’s make it home</h2>
+<p>A new address begins with a conversation. Tell us where you want to go next.</p>
+<a class="custom-button custom-button--light" data-open-contact-modal="" href="#contact-modal">Work With Us
             </a>
-          </div>
-        </section>
-      </div>
-      <!-- MEET THE TEAM PAGE: hero rotates team -> Rochelle -> Roger. -->
-      <div class="custom-page" data-page="meet-the-team" hidden>
-        <section class="custom-wide-hero custom-team-hero" id="meet-the-team-section-opening">
-          <div class="custom-team-hero__images" aria-hidden="true">
-            <img class="custom-team-hero__image is-active" src="images/agent-team-opening.jpg" alt="" fetchpriority="high" decoding="async">
-            <img class="custom-team-hero__image" src="images/agent-opening-rochelle.jpg" alt="" decoding="async">
-            <img class="custom-team-hero__image" src="images/agent-opening-roger.jpg" alt="" decoding="async">
-          </div>
-          <div class="custom-container">
-            <p class="custom-eyebrow">PEOPLE FIRST. ALWAYS.</p>
-            <h1>Meet the team.</h1>
-            <p>A shared appreciation for homes.<br>A personal approach to what comes next.</p>
-          </div>
-        </section>
-        <section class="custom-section" id="meet-the-team-section-team">
-          <div class="custom-container">
-            <div class="custom-section-heading">
-              <div>
-                <p class="custom-eyebrow">ROCHELLE &amp; ROGER</p>
-                <h2>Better, together.</h2>
-              </div>
-              <p>Different perspectives, shared priorities: thoughtful service, honest conversations, and an eye for the details.</p>
-            </div>
-            <div class="custom-agent-grid">
-              <article class="custom-agent-card">
-                <img src="images/agent-detail-portrait-rochelle.jpg" alt="Rochelle Reyes" class="" loading="lazy" decoding="async">
-                <div class="custom-agent-card__content">
-                  <p class="custom-eyebrow">Los Angeles Real Estate Agent</p>
-                  <h3>Rochelle Reyes</h3>
-                  <p>Residential homes, condos, and luxury properties. Personal guidance for buyers and sellers across Los Angeles and surrounding communities.</p>
-                  <details class="custom-agent-bio">
-                    <summary class="custom-text-link">More About Rochelle <span>+</span>
-                    </summary>
-                    <p>Rochelle Reyes is a Los Angeles-based real estate agent specializing in residential and luxury properties throughout Los Angeles and surrounding communities. She works with first-time buyers, growing families, investors, and homeowners looking to sell.</p>
-                    <p>Rochelle believes that real estate should feel personal and straightforward. She takes the time to understand each client's goals, preferences, and priorities so she can provide guidance tailored to their needs.</p>
-                    <p>Known for her responsive communication and attention to detail, Rochelle helps clients navigate every stage of the real estate process—from exploring properties and preparing offers to negotiating and closing.</p>
-                    <p>Outside of real estate, Rochelle enjoys discovering new restaurants, exploring local neighborhoods, and spending time with family and friends.</p>
-                    <div class="custom-agent-specialties">
-                      <h4>Specialties</h4>
-                      <ul>
-                        <li>Residential Real Estate</li>
-                        <li>Luxury Homes</li>
-                        <li>First-Time Homebuyers</li>
-                        <li>Home Sellers</li>
-                        <li>Relocation</li>
-                      </ul>
-                      <h4>Areas Served</h4>
-                      <p>Los Angeles, Beverly Hills, Santa Monica, West Hollywood, and surrounding areas.</p>
-                    </div>
-                    <a class="custom-text-link" href="#contact-modal" data-open-contact-modal>Schedule a Consultation</a>
-                  </details>
-                </div>
-              </article>
-              <article class="custom-agent-card">
-                <img src="images/agent-detail-portrait-roger.jpg" alt="Roger Tan" class="" loading="lazy" decoding="async">
-                <div class="custom-agent-card__content">
-                  <p class="custom-eyebrow">A fresh perspective</p>
-                  <h3>Roger Tan</h3>
-                  <p>A considered eye for design, detail, and possibility.</p>
-                  <details class="custom-agent-bio">
-                    <summary class="custom-text-link">More About Roger <span>+</span>
-                    </summary>
-                    <p>As the son of a foreign home goods importer, my journey into real estate started early. Along with my father, I took inventory purchases and sales on global trips. I was taught the value of planning, how to negotiate, and how to "collect" opulent hotel bathroom accessories at a young age. Coming home was the highlight of my years of travel, more so than the amazing food, varied scenery, and encounters with different cultures. I would always feel safe, at ease, and like I knew everyone when I opened the front door.</p>
-                    <p>These factors make it crucial for me to assist my clients in finding the ideal home, considering their requirements. For example, it may be a single person's first home, a couple's first home together, a place where parents will raise their children, the neighborhood where their kids will go to school, a potential home for their parents during lengthy visits, and undoubtedly one of their most significant financial decisions.</p>
-                    <a class="custom-text-link" href="#contact-modal" data-open-contact-modal>Let’s Connect</a>
-                  </details>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-        <section class="custom-section custom-off-white" id="meet-the-team-section-approach">
-          <div class="custom-container">
-            <div class="custom-section-heading">
-              <div>
-                <p class="custom-eyebrow">OUR APPROACH</p>
-                <h2>The details are personal.</h2>
-              </div>
-            </div>
-            <div class="custom-values">
-              <div>
-                <small>01</small>
-                <h3>Listen first.</h3>
-                <p>Start with your plans, your preferences, and what a home needs to make possible for you.</p>
-              </div>
-              <div>
-                <small>02</small>
-                <h3>Make it clear.</h3>
-                <p>Turn a complex process into understandable choices and a thoughtful next step.</p>
-              </div>
-              <div>
-                <small>03</small>
-                <h3>Care for the details.</h3>
-                <p>Give every home and every conversation the time and attention they deserve.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="custom-cta" id="meet-the-team-section-work-with-us">
-          <img src="images/losangeles-2.jpg" alt="A contemporary Los Angeles residence" class="" loading="lazy" decoding="async">
-          <div>
-            <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
-            <h2>Let’s make it home.</h2>
-            <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
+</div>
+</section>
+</div>
+<!-- MEET THE TEAM PAGE: hero rotates team -> Rochelle -> Roger. -->
+<div class="custom-page" data-page="meet-the-team" hidden="">
+<section class="custom-wide-hero custom-team-hero" id="meet-the-team-section-opening">
+<div aria-hidden="true" class="custom-team-hero__images">
+<img alt="" class="custom-team-hero__image is-active" decoding="async" fetchpriority="high" src="images/agent-team-opening.jpg"/>
+<img alt="" class="custom-team-hero__image" decoding="async" src="images/agent-opening-rochelle.jpg"/>
+<img alt="" class="custom-team-hero__image" decoding="async" src="images/agent-opening-roger.jpg"/>
+</div>
+<div class="custom-container">
+<p class="custom-eyebrow">PEOPLE FIRST. ALWAYS.</p>
+<h1>Meet the team</h1>
+<p>A shared appreciation for homes.<br/>A personal approach to what comes next.</p>
+</div>
+</section>
+<section class="custom-section" id="meet-the-team-section-team">
+<div class="custom-container">
+<div class="custom-section-heading">
+<div>
+<p class="custom-eyebrow">ROCHELLE &amp; ROGER</p>
+<h2>Better, together</h2>
+</div>
+<p>Different perspectives, shared priorities: thoughtful service, honest conversations, and an eye for the details.</p>
+</div>
+<div class="custom-agent-grid">
+<article class="custom-agent-card">
+<img alt="Rochelle Reyes" class="" decoding="async" loading="lazy" src="images/agent-detail-portrait-rochelle.jpg"/>
+<div class="custom-agent-card__content">
+<p class="custom-eyebrow">Los Angeles Real Estate Agent</p>
+<h3>Rochelle Reyes</h3>
+<p>Residential homes, condos, and luxury properties. Personal guidance for buyers and sellers across Los Angeles and surrounding communities.</p>
+<details class="custom-agent-bio">
+<summary class="custom-text-link">More About Rochelle <span>+</span>
+</summary>
+<p>Rochelle Reyes is a Los Angeles-based real estate agent specializing in residential and luxury properties throughout Los Angeles and surrounding communities. She works with first-time buyers, growing families, investors, and homeowners looking to sell.</p>
+<p>Rochelle believes that real estate should feel personal and straightforward. She takes the time to understand each client's goals, preferences, and priorities so she can provide guidance tailored to their needs.</p>
+<p>Known for her responsive communication and attention to detail, Rochelle helps clients navigate every stage of the real estate process—from exploring properties and preparing offers to negotiating and closing.</p>
+<p>Outside of real estate, Rochelle enjoys discovering new restaurants, exploring local neighborhoods, and spending time with family and friends.</p>
+<div class="custom-agent-specialties">
+<h4>Specialties</h4>
+<ul>
+<li>Residential Real Estate</li>
+<li>Luxury Homes</li>
+<li>First-Time Homebuyers</li>
+<li>Home Sellers</li>
+<li>Relocation</li>
+</ul>
+<h4>Areas Served</h4>
+<p>Los Angeles, Beverly Hills, Santa Monica, West Hollywood, and surrounding areas.</p>
+</div>
+<a class="custom-text-link" data-open-contact-modal="" href="#contact-modal">Schedule a Consultation</a>
+</details>
+</div>
+</article>
+<article class="custom-agent-card">
+<img alt="Roger Tan" class="" decoding="async" loading="lazy" src="images/agent-detail-portrait-roger.jpg"/>
+<div class="custom-agent-card__content">
+<p class="custom-eyebrow">A fresh perspective</p>
+<h3>Roger Tan</h3>
+<p>A considered eye for design, detail, and possibility.</p>
+<details class="custom-agent-bio">
+<summary class="custom-text-link">More About Roger <span>+</span>
+</summary>
+<p>As the son of a foreign home goods importer, my journey into real estate started early. Along with my father, I took inventory purchases and sales on global trips. I was taught the value of planning, how to negotiate, and how to "collect" opulent hotel bathroom accessories at a young age. Coming home was the highlight of my years of travel, more so than the amazing food, varied scenery, and encounters with different cultures. I would always feel safe, at ease, and like I knew everyone when I opened the front door.</p>
+<p>These factors make it crucial for me to assist my clients in finding the ideal home, considering their requirements. For example, it may be a single person's first home, a couple's first home together, a place where parents will raise their children, the neighborhood where their kids will go to school, a potential home for their parents during lengthy visits, and undoubtedly one of their most significant financial decisions.</p>
+<a class="custom-text-link" data-open-contact-modal="" href="#contact-modal">Let’s Connect</a>
+</details>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="custom-section custom-off-white" id="meet-the-team-section-approach">
+<div class="custom-container">
+<div class="custom-section-heading">
+<div>
+<p class="custom-eyebrow">OUR APPROACH</p>
+<h2>The details are personal</h2>
+</div>
+</div>
+<div class="custom-values">
+<div>
+<small>01</small>
+<h3>Listen first</h3>
+<p>Start with your plans, your preferences, and what a home needs to make possible for you.</p>
+</div>
+<div>
+<small>02</small>
+<h3>Make it clear</h3>
+<p>Turn a complex process into understandable choices and a thoughtful next step.</p>
+</div>
+<div>
+<small>03</small>
+<h3>Care for the details</h3>
+<p>Give every home and every conversation the time and attention they deserve.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="custom-cta" id="meet-the-team-section-work-with-us">
+<img alt="A contemporary Los Angeles residence" class="" decoding="async" loading="lazy" src="images/losangeles-2.jpg"/>
+<div>
+<p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
+<h2>Let’s make it home</h2>
+<p>A new address begins with a conversation. Tell us where you want to go next.</p>
+<a class="custom-button custom-button--light" data-open-contact-modal="" href="#contact-modal">Work With Us
             </a>
-          </div>
-        </section>
-      </div>
-      <!-- TESTIMONIALS PAGE -->
-      <div class="custom-page" data-page="testimonials" hidden>
-        <section class="custom-page-intro" id="testimonials-section-opening">
-          <div class="custom-container">
-            <p class="custom-eyebrow">THE CLIENT EXPERIENCE</p>
-            <h1>Stories that feel like home.</h1>
-            <p>A space for the experiences and relationships behind every move.</p>
-          </div>
-        </section>
-        <section class="custom-section" id="testimonials-section-stories">
-          <div class="custom-container">
-            <p class="custom-note">The following stories are sample copy for this practice website, not verified client testimonials.</p>
-            <div class="custom-quotes">
-              <article class="custom-quote">
-                <span aria-hidden="true">“</span>
-                <blockquote>From our first conversation to the final details, we felt heard, informed, and completely at home with the process.</blockquote>
-                <p>Sample buyer story · Los Angeles</p>
-              </article>
-              <article class="custom-quote">
-                <span aria-hidden="true">“</span>
-                <blockquote>A thoughtful plan, beautiful presentation, and clear communication. Every step felt considered.</blockquote>
-                <p>Sample seller story · Beverly Hills</p>
-              </article>
-              <article class="custom-quote">
-                <span aria-hidden="true">“</span>
-                <blockquote>They understood what mattered to us—the light, the layout, and the feeling of walking through the front door.</blockquote>
-                <p>Sample buyer story · Santa Monica</p>
-              </article>
-              <article class="custom-quote">
-                <span aria-hidden="true">“</span>
-                <blockquote>What could have felt overwhelming became a series of clear, manageable decisions.</blockquote>
-                <p>Sample seller story · West Hollywood</p>
-              </article>
-            </div>
-          </div>
-        </section>
-        <section class="custom-cta" id="testimonials-section-work-with-us">
-          <img src="images/losangeles-2.jpg" alt="A contemporary Los Angeles residence" class="" loading="lazy" decoding="async">
-          <div>
-            <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
-            <h2>Let’s make it home.</h2>
-            <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
+</div>
+</section>
+</div>
+<!-- TESTIMONIALS PAGE -->
+<div class="custom-page" data-page="testimonials" hidden="">
+<section class="custom-page-intro" id="testimonials-section-opening">
+<div class="custom-container">
+<p class="custom-eyebrow">TESTIMONIALS</p><div class="custom-page-intro__title-lockup"><h1>Stories that feel like home</h1><span aria-hidden="true" class="custom-page-intro__title-divider"></span><img alt="" aria-hidden="true" class="custom-page-intro__title-logo" height="92" loading="eager" src="images/rr-logo-white.png" width="92"/></div>
+
+<p>A space for the experiences and relationships behind every move.</p>
+</div>
+</section>
+<section class="custom-section" id="testimonials-section-stories">
+<div class="custom-container">
+<div class="custom-quotes">
+<article class="custom-quote">
+<div class="custom-quote__visual">
+<span aria-hidden="true" class="custom-quote__mark">“</span>
+<img alt="" aria-hidden="true" class="custom-quote__image" decoding="async" loading="lazy" src="images/testimonial-placeholder.png"/>
+</div>
+<blockquote>From our first conversation to the final details, we felt heard, informed, and completely at home with the process.</blockquote>
+<cite class="custom-quote__name">- Marvin K.</cite>
+<p class="custom-testimonial-source">Buyer story · Los Angeles</p>
+</article>
+<article class="custom-quote">
+<div class="custom-quote__visual">
+<span aria-hidden="true" class="custom-quote__mark">“</span>
+<img alt="" aria-hidden="true" class="custom-quote__image" decoding="async" loading="lazy" src="images/testimonial-placeholder.png"/>
+</div>
+<blockquote>A thoughtful plan, beautiful presentation, and clear communication. Every step felt considered.</blockquote>
+<cite class="custom-quote__name">- Elena R.</cite>
+<p class="custom-testimonial-source">Seller story · Beverly Hills</p>
+</article>
+<article class="custom-quote">
+<div class="custom-quote__visual">
+<span aria-hidden="true" class="custom-quote__mark">“</span>
+<img alt="" aria-hidden="true" class="custom-quote__image" decoding="async" loading="lazy" src="images/testimonial-placeholder.png"/>
+</div>
+<blockquote>They understood what mattered to us—the light, the layout, and the feeling of walking through the front door.</blockquote>
+<cite class="custom-quote__name">- Daniel C.</cite>
+<p class="custom-testimonial-source">Buyer story · Santa Monica</p>
+</article>
+<article class="custom-quote">
+<div class="custom-quote__visual">
+<span aria-hidden="true" class="custom-quote__mark">“</span>
+<img alt="" aria-hidden="true" class="custom-quote__image" decoding="async" loading="lazy" src="images/testimonial-placeholder.png"/>
+</div>
+<blockquote>What could have felt overwhelming became a series of clear, manageable decisions.</blockquote>
+<cite class="custom-quote__name">- Sophia M.</cite>
+<p class="custom-testimonial-source">Seller story · West Hollywood</p>
+</article>
+<article class="custom-quote">
+<div class="custom-quote__visual">
+<span aria-hidden="true" class="custom-quote__mark">“</span>
+<img alt="" aria-hidden="true" class="custom-quote__image" decoding="async" loading="lazy" src="images/testimonial-placeholder.png"/>
+</div>
+<blockquote>We never felt rushed. Every option was explained clearly, and when the right home appeared, we knew exactly how to move.</blockquote>
+<cite class="custom-quote__name">- Adrian L.</cite>
+<p class="custom-testimonial-source">Buyer story · Los Angeles</p>
+</article>
+<article class="custom-quote">
+<div class="custom-quote__visual">
+<span aria-hidden="true" class="custom-quote__mark">“</span>
+<img alt="" aria-hidden="true" class="custom-quote__image" decoding="async" loading="lazy" src="images/testimonial-placeholder.png"/>
+</div>
+<blockquote>They brought calm to every conversation and made the sale feel organized from preparation through closing.</blockquote>
+<cite class="custom-quote__name">- Natalie P.</cite>
+<p class="custom-testimonial-source">Seller story · Santa Monica</p>
+</article>
+<article class="custom-quote">
+<div class="custom-quote__visual">
+<span aria-hidden="true" class="custom-quote__mark">“</span>
+<img alt="" aria-hidden="true" class="custom-quote__image" decoding="async" loading="lazy" src="images/testimonial-placeholder.png"/>
+</div>
+<blockquote>Their attention to the small details made a huge difference. We always knew what was happening and what came next.</blockquote>
+<cite class="custom-quote__name">- Marcus T.</cite>
+<p class="custom-testimonial-source">Seller story · Beverly Hills</p>
+</article>
+<article class="custom-quote">
+<div class="custom-quote__visual">
+<span aria-hidden="true" class="custom-quote__mark">“</span>
+<img alt="" aria-hidden="true" class="custom-quote__image" decoding="async" loading="lazy" src="images/testimonial-placeholder.png"/>
+</div>
+<blockquote>We came in with a long wish list and left with a home that somehow felt even better than what we imagined.</blockquote>
+<cite class="custom-quote__name">- Camille B.</cite>
+<p class="custom-testimonial-source">Buyer story · West Hollywood</p>
+</article>
+</div>
+</div>
+</section>
+<section class="custom-cta" id="testimonials-section-work-with-us">
+<img alt="A contemporary Los Angeles residence" class="" decoding="async" loading="lazy" src="images/losangeles-2.jpg"/>
+<div>
+<p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
+<h2>Let’s make it home</h2>
+<p>A new address begins with a conversation. Tell us where you want to go next.</p>
+<a class="custom-button custom-button--light" data-open-contact-modal="" href="#contact-modal">Work With Us
             </a>
-          </div>
-        </section>
-      </div>
-      <!-- CONTACT US PAGE: this is the full inquiry page opened from the side menu. -->
-      <div class="custom-page" data-page="contact-us" hidden>
-        <section class="custom-page-intro" id="contact-us-section-opening">
-          <div class="custom-container">
-            <p class="custom-eyebrow">LET’S CONNECT</p>
-            <h1>Good things start with a conversation.</h1>
-            <p>A first home, a fresh start, or simply a question. We’d love to hear what you have in mind.</p>
-          </div>
-        </section>
-        <section class="custom-section" id="contact-us-section-contact">
-          <div class="custom-container custom-contact">
-            <div>
-              <p class="custom-eyebrow">ROCHELLE &amp; ROGER</p>
-              <h2>Tell us what<br>home means to you.</h2>
-              <p>Serving the design story of Los Angeles, Beverly Hills, Santa Monica, and West Hollywood.</p>
-              <div class="custom-contact__details">
-                <div>
-                  <small>Phone · Demonstration number</small>
-                  <a href="tel:+13105550148">310.555.0148</a>
-                </div>
-                <div>
-                  <small>Email · Placeholder</small>
-                  <a href="mailto:hello@example.com">hello@example.com</a>
-                </div>
-                <div>
-                  <small>Based in</small>
-                  <p>Los Angeles, California</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <form class="custom-contact-form" id="contact-form">
-                <p class="custom-note">Try this form with sample details. Your entries stay in this page and are not sent or saved.</p>
-                <div class="custom-form-grid">
-                  <div class="custom-field">
-                    <label for="first-name">First name *</label>
-                    <input id="first-name" name="first-name" type="text" required autocomplete="given-name">
-                  </div>
-                  <div class="custom-field">
-                    <label for="last-name">Last name *</label>
-                    <input id="last-name" name="last-name" type="text" required autocomplete="family-name">
-                  </div>
-                  <div class="custom-field">
-                    <label for="email">Email *</label>
-                    <input id="email" name="email" type="email" required autocomplete="email">
-                  </div>
-                  <div class="custom-field">
-                    <label for="phone">Phone</label>
-                    <input id="phone" name="phone" type="tel" autocomplete="tel">
-                  </div>
-                  <div class="custom-field custom-full">
-                    <label for="interest">I’m interested in</label>
-                    <select id="interest" name="interest">
-                      <option>Buying a home</option>
-                      <option>Selling a home</option>
-                      <option>Home valuation</option>
-                      <option>Compass Concierge</option>
-                      <option>Something else</option>
-                    </select>
-                  </div>
-                  <div class="custom-field custom-full">
-                    <label for="message">Your message *</label>
-                    <textarea id="message" name="message" required rows="4" placeholder="Tell us a little about your plans."></textarea>
-                  </div>
-                  <label class="custom-check custom-full">
-                    <input type="checkbox" required>I understand this is a practice form and my inquiry will not be sent.</label>
-                </div>
-                <div class="custom-form-actions">
-                  <button class="custom-button" type="submit">Preview Inquiry
+</div>
+</section>
+</div>
+<!-- CONTACT US PAGE: this is the full inquiry page opened from the side menu. -->
+<div class="custom-page" data-page="contact-us" hidden="">
+<section class="custom-page-intro" id="contact-us-section-opening">
+<div class="custom-container">
+<p class="custom-eyebrow">LET’S CONNECT</p><div class="custom-page-intro__title-lockup"><h1>Good things start with a conversation</h1><span aria-hidden="true" class="custom-page-intro__title-divider"></span><img alt="" aria-hidden="true" class="custom-page-intro__title-logo" height="92" loading="eager" src="images/rr-logo-white.png" width="92"/></div>
+
+<p>A first home, a fresh start, or simply a question. We’d love to hear what you have in mind.</p>
+</div>
+</section>
+<section class="custom-section" id="contact-us-section-contact">
+<div class="custom-container custom-contact">
+<div>
+<p class="custom-eyebrow">ROCHELLE &amp; ROGER</p>
+<h2>Tell us what<br/>home means to you</h2>
+<p>Serving the design story of Los Angeles, Beverly Hills, Santa Monica, and West Hollywood.</p>
+<div class="custom-contact__details">
+<div>
+<small>Phone</small>
+<p><a href="tel:+11231231234">(123) 123-1234</a> / <a href="tel:+17045550127">(704) 555-0127</a></p>
+</div>
+<div>
+<small>Email</small>
+<a href="mailto:rrcompass@rochelleandroger.com">rrcompass@rochelleandroger.com</a>
+</div>
+<div>
+<small>Based in</small>
+<p>Santa Monica, California</p>
+</div>
+</div>
+</div>
+<div>
+<form class="custom-contact-form" id="contact-form">
+<div class="custom-form-grid">
+<div class="custom-field">
+<label for="first-name">First name *</label>
+<input autocomplete="given-name" id="first-name" name="first-name" required="" type="text"/>
+</div>
+<div class="custom-field">
+<label for="last-name">Last name *</label>
+<input autocomplete="family-name" id="last-name" name="last-name" required="" type="text"/>
+</div>
+<div class="custom-field">
+<label for="email">Email *</label>
+<input autocomplete="email" id="email" name="email" required="" type="email"/>
+</div>
+<div class="custom-field">
+<label for="phone">Phone</label>
+<input autocomplete="tel" id="phone" name="phone" type="tel"/>
+</div>
+<div class="custom-field custom-full">
+<label for="interest">I’m interested in</label>
+<select id="interest" name="interest">
+<option>Buying a home</option>
+<option>Selling a home</option>
+<option>Home valuation</option>
+<option>Compass Concierge</option>
+<option>Something else</option>
+</select>
+</div>
+<div class="custom-field custom-full">
+<label for="message">Your message *</label>
+<textarea id="message" name="message" placeholder="Tell us a little about your plans." required="" rows="4"></textarea>
+</div>
+</div>
+<div class="custom-form-actions">
+<button class="custom-button" type="submit">Send Inquiry
                   </button>
-                </div>
-              </form>
-              <div class="custom-form-status" id="contact-result" hidden aria-live="polite"></div>
-            </div>
-          </div>
-        </section>
-        <section class="custom-cta">
-          <img src="images/agent-team-opening.jpg" alt="Rochelle and Roger" class="" loading="lazy" decoding="async">
-          <div>
-            <p class="custom-eyebrow">GET TO KNOW US</p>
-            <h2>Real people. A shared perspective.</h2>
-            <a class="custom-button custom-button--light" href="#/meet-the-team">Meet the Team
+</div>
+</form>
+<div aria-live="polite" class="custom-form-status" hidden="" id="contact-result"></div>
+</div>
+</div>
+</section>
+<section class="custom-cta">
+<img alt="Rochelle and Roger" class="" decoding="async" loading="lazy" src="images/agent-team-opening.jpg"/>
+<div>
+<p class="custom-eyebrow">GET TO KNOW US</p>
+<h2>Real people. A shared perspective</h2>
+<a class="custom-button custom-button--light" href="#/meet-the-team">Meet the Team
             </a>
-          </div>
-        </section>
-      </div>
-      <!-- COMPASS CONCIERGE PAGE -->
-      <div class="custom-page" data-page="compass-concierge" hidden>
-        <section class="custom-wide-hero" id="compass-concierge-section-opening">
-          <img src="images/losangeles-2.jpg" alt="A contemporary Los Angeles residence" class="" fetchpriority="high" decoding="async">
-          <div class="custom-container">
-            <p class="custom-eyebrow">A CONSIDERED APPROACH TO SELLING</p>
-            <h1 class="custom-concierge-heading">Compass Concierge</h1>
-            <p>See your home’s potential.<br>Plan the details that bring it forward.</p>
-          </div>
-        </section>
-        <section class="custom-section" id="compass-concierge-section-concierge">
-          <div class="custom-container custom-about">
-            <div class="custom-about__copy">
-              <p class="custom-eyebrow">PREPARE WITH PURPOSE</p>
-              <h2>Make a thoughtful<br>first impression.</h2>
-              <p>Compass Concierge can help eligible sellers fund improvements such as staging, painting, and flooring before a sale, subject to program approval and terms.</p>
-              <p>Start with a conversation about the work your home needs and the options available in your market.</p>
-              <a class="custom-button custom-button--outline" href="#contact-modal" data-open-contact-modal>Start a Conversation
+</div>
+</section>
+</div>
+<!-- COMPASS CONCIERGE PAGE -->
+<div class="custom-page" data-page="compass-concierge" hidden="">
+<section class="custom-wide-hero" id="compass-concierge-section-opening">
+<img alt="A contemporary Los Angeles residence" class="" decoding="async" fetchpriority="high" src="images/losangeles-2.jpg"/>
+<div class="custom-container">
+<p class="custom-eyebrow">A CONSIDERED APPROACH TO SELLING</p>
+<h1 class="custom-concierge-heading">Compass Concierge</h1>
+<p>See your home’s potential.<br/>Plan the details that bring it forward.</p>
+</div>
+</section>
+<section class="custom-section" id="compass-concierge-section-concierge">
+<div class="custom-container custom-about">
+<div class="custom-about__copy">
+<p class="custom-eyebrow">PREPARE WITH PURPOSE</p>
+<h2>Make a thoughtful<br/>first impression</h2>
+<p>Compass Concierge can help eligible sellers fund improvements such as staging, painting, and flooring before a sale, subject to program approval and terms.</p>
+<p>Start with a conversation about the work your home needs and the options available in your market.</p>
+<a class="custom-button custom-button--outline" data-open-contact-modal="" href="#contact-modal">Start a Conversation
               </a>
-            </div>
-            <div>
-              <img src="images/beverlyhills-2.jpg" alt="An illustrative home with carefully maintained gardens" class="" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </section>
-        <section class="custom-section custom-off-white" id="compass-concierge-section-services">
-          <div class="custom-container">
-            <div class="custom-section-heading">
-              <div>
-                <p class="custom-eyebrow">THE POSSIBILITIES</p>
-                <h2>A little care. A new perspective.</h2>
-              </div>
-            </div>
-            <div class="custom-concierge-services">
-              <div>
-                <span>01</span>Home staging</div>
-              <div>
-                <span>02</span>Interior &amp; exterior painting</div>
-              <div>
-                <span>03</span>Flooring improvements</div>
-              <div>
-                <span>04</span>Landscaping</div>
-              <div>
-                <span>05</span>Decluttering</div>
-              <div>
-                <span>06</span>Cosmetic updates</div>
-            </div>
-            <p class="custom-note custom-concierge-terms">Availability, eligibility, covered work, fees, and repayment requirements depend on program terms. Fees or interest may apply. No sale price or timing is guaranteed. Review the <a href="https://www.compass.com/concierge/" target="_blank" rel="noopener" style="text-decoration:underline">official Compass Concierge information</a> for current details.</p>
-          </div>
-        </section>
-        <section class="custom-section" id="compass-concierge-section-faq">
-          <div class="custom-container">
-            <div class="custom-section-heading">
-              <div>
-                <p class="custom-eyebrow">A CLEARER PICTURE</p>
-                <h2>Your questions, considered.</h2>
-              </div>
-            </div>
-            <div class="custom-faq">
-              <details>
-                <summary>Where does the process begin?</summary>
-                <p>Speak with a Compass agent about your property, possible improvements, eligibility, and the current program terms.</p>
-              </details>
-              <details>
-                <summary>Is repayment only due when the property sells?</summary>
-                <p>No. Other repayment triggers apply under the loan agreement, including listing termination or reaching the program time limit. Review the official terms before deciding.</p>
-              </details>
-              <details>
-                <summary>Can I apply through this practice website?</summary>
-                <p>No. This page demonstrates the design. Please use the official Compass website to find program information and authorized contacts.</p>
-              </details>
-            </div>
-          </div>
-        </section>
-        <section class="custom-cta" id="compass-concierge-section-work-with-us">
-          <img src="images/losangeles-2.jpg" alt="A contemporary Los Angeles residence" class="" loading="lazy" decoding="async">
-          <div>
-            <p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
-            <h2>Let’s make it home.</h2>
-            <p>A new address begins with a conversation. Tell us where you want to go next.</p>
-            <a class="custom-button custom-button--light" href="#contact-modal" data-open-contact-modal>Work With Us
+</div>
+<div>
+<img alt="A home with carefully maintained gardens" class="" decoding="async" loading="lazy" src="images/beverlyhills-2.jpg"/>
+</div>
+</div>
+</section>
+<section class="custom-section custom-off-white" id="compass-concierge-section-services">
+<div class="custom-container">
+<div class="custom-section-heading">
+<div>
+<p class="custom-eyebrow">THE POSSIBILITIES</p>
+<h2>A little care. A new perspective</h2>
+</div>
+</div>
+<div class="custom-concierge-services">
+<div>
+<span>01</span>Home staging</div>
+<div>
+<span>02</span>Interior &amp; exterior painting</div>
+<div>
+<span>03</span>Flooring improvements</div>
+<div>
+<span>04</span>Landscaping</div>
+<div>
+<span>05</span>Decluttering</div>
+<div>
+<span>06</span>Cosmetic updates</div>
+</div>
+<p class="custom-note custom-concierge-terms">Availability, eligibility, covered work, fees, and repayment requirements depend on program terms. Fees or interest may apply. No sale price or timing is guaranteed. Review the <a href="https://www.compass.com/concierge/" rel="noopener" style="text-decoration:underline" target="_blank">official Compass Concierge information</a> for current details.</p>
+</div>
+</section>
+<section class="custom-section" id="compass-concierge-section-faq">
+<div class="custom-container">
+<div class="custom-section-heading">
+<div>
+<p class="custom-eyebrow">A CLEARER PICTURE</p>
+<h2>Your questions, considered</h2>
+</div>
+</div>
+<div class="custom-faq">
+<details>
+<summary>Where does the process begin?</summary>
+<p>Speak with a Compass agent about your property, possible improvements, eligibility, and the current program terms.</p>
+</details>
+<details>
+<summary>Is repayment only due when the property sells?</summary>
+<p>No. Other repayment triggers apply under the loan agreement, including listing termination or reaching the program time limit. Review the official terms before deciding.</p>
+</details>
+<details>
+<summary>Where can I find current program information?</summary>
+<p>Please use the official Compass website for current program information, eligibility details, and authorized contacts.</p>
+</details>
+</div>
+</div>
+</section>
+<section class="custom-cta" id="compass-concierge-section-work-with-us">
+<img alt="A contemporary Los Angeles residence" class="" decoding="async" loading="lazy" src="images/losangeles-2.jpg"/>
+<div>
+<p class="custom-eyebrow">YOUR NEXT CHAPTER</p>
+<h2>Let’s make it home</h2>
+<p>A new address begins with a conversation. Tell us where you want to go next.</p>
+<a class="custom-button custom-button--light" data-open-contact-modal="" href="#contact-modal">Work With Us
             </a>
-          </div>
-        </section>
-      </div>
-    </main>
-    <!-- FOOTER: contact details on the left, brokerage/legal information on the right. -->
-    <footer class="custom-footer">
-      <div class="custom-footer__main">
-        <div class="custom-footer__identity">
-          <a class="custom-footer__wordmark" href="#/">
+</div>
+</section>
+</div>
+</main>
+<!-- FOOTER: contact details on the left, brokerage/legal information on the right. -->
+<footer class="custom-footer">
+<div class="custom-footer__main">
+<div class="custom-footer__identity">
+<a class="custom-footer__wordmark" href="#/">
             Rochelle <span class="custom-thin-plus">+</span> Roger
           </a>
-
-          <!-- Quick contact details stay directly below our names. -->
-          <div class="custom-footer__contact" aria-label="Contact information">
-            <p><a href="mailto:rrcompass@rochelleandroger.com">rrcompass@rochelleandroger.com</a></p>
-            <p>
-              <a href="tel:+11231231234">(123) 123-1234</a>
-              <span aria-hidden="true"> / </span>
-              <a href="tel:+17045550127">(704) 555-0127</a>
-            </p>
-            <p>1808 Stanford St, Santa Monica, 90404 CA</p>
-          </div>
-        </div>
-
-        <!-- Keep RR | COMPASS level with Rochelle + Roger, then place brokerage details below it. -->
-        <div class="custom-footer__brokerage">
-          <div class="custom-footer__brokerage-lockup" aria-label="RR and Compass">
-            <img class="custom-footer__rr-logo" src="images/rr-logo-black.png" alt="RR" width="72" height="72" loading="lazy">
-            <span class="custom-footer__logo-divider" aria-hidden="true">|</span>
-            <img class="custom-footer__compass" src="images/compass_dark.png" alt="Compass" width="155" height="22" loading="lazy">
-          </div>
-
-          <!-- License details now belong directly below the brokerage lock-up. -->
-          <div class="custom-footer__licenses" aria-label="California real estate license information">
-            <p>Rochelle Reyes | CA DRE#01842987</p>
-            <p>Roger Tan | CA DRE#01842990</p>
-            <p>Compass California, Inc. | CA DRE# 01991628</p>
-          </div>
-
-          <!-- Desktop legal copy. Hide this long paragraph on mobile to keep the footer compact. -->
-          <p class="custom-footer__disclaimer">
-            <a href="https://www.compass.com/" target="_blank" rel="noopener noreferrer">Compass</a> is a real estate broker licensed by the State of California and abides by Equal Housing Opportunity laws. License Number 01991628. All material presented herein is intended for informational purposes only and is compiled from sources deemed reliable but has not been verified. Changes in price, condition, sale or withdrawal may be made without notice. No statement is made as to the accuracy of any description. All measurements and square footage are approximate. If your property is currently listed for sale this is not a solicitation.
+<!-- Quick contact details stay directly below our names. -->
+<div aria-label="Contact information" class="custom-footer__contact">
+<p><a href="mailto:rrcompass@rochelleandroger.com">rrcompass@rochelleandroger.com</a></p>
+<p>
+<a href="tel:+11231231234">(123) 123-1234</a>
+<span aria-hidden="true"> / </span>
+<a href="tel:+17045550127">(704) 555-0127</a>
+</p>
+<p>1808 Stanford St, Santa Monica, 90404 CA</p>
+</div>
+</div>
+<!-- Keep RR | COMPASS level with Rochelle + Roger, then place brokerage details below it. -->
+<div class="custom-footer__brokerage">
+<div aria-label="RR and Compass" class="custom-footer__brokerage-lockup">
+<img alt="RR" class="custom-footer__rr-logo" height="72" loading="lazy" src="images/rr-logo-black.png" width="72"/>
+<span aria-hidden="true" class="custom-footer__logo-divider">|</span>
+<img alt="Compass" class="custom-footer__compass" height="22" loading="lazy" src="images/compass_dark.png" width="155"/>
+</div>
+<!-- License details now belong directly below the brokerage lock-up. -->
+<div aria-label="California real estate license information" class="custom-footer__licenses">
+<p>Rochelle Reyes | CA DRE#01842987</p>
+<p>Roger Tan | CA DRE#01842990</p>
+<p>Compass California, Inc. | CA DRE# 01991628</p>
+</div>
+<!-- Desktop legal copy. Hide this long paragraph on mobile to keep the footer compact. -->
+<p class="custom-footer__disclaimer">
+<a href="https://www.compass.com/" rel="noopener noreferrer" target="_blank">Compass</a> is a real estate broker licensed by the State of California and abides by Equal Housing Opportunity laws. License Number 01991628. All material presented herein is intended for informational purposes only and is compiled from sources deemed reliable but has not been verified. Changes in price, condition, sale or withdrawal may be made without notice. No statement is made as to the accuracy of any description. All measurements and square footage are approximate. If your property is currently listed for sale this is not a solicitation.
           </p>
-        </div>
-      </div>
-
-      <!-- Bottom footer row: copyright left, round social icons centered, utility links right. -->
-      <div class="custom-footer__bottom">
-        <p class="custom-footer__copyright">© <span id="copyright-year"></span> Rochelle <span class="custom-thin-plus">+</span> Roger · Design practice</p>
-
-        <div class="custom-footer__socials" aria-label="Social media links">
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6">
-              <rect x="3.5" y="3.5" width="17" height="17" rx="4.5"></rect>
-              <circle cx="12" cy="12" r="4"></circle>
-              <circle cx="17.4" cy="6.8" r="1"></circle>
-            </svg>
-          </a>
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M14.3 8.2V6.8c0-.9.6-1.1 1.1-1.1h2.1V2.2L14.6 2c-3.2 0-4.1 2.4-4.1 4.4v1.8H8v3.9h2.5V22h3.8v-9.9h3.1l.5-3.9h-3.6Z"></path>
-            </svg>
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-              <rect x="3" y="9" width="4" height="12"></rect>
-              <circle cx="5" cy="5" r="2"></circle>
-              <path d="M10 9h3.7v1.7c1-1.3 2.3-2.1 4.3-2.1 3.2 0 4 2.2 4 5.1V21h-4v-6.4c0-1.5 0-3-1.9-3s-2.2 1.4-2.2 2.9V21h-4V9Z"></path>
-            </svg>
-          </a>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="2.5" y="5.5" width="19" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
-              <path fill="currentColor" d="M10 9l6 3-6 3V9Z"></path>
-            </svg>
-          </a>
-          <a href="https://www.compass.com/" target="_blank" rel="noopener noreferrer" aria-label="Compass website">
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6">
-              <circle cx="12" cy="12" r="8.5"></circle>
-              <path d="M3.8 12h16.4M12 3.5c2.1 2.3 3.2 5.1 3.2 8.5S14.1 18.2 12 20.5M12 3.5C9.9 5.8 8.8 8.6 8.8 12S9.9 18.2 12 20.5"></path>
-            </svg>
-          </a>
-        </div>
-
-        <div class="custom-footer__utilities">
-          <details class="custom-footer-disclosure">
-            <summary>Privacy</summary>
-            <p>Practice forms process entries locally and do not send or save your inquiry. Hosting providers may process standard connection data. External websites have their own policies.</p>
-          </details>
-          <details class="custom-footer-disclosure">
-            <summary>Accessibility</summary>
-            <p>Keyboard navigation, labeled fields, visible focus, and reduced-motion support are included. This practice build has not undergone a formal accessibility audit.</p>
-          </details>
-          <span>Equal Housing Opportunity</span>
-        </div>
-      </div>
-    </footer>
-    <!-- CONTACT MODAL: full-screen random home image behind the centered inquiry form. -->
-    <dialog id="contact-modal" class="custom-contact-modal" aria-labelledby="contact-modal-title">
-      <button type="button" class="custom-contact-modal__close custom-icon-button" data-close-contact-modal aria-label="Close contact form">×</button>
-      <div class="custom-contact-modal__body">
-        <p class="custom-eyebrow">LET’S CONNECT</p>
-        <h2 id="contact-modal-title">WORK WITH ROCHELLE <span class="custom-thin-plus">+</span> ROGER</h2>
-        <p class="custom-contact-modal__intro">Tell us a little about what you have in mind and we’ll start from there.</p>
-        <form class="custom-contact-form" id="contact-modal-form">
-          <div class="custom-form-grid">
-            <div class="custom-field">
-              <label for="modal-first-name">First name *</label>
-              <input id="modal-first-name" name="first-name" type="text" required autocomplete="given-name">
-            </div>
-            <div class="custom-field">
-              <label for="modal-last-name">Last name *</label>
-              <input id="modal-last-name" name="last-name" type="text" required autocomplete="family-name">
-            </div>
-            <div class="custom-field">
-              <label for="modal-email">Email *</label>
-              <input id="modal-email" name="email" type="email" required autocomplete="email">
-            </div>
-            <div class="custom-field">
-              <label for="modal-phone">Phone</label>
-              <input id="modal-phone" name="phone" type="tel" autocomplete="tel">
-            </div>
-            <div class="custom-field custom-full">
-              <label for="modal-interest">I’m interested in</label>
-              <select id="modal-interest" name="interest">
-                <option>Buying a home</option>
-                <option>Selling a home</option>
-                <option>Home valuation</option>
-                <option>Compass Concierge</option>
-                <option>Something else</option>
-              </select>
-            </div>
-            <div class="custom-field custom-full">
-              <label for="modal-message">Your message *</label>
-              <textarea id="modal-message" name="message" required rows="4" placeholder="Tell us a little about your plans."></textarea>
-            </div>
-            <label class="custom-check custom-full">
-              <input type="checkbox" required>I understand this is a practice form and my inquiry will not be sent.
-            </label>
-          </div>
-          <div class="custom-form-actions">
-            <button class="custom-button" type="submit">Preview Inquiry</button>
-          </div>
-        </form>
-        <div class="custom-form-status" id="contact-modal-result" hidden aria-live="polite"></div>
-      </div>
-    </dialog>
-    <!-- PROPERTY DETAIL MODAL -->
-    <dialog id="detail-dialog" class="custom-detail" aria-label="Details">
-      <button class="custom-detail__close custom-icon-button" data-close-detail aria-label="Close details">×</button>
-      <div id="detail-content"></div>
-    </dialog>
-    <noscript>
-      <div class="custom-noscript">The homepage is available below. Enable JavaScript to navigate between pages and use the forms.</div>
-    </noscript>
-  </body>
+</div>
+</div>
+<!-- Bottom footer row: copyright left, round social icons centered, utility links right. -->
+<div class="custom-footer__bottom">
+<p class="custom-footer__copyright">© <span id="copyright-year"></span> Rochelle <span class="custom-thin-plus">+</span> Roger</p>
+<div aria-label="Social media links" class="custom-footer__socials">
+<a aria-label="Instagram" href="https://www.instagram.com/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24" width="18">
+<rect height="17" rx="4.5" width="17" x="3.5" y="3.5"></rect>
+<circle cx="12" cy="12" r="4"></circle>
+<circle cx="17.4" cy="6.8" r="1"></circle>
+</svg>
+</a>
+<a aria-label="Facebook" href="https://www.facebook.com/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" height="18" viewbox="0 0 24 24" width="18">
+<path d="M14.3 8.2V6.8c0-.9.6-1.1 1.1-1.1h2.1V2.2L14.6 2c-3.2 0-4.1 2.4-4.1 4.4v1.8H8v3.9h2.5V22h3.8v-9.9h3.1l.5-3.9h-3.6Z" fill="currentColor"></path>
+</svg>
+</a>
+<a aria-label="LinkedIn" href="https://www.linkedin.com/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+<rect height="12" width="4" x="3" y="9"></rect>
+<circle cx="5" cy="5" r="2"></circle>
+<path d="M10 9h3.7v1.7c1-1.3 2.3-2.1 4.3-2.1 3.2 0 4 2.2 4 5.1V21h-4v-6.4c0-1.5 0-3-1.9-3s-2.2 1.4-2.2 2.9V21h-4V9Z"></path>
+</svg>
+</a>
+<a aria-label="YouTube" href="https://www.youtube.com/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" height="18" viewbox="0 0 24 24" width="18">
+<rect fill="none" height="13" rx="3" stroke="currentColor" stroke-width="1.6" width="19" x="2.5" y="5.5"></rect>
+<path d="M10 9l6 3-6 3V9Z" fill="currentColor"></path>
+</svg>
+</a>
+<a aria-label="Compass website" href="https://www.compass.com/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24" width="18">
+<circle cx="12" cy="12" r="8.5"></circle>
+<path d="M3.8 12h16.4M12 3.5c2.1 2.3 3.2 5.1 3.2 8.5S14.1 18.2 12 20.5M12 3.5C9.9 5.8 8.8 8.6 8.8 12S9.9 18.2 12 20.5"></path>
+</svg>
+</a>
+</div>
+<div class="custom-footer__utilities">
+<details class="custom-footer-disclosure">
+<summary>Privacy</summary>
+<p>Hosting providers may process standard connection data. External websites linked from this site have their own privacy policies.</p>
+</details>
+<details class="custom-footer-disclosure">
+<summary>Accessibility</summary>
+<p>Keyboard navigation, labeled fields, visible focus, and reduced-motion support are included. Accessibility is reviewed as the site evolves.</p>
+</details>
+<span>Equal Housing Opportunity</span>
+</div>
+</div>
+</footer>
+<!-- CONTACT MODAL: full-screen random home image behind the centered inquiry form. -->
+<dialog aria-labelledby="contact-modal-title" class="custom-contact-modal" id="contact-modal">
+<button aria-label="Close contact form" class="custom-contact-modal__close custom-icon-button" data-close-contact-modal="" type="button">×</button>
+<div class="custom-contact-modal__body">
+<p class="custom-eyebrow">LET’S CONNECT</p>
+<h2 id="contact-modal-title">WORK WITH ROCHELLE <span class="custom-thin-plus">+</span> ROGER</h2>
+<p class="custom-contact-modal__intro">Tell us a little about what you have in mind and we’ll start from there.</p>
+<form class="custom-contact-form" id="contact-modal-form">
+<div class="custom-form-grid">
+<div class="custom-field">
+<label for="modal-first-name">First name *</label>
+<input autocomplete="given-name" id="modal-first-name" name="first-name" required="" type="text"/>
+</div>
+<div class="custom-field">
+<label for="modal-last-name">Last name *</label>
+<input autocomplete="family-name" id="modal-last-name" name="last-name" required="" type="text"/>
+</div>
+<div class="custom-field">
+<label for="modal-email">Email *</label>
+<input autocomplete="email" id="modal-email" name="email" required="" type="email"/>
+</div>
+<div class="custom-field">
+<label for="modal-phone">Phone</label>
+<input autocomplete="tel" id="modal-phone" name="phone" type="tel"/>
+</div>
+<div class="custom-field custom-full">
+<label for="modal-interest">I’m interested in</label>
+<select id="modal-interest" name="interest">
+<option>Buying a home</option>
+<option>Selling a home</option>
+<option>Home valuation</option>
+<option>Compass Concierge</option>
+<option>Something else</option>
+</select>
+</div>
+<div class="custom-field custom-full">
+<label for="modal-message">Your message *</label>
+<textarea id="modal-message" name="message" placeholder="Tell us a little about your plans." required="" rows="4"></textarea>
+</div>
+</div>
+<div class="custom-form-actions">
+<button class="custom-button" type="submit">Send Inquiry</button>
+</div>
+</form>
+<div aria-live="polite" class="custom-form-status" hidden="" id="contact-modal-result"></div>
+</div>
+</dialog>
+<!-- PROPERTY DETAIL MODAL -->
+<dialog aria-label="Details" class="custom-detail" id="detail-dialog">
+<button aria-label="Close details" class="custom-detail__close custom-icon-button" data-close-detail="">×</button>
+<div id="detail-content"></div>
+</dialog>
+<noscript>
+<div class="custom-noscript">The homepage is available below. Enable JavaScript to navigate between pages and use the forms.</div>
+</noscript>
+</body>
 </html>

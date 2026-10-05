@@ -1,4 +1,13 @@
 /* ==========================================================
+   CUSTOM-ONLY FILE
+   ==========================================================
+   Keep only effects here that template.css does not natively provide:
+   timed hero motion/swaps, GSM hover lift, the stats marquee, and the
+   overlapping/blurred Featured Properties treatment. Native carousel
+   arrow visuals are intentionally reused from template.css instead.
+   ========================================================== */
+
+/* ==========================================================
    PAGE ADVANCED CSS
    ==========================================================
    Visual polish lives here so the base layout stays easy to
@@ -219,7 +228,7 @@
     opacity 0.3s ease;
 }
 
-/* Keep the button color transition too; this rule loads after page-base.css. */
+/* Keep the shared button color transition while the card content lifts. */
 .custom-gsm__card .custom-gsm__link {
   transition:
     transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -228,13 +237,9 @@
     border-color .25s ease;
 }
 
+/* Move the eyebrow, heading, and CTA together so the card feels unified. */
 .custom-gsm__card:hover > * {
   transform: translateY(-12px);
-}
-
-/* Let the CTA move a touch farther so the hover has some depth. */
-.custom-gsm__card:hover .custom-gsm__link {
-  transform: translateY(-17px);
 }
 
 /* ==========================================================

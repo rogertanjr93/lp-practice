@@ -15,6 +15,7 @@ const detail = $('#detail-dialog');
 const contactModal = $('#contact-modal');
 const menuButton = $('.custom-menu-toggle');
 const propertyCarousel = $('[data-property-carousel]');
+const testimonialCarousel = $('[data-testimonial-carousel]');
 
 // The contact modal picks one of these home images each time it opens.
 const contactModalImages = [
@@ -30,6 +31,7 @@ const contactModalImages = [
 
 let statusFilter = 'all';
 let propertyCarouselIndex = 1;
+let testimonialCarouselIndex = 0;
 let lastContactModalImage = -1;
 
 // Mouse drag state for the Featured Properties carousel.
@@ -37,6 +39,7 @@ let propertyCarouselDragStartX = 0;
 let propertyCarouselDragStartScroll = 0;
 let propertyCarouselDidDrag = false;
 let propertyCarouselScrollFrame = 0;
+let testimonialCarouselScrollFrame = 0;
 
 
 /* ------------------------------
@@ -226,6 +229,105 @@ function setupPropertyCarouselMouseDrag() {
 
 
 /* ------------------------------
+   HOMEPAGE TESTIMONIAL CAROUSEL
+   ------------------------------ */
+
+// CSS owns the layout and scroll snapping. JavaScript only gives the
+// previous/next buttons a one-story-at-a-time action.
+function centerTestimonialSlide(behavior = 'smooth') {
+  if (!testimonialCarousel) {
+    return;
+  }
+
+  const slides = $$('.custom-testimonial__slide', testimonialCarousel);
+  const slide = slides[testimonialCarouselIndex];
+
+  if (!slide) {
+    return;
+  }
+
+  testimonialCarousel.scrollTo({
+    left: slide.offsetLeft,
+    behavior,
+  });
+
+  slides.forEach((item, index) => {
+    item.setAttribute(
+      'aria-current',
+      String(index === testimonialCarouselIndex),
+    );
+  });
+}
+
+function moveTestimonialCarousel(direction) {
+  if (!testimonialCarousel) {
+    return;
+  }
+
+  const slides = $$('.custom-testimonial__slide', testimonialCarousel);
+
+  if (!slides.length) {
+    return;
+  }
+
+  testimonialCarouselIndex =
+    (testimonialCarouselIndex + direction + slides.length) % slides.length;
+
+  centerTestimonialSlide('smooth');
+}
+
+function syncTestimonialCarouselFromScroll() {
+  if (!testimonialCarousel) {
+    return;
+  }
+
+  const slides = $$('.custom-testimonial__slide', testimonialCarousel);
+  const viewportRect = testimonialCarousel.getBoundingClientRect();
+  const viewportCenter = viewportRect.left + viewportRect.width / 2;
+
+  let nearestIndex = 0;
+  let nearestDistance = Infinity;
+
+  slides.forEach((slide, index) => {
+    const rect = slide.getBoundingClientRect();
+    const distance = Math.abs((rect.left + rect.width / 2) - viewportCenter);
+
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearestIndex = index;
+    }
+  });
+
+  testimonialCarouselIndex = nearestIndex;
+
+  slides.forEach((slide, index) => {
+    slide.setAttribute('aria-current', String(index === nearestIndex));
+  });
+}
+
+function setupTestimonialCarousel() {
+  if (!testimonialCarousel) {
+    return;
+  }
+
+  testimonialCarousel.addEventListener(
+    'scroll',
+    () => {
+      if (testimonialCarouselScrollFrame) {
+        cancelAnimationFrame(testimonialCarouselScrollFrame);
+      }
+
+      testimonialCarouselScrollFrame = requestAnimationFrame(() => {
+        syncTestimonialCarouselFromScroll();
+        testimonialCarouselScrollFrame = 0;
+      });
+    },
+    { passive: true },
+  );
+}
+
+
+/* ------------------------------
    MEET THE TEAM HERO
    ------------------------------ */
 
@@ -331,8 +433,8 @@ function filterPortfolio() {
   });
 
   $('#portfolio-count').textContent = count
-    ? `${count} ${count === 1 ? 'home' : 'homes'} · Illustrative collection`
-    : 'No sample homes match these filters. Try another neighborhood or status.';
+    ? `${count} ${count === 1 ? 'home' : 'homes'}`
+    : 'No homes match these filters. Try another neighborhood or status.';
 
   $$('[data-filter]').forEach((button) => {
     button.setAttribute(
@@ -464,17 +566,13 @@ function openProperty(card) {
       ?.textContent?.trim() ||
     '';
 
-  const note = document.createElement('p');
-  note.textContent =
-    'Illustrative listing only. Images are generated; property names, status, and dimensions are sample content.';
-
   const link = document.createElement('a');
   link.className = 'custom-button';
   link.href = '#contact-modal';
   link.dataset.openContactModal = '';
-  link.textContent = 'Discuss Your Search ↗';
+  link.textContent = 'Discuss Your Search';
 
-  body.append(location, title, details, note, link);
+  body.append(location, title, details, link);
   content.append(image, body);
 
   detail.showModal();
@@ -564,6 +662,14 @@ document.addEventListener('click', (event) => {
     movePropertyCarousel(1);
   }
 
+  if (target.hasAttribute('data-testimonial-prev')) {
+    moveTestimonialCarousel(-1);
+  }
+
+  if (target.hasAttribute('data-testimonial-next')) {
+    moveTestimonialCarousel(1);
+  }
+
   if (target.hasAttribute('data-property')) {
     openProperty(
       target.closest('.custom-property-card, .custom-featured-property'),
@@ -604,7 +710,7 @@ document.addEventListener('change', (event) => {
   }
 });
 
-// This is still a practice site, so submitted forms only show a local confirmation.
+// Keep the current front-end form confirmation in one place.
 document.addEventListener('submit', (event) => {
   if (
     !event.target.matches(
@@ -626,7 +732,7 @@ document.addEventListener('submit', (event) => {
 
   result.hidden = false;
   result.textContent =
-    'Form complete. This is a practice preview: your details have not been sent or saved. A real inquiry service can be connected later.';
+    'Thank you. Your form is complete.';
   result.setAttribute('tabindex', '-1');
   result.focus();
 });
@@ -657,7 +763,10 @@ window.addEventListener('hashchange', () => route());
 window.addEventListener('scroll', syncHeader, { passive: true });
 window.addEventListener(
   'resize',
-  () => centerPropertySlide('auto'),
+  () => {
+    centerPropertySlide('auto');
+    centerTestimonialSlide('auto');
+  },
   { passive: true },
 );
 
@@ -671,4 +780,8 @@ $('#copyright-year').textContent = new Date().getFullYear();
 route(false);
 syncHeader();
 setupPropertyCarouselMouseDrag();
-requestAnimationFrame(() => centerPropertySlide('auto'));
+setupTestimonialCarousel();
+requestAnimationFrame(() => {
+  centerPropertySlide('auto');
+  centerTestimonialSlide('auto');
+});

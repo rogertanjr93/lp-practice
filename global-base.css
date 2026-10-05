@@ -1857,3 +1857,52 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
 .custom-brand > span {
   font-weight: 300;
 }
+
+/* ==========================================================
+   TEXT-ONLY PAGE INTRO TITLE LOCKUP
+   ==========================================================
+   Pages without an opening image use the page title, a slim
+   divider, and the white RR mark on one visual row.
+   The RR mark follows the title size so neither one dominates.
+   ========================================================== */
+
+.custom-page-intro__title-lockup {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 30px);
+  margin: 20px 0 25px;
+
+  /* Match the normal page-intro H1 scale. */
+  font-size: clamp(44px, 6.5vw, 92px);
+}
+
+.custom-page-intro__title-lockup h1 {
+  flex: 0 1 auto;
+  margin: 0;
+  font-size: 1em;
+}
+
+.custom-page-intro__title-divider {
+  width: 1px;
+  height: 0.8em;
+  flex: 0 0 1px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.custom-page-intro__title-logo {
+  width: auto;
+  height: 1em;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+@media (max-width: 650px) {
+  .custom-page-intro__title-lockup {
+    gap: 14px;
+    font-size: clamp(36px, 11vw, 52px);
+  }
+
+  .custom-page-intro__title-divider {
+    height: 0.72em;
+  }
+}
