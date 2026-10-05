@@ -612,7 +612,7 @@ body.custom-locked {
   margin-top: 12px;
 }
 
-/* Footer: names/legal copy on the left, RR | COMPASS on the right. */
+/* Footer: contact details on the left, RR | COMPASS + legal copy on the right. */
 
 .custom-footer {
   padding: 78px 56px 25px;
@@ -623,15 +623,26 @@ body.custom-locked {
   max-width: var(--page-width);
   margin: auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(280px, .8fr) minmax(420px, 1.2fr);
   align-items: start;
   gap: clamp(48px, 7vw, 120px);
   padding-bottom: 58px;
 }
 
-.custom-footer__identity {
+.custom-footer__identity,
+.custom-footer__brokerage {
   min-width: 0;
-  max-width: 900px;
+}
+
+.custom-footer__identity {
+  max-width: 520px;
+}
+
+.custom-footer__brokerage {
+  width: 100%;
+  max-width: 820px;
+  justify-self: end;
+  text-align: right;
 }
 
 .custom-footer__wordmark {
@@ -640,39 +651,34 @@ body.custom-locked {
   letter-spacing: -.035em;
 }
 
-/* License details belong directly below our names. */
-.custom-footer__licenses {
+/* Contact information belongs directly below Rochelle + Roger. */
+.custom-footer__contact {
   margin-top: 22px;
-  margin-bottom: 24px;
 }
 
-.custom-footer__licenses p {
+.custom-footer__contact p {
   margin: 0 0 7px;
   color: #222;
   font-size: 13px;
   line-height: 1.55;
 }
 
-.custom-footer__disclaimer {
-  max-width: 860px;
-  margin: 0;
-  color: #636363;
-  font-size: 12px;
-  line-height: 1.75;
-}
-
-.custom-footer__disclaimer a {
+.custom-footer__contact a {
   color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
 }
 
-/* Keep the brokerage marks level with the Rochelle + Roger wordmark on desktop. */
+.custom-footer__contact a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Keep the brokerage marks level with Rochelle + Roger on desktop. */
 .custom-footer__brokerage-lockup {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-self: end;
+  justify-content: flex-end;
   gap: 16px;
   margin: 0;
   padding-top: 2px;
@@ -700,6 +706,33 @@ body.custom-locked {
   width: 155px;
   max-width: 155px;
   height: auto;
+}
+
+/* License details now sit underneath RR | COMPASS. */
+.custom-footer__licenses {
+  margin-top: 22px;
+  margin-bottom: 24px;
+}
+
+.custom-footer__licenses p {
+  margin: 0 0 7px;
+  color: #222;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.custom-footer__disclaimer {
+  max-width: 820px;
+  margin: 0 0 0 auto;
+  color: #636363;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.custom-footer__disclaimer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Bottom row: equal side columns keep the social icons truly centered. */
@@ -1744,7 +1777,7 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   }
 }
 
-/* Footer responsiveness: keep everything centered on mobile and hide the long disclaimer. */
+/* Footer responsiveness: center everything on mobile and hide the long disclaimer. */
 
 @media (max-width: 760px) {
   .custom-footer {
@@ -1755,24 +1788,31 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   .custom-footer__main {
     grid-template-columns: 1fr;
     justify-items: center;
-    gap: 30px;
+    gap: 34px;
     padding-bottom: 35px;
   }
 
-  .custom-footer__identity {
+  .custom-footer__identity,
+  .custom-footer__brokerage {
     width: 100%;
     max-width: 620px;
+    justify-self: center;
     text-align: center;
   }
 
-  .custom-footer__wordmark {
+  .custom-footer__wordmark,
+  .custom-footer__contact,
+  .custom-footer__licenses {
     text-align: center;
+  }
+
+  .custom-footer__contact,
+  .custom-footer__licenses {
+    margin-top: 18px;
   }
 
   .custom-footer__licenses {
-    margin-top: 18px;
     margin-bottom: 0;
-    text-align: center;
   }
 
   .custom-footer__disclaimer {
@@ -1780,7 +1820,6 @@ body, h1, h2, h3, h4, h5, h6, button, input, select, textarea, nav, i, blockquot
   }
 
   .custom-footer__brokerage-lockup {
-    justify-self: center;
     justify-content: center;
     padding-top: 0;
   }
