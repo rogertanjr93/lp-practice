@@ -406,10 +406,47 @@
   letter-spacing: .08em;
 }
 
-.custom-testimonial__controls {
+/* ==========================================================
+   NATIVE PRODUCER SWIPE NAV
+   ==========================================================
+   The arrow artwork comes from template.css via the native
+   .lp-i--arrow-left / .lp-i--arrow-right icon classes.
+   These rules only arrange the arrows and SWIPE label.
+   ========================================================== */
+
+.custom-swipe-nav {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: clamp(16px, 2.4vw, 34px);
+}
+
+.custom-swipe-nav__button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: #111111;
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1;
+}
+
+.custom-swipe-nav__button .lp-i {
+  display: block;
+  line-height: 1;
+}
+
+.custom-swipe-nav__label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  line-height: 1;
+}
+
+.custom-testimonial__controls {
   margin: 28px 0 26px;
 }
 
@@ -2125,20 +2162,21 @@ body[data-page=home-valuation] .custom-header {
 }
 
 .custom-featured-properties__footer {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 24px;
   padding-top: clamp(28px, 3.5vh, 44px);
 }
 
+/* Keep the swipe control mathematically centered even with VIEW ALL on the right. */
 .custom-featured-properties__controls {
-  display: flex;
-  gap: 6px;
+  grid-column: 2;
 }
 
-
 .custom-featured-properties__footer .custom-button {
+  grid-column: 3;
+  justify-self: end;
   min-width: 190px;
   border-color: #222;
   color: #000;
@@ -2198,7 +2236,7 @@ body[data-page=home-valuation] .custom-header {
   }
 
   .custom-featured-properties__footer {
-    align-items: stretch;
+    align-items: center;
   }
 
   .custom-featured-properties__footer .custom-button {
@@ -2214,12 +2252,21 @@ body[data-page=home-valuation] .custom-header {
 
 @media (max-width: 480px) {
   .custom-featured-properties__footer {
-    flex-wrap: wrap;
+    grid-template-columns: 1fr;
+  }
+
+  .custom-featured-properties__controls,
+  .custom-featured-properties__footer .custom-button {
+    grid-column: 1;
+  }
+
+  .custom-featured-properties__controls {
+    justify-self: center;
   }
 
   .custom-featured-properties__footer .custom-button {
     width: 100%;
-    order: 2;
+    justify-self: stretch;
   }
 }
 
@@ -2283,3 +2330,14 @@ body[data-page=home-valuation] .custom-header {
   }
 }
 
+
+
+/* 404 uses the normal hero system with a property image. */
+.custom-404-hero .custom-hero__content {
+  max-width: 900px;
+}
+
+.custom-404-hero .custom-hero__subtitle {
+  max-width: 620px;
+  margin-inline: auto;
+}

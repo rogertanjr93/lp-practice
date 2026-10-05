@@ -446,12 +446,16 @@ function filterPortfolio() {
 
 // This is a single-file site, so the hash decides which page block is visible.
 function route(focus = true) {
-  const [slug, query = ''] = location.hash.replace(/^#\/?/, '').split('?');
-  const page = pages.find(
-    (item) => item.dataset.page === (slug || 'home'),
-  );
+  // Plain #section anchors (Skip to content, modal anchors, etc.) are not page routes.
+  if (location.hash && !location.hash.startsWith('#/')) {
+    return;
+  }
 
-  // Normal section anchors should not replace the current page.
+  const [slug, query = ''] = location.hash.replace(/^#\/?/, '').split('?');
+  const requestedPage = slug || 'home';
+  const matchedPage = pages.find((item) => item.dataset.page === requestedPage);
+  const page = matchedPage || pages.find((item) => item.dataset.page === '404');
+
   if (!page) {
     return;
   }
@@ -467,17 +471,21 @@ function route(focus = true) {
   const title =
     page.dataset.page === 'home'
       ? 'Los Angeles Real Estate'
-      : page.dataset.page
-          .split('-')
-          .map((word) => word[0].toUpperCase() + word.slice(1))
-          .join(' ');
+      : page.dataset.page === '404'
+        ? '404 Page Not Found'
+        : page.dataset.page
+            .split('-')
+            .map((word) => word[0].toUpperCase() + word.slice(1))
+            .join(' ');
 
   document.title = `${title} | Rochelle + Roger`;
 
   const href =
-    page.dataset.page === 'home'
+    matchedPage && page.dataset.page === 'home'
       ? '#/'
-      : '#/' + page.dataset.page;
+      : matchedPage
+        ? '#/' + page.dataset.page
+        : '';
 
   $$('.custom-header a, .custom-menu a').forEach((link) => {
     if (link.getAttribute('href') === href) {
@@ -489,7 +497,7 @@ function route(focus = true) {
 
   const params = new URLSearchParams(query);
 
-  if (slug === 'portfolio') {
+  if (matchedPage && slug === 'portfolio') {
     statusFilter = 'all';
 
     const area = params.get('area');
@@ -507,11 +515,11 @@ function route(focus = true) {
     $('#main').focus({ preventScroll: true });
   }
 
-  if ((slug || 'home') === 'home') {
+  if (matchedPage && (slug || 'home') === 'home') {
     requestAnimationFrame(() => centerPropertySlide('auto'));
   }
 
-  if (slug === 'neighborhoods') {
+  if (matchedPage && slug === 'neighborhoods') {
     const target = document.getElementById('area-' + params.get('area'));
 
     if (target) {

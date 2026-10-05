@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#000000" name="theme-color"/>
+<title>404 Page Not Found | Rochelle + Roger</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    color: #fff;
+    background: #111;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .not-found__image,
+  .not-found__shade {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .not-found__image { object-fit: cover; }
+  .not-found__shade { background: rgba(0,0,0,.52); }
+  .not-found__content {
+    position: relative;
+    z-index: 1;
+    width: min(920px, calc(100% - 40px));
+    text-align: center;
+  }
+  .not-found__eyebrow {
+    margin: 0 0 18px;
+    font-size: 12px;
+    letter-spacing: .32em;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(48px, 9vw, 118px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -.045em;
+  }
+  p {
+    margin: 24px auto 0;
+    max-width: 620px;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.6;
+  }
+  .not-found__home {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    margin-top: 34px;
+    padding: 14px 28px;
+    border: 1px solid #fff;
+    color: #fff;
+    background: transparent;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-decoration: none;
+  }
+  .not-found__home:hover { background: #fff; color: #000; }
+</style>
+</head>
+<body>
+<img alt="A contemporary Los Angeles property" class="not-found__image" data-404-image/>
+<div aria-hidden="true" class="not-found__shade"></div>
+<main class="not-found__content">
+<p class="not-found__eyebrow">404</p>
+<h1>PAGE NOT FOUND</h1>
+<p>The page you’re looking for isn’t here.</p>
+<a class="not-found__home" data-home-link>BACK TO HOME</a>
+</main>
+<script>
+  // Keep this 404 portable between a custom domain and GitHub project pages.
+  const parts = window.location.pathname.split('/').filter(Boolean);
+  const base = window.location.hostname.endsWith('github.io') && parts.length
+    ? `/${parts[0]}/`
+    : '/';
+
+  document.querySelector('[data-404-image]').src = `${base}images/losangeles-1.jpg`;
+  document.querySelector('[data-home-link]').href = `${base}#/`;
+</script>
+</body>
+</html>
