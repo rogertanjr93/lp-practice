@@ -2154,7 +2154,7 @@ body[data-page=home-valuation] .custom-header {
   right: 15px;
 }
 
-/* Meet the Team hero: 80dvh. CSS handles the 3-image slideshow + motion. */
+/* Meet the Team hero: 80dvh. CSS handles the simple 3-image slideshow. */
 
 #meet-the-team-section-opening {
   height: 80dvh;

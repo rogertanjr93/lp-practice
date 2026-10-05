@@ -2,17 +2,18 @@
    HERO IMAGE MOTION — CSS ONLY
    ==========================================================
    No JavaScript timer here. CSS controls the image changes,
-   fades, pans, and zooms by itself.
+   pans, and zooms by itself.
 
    HOME HERO
    - Uses all 8 property images.
    - A new image begins every 3 seconds.
+   - Uses a hard cut between images — NO crossfade.
    - Motion alternates: pan left, zoom in, pan right, zoom out.
 
    MEET THE TEAM HERO
    - Keeps the 3 team images.
    - A new image begins every 3 seconds.
-   - Uses the same obvious pan / zoom treatment.
+   - Keeps its existing fade + pan / zoom treatment.
    ========================================================== */
 
 /* ------------------------------
@@ -71,20 +72,25 @@
 
 /* Pan from right to left while slowly moving closer. */
 @keyframes home-hero-pan-left {
+  /* Stay hidden until this slide's 3-second slot begins. */
   0% {
     opacity: 0;
     transform: scale(1.08) translate3d(5%, 0, 0);
   }
 
-  3% {
+  /* Almost-instant switch on — avoids a visible fade. */
+  0.01% {
     opacity: 1;
   }
 
-  8.5% {
+  /* Keep moving for the full 3-second slot. */
+  12.49% {
     opacity: 1;
+    transform: scale(1.18) translate3d(-5%, 0, 0);
   }
 
-  15% {
+  /* Hard cut off exactly when the next slide takes over. */
+  12.5% {
     opacity: 0;
     transform: scale(1.18) translate3d(-5%, 0, 0);
   }
@@ -102,15 +108,16 @@
     transform: scale(1.00);
   }
 
-  3% {
+  0.01% {
     opacity: 1;
   }
 
-  8.5% {
+  12.49% {
     opacity: 1;
+    transform: scale(1.20);
   }
 
-  15% {
+  12.5% {
     opacity: 0;
     transform: scale(1.20);
   }
@@ -128,15 +135,16 @@
     transform: scale(1.08) translate3d(-5%, 0, 0);
   }
 
-  3% {
+  0.01% {
     opacity: 1;
   }
 
-  8.5% {
+  12.49% {
     opacity: 1;
+    transform: scale(1.18) translate3d(5%, 0, 0);
   }
 
-  15% {
+  12.5% {
     opacity: 0;
     transform: scale(1.18) translate3d(5%, 0, 0);
   }
@@ -154,15 +162,16 @@
     transform: scale(1.20);
   }
 
-  3% {
+  0.01% {
     opacity: 1;
   }
 
-  8.5% {
+  12.49% {
     opacity: 1;
+    transform: scale(1.04);
   }
 
-  15% {
+  12.5% {
     opacity: 0;
     transform: scale(1.04);
   }
@@ -174,106 +183,47 @@
 }
 
 /* ------------------------------
-   MEET THE TEAM — 3 TEAM IMAGES
+   MEET THE TEAM — SIMPLE 3-IMAGE SWAP
+   ------------------------------
+   No pan, zoom, or fade here. Each image stays still for
+   4 seconds, then switches instantly to the next image.
+   The full loop is 12 seconds: team -> Rochelle -> Roger.
    ------------------------------ */
 
 .custom-team-hero__image {
-  /* Keep faces anchored toward the top while the image moves. */
-  transform-origin: center top;
-  will-change: transform, opacity;
-  animation-duration: 9s;
-  animation-timing-function: ease-in-out;
+  /* Keep the image completely still. CSS only controls which one is visible. */
+  transform: none;
+  will-change: opacity;
+  animation-name: team-hero-image-swap;
+  animation-duration: 12s;
+  animation-timing-function: steps(1, end);
   animation-iteration-count: infinite;
-  animation-fill-mode: both;
 }
 
+/* First image: visible from 0s to 4s. */
 .custom-team-hero__image:nth-child(1) {
-  animation-name: team-hero-pan-left;
-  animation-delay: -0.4s;
+  animation-delay: 0s;
 }
 
+/* Rochelle: visible from 4s to 8s. */
 .custom-team-hero__image:nth-child(2) {
-  animation-name: team-hero-zoom-in;
-  animation-delay: 2.6s;
+  animation-delay: 4s;
 }
 
+/* Roger: visible from 8s to 12s. */
 .custom-team-hero__image:nth-child(3) {
-  animation-name: team-hero-pan-right;
-  animation-delay: 5.6s;
+  animation-delay: 8s;
 }
 
-@keyframes team-hero-pan-left {
-  0% {
-    opacity: 0;
-    transform: scale(1.08) translate3d(5%, 0, 0);
-  }
-
-  8% {
+@keyframes team-hero-image-swap {
+  0%,
+  33.332% {
     opacity: 1;
   }
 
-  22% {
-    opacity: 1;
-  }
-
-  40% {
-    opacity: 0;
-    transform: scale(1.20) translate3d(-5%, 0, 0);
-  }
-
+  33.333%,
   100% {
     opacity: 0;
-    transform: scale(1.20) translate3d(-5%, 0, 0);
-  }
-}
-
-@keyframes team-hero-zoom-in {
-  0% {
-    opacity: 0;
-    transform: scale(1.00);
-  }
-
-  8% {
-    opacity: 1;
-  }
-
-  22% {
-    opacity: 1;
-  }
-
-  40% {
-    opacity: 0;
-    transform: scale(1.22);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.22);
-  }
-}
-
-@keyframes team-hero-pan-right {
-  0% {
-    opacity: 0;
-    transform: scale(1.08) translate3d(-5%, 0, 0);
-  }
-
-  8% {
-    opacity: 1;
-  }
-
-  22% {
-    opacity: 1;
-  }
-
-  40% {
-    opacity: 0;
-    transform: scale(1.20) translate3d(5%, 0, 0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.20) translate3d(5%, 0, 0);
   }
 }
 
