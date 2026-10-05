@@ -411,7 +411,7 @@
    ==========================================================
    The arrow artwork comes from template.css via the native
    .lp-i--arrow-left / .lp-i--arrow-right icon classes.
-   These rules only arrange the arrows and SWIPE label.
+   These rules only arrange the arrows and the centered VIEW ALL CTA.
    ========================================================== */
 
 .custom-swipe-nav {
@@ -439,11 +439,10 @@
   line-height: 1;
 }
 
-.custom-swipe-nav__label {
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: .22em;
-  line-height: 1;
+.custom-swipe-nav .custom-button {
+  min-width: 150px;
+  margin: 0;
+  text-align: center;
 }
 
 .custom-testimonial__controls {
@@ -2162,25 +2161,15 @@ body[data-page=home-valuation] .custom-header {
 }
 
 .custom-featured-properties__footer {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: center;
   padding-top: clamp(28px, 3.5vh, 44px);
 }
 
-/* Keep the swipe control mathematically centered even with VIEW ALL on the right. */
+/* Featured Properties now uses one centered arrow / VIEW ALL / arrow control. */
 .custom-featured-properties__controls {
-  grid-column: 2;
-}
-
-.custom-featured-properties__footer .custom-button {
-  grid-column: 3;
-  justify-self: end;
-  min-width: 190px;
-  border-color: #222;
-  color: #000;
-  text-align: center;
+  width: 100%;
 }
 
 #portfolio-grid .custom-property-card__status {
@@ -2188,11 +2177,11 @@ body[data-page=home-valuation] .custom-header {
   right: 15px;
 }
 
-/* Meet the Team hero: 80dvh. CSS handles the simple 3-image slideshow. */
+/* Meet the Team hero: always fill the viewer's screen height. */
 
 #meet-the-team-section-opening {
-  height: 80dvh;
-  min-height: 440px;
+  height: 100vh;
+  height: 100dvh;
 }
 
 .custom-team-hero__images {
@@ -2235,38 +2224,19 @@ body[data-page=home-valuation] .custom-header {
     height: clamp(370px, 60vh, 600px);
   }
 
-  .custom-featured-properties__footer {
-    align-items: center;
+  .custom-swipe-nav {
+    gap: 14px;
   }
 
-  .custom-featured-properties__footer .custom-button {
-    min-width: 0;
+  .custom-swipe-nav .custom-button {
+    min-width: 132px;
     padding-inline: 18px;
   }
 
+  /* Use stable viewport height on phones so browser chrome does not resize this hero mid-scroll. */
   #meet-the-team-section-opening {
-    height: 80dvh;
-    min-height: 400px;
-  }
-}
-
-@media (max-width: 480px) {
-  .custom-featured-properties__footer {
-    grid-template-columns: 1fr;
-  }
-
-  .custom-featured-properties__controls,
-  .custom-featured-properties__footer .custom-button {
-    grid-column: 1;
-  }
-
-  .custom-featured-properties__controls {
-    justify-self: center;
-  }
-
-  .custom-featured-properties__footer .custom-button {
-    width: 100%;
-    justify-self: stretch;
+    height: 100svh;
+    min-height: 100svh;
   }
 }
 

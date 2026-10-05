@@ -34,10 +34,7 @@ let propertyCarouselIndex = 1;
 let testimonialCarouselIndex = 0;
 let lastContactModalImage = -1;
 
-// Mouse drag state for the Featured Properties carousel.
-let propertyCarouselDragStartX = 0;
-let propertyCarouselDragStartScroll = 0;
-let propertyCarouselDidDrag = false;
+// Desktop mouse dragging is custom behavior. Touch/trackpad scrolling stays native.
 let propertyCarouselScrollFrame = 0;
 let testimonialCarouselScrollFrame = 0;
 
@@ -134,79 +131,103 @@ function syncPropertyCarouselFromScroll() {
   });
 }
 
-// CSS handles native touch/trackpad scrolling. This small handler only
-// adds the missing desktop-mouse click-drag behavior.
-function setupPropertyCarouselMouseDrag() {
-  if (!propertyCarousel) {
-    return;
-  }
-
-  const viewport = $('.custom-featured-properties__viewport', propertyCarousel);
-
+// CSS handles native touch/trackpad scrolling. This shared helper adds
+// smooth 1:1 click-drag scrolling for a regular desktop mouse.
+//
+// IMPORTANT: while the pointer is down, do not recalculate the active card.
+// The blur/stacking changes are relatively expensive and were what made the
+// Featured Properties drag feel sticky before. We sync once after release.
+function setupDesktopMouseDrag(viewport, {
+  onDragStateChange,
+  onRelease,
+  onScroll,
+}) {
   if (!viewport) {
     return;
   }
+
+  let isDragging = false;
+  let didDrag = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let pointerId = null;
 
   viewport.addEventListener('pointerdown', (event) => {
     if (event.pointerType !== 'mouse' || event.button !== 0) {
       return;
     }
 
-    propertyCarouselDragStartX = event.clientX;
-    propertyCarouselDragStartScroll = viewport.scrollLeft;
-    propertyCarouselDidDrag = false;
+    isDragging = true;
+    didDrag = false;
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startScrollLeft = viewport.scrollLeft;
+
     viewport.classList.add('is-dragging');
+    viewport.setPointerCapture?.(event.pointerId);
+    onDragStateChange?.(true, false);
   });
 
   viewport.addEventListener('pointermove', (event) => {
-    if (
-      event.pointerType !== 'mouse' ||
-      !viewport.classList.contains('is-dragging')
-    ) {
+    if (!isDragging || event.pointerId !== pointerId) {
       return;
     }
 
-    const distance = event.clientX - propertyCarouselDragStartX;
+    const distance = event.clientX - startX;
 
-    if (Math.abs(distance) > 4 && !propertyCarouselDidDrag) {
-      propertyCarouselDidDrag = true;
-      viewport.setPointerCapture(event.pointerId);
+    if (!didDrag && Math.abs(distance) > 4) {
+      didDrag = true;
+      onDragStateChange?.(true, true);
     }
 
-    if (propertyCarouselDidDrag) {
-      viewport.scrollLeft = propertyCarouselDragStartScroll - distance;
+    if (!didDrag) {
+      return;
     }
+
+    // Direct 1:1 movement feels much closer to native touch scrolling.
+    // requestAnimationFrame is unnecessary here; pointer events are already
+    // browser-scheduled and scrollLeft updates stay on the compositor path.
+    event.preventDefault();
+    viewport.scrollLeft = startScrollLeft - distance;
   });
 
   const finishDrag = (event) => {
-    if (!viewport.classList.contains('is-dragging')) {
+    if (!isDragging || event.pointerId !== pointerId) {
       return;
     }
 
+    isDragging = false;
     viewport.classList.remove('is-dragging');
 
     if (viewport.hasPointerCapture?.(event.pointerId)) {
       viewport.releasePointerCapture(event.pointerId);
     }
 
-    syncPropertyCarouselFromScroll();
-    centerPropertySlide('smooth');
+    onDragStateChange?.(false, didDrag);
+    onRelease?.(didDrag);
+
+    // Keep the drag flag alive through the synthetic click that follows
+    // pointerup, then clear it immediately afterward.
+    window.setTimeout(() => {
+      didDrag = false;
+      onDragStateChange?.(false, false);
+    }, 0);
+
+    pointerId = null;
   };
 
   viewport.addEventListener('pointerup', finishDrag);
   viewport.addEventListener('pointercancel', finishDrag);
 
-  // Prevent a drag-release from accidentally opening a property dialog.
   viewport.addEventListener(
     'click',
     (event) => {
-      if (!propertyCarouselDidDrag) {
+      if (!didDrag) {
         return;
       }
 
       event.preventDefault();
       event.stopPropagation();
-      propertyCarouselDidDrag = false;
     },
     true,
   );
@@ -214,6 +235,33 @@ function setupPropertyCarouselMouseDrag() {
   viewport.addEventListener(
     'scroll',
     () => {
+      if (isDragging) {
+        return;
+      }
+
+      onScroll?.();
+    },
+    { passive: true },
+  );
+}
+
+function setupPropertyCarouselMouseDrag() {
+  if (!propertyCarousel) {
+    return;
+  }
+
+  const viewport = $('.custom-featured-properties__viewport', propertyCarousel);
+
+  setupDesktopMouseDrag(viewport, {
+    onRelease: (didDrag) => {
+      if (!didDrag) {
+        return;
+      }
+
+      syncPropertyCarouselFromScroll();
+      centerPropertySlide('smooth');
+    },
+    onScroll: () => {
       if (propertyCarouselScrollFrame) {
         cancelAnimationFrame(propertyCarouselScrollFrame);
       }
@@ -223,8 +271,7 @@ function setupPropertyCarouselMouseDrag() {
         propertyCarouselScrollFrame = 0;
       });
     },
-    { passive: true },
-  );
+  });
 }
 
 
@@ -310,9 +357,16 @@ function setupTestimonialCarousel() {
     return;
   }
 
-  testimonialCarousel.addEventListener(
-    'scroll',
-    () => {
+  setupDesktopMouseDrag(testimonialCarousel, {
+    onRelease: (didDrag) => {
+      if (!didDrag) {
+        return;
+      }
+
+      syncTestimonialCarouselFromScroll();
+      centerTestimonialSlide('smooth');
+    },
+    onScroll: () => {
       if (testimonialCarouselScrollFrame) {
         cancelAnimationFrame(testimonialCarouselScrollFrame);
       }
@@ -322,8 +376,7 @@ function setupTestimonialCarousel() {
         testimonialCarouselScrollFrame = 0;
       });
     },
-    { passive: true },
-  );
+  });
 }
 
 

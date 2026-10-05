@@ -729,6 +729,14 @@ body.custom-locked {
   line-height: 1.75;
 }
 
+.custom-footer__disclaimer p {
+  margin: 0 0 14px;
+}
+
+.custom-footer__disclaimer p:last-child {
+  margin-bottom: 0;
+}
+
 .custom-footer__disclaimer a {
   color: inherit;
   text-decoration: underline;

@@ -425,22 +425,39 @@
 #home-section-featured-properties .custom-featured-properties__viewport {
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   overscroll-behavior-inline: contain;
   scrollbar-width: none;
-  cursor: grab;
 }
 
 #home-section-featured-properties .custom-featured-properties__viewport::-webkit-scrollbar {
   display: none;
 }
 
-#home-section-featured-properties .custom-featured-properties__viewport.is-dragging {
-  cursor: grabbing;
-  scroll-behavior: auto;
-  scroll-snap-type: none;
-  user-select: none;
+/* Desktop mouse drag: temporarily disable snapping while the pointer is down.
+   Touch and trackpad scrolling remain native and keep normal snap behavior. */
+@media (hover: hover) and (pointer: fine) {
+  #home-section-featured-properties .custom-featured-properties__viewport,
+  #home-section-testimonials .custom-testimonial__viewport {
+    cursor: grab;
+  }
+
+  #home-section-featured-properties .custom-featured-properties__viewport.is-dragging,
+  #home-section-testimonials .custom-testimonial__viewport.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+
+  #home-section-featured-properties .custom-featured-properties__viewport.is-dragging *,
+  #home-section-testimonials .custom-testimonial__viewport.is-dragging * {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  #home-section-featured-properties .custom-featured-property__media img {
+    -webkit-user-drag: none;
+  }
 }
 
 #home-section-featured-properties .custom-featured-properties__track {
@@ -508,19 +525,56 @@
 }
 
 /* ==========================================================
-   TESTIMONIALS — CTA SPACING
+   CAROUSEL NAV — EXTRA-LONG THIN PRODUCER ARROWS
    ==========================================================
-   The homepage Testimonials link now uses the same light-background
-   CTA button treatment as the rest of the site.
+   The actual arrow glyph still comes from template.css through
+   .lp-i--arrow-left / .lp-i--arrow-right. The Producer template
+   does not include a thinner or extra-long variant, so only the
+   proportions are customized here.
    ========================================================== */
 
-#home-section-testimonials .custom-button {
-  margin-top: 28px;
+.custom-swipe-nav__button {
+  width: clamp(82px, 8vw, 116px);
+  overflow: visible;
+  font-size: clamp(28px, 2.8vw, 38px);
+}
+
+.custom-swipe-nav__button .lp-i::before {
+  transform: scaleX(2.15) scaleY(.62);
+  transform-origin: center;
+}
+
+/* VIEW ALL now sits between the arrows, so keep it vertically aligned. */
+.custom-swipe-nav .custom-button {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .custom-swipe-nav__button {
+    width: 72px;
+    font-size: 26px;
+  }
+
+  .custom-swipe-nav__button .lp-i::before {
+    transform: scaleX(1.9) scaleY(.65);
+  }
 }
 
 @media (max-width: 760px) {
   #home-section-featured-properties .custom-featured-property:not([aria-current="true"]) .custom-featured-property__media {
     filter: blur(.8px) brightness(.80);
     opacity: .82;
+  }
+}
+
+/* Keep the centered arrow / VIEW ALL / arrow control inside very narrow phones. */
+@media (max-width: 480px) {
+  .custom-swipe-nav__button {
+    width: 52px;
+    font-size: 22px;
+  }
+
+  .custom-swipe-nav__button .lp-i::before {
+    transform: scaleX(1.7) scaleY(.68);
   }
 }
