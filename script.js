@@ -685,8 +685,24 @@ function closeDialogs() {
   syncDialogState();
 }
 
-// I open the contact form over a random house image.
-function openContactModal() {
+// I use the shared modal for all contact links, but show the PDF only for Concierge.
+function openContactModal(isConcierge = false) {
+  const form = $('#contact-modal-form');
+  const pdfField = $('#concierge-pdf-field');
+  const pdfInput = $('#modal-concierge-pdf');
+  const pdfStatus = $('#modal-pdf-status');
+  const interest = $('#modal-interest');
+
+  form.dataset.conciergeSubmission = String(isConcierge);
+  pdfField.hidden = !isConcierge;
+  pdfInput.disabled = !isConcierge;
+  pdfInput.value = '';
+  pdfInput.setCustomValidity('');
+  pdfStatus.textContent = 'No file selected';
+  pdfStatus.classList.remove('is-error');
+
+  // A different link that uses the shared modal keeps its normal behavior.
+  interest.value = isConcierge ? 'Compass Concierge' : 'Buying a home';
   chooseContactModalImage();
 
   if (menu.open) {
@@ -912,6 +928,37 @@ function valuationStep(next) {
 }
 
 
+/* PDF attachment checks for the Compass Concierge form. */
+
+function validateConciergePdf() {
+  const pdfInput = $('#modal-concierge-pdf');
+  const pdfStatus = $('#modal-pdf-status');
+  const file = pdfInput.files[0];
+  let error = '';
+
+  if (file) {
+    // The accept attribute filters the picker; these checks also cover bypasses.
+    const hasPdfExtension = /\.pdf$/i.test(file.name);
+    const hasPdfMime = !file.type || file.type === 'application/pdf';
+
+    if (!hasPdfExtension || !hasPdfMime) {
+      error = 'Please select a PDF file only.';
+    } else if (file.size === 0) {
+      error = 'This PDF is empty. Please select another file.';
+    } else if (file.size > 10 * 1024 * 1024) {
+      error = 'The PDF must be 10 MB or smaller.';
+    }
+  }
+
+  pdfInput.setCustomValidity(error);
+  pdfStatus.classList.toggle('is-error', Boolean(error));
+  pdfStatus.textContent = error || (file
+    ? `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`
+    : 'No file selected');
+
+  return !error;
+}
+
 /* My shared site events. */
 
 // I handle repeated buttons and links from one click listener.
@@ -934,7 +981,7 @@ document.addEventListener('click', (event) => {
 
   if (target.hasAttribute('data-open-contact-modal')) {
     event.preventDefault();
-    openContactModal();
+    openContactModal(target.hasAttribute('data-concierge-contact'));
   }
 
   if (target.hasAttribute('data-close-contact-modal')) {
@@ -1006,6 +1053,10 @@ document.addEventListener('change', (event) => {
   if (event.target.id === 'area-filter') {
     filterPortfolio();
   }
+
+  if (event.target.id === 'modal-concierge-pdf') {
+    validateConciergePdf();
+  }
 });
 
 // I keep the demo form confirmation in one place.
@@ -1018,6 +1069,23 @@ document.addEventListener('submit', (event) => {
     return;
   }
 
+  if (
+    event.target.id === 'contact-modal-form' &&
+    event.target.dataset.conciergeSubmission === 'true'
+  ) {
+    if (!validateConciergePdf()) {
+      event.preventDefault();
+      $('#modal-concierge-pdf').reportValidity();
+      return;
+    }
+
+    // Deliberately do not call preventDefault(): the browser sends the entire
+    // multipart form, including the PDF attachment, to FormSubmit.co.
+    // FormSubmit handles the delivery and displays its own confirmation page.
+    return;
+  }
+
+  // Unrelated demo contact and valuation forms keep their existing behavior.
   event.preventDefault();
 
   const results = {
