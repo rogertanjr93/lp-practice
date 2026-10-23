@@ -1019,7 +1019,7 @@
 <h2>Make a thoughtful<br/>first impression</h2>
 <p>Compass Concierge can help eligible sellers fund improvements such as staging, painting, and flooring before a sale, subject to program approval and terms.</p>
 <p>Start with a conversation about the work your home needs and the options available in your market.</p>
-<a class="custom-button custom-button--outline" data-open-contact-modal="" href="#contact-modal">Start a Conversation
+<a class="custom-button custom-button--outline" data-open-contact-modal="" data-concierge-contact="" href="#contact-modal">Start a Conversation
               </a>
 </div>
 <div>
@@ -1207,7 +1207,11 @@
 <p class="custom-eyebrow">LET’S CONNECT</p>
 <h2 id="contact-modal-title">WORK WITH ROCHELLE <span class="custom-thin-plus">+</span> ROGER</h2>
 <p class="custom-contact-modal__intro">Tell us a little about what you have in mind and we’ll start from there.</p>
-<form class="custom-contact-form" id="contact-modal-form">
+<!-- Concierge inquiries are sent as a multipart POST so the PDF is attached to the email. -->
+<form action="https://formsubmit.co/rogertanjr93@gmail.com" class="custom-contact-form" enctype="multipart/form-data" id="contact-modal-form" method="POST">
+<input name="_subject" type="hidden" value="New Compass Concierge Inquiry | Rochelle + Roger"/>
+<input name="_template" type="hidden" value="table"/>
+<input name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="custom-form-honeypot" type="text"/>
 <div class="custom-form-grid">
 <div class="custom-field">
 <label for="modal-first-name">First name *</label>
@@ -1238,6 +1242,13 @@
 <div class="custom-field custom-full">
 <label for="modal-message">Your message *</label>
 <textarea id="modal-message" name="message" placeholder="Tell us a little about your plans." required="" rows="4"></textarea>
+</div>
+<!-- Only visible when launched from the Compass Concierge Start a Conversation link. -->
+<div class="custom-field custom-full custom-concierge-upload" hidden id="concierge-pdf-field">
+<label for="modal-concierge-pdf">Attach a PDF (optional)</label>
+<input accept=".pdf,application/pdf" aria-describedby="modal-pdf-help modal-pdf-status" disabled id="modal-concierge-pdf" name="attachment" type="file"/>
+<p class="custom-note" id="modal-pdf-help">PDF files only. Maximum 10 MB.</p>
+<p aria-live="polite" class="custom-concierge-upload__status" id="modal-pdf-status">No file selected</p>
 </div>
 </div>
 <div class="custom-form-actions">
