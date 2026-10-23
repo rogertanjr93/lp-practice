@@ -1243,16 +1243,17 @@
 <label for="modal-message">Your message *</label>
 <textarea id="modal-message" name="message" placeholder="Tell us a little about your plans." required="" rows="4"></textarea>
 </div>
-<!-- Only visible when launched from the Compass Concierge Start a Conversation link. -->
-<div class="custom-field custom-full custom-concierge-upload" hidden id="concierge-pdf-field">
-<label for="modal-concierge-pdf">Attach a PDF (optional)</label>
-<input accept=".pdf,application/pdf" aria-describedby="modal-pdf-help modal-pdf-status" disabled id="modal-concierge-pdf" name="attachment" type="file"/>
-<p class="custom-note" id="modal-pdf-help">PDF files only. Maximum 10 MB.</p>
+</div>
+<!-- The PDF button is only displayed for the Compass Concierge conversation. -->
+<div class="custom-form-actions custom-form-actions--concierge">
+<button aria-controls="modal-concierge-pdf" class="custom-button custom-button--outline" hidden id="concierge-upload-button" type="button">UPLOAD PDF</button>
+<button class="custom-button" type="submit">SEND INQUIRY</button>
+</div>
+<!-- The actual PDF file input remains part of the form for email attachment. -->
+<div class="custom-concierge-upload" hidden id="concierge-pdf-field">
+<input accept=".pdf,application/pdf" aria-describedby="modal-pdf-help modal-pdf-status" disabled hidden id="modal-concierge-pdf" name="attachment" type="file"/>
+<p class="custom-note" id="modal-pdf-help">PDF attachment (optional) · PDF only · Maximum 10 MB</p>
 <p aria-live="polite" class="custom-concierge-upload__status" id="modal-pdf-status">No file selected</p>
-</div>
-</div>
-<div class="custom-form-actions">
-<button class="custom-button" type="submit">Send Inquiry</button>
 </div>
 </form>
 <div aria-live="polite" class="custom-form-status" hidden="" id="contact-modal-result"></div>
