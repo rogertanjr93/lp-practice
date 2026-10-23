@@ -689,12 +689,14 @@ function closeDialogs() {
 function openContactModal(isConcierge = false) {
   const form = $('#contact-modal-form');
   const pdfField = $('#concierge-pdf-field');
+  const pdfButton = $('#concierge-upload-button');
   const pdfInput = $('#modal-concierge-pdf');
   const pdfStatus = $('#modal-pdf-status');
   const interest = $('#modal-interest');
 
   form.dataset.conciergeSubmission = String(isConcierge);
   pdfField.hidden = !isConcierge;
+  pdfButton.hidden = !isConcierge;
   pdfInput.disabled = !isConcierge;
   pdfInput.value = '';
   pdfInput.setCustomValidity('');
@@ -982,6 +984,14 @@ document.addEventListener('click', (event) => {
   if (target.hasAttribute('data-open-contact-modal')) {
     event.preventDefault();
     openContactModal(target.hasAttribute('data-concierge-contact'));
+  }
+
+  // Open the native PDF picker from the button beside SEND INQUIRY.
+  if (target.id === 'concierge-upload-button') {
+    const pdfInput = $('#modal-concierge-pdf');
+    if (!pdfInput.disabled) {
+      pdfInput.click();
+    }
   }
 
   if (target.hasAttribute('data-close-contact-modal')) {
