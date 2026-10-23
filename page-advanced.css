@@ -606,8 +606,10 @@
   }
 }
 
-/* Compass Concierge: PDF-only attachment in the shared contact modal. */
-#concierge-pdf-field[hidden] {
+/* Compass Concierge: center the PDF picker beside the inquiry button. */
+#concierge-upload-button[hidden],
+#concierge-pdf-field[hidden],
+#modal-concierge-pdf[hidden] {
   display: none !important;
 }
 
@@ -615,55 +617,41 @@
   display: none !important;
 }
 
-.custom-concierge-upload {
-  min-width: 0;
-}
-
-.custom-concierge-upload input[type="file"] {
-  display: block;
+.custom-contact-modal .custom-form-actions--concierge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 12px;
   width: 100%;
-  box-sizing: border-box;
-  min-height: 64px;
-  padding: 12px;
-  border: 1px dashed #999;
-  border-radius: 0;
-  background: #fff;
-  color: #000;
-  font: inherit;
-  font-size: 14px;
+}
+
+.custom-contact-modal .custom-form-actions--concierge .custom-button {
+  margin: 0;
+  flex: 0 1 auto;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Inherits the site's black-and-white outline button styling. */
+#concierge-upload-button {
   cursor: pointer;
 }
 
-.custom-concierge-upload input[type="file"]::file-selector-button {
-  margin-right: 16px;
-  padding: 10px 16px;
-  border: 1px solid #000;
-  border-radius: 0;
-  background: #fff;
-  color: #000;
-  font: inherit;
-  font-size: 12px;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background-color .2s ease, color .2s ease;
-}
-
-@media (hover: hover) {
-  .custom-concierge-upload input[type="file"]::file-selector-button:hover {
-    background: #000;
-    color: #fff;
-  }
-}
-
-.custom-concierge-upload input[type="file"]:focus-visible {
+#concierge-upload-button:focus-visible {
   outline: 2px solid #000;
   outline-offset: 3px;
 }
 
+.custom-concierge-upload {
+  margin-top: 10px;
+  min-width: 0;
+  text-align: center;
+}
+
 .custom-concierge-upload .custom-note,
 .custom-concierge-upload__status {
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   font-size: 12px;
   line-height: 1.5;
 }
@@ -677,8 +665,14 @@
   text-decoration: underline;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .custom-concierge-upload input[type="file"]::file-selector-button {
-    transition: none;
+@media (max-width: 480px) {
+  .custom-contact-modal .custom-form-actions--concierge {
+    gap: 8px;
+  }
+
+  .custom-contact-modal .custom-form-actions--concierge .custom-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 11px;
   }
 }
